@@ -1,0 +1,4 @@
+#include "marbles__mobile.xcconfig"
+#include "marbles__base__release.xcconfig"
+
+VALIDATE_PRODUCT = YES

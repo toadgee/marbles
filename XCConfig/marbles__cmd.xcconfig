@@ -1,0 +1,7 @@
+#include "marbles__base.xcconfig"
+
+PRODUCT_NAME = Marbles
+GCC_PRECOMPILE_PREFIX_HEADER = YES
+GCC_PREFIX_HEADER = Marbles/Marbles-Prefix.pch
+
+DEAD_CODE_STRIPPING = YES

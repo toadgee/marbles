@@ -1,0 +1,12 @@
+#include "marbles__base.xcconfig"
+
+PRODUCT_NAME = TGMarbles
+WRAPPER_EXTENSION = framework
+DYLIB_COMPATIBILITY_VERSION =  1
+DYLIB_CURRENT_VERSION = 1
+FRAMEWORK_VERSION = A
+INFOPLIST_FILE = TGMarbles/TGMarbles-Info.plist
+GCC_PRECOMPILE_PREFIX_HEADER = YES
+GCC_PREFIX_HEADER = TGMarbles/TGMarbles-Prefix.pch
+
+

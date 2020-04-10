@@ -1,0 +1,21 @@
+#include "marbles__base.xcconfig"
+
+PRODUCT_NAME = MarblesMobile
+WRAPPER_EXTENSION = app
+
+GCC_PRECOMPILE_PREFIX_HEADER = YES
+GCC_PREFIX_HEADER = MarblesMobile/MarblesMobile-Prefix.pch
+
+SDKROOT = iphoneos
+TARGETED_DEVICE_FAMILY = 1,2
+IPHONEOS_DEPLOYMENT_TARGET = 9.0
+OTHER_LDFLAGS = -framework MessageUI
+INFOPLIST_FILE = MarblesMobile/MarblesMobile-Info.plist
+FRAMEWORK_SEARCH_PATHS = $(inherited) "$(SYSTEM_APPS_DIR)/Xcode.app/Contents/Developer/Library/Frameworks"
+
+CODE_SIGN_ENTITLEMENTS = MarblesMobile/MarblesMobile.entitlements
+CODE_SIGN_IDENTITY = iPhone Developer
+CODE_SIGN_IDENTITY[sdk=iphoneos*] = iPhone Developer
+PROVISIONING_PROFILE = 
+
+DEAD_CODE_STRIPPING = YES

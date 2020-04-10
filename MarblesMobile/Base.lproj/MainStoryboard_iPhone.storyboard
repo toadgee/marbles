@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16B2555" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" colorMatched="YES" initialViewController="2">
+    <device id="retina3_5" orientation="landscape">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Delegate-->
+        <scene sceneID="5">
+            <objects>
+                <viewController id="2" customClass="TGMViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="3">
+                        <rect key="frame" x="0.0" y="0.0" width="480" height="320"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <subviews>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" maximumZoomScale="2" id="Uc1-xu-u0V">
+                                <rect key="frame" x="0.0" y="0.0" width="385" height="320"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" misplaced="YES" id="Dzm-EZ-nBO" userLabel="BoardView" customClass="TGMBoardView">
+                                        <rect key="frame" x="0.0" y="0.0" width="385" height="320"/>
+                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                        <subviews>
+                                            <view contentMode="scaleToFill" misplaced="YES" id="Az3-hs-o8V" customClass="TGMCardView">
+                                                <rect key="frame" x="166" y="122" width="52" height="77"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <connections>
+                                                    <outlet property="delegate" destination="2" id="wg9-rv-4ud"/>
+                                                </connections>
+                                            </view>
+                                        </subviews>
+                                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                        <connections>
+                                            <outlet property="delegate" destination="2" id="x8m-kH-RDc"/>
+                                        </connections>
+                                    </view>
+                                </subviews>
+                            </scrollView>
+                            <view contentMode="scaleToFill" misplaced="YES" id="lRn-Oa-WD4" userLabel="Action View">
+                                <rect key="frame" x="393" y="0.0" width="87" height="320"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" heightSizable="YES"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" misplaced="YES" id="Mi5-2s-0gt" userLabel="HandView" customClass="TGMHandView">
+                                        <rect key="frame" x="0.0" y="0.0" width="87" height="239"/>
+                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                        <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                    </view>
+                                    <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="SAK-ja-348">
+                                        <rect key="frame" x="33" y="285" width="46" height="30"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                        <state key="normal" title="Play"/>
+                                        <connections>
+                                            <action selector="playMove:" destination="2" eventType="touchUpInside" id="0jQ-wO-IdT"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="x1x-eV-vmD">
+                                        <rect key="frame" x="33" y="247" width="46" height="30"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                        <state key="normal" title="Pass"/>
+                                        <connections>
+                                            <action selector="passRestOfHand:" destination="2" eventType="touchUpInside" id="eO6-SU-jNE"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="33V-jP-0Ug">
+                                        <rect key="frame" x="-5" y="289" width="30" height="22"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" image="Settings"/>
+                                        <connections>
+                                            <action selector="showSettings:" destination="2" eventType="touchUpInside" id="gH7-Ma-VsY"/>
+                                        </connections>
+                                    </button>
+                                    <view contentMode="scaleToFill" misplaced="YES" id="20t-L1-Hbk" userLabel="ColorView">
+                                        <rect key="frame" x="-5" y="311" width="92" height="9"/>
+                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    </view>
+                                </subviews>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    </view>
+                    <connections>
+                        <outlet property="_actionView" destination="lRn-Oa-WD4" id="9cF-2c-Q5a"/>
+                        <outlet property="_boardScrollView" destination="Uc1-xu-u0V" id="b4N-8z-XKa"/>
+                        <outlet property="_boardView" destination="Dzm-EZ-nBO" id="CDD-7C-dOT"/>
+                        <outlet property="_discardView" destination="Az3-hs-o8V" id="yHZ-Le-XXs"/>
+                        <outlet property="_fastForwardButton" destination="x1x-eV-vmD" id="UAO-2B-Rqz"/>
+                        <outlet property="_handView" destination="Mi5-2s-0gt" id="OU2-zM-OEn"/>
+                        <outlet property="_playButton" destination="SAK-ja-348" id="0eh-sy-mHy"/>
+                        <outlet property="_settingsButton" destination="33V-jP-0Ug" id="Fp5-hu-VOQ"/>
+                        <outlet property="_thisPlayerColorView" destination="20t-L1-Hbk" id="zPe-8o-Kvb"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="4" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="34" y="94"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="Settings" width="30" height="20"/>
+    </resources>
+    <simulatedMetricsContainer key="defaultSimulatedMetrics">
+        <simulatedStatusBarMetrics key="statusBar"/>
+        <simulatedOrientationMetrics key="orientation" orientation="landscapeRight"/>
+        <simulatedScreenMetrics key="destination"/>
+    </simulatedMetricsContainer>
+</document>

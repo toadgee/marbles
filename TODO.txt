@@ -1,0 +1,20 @@
+general
+- change TGMLogging to use a shared instance and then individual projects can redirect that to wherever they want
+- iPad speed test (not on main thread).
+- if there are any get outs for any teammates, we have to use those first instead of playing others
+- finish removing "isFinalSpot"
++ 	make touchspot not keep track of final spot as BOOL
++ 	make board not take final spots
+- Plays that are 4 behind another marble are kinda bad
+- Probably need a deck list
+- cover build doesn't actually do codecov.
+
+mobile game:
++ make left handed do exact mirror, not just the 2 panes
++ each player has their own discard?
++ show movement on board of other players playing
++ show predicted movement of marbles instead of just green->red (note: this is now easier with intermediate spots solved - now just draw UI)
++ allow get out moves to pick which marble in base we want to play (mark : [choose specific home pieces])
++ make card views slide around/animate/etc.
+
+console game

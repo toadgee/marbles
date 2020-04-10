@@ -1,0 +1,10 @@
+#include "marbles__base.xcconfig"
+
+PRODUCT_NAME = TGMarblesTests
+WRAPPER_EXTENSION = xctest
+CLANG_ENABLE_MODULES = YES
+ENABLE_NS_ASSERTIONS = YES
+
+
+LD_RUNPATH_SEARCH_PATHS = $(inherited) @executable_path/../Frameworks @loader_path/../Frameworks
+FRAMEWORK_SEARCH_PATHS = $(DEVELOPER_FRAMEWORKS_DIR) $(inherited)

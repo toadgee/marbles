@@ -1,0 +1,9 @@
+//
+// Prefix header for all source files of the 'MarblesPerf' target in the 'MarblesPerf' project
+//
+
+#ifdef __OBJC__
+    #import <Foundation/Foundation.h>
+#endif
+
+#include "precomp.h"

@@ -1,0 +1,4 @@
+#include "marbles__framework_tests.xcconfig"
+#include "marbles__base__debug.xcconfig"
+
+MTL_ENABLE_DEBUG_INFO = YES

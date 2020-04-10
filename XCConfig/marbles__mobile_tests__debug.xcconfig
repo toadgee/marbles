@@ -1,0 +1,2 @@
+#include "marbles__mobile_tests.xcconfig"
+#include "marbles__base__debug.xcconfig"

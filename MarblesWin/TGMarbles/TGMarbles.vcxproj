@@ -1,0 +1,172 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{16482CBC-A98D-4360-97A5-4FDDB37ECCD2}</ProjectGuid>
+    <Keyword>Win32Proj</Keyword>
+    <RootNamespace>TGMarbles</RootNamespace>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v142</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v142</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <IncludePath>C:\Users\toadg\depot\marbles\TGMarbles\Utilities;C:\Users\toadg\depot\marbles\TGMarbles\Platform;C:\Users\toadg\depot\marbles\TGMarbles\Perf;C:\Users\toadg\depot\marbles\TGMarbles\AI;C:\Users\toadg\depot\marbles\TGMarbles\Game;C:\Users\toadg\depot\marbles\TGMarbles;$(IncludePath)</IncludePath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <IncludePath>C:\Users\toadg\depot\marbles\TGMarbles\Utilities;C:\Users\toadg\depot\marbles\TGMarbles\Platform;C:\Users\toadg\depot\marbles\TGMarbles\Perf;C:\Users\toadg\depot\marbles\TGMarbles\AI;C:\Users\toadg\depot\marbles\TGMarbles\Game;C:\Users\toadg\depot\marbles\TGMarbles;$(IncludePath)</IncludePath>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <SDLCheck>true</SDLCheck>
+      <PrecompiledHeaderFile>precomp.h</PrecompiledHeaderFile>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <SDLCheck>true</SDLCheck>
+      <PrecompiledHeaderFile>precomp.h</PrecompiledHeaderFile>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <Text Include="ReadMe.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\TGMarbles\AI\ComputerPlayer.h" />
+    <ClInclude Include="..\..\TGMarbles\AI\DumbPlayer.h" />
+    <ClInclude Include="..\..\TGMarbles\AI\MoveGenerator.h" />
+    <ClInclude Include="..\..\TGMarbles\AI\MoveRanker.h" />
+    <ClInclude Include="..\..\TGMarbles\AI\ReplayGame.h" />
+    <ClInclude Include="..\..\TGMarbles\DebugAssert.h" />
+    <ClInclude Include="..\..\TGMarbles\Descriptions.h" />
+    <ClInclude Include="..\..\TGMarbles\Game\Board.h" />
+    <ClInclude Include="..\..\TGMarbles\Game\Card.h" />
+    <ClInclude Include="..\..\TGMarbles\Game\CardList.h" />
+    <ClInclude Include="..\..\TGMarbles\Game\CardNumber.h" />
+    <ClInclude Include="..\..\TGMarbles\Game\CardSuit.h" />
+    <ClInclude Include="..\..\TGMarbles\Game\Deck.h" />
+    <ClInclude Include="..\..\TGMarbles\Game\DeckList.h" />
+    <ClInclude Include="..\..\TGMarbles\Game\Game.h" />
+    <ClInclude Include="..\..\TGMarbles\Game\GameLog.h" />
+    <ClInclude Include="..\..\TGMarbles\Game\GameState.h" />
+    <ClInclude Include="..\..\TGMarbles\Game\Marble.h" />
+    <ClInclude Include="..\..\TGMarbles\Game\MarbleColor.h" />
+    <ClInclude Include="..\..\TGMarbles\Game\MarbleStrategy.h" />
+    <ClInclude Include="..\..\TGMarbles\Game\Move.h" />
+    <ClInclude Include="..\..\TGMarbles\Game\MoveList.h" />
+    <ClInclude Include="..\..\TGMarbles\Game\Player.h" />
+    <ClInclude Include="..\..\TGMarbles\Game\PlayerColor.h" />
+    <ClInclude Include="..\..\TGMarbles\Game\PoolAllocator.h" />
+    <ClInclude Include="..\..\TGMarbles\Game\Spots.h" />
+    <ClInclude Include="..\..\TGMarbles\Game\Teammates.h" />
+    <ClInclude Include="..\..\TGMarbles\MarblesMem.h" />
+    <ClInclude Include="..\..\TGMarbles\Perf\AITest.h" />
+    <ClInclude Include="..\..\TGMarbles\Perf\PerfTest.h" />
+    <ClInclude Include="..\..\TGMarbles\Platform\Thread.h" />
+    <ClInclude Include="..\..\TGMarbles\Utilities\HiResTimer.h" />
+    <ClInclude Include="..\..\TGMarbles\Utilities\Logging.h" />
+    <ClInclude Include="..\..\TGMarbles\Utilities\Random.h" />
+    <ClInclude Include="..\..\TGMarbles\Utilities\RandomPlayerColor.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\TGMarbles\AI\ComputerPlayer.cpp" />
+    <ClCompile Include="..\..\TGMarbles\AI\DumbPlayer.cpp" />
+    <ClCompile Include="..\..\TGMarbles\AI\MoveGenerator.cpp" />
+    <ClCompile Include="..\..\TGMarbles\AI\MoveRanker.cpp" />
+    <ClCompile Include="..\..\TGMarbles\AI\ReplayGame.cpp" />
+    <ClCompile Include="..\..\TGMarbles\Descriptions.cpp" />
+    <ClCompile Include="..\..\TGMarbles\Game\CardNumber.cpp" />
+    <ClCompile Include="..\..\TGMarbles\Game\MarbleColor.cpp" />
+    <ClCompile Include="..\..\TGMarbles\Perf\AITest.cpp" />
+    <ClCompile Include="..\..\TGMarbles\Perf\PerfTest.cpp" />
+    <ClCompile Include="..\..\TGMarbles\Platform\Thread_win32.cpp" />
+    <ClCompile Include="..\..\TGMarbles\Utilities\HiResTimer.cpp" />
+    <ClCompile Include="..\..\TGMarbles\Utilities\Random.cpp" />
+    <ClCompile Include="..\..\TGMarbles\Utilities\RandomPlayerColor.cpp" />
+    <ClCompile Include="precomp.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\TGMarbles\Game\Board.cpp">
+      <DeploymentContent>false</DeploymentContent>
+      <DeploymentContent Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+      </DeploymentContent>
+    </ClCompile>
+    <ClCompile Include="..\..\TGMarbles\Game\Card.cpp" />
+    <ClCompile Include="..\..\TGMarbles\Game\CardList.cpp" />
+    <ClCompile Include="..\..\TGMarbles\Game\Deck.cpp" />
+    <ClCompile Include="..\..\TGMarbles\Game\DeckList.cpp" />
+    <ClCompile Include="..\..\TGMarbles\Game\Game.cpp" />
+    <ClCompile Include="..\..\TGMarbles\Game\GameLog.cpp" />
+    <ClCompile Include="..\..\TGMarbles\Game\Marble.cpp" />
+    <ClCompile Include="..\..\TGMarbles\Game\Move.cpp" />
+    <ClCompile Include="..\..\TGMarbles\Game\MoveList.cpp" />
+    <ClCompile Include="..\..\TGMarbles\Game\Player.cpp">
+      <FileType>Document</FileType>
+    </ClCompile>
+    <ClCompile Include="..\..\TGMarbles\Game\PoolAllocator.cpp" />
+    <ClCompile Include="..\..\TGMarbles\Game\Teammates.cpp">
+      <FileType>Document</FileType>
+    </ClCompile>
+    <ClCompile Include="..\..\TGMarbles\DebugAssert.cpp" />
+    <ClCompile Include="..\..\TGMarbles\MarblesMem.cpp">
+      <FileType>Document</FileType>
+    </ClCompile>
+    <None Include="..\..\TGMarbles\precomp.h" />
+    <None Include="..\..\TGMarbles\Utilities\Logging.m" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

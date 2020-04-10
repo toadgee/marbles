@@ -1,0 +1,19 @@
+#include "marbles__base.xcconfig"
+
+PRODUCT_NAME = MarblesMobileTests
+WRAPPER_EXTENSION = octest
+
+GCC_PRECOMPILE_PREFIX_HEADER = YES
+GCC_PREFIX_HEADER = MarblesMobileTests/MarblesMobileTests-Prefix.pch
+
+SDKROOT = iphoneos
+VALID_ARCHS = armv7 armv7s
+ARCHS = armv7 armv7s
+
+IPHONEOS_DEPLOYMENT_TARGET = 8.0
+OTHER_LDFLAGS = -framework XCTest
+INFOPLIST_FILE = MarblesMobileTests/MarblesMobileTests-Info.plist
+FRAMEWORK_SEARCH_PATHS = "$(SDKROOT)/Developer/Library/Frameworks" "$(DEVELOPER_LIBRARY_DIR)/Frameworks" $(PLATFORM_DIR)/Developer/Library/Frameworks
+
+CODE_SIGN_ENTITLEMENTS = MarblesMobile/MarblesMobile.entitlements
+CODE_SIGN_IDENTITY[sdk=iphoneos*] = iPhone Developer

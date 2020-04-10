@@ -1,0 +1,2188 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 51;
+	objects = {
+
+/* Begin PBXAggregateTarget section */
+		2F71320922C9CB9F008BDCA1 /* Build All */ = {
+			isa = PBXAggregateTarget;
+			buildConfigurationList = 2F71320A22C9CB9F008BDCA1 /* Build configuration list for PBXAggregateTarget "Build All" */;
+			buildPhases = (
+			);
+			dependencies = (
+				2F6EDCCF2318D77C00CABEEC /* PBXTargetDependency */,
+				2F71320F22C9CBA9008BDCA1 /* PBXTargetDependency */,
+				2F71321122C9CBA9008BDCA1 /* PBXTargetDependency */,
+				2F71321522C9CBA9008BDCA1 /* PBXTargetDependency */,
+				2F71321722C9CBA9008BDCA1 /* PBXTargetDependency */,
+				2F71321922C9CBA9008BDCA1 /* PBXTargetDependency */,
+			);
+			name = "Build All";
+			productName = "Build All";
+		};
+/* End PBXAggregateTarget section */
+
+/* Begin PBXBuildFile section */
+		2F054E7B1681201300081993 /* TouchPlayer.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2F104D91167FF053003382C7 /* TouchPlayer.mm */; };
+		2F054FB21682967200081993 /* TouchSpot.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2F054FB11682967200081993 /* TouchSpot.mm */; };
+		2F0E069C16BCCC83001E8818 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2FFA84C81481F41600EDDCDE /* Foundation.framework */; };
+		2F0E069F16BCCC83001E8818 /* MarblesReplay.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2F0E069E16BCCC83001E8818 /* MarblesReplay.mm */; };
+		2F0E06A316BCCC83001E8818 /* MarblesReplay.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = 2F0E06A216BCCC83001E8818 /* MarblesReplay.1 */; };
+		2F0E06A716BCCCA2001E8818 /* ComputerPlayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2F84417B150C034A0039260B /* ComputerPlayer.cpp */; };
+		2F0E06A816BCCCA5001E8818 /* MoveRanker.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2F91F24215BD05EB00F3E3DF /* MoveRanker.cpp */; };
+		2F0E06A916BCCCAA001E8818 /* Board.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2F84417E150C034A0039260B /* Board.cpp */; };
+		2F0E06AA16BCCCB3001E8818 /* Card.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2F844180150C034A0039260B /* Card.cpp */; };
+		2F0E06AB16BCCCB3001E8818 /* Deck.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2F844182150C034A0039260B /* Deck.cpp */; };
+		2F0E06AC16BCCCB3001E8818 /* Game.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2F844184150C034A0039260B /* Game.cpp */; };
+		2F0E06AD16BCCCB3001E8818 /* GameLog.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2FF52B9E169D314F00F521F9 /* GameLog.cpp */; };
+		2F0E06AF16BCCCB3001E8818 /* Marble.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2F77490815B73F8800250B26 /* Marble.cpp */; };
+		2F0E06B016BCCCB3001E8818 /* Move.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2F84418A150C034A0039260B /* Move.cpp */; };
+		2F0E06B116BCCCB3001E8818 /* MoveList.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2FBB64AA164CE63800C44B9F /* MoveList.cpp */; };
+		2F0E06B216BCCCB3001E8818 /* Player.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2F84418C150C034A0039260B /* Player.cpp */; };
+		2F0E06B416BCCCBE001E8818 /* DataExtensions.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2FF52BA5169D366A00F521F9 /* DataExtensions.mm */; };
+		2F0E06B516BCCCBE001E8818 /* HiResTimer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2F84418F150C034A0039260B /* HiResTimer.cpp */; };
+		2F0E06B616BCCCBE001E8818 /* Logging.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F844191150C034A0039260B /* Logging.m */; };
+		2F0E06B816BCCCBE001E8818 /* Random.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2FC81E4F16AE4F21004925B4 /* Random.cpp */; };
+		2F0E06BD16BCD125001E8818 /* DumbPlayer.h in Headers */ = {isa = PBXBuildFile; fileRef = 2F0E06BB16BCD125001E8818 /* DumbPlayer.h */; };
+		2F0E06BE16BCD125001E8818 /* DumbPlayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2F0E06BC16BCD125001E8818 /* DumbPlayer.cpp */; };
+		2F0E06BF16BCD125001E8818 /* DumbPlayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2F0E06BC16BCD125001E8818 /* DumbPlayer.cpp */; };
+		2F0E06C016BCD125001E8818 /* DumbPlayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2F0E06BC16BCD125001E8818 /* DumbPlayer.cpp */; };
+		2F0E06C116BCD125001E8818 /* DumbPlayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2F0E06BC16BCD125001E8818 /* DumbPlayer.cpp */; };
+		2F0E06C516BCD6EE001E8818 /* DumbPlayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2F0E06BC16BCD125001E8818 /* DumbPlayer.cpp */; };
+		2F104C5E24392BFC003E36A1 /* Thread_apple.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2F104C5C24392BF1003E36A1 /* Thread_apple.mm */; };
+		2F104C5F24392BFD003E36A1 /* Thread_apple.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2F104C5C24392BF1003E36A1 /* Thread_apple.mm */; };
+		2F104C6024392BFD003E36A1 /* Thread_apple.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2F104C5C24392BF1003E36A1 /* Thread_apple.mm */; };
+		2F104C6124392BFD003E36A1 /* Thread_apple.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2F104C5C24392BF1003E36A1 /* Thread_apple.mm */; };
+		2F104C6224392BFE003E36A1 /* Thread_apple.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2F104C5C24392BF1003E36A1 /* Thread_apple.mm */; };
+		2F104C64243A5B3E003E36A1 /* Descriptions.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2F104C63243A5B3E003E36A1 /* Descriptions.cpp */; };
+		2F104C65243A5B3E003E36A1 /* Descriptions.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2F104C63243A5B3E003E36A1 /* Descriptions.cpp */; };
+		2F104C66243A5B3E003E36A1 /* Descriptions.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2F104C63243A5B3E003E36A1 /* Descriptions.cpp */; };
+		2F104C67243A5B3E003E36A1 /* Descriptions.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2F104C63243A5B3E003E36A1 /* Descriptions.cpp */; };
+		2F104C68243A5B3E003E36A1 /* Descriptions.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2F104C63243A5B3E003E36A1 /* Descriptions.cpp */; };
+		2F104C6C243ACB49003E36A1 /* DebugAssert.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2F104C6A243ACB45003E36A1 /* DebugAssert.cpp */; };
+		2F104C6D243ACB4A003E36A1 /* DebugAssert.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2F104C6A243ACB45003E36A1 /* DebugAssert.cpp */; };
+		2F104C6E243ACB4A003E36A1 /* DebugAssert.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2F104C6A243ACB45003E36A1 /* DebugAssert.cpp */; };
+		2F104C6F243ACB4B003E36A1 /* DebugAssert.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2F104C6A243ACB45003E36A1 /* DebugAssert.cpp */; };
+		2F104C70243ACB4B003E36A1 /* DebugAssert.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2F104C6A243ACB45003E36A1 /* DebugAssert.cpp */; };
+		2F104C7A243ACB74003E36A1 /* CardNumber.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2F104C77243ACB69003E36A1 /* CardNumber.cpp */; };
+		2F104C7B243ACB75003E36A1 /* CardNumber.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2F104C77243ACB69003E36A1 /* CardNumber.cpp */; };
+		2F104C7C243ACB76003E36A1 /* CardNumber.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2F104C77243ACB69003E36A1 /* CardNumber.cpp */; };
+		2F104C7D243ACB76003E36A1 /* CardNumber.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2F104C77243ACB69003E36A1 /* CardNumber.cpp */; };
+		2F104C7E243ACB77003E36A1 /* CardNumber.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2F104C77243ACB69003E36A1 /* CardNumber.cpp */; };
+		2F104C7F243ACB82003E36A1 /* MarbleColor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2F104C79243ACB69003E36A1 /* MarbleColor.cpp */; };
+		2F104C80243ACB82003E36A1 /* MarbleColor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2F104C79243ACB69003E36A1 /* MarbleColor.cpp */; };
+		2F104C81243ACB83003E36A1 /* MarbleColor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2F104C79243ACB69003E36A1 /* MarbleColor.cpp */; };
+		2F104C82243ACB83003E36A1 /* MarbleColor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2F104C79243ACB69003E36A1 /* MarbleColor.cpp */; };
+		2F104C83243ACB83003E36A1 /* MarbleColor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2F104C79243ACB69003E36A1 /* MarbleColor.cpp */; };
+		2F104C86243ACBB9003E36A1 /* RandomPlayerColor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2F104C85243ACBAF003E36A1 /* RandomPlayerColor.cpp */; };
+		2F104C87243ACBBA003E36A1 /* RandomPlayerColor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2F104C85243ACBAF003E36A1 /* RandomPlayerColor.cpp */; };
+		2F104C88243ACBBA003E36A1 /* RandomPlayerColor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2F104C85243ACBAF003E36A1 /* RandomPlayerColor.cpp */; };
+		2F104C89243ACBBB003E36A1 /* RandomPlayerColor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2F104C85243ACBAF003E36A1 /* RandomPlayerColor.cpp */; };
+		2F104C8A243ACBBB003E36A1 /* RandomPlayerColor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2F104C85243ACBAF003E36A1 /* RandomPlayerColor.cpp */; };
+		2F104D9A167FF102003382C7 /* CardView.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2F104D99167FF102003382C7 /* CardView.mm */; };
+		2F10979515BF4AED00B044F9 /* ConsolePlayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2F10979415BF4AED00B044F9 /* ConsolePlayer.cpp */; };
+		2F142736169BDBB200327395 /* OptionsViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2F142734169BDBB100327395 /* OptionsViewController.mm */; };
+		2F142737169BDBB200327395 /* OptionsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2F142735169BDBB100327395 /* OptionsView.xib */; };
+		2F42A434162FAE6E001496B1 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F42A433162FAE6E001496B1 /* UIKit.framework */; };
+		2F42A435162FAE6E001496B1 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2FFA84C81481F41600EDDCDE /* Foundation.framework */; };
+		2F42A437162FAE6E001496B1 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F42A436162FAE6E001496B1 /* CoreGraphics.framework */; };
+		2F42A43D162FAE6E001496B1 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2F42A43B162FAE6E001496B1 /* InfoPlist.strings */; };
+		2F42A43F162FAE6E001496B1 /* MarblesMobile.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F42A43E162FAE6E001496B1 /* MarblesMobile.m */; };
+		2F42A443162FAE6E001496B1 /* AppDelegate.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2F42A442162FAE6E001496B1 /* AppDelegate.mm */; };
+		2F42A44C162FAE6E001496B1 /* MainStoryboard_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2F42A44A162FAE6E001496B1 /* MainStoryboard_iPhone.storyboard */; };
+		2F42A44F162FAE6E001496B1 /* MainStoryboard_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2F42A44D162FAE6E001496B1 /* MainStoryboard_iPad.storyboard */; };
+		2F42A452162FAE6E001496B1 /* ViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2F42A451162FAE6E001496B1 /* ViewController.mm */; };
+		2F42A46F162FAE94001496B1 /* ComputerPlayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2F84417B150C034A0039260B /* ComputerPlayer.cpp */; };
+		2F42A470162FAE94001496B1 /* MoveRanker.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2F91F24215BD05EB00F3E3DF /* MoveRanker.cpp */; };
+		2F42A471162FAE9D001496B1 /* Board.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2F84417E150C034A0039260B /* Board.cpp */; };
+		2F42A472162FAE9D001496B1 /* Card.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2F844180150C034A0039260B /* Card.cpp */; };
+		2F42A473162FAE9D001496B1 /* Deck.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2F844182150C034A0039260B /* Deck.cpp */; };
+		2F42A474162FAE9D001496B1 /* Game.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2F844184150C034A0039260B /* Game.cpp */; };
+		2F42A476162FAE9D001496B1 /* Marble.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2F77490815B73F8800250B26 /* Marble.cpp */; };
+		2F42A477162FAE9D001496B1 /* Move.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2F84418A150C034A0039260B /* Move.cpp */; };
+		2F42A478162FAE9D001496B1 /* Player.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2F84418C150C034A0039260B /* Player.cpp */; };
+		2F42A479162FAEA9001496B1 /* HiResTimer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2F84418F150C034A0039260B /* HiResTimer.cpp */; };
+		2F42A47A162FAEA9001496B1 /* Logging.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F844191150C034A0039260B /* Logging.m */; };
+		2F42A481162FB445001496B1 /* BoardView.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2F42A480162FB445001496B1 /* BoardView.mm */; };
+		2F5671B51D16018700B8596B /* Media.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2F5671B41D16018700B8596B /* Media.xcassets */; };
+		2F6EDCCC2318D75600CABEEC /* BoardTests.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2FBD8D9F151533AF00989CD4 /* BoardTests.mm */; };
+		2F6EDCCD2318D75600CABEEC /* MoveTests.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2FA780BF15FFE5D300A0669D /* MoveTests.mm */; };
+		2F7748F815B7338700250B26 /* ComputerPlayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2F84417B150C034A0039260B /* ComputerPlayer.cpp */; };
+		2F7748F915B7339300250B26 /* Board.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2F84417E150C034A0039260B /* Board.cpp */; };
+		2F7748FA15B7339300250B26 /* Card.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2F844180150C034A0039260B /* Card.cpp */; };
+		2F7748FB15B7339300250B26 /* Deck.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2F844182150C034A0039260B /* Deck.cpp */; };
+		2F7748FC15B7339300250B26 /* Game.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2F844184150C034A0039260B /* Game.cpp */; };
+		2F7748FE15B7339300250B26 /* Move.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2F84418A150C034A0039260B /* Move.cpp */; };
+		2F7748FF15B7339300250B26 /* Player.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2F84418C150C034A0039260B /* Player.cpp */; };
+		2F77490015B7339800250B26 /* HiResTimer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2F84418F150C034A0039260B /* HiResTimer.cpp */; };
+		2F77490115B7339800250B26 /* Logging.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F844191150C034A0039260B /* Logging.m */; };
+		2F77490915B73F8800250B26 /* Marble.h in Headers */ = {isa = PBXBuildFile; fileRef = 2F77490715B73F8800250B26 /* Marble.h */; };
+		2F77490A15B73F8800250B26 /* Marble.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2F77490815B73F8800250B26 /* Marble.cpp */; };
+		2F77490B15B73F8800250B26 /* Marble.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2F77490815B73F8800250B26 /* Marble.cpp */; };
+		2F7C301D171B6B9500BEE95D /* DeckList.h in Headers */ = {isa = PBXBuildFile; fileRef = 2F7C301B171B6B8600BEE95D /* DeckList.h */; };
+		2F7C301E171B6B9900BEE95D /* DeckList.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2F7C301C171B6B8600BEE95D /* DeckList.cpp */; };
+		2F7C301F171B6B9900BEE95D /* DeckList.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2F7C301C171B6B8600BEE95D /* DeckList.cpp */; };
+		2F7C3020171B6B9A00BEE95D /* DeckList.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2F7C301C171B6B8600BEE95D /* DeckList.cpp */; };
+		2F7C3021171B6B9B00BEE95D /* DeckList.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2F7C301C171B6B8600BEE95D /* DeckList.cpp */; };
+		2F7C3022171B6B9B00BEE95D /* DeckList.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2F7C301C171B6B8600BEE95D /* DeckList.cpp */; };
+		2F825024167ED91F0034A905 /* UIImageExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F825023167ED91F0034A905 /* UIImageExtensions.m */; };
+		2F844192150C034A0039260B /* ComputerPlayer.h in Headers */ = {isa = PBXBuildFile; fileRef = 2F84417A150C034A0039260B /* ComputerPlayer.h */; };
+		2F844193150C034A0039260B /* ComputerPlayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2F84417B150C034A0039260B /* ComputerPlayer.cpp */; };
+		2F844194150C034A0039260B /* Board.h in Headers */ = {isa = PBXBuildFile; fileRef = 2F84417D150C034A0039260B /* Board.h */; };
+		2F844195150C034A0039260B /* Board.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2F84417E150C034A0039260B /* Board.cpp */; };
+		2F844196150C034A0039260B /* Card.h in Headers */ = {isa = PBXBuildFile; fileRef = 2F84417F150C034A0039260B /* Card.h */; };
+		2F844197150C034A0039260B /* Card.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2F844180150C034A0039260B /* Card.cpp */; };
+		2F844198150C034A0039260B /* Deck.h in Headers */ = {isa = PBXBuildFile; fileRef = 2F844181150C034A0039260B /* Deck.h */; };
+		2F844199150C034A0039260B /* Deck.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2F844182150C034A0039260B /* Deck.cpp */; };
+		2F84419A150C034A0039260B /* Game.h in Headers */ = {isa = PBXBuildFile; fileRef = 2F844183150C034A0039260B /* Game.h */; };
+		2F84419B150C034A0039260B /* Game.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2F844184150C034A0039260B /* Game.cpp */; };
+		2F8441A0150C034A0039260B /* Move.h in Headers */ = {isa = PBXBuildFile; fileRef = 2F844189150C034A0039260B /* Move.h */; };
+		2F8441A1150C034A0039260B /* Move.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2F84418A150C034A0039260B /* Move.cpp */; };
+		2F8441A2150C034A0039260B /* Player.h in Headers */ = {isa = PBXBuildFile; fileRef = 2F84418B150C034A0039260B /* Player.h */; };
+		2F8441A3150C034A0039260B /* Player.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2F84418C150C034A0039260B /* Player.cpp */; };
+		2F8441A4150C034A0039260B /* HiResTimer.h in Headers */ = {isa = PBXBuildFile; fileRef = 2F84418E150C034A0039260B /* HiResTimer.h */; };
+		2F8441A5150C034A0039260B /* HiResTimer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2F84418F150C034A0039260B /* HiResTimer.cpp */; };
+		2F8441A6150C034A0039260B /* Logging.h in Headers */ = {isa = PBXBuildFile; fileRef = 2F844190150C034A0039260B /* Logging.h */; };
+		2F8441A7150C034A0039260B /* Logging.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F844191150C034A0039260B /* Logging.m */; };
+		2F91F24315BD05EB00F3E3DF /* MoveRanker.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2F91F24215BD05EB00F3E3DF /* MoveRanker.cpp */; };
+		2FA44A9522DEE7FA0060A9A1 /* TGMarbles.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2FD7B2EA1503001600D47715 /* TGMarbles.framework */; };
+		2FA44A9C22DEE8070060A9A1 /* BoardTests.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2FBD8D9F151533AF00989CD4 /* BoardTests.mm */; };
+		2FA44A9D22DEE8070060A9A1 /* MoveTests.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2FA780BF15FFE5D300A0669D /* MoveTests.mm */; };
+		2FBB64AB164CE63800C44B9F /* MoveList.h in Headers */ = {isa = PBXBuildFile; fileRef = 2FBB64A9164CE63800C44B9F /* MoveList.h */; };
+		2FBB64AC164CE63800C44B9F /* MoveList.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2FBB64AA164CE63800C44B9F /* MoveList.cpp */; };
+		2FBB64AD164CE63800C44B9F /* MoveList.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2FBB64AA164CE63800C44B9F /* MoveList.cpp */; };
+		2FBB64AE164CE63800C44B9F /* MoveList.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2FBB64AA164CE63800C44B9F /* MoveList.cpp */; };
+		2FBB64AF164CE63800C44B9F /* MoveList.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2FBB64AA164CE63800C44B9F /* MoveList.cpp */; };
+		2FBEBA8F16D6C22A00481CC3 /* AITest.h in Headers */ = {isa = PBXBuildFile; fileRef = 2FBEBA8D16D6C22A00481CC3 /* AITest.h */; };
+		2FBEBA9016D6C22A00481CC3 /* AITest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2FBEBA8E16D6C22A00481CC3 /* AITest.cpp */; };
+		2FBEBA9116D6C22A00481CC3 /* AITest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2FBEBA8E16D6C22A00481CC3 /* AITest.cpp */; };
+		2FBEBA9216D6C22A00481CC3 /* AITest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2FBEBA8E16D6C22A00481CC3 /* AITest.cpp */; };
+		2FBEBA9316D6C22A00481CC3 /* AITest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2FBEBA8E16D6C22A00481CC3 /* AITest.cpp */; };
+		2FBEBA9416D6C22A00481CC3 /* AITest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2FBEBA8E16D6C22A00481CC3 /* AITest.cpp */; };
+		2FBEBA9816D6C42700481CC3 /* PerfTest.h in Headers */ = {isa = PBXBuildFile; fileRef = 2FBEBA9616D6C42700481CC3 /* PerfTest.h */; };
+		2FBEBA9916D6C42700481CC3 /* PerfTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2FBEBA9716D6C42700481CC3 /* PerfTest.cpp */; };
+		2FBEBA9A16D6C42700481CC3 /* PerfTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2FBEBA9716D6C42700481CC3 /* PerfTest.cpp */; };
+		2FBEBA9B16D6C42700481CC3 /* PerfTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2FBEBA9716D6C42700481CC3 /* PerfTest.cpp */; };
+		2FBEBA9C16D6C42700481CC3 /* PerfTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2FBEBA9716D6C42700481CC3 /* PerfTest.cpp */; };
+		2FBEBA9D16D6C42700481CC3 /* PerfTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2FBEBA9716D6C42700481CC3 /* PerfTest.cpp */; };
+		2FBF73CA16C04E7300D2F74C /* HandView.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2FBF73C916C04E7300D2F74C /* HandView.mm */; };
+		2FBF73CD16C0990E00D2F74C /* ReplayGame.h in Headers */ = {isa = PBXBuildFile; fileRef = 2FBF73CB16C0990E00D2F74C /* ReplayGame.h */; };
+		2FBF73CE16C0990E00D2F74C /* ReplayGame.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2FBF73CC16C0990E00D2F74C /* ReplayGame.cpp */; };
+		2FBF73CF16C0990E00D2F74C /* ReplayGame.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2FBF73CC16C0990E00D2F74C /* ReplayGame.cpp */; };
+		2FBF73D016C0990E00D2F74C /* ReplayGame.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2FBF73CC16C0990E00D2F74C /* ReplayGame.cpp */; };
+		2FBF73D116C0990E00D2F74C /* ReplayGame.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2FBF73CC16C0990E00D2F74C /* ReplayGame.cpp */; };
+		2FBF73D216C0990E00D2F74C /* ReplayGame.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2FBF73CC16C0990E00D2F74C /* ReplayGame.cpp */; };
+		2FC728B3177BFD0100E61F51 /* Platform_Mac.h in Headers */ = {isa = PBXBuildFile; fileRef = 2FC728B2177BFCFD00E61F51 /* Platform_Mac.h */; };
+		2FC81E5016AE4F21004925B4 /* Random.h in Headers */ = {isa = PBXBuildFile; fileRef = 2FC81E4E16AE4F21004925B4 /* Random.h */; };
+		2FC81E5116AE4F21004925B4 /* Random.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2FC81E4F16AE4F21004925B4 /* Random.cpp */; };
+		2FC81E5216AE4F21004925B4 /* Random.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2FC81E4F16AE4F21004925B4 /* Random.cpp */; };
+		2FC81E5316AE4F21004925B4 /* Random.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2FC81E4F16AE4F21004925B4 /* Random.cpp */; };
+		2FC81E5416AE4F21004925B4 /* Random.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2FC81E4F16AE4F21004925B4 /* Random.cpp */; };
+		2FD21A321766D44800FA2C29 /* Teammates.h in Headers */ = {isa = PBXBuildFile; fileRef = 2FD21A301766D44800FA2C29 /* Teammates.h */; };
+		2FD21A331766D44800FA2C29 /* Teammates.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2FD21A311766D44800FA2C29 /* Teammates.cpp */; };
+		2FD21A341766D44800FA2C29 /* Teammates.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2FD21A311766D44800FA2C29 /* Teammates.cpp */; };
+		2FD21A361766D44800FA2C29 /* Teammates.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2FD21A311766D44800FA2C29 /* Teammates.cpp */; };
+		2FD21A371766D44800FA2C29 /* Teammates.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2FD21A311766D44800FA2C29 /* Teammates.cpp */; };
+		2FD21A381766D44800FA2C29 /* Teammates.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2FD21A311766D44800FA2C29 /* Teammates.cpp */; };
+		2FD31EFC17701D1F00E31561 /* PoolAllocator.h in Headers */ = {isa = PBXBuildFile; fileRef = 2FD31EFA17701D1F00E31561 /* PoolAllocator.h */; };
+		2FD31EFD17701D1F00E31561 /* PoolAllocator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2FD31EFB17701D1F00E31561 /* PoolAllocator.cpp */; };
+		2FD31EFE17701D1F00E31561 /* PoolAllocator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2FD31EFB17701D1F00E31561 /* PoolAllocator.cpp */; };
+		2FD31EFF17701D1F00E31561 /* PoolAllocator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2FD31EFB17701D1F00E31561 /* PoolAllocator.cpp */; };
+		2FD31F0017701D1F00E31561 /* PoolAllocator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2FD31EFB17701D1F00E31561 /* PoolAllocator.cpp */; };
+		2FD31F0117701D1F00E31561 /* PoolAllocator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2FD31EFB17701D1F00E31561 /* PoolAllocator.cpp */; };
+		2FD7B2EC1503001600D47715 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2FD7B2EB1503001600D47715 /* Cocoa.framework */; };
+		2FD7B2F61503001600D47715 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2FD7B2F41503001600D47715 /* InfoPlist.strings */; };
+		2FD9110C19AC00CF00E8171E /* ConsoleUtilities.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2FD9110A19AC00CF00E8171E /* ConsoleUtilities.cpp */; };
+		2FE1E0E2171A72FA0081C5EE /* MarblesMem.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2FE1E0E1171A72F90081C5EE /* MarblesMem.cpp */; };
+		2FE1E0E3171A72FA0081C5EE /* MarblesMem.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2FE1E0E1171A72F90081C5EE /* MarblesMem.cpp */; };
+		2FE1E0E4171A72FA0081C5EE /* MarblesMem.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2FE1E0E1171A72F90081C5EE /* MarblesMem.cpp */; };
+		2FE1E0E5171A72FA0081C5EE /* MarblesMem.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2FE1E0E1171A72F90081C5EE /* MarblesMem.cpp */; };
+		2FE1E0E6171A72FA0081C5EE /* MarblesMem.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2FE1E0E1171A72F90081C5EE /* MarblesMem.cpp */; };
+		2FE228ED15BF14CC000D7683 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2FFA84C81481F41600EDDCDE /* Foundation.framework */; };
+		2FE228F415BF14CD000D7683 /* MarblesPerf.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = 2FE228F315BF14CD000D7683 /* MarblesPerf.1 */; };
+		2FE228F915BF1595000D7683 /* MarblesPerf.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2FE228E615BF14A2000D7683 /* MarblesPerf.mm */; };
+		2FE228FA15BF15A6000D7683 /* ComputerPlayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2F84417B150C034A0039260B /* ComputerPlayer.cpp */; };
+		2FE228FB15BF15A6000D7683 /* MoveRanker.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2F91F24215BD05EB00F3E3DF /* MoveRanker.cpp */; };
+		2FE228FD15BF15AE000D7683 /* MoveRanker.h in Headers */ = {isa = PBXBuildFile; fileRef = 2F91F24115BD05EB00F3E3DF /* MoveRanker.h */; };
+		2FE228FE15BF15B4000D7683 /* MoveRanker.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2F91F24215BD05EB00F3E3DF /* MoveRanker.cpp */; };
+		2FE228FF15BF15BF000D7683 /* Board.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2F84417E150C034A0039260B /* Board.cpp */; };
+		2FE2290015BF15C9000D7683 /* Card.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2F844180150C034A0039260B /* Card.cpp */; };
+		2FE2290115BF15C9000D7683 /* Deck.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2F844182150C034A0039260B /* Deck.cpp */; };
+		2FE2290215BF15C9000D7683 /* Game.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2F844184150C034A0039260B /* Game.cpp */; };
+		2FE2290415BF15C9000D7683 /* Marble.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2F77490815B73F8800250B26 /* Marble.cpp */; };
+		2FE2290515BF15C9000D7683 /* Move.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2F84418A150C034A0039260B /* Move.cpp */; };
+		2FE2290615BF15C9000D7683 /* Player.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2F84418C150C034A0039260B /* Player.cpp */; };
+		2FE2290715BF15D7000D7683 /* HiResTimer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2F84418F150C034A0039260B /* HiResTimer.cpp */; };
+		2FE2290815BF15DC000D7683 /* Logging.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F844191150C034A0039260B /* Logging.m */; };
+		2FEA468516D0863900EE0699 /* MoveGenerator.h in Headers */ = {isa = PBXBuildFile; fileRef = 2FEA468316D0863800EE0699 /* MoveGenerator.h */; };
+		2FEA468616D0863900EE0699 /* MoveGenerator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2FEA468416D0863900EE0699 /* MoveGenerator.cpp */; };
+		2FEA468716D0863900EE0699 /* MoveGenerator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2FEA468416D0863900EE0699 /* MoveGenerator.cpp */; };
+		2FEA468816D0863900EE0699 /* MoveGenerator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2FEA468416D0863900EE0699 /* MoveGenerator.cpp */; };
+		2FEA468916D0863900EE0699 /* MoveGenerator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2FEA468416D0863900EE0699 /* MoveGenerator.cpp */; };
+		2FEA468A16D0863900EE0699 /* MoveGenerator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2FEA468416D0863900EE0699 /* MoveGenerator.cpp */; };
+		2FEFFFDB16D33B58003EFAF2 /* CardList.h in Headers */ = {isa = PBXBuildFile; fileRef = 2FEFFFD916D33B58003EFAF2 /* CardList.h */; };
+		2FEFFFDC16D33B58003EFAF2 /* CardList.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2FEFFFDA16D33B58003EFAF2 /* CardList.cpp */; };
+		2FEFFFDD16D33B58003EFAF2 /* CardList.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2FEFFFDA16D33B58003EFAF2 /* CardList.cpp */; };
+		2FEFFFDE16D33B58003EFAF2 /* CardList.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2FEFFFDA16D33B58003EFAF2 /* CardList.cpp */; };
+		2FEFFFDF16D33B58003EFAF2 /* CardList.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2FEFFFDA16D33B58003EFAF2 /* CardList.cpp */; };
+		2FEFFFE016D33B58003EFAF2 /* CardList.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2FEFFFDA16D33B58003EFAF2 /* CardList.cpp */; };
+		2FF52B9F169D314F00F521F9 /* GameLog.h in Headers */ = {isa = PBXBuildFile; fileRef = 2FF52B9D169D314F00F521F9 /* GameLog.h */; };
+		2FF52BA0169D314F00F521F9 /* GameLog.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2FF52B9E169D314F00F521F9 /* GameLog.cpp */; };
+		2FF52BA1169D314F00F521F9 /* GameLog.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2FF52B9E169D314F00F521F9 /* GameLog.cpp */; };
+		2FF52BA2169D314F00F521F9 /* GameLog.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2FF52B9E169D314F00F521F9 /* GameLog.cpp */; };
+		2FF52BA6169D366A00F521F9 /* DataExtensions.h in Headers */ = {isa = PBXBuildFile; fileRef = 2FF52BA4169D366A00F521F9 /* DataExtensions.h */; };
+		2FF52BA7169D366A00F521F9 /* DataExtensions.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2FF52BA5169D366A00F521F9 /* DataExtensions.mm */; };
+		2FF52BA8169D366A00F521F9 /* DataExtensions.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2FF52BA5169D366A00F521F9 /* DataExtensions.mm */; };
+		2FF52BA9169D366A00F521F9 /* DataExtensions.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2FF52BA5169D366A00F521F9 /* DataExtensions.mm */; };
+		2FF52BAA169D410C00F521F9 /* GameLog.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2FF52B9E169D314F00F521F9 /* GameLog.cpp */; };
+		2FF52BAB169D411300F521F9 /* DataExtensions.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2FF52BA5169D366A00F521F9 /* DataExtensions.mm */; };
+		2FF9B108169B8BE700E5E16B /* Options.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2FF9B107169B8BE700E5E16B /* Options.mm */; };
+		2FFA84C91481F41600EDDCDE /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2FFA84C81481F41600EDDCDE /* Foundation.framework */; };
+		2FFA84CC1481F41600EDDCDE /* Marbles.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2FFA84CB1481F41600EDDCDE /* Marbles.cpp */; };
+		2FFA84D01481F41600EDDCDE /* Marbles.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = 2FFA84CF1481F41600EDDCDE /* Marbles.1 */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		2F6EDCC62318D72500CABEEC /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 2FFA84BB1481F41600EDDCDE /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 2F42A430162FAE6E001496B1;
+			remoteInfo = MarblesMobile;
+		};
+		2F6EDCCE2318D77C00CABEEC /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 2FFA84BB1481F41600EDDCDE /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 2F6EDCC02318D72500CABEEC;
+			remoteInfo = MarblesMobileTests;
+		};
+		2F71320E22C9CBA9008BDCA1 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 2FFA84BB1481F41600EDDCDE /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 2FFA84C31481F41600EDDCDE;
+			remoteInfo = Marbles;
+		};
+		2F71321022C9CBA9008BDCA1 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 2FFA84BB1481F41600EDDCDE /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 2FD7B2E91503001600D47715;
+			remoteInfo = TGMarbles;
+		};
+		2F71321422C9CBA9008BDCA1 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 2FFA84BB1481F41600EDDCDE /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 2FE228EA15BF14CC000D7683;
+			remoteInfo = MarblesPerf;
+		};
+		2F71321622C9CBA9008BDCA1 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 2FFA84BB1481F41600EDDCDE /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 2F42A430162FAE6E001496B1;
+			remoteInfo = MarblesMobile;
+		};
+		2F71321822C9CBA9008BDCA1 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 2FFA84BB1481F41600EDDCDE /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 2F0E069A16BCCC83001E8818;
+			remoteInfo = MarblesReplay;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		2F0E069916BCCC83001E8818 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = /usr/share/man/man1/;
+			dstSubfolderSpec = 0;
+			files = (
+				2F0E06A316BCCC83001E8818 /* MarblesReplay.1 in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+		};
+		2FE228E915BF14CC000D7683 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = /usr/share/man/man1/;
+			dstSubfolderSpec = 0;
+			files = (
+				2FE228F415BF14CD000D7683 /* MarblesPerf.1 in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+		};
+		2FFA84C21481F41600EDDCDE /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = /usr/share/man/man1/;
+			dstSubfolderSpec = 0;
+			files = (
+				2FFA84D01481F41600EDDCDE /* Marbles.1 in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		2F054FB01682967200081993 /* TouchSpot.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TouchSpot.h; path = MarblesMobile/TouchSpot.h; sourceTree = SOURCE_ROOT; };
+		2F054FB11682967200081993 /* TouchSpot.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = TouchSpot.mm; path = MarblesMobile/TouchSpot.mm; sourceTree = SOURCE_ROOT; };
+		2F0BE36B16C0BE7500C799D2 /* MarblesMobileTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "MarblesMobileTests-Info.plist"; sourceTree = "<group>"; };
+		2F0BE36D16C0BE7500C799D2 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		2F0BE37216C0BE7500C799D2 /* MarblesMobileTests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "MarblesMobileTests-Prefix.pch"; sourceTree = "<group>"; };
+		2F0E069B16BCCC83001E8818 /* MarblesReplay */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = MarblesReplay; sourceTree = BUILT_PRODUCTS_DIR; };
+		2F0E069E16BCCC83001E8818 /* MarblesReplay.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = MarblesReplay.mm; sourceTree = "<group>"; };
+		2F0E06A116BCCC83001E8818 /* MarblesReplay-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "MarblesReplay-Prefix.pch"; sourceTree = "<group>"; };
+		2F0E06A216BCCC83001E8818 /* MarblesReplay.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; path = MarblesReplay.1; sourceTree = "<group>"; };
+		2F0E06BB16BCD125001E8818 /* DumbPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DumbPlayer.h; sourceTree = "<group>"; };
+		2F0E06BC16BCD125001E8818 /* DumbPlayer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = DumbPlayer.cpp; sourceTree = "<group>"; };
+		2F104C5524390A88003E36A1 /* Descriptions.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Descriptions.h; path = TGMarbles/Descriptions.h; sourceTree = SOURCE_ROOT; };
+		2F104C5C24392BF1003E36A1 /* Thread_apple.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; name = Thread_apple.mm; path = TGMarbles/Platform/Thread_apple.mm; sourceTree = SOURCE_ROOT; };
+		2F104C5D24392BF2003E36A1 /* Thread.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Thread.h; path = TGMarbles/Platform/Thread.h; sourceTree = SOURCE_ROOT; };
+		2F104C63243A5B3E003E36A1 /* Descriptions.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Descriptions.cpp; path = TGMarbles/Descriptions.cpp; sourceTree = SOURCE_ROOT; };
+		2F104C69243ACB45003E36A1 /* precomp.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = precomp.h; path = TGMarbles/precomp.h; sourceTree = SOURCE_ROOT; };
+		2F104C6A243ACB45003E36A1 /* DebugAssert.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = DebugAssert.cpp; path = TGMarbles/DebugAssert.cpp; sourceTree = SOURCE_ROOT; };
+		2F104C6B243ACB45003E36A1 /* DebugAssert.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = DebugAssert.h; path = TGMarbles/DebugAssert.h; sourceTree = SOURCE_ROOT; };
+		2F104C71243ACB68003E36A1 /* CardSuit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CardSuit.h; sourceTree = "<group>"; };
+		2F104C72243ACB68003E36A1 /* GameState.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GameState.h; sourceTree = "<group>"; };
+		2F104C73243ACB69003E36A1 /* MarbleStrategy.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MarbleStrategy.h; sourceTree = "<group>"; };
+		2F104C74243ACB69003E36A1 /* Spots.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Spots.h; sourceTree = "<group>"; };
+		2F104C75243ACB69003E36A1 /* PlayerColor.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PlayerColor.h; sourceTree = "<group>"; };
+		2F104C76243ACB69003E36A1 /* MarbleColor.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MarbleColor.h; sourceTree = "<group>"; };
+		2F104C77243ACB69003E36A1 /* CardNumber.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = CardNumber.cpp; sourceTree = "<group>"; };
+		2F104C78243ACB69003E36A1 /* CardNumber.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CardNumber.h; sourceTree = "<group>"; };
+		2F104C79243ACB69003E36A1 /* MarbleColor.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = MarbleColor.cpp; sourceTree = "<group>"; };
+		2F104C84243ACBAF003E36A1 /* RandomPlayerColor.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RandomPlayerColor.h; sourceTree = "<group>"; };
+		2F104C85243ACBAF003E36A1 /* RandomPlayerColor.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = RandomPlayerColor.cpp; sourceTree = "<group>"; };
+		2F104D90167FF053003382C7 /* TouchPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TouchPlayer.h; path = MarblesMobile/TouchPlayer.h; sourceTree = SOURCE_ROOT; };
+		2F104D91167FF053003382C7 /* TouchPlayer.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = TouchPlayer.mm; path = MarblesMobile/TouchPlayer.mm; sourceTree = SOURCE_ROOT; };
+		2F104D98167FF102003382C7 /* CardView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CardView.h; path = MarblesMobile/CardView.h; sourceTree = SOURCE_ROOT; };
+		2F104D99167FF102003382C7 /* CardView.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = CardView.mm; path = MarblesMobile/CardView.mm; sourceTree = SOURCE_ROOT; };
+		2F10979315BF4AED00B044F9 /* ConsolePlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConsolePlayer.h; sourceTree = "<group>"; };
+		2F10979415BF4AED00B044F9 /* ConsolePlayer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ConsolePlayer.cpp; sourceTree = "<group>"; };
+		2F142733169BDBB100327395 /* OptionsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OptionsViewController.h; path = MarblesMobile/OptionsViewController.h; sourceTree = SOURCE_ROOT; };
+		2F142734169BDBB100327395 /* OptionsViewController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = OptionsViewController.mm; path = MarblesMobile/OptionsViewController.mm; sourceTree = SOURCE_ROOT; };
+		2F142735169BDBB100327395 /* OptionsView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = OptionsView.xib; path = MarblesMobile/OptionsView.xib; sourceTree = SOURCE_ROOT; };
+		2F14CFE419C68BBF0037E31C /* marbles__perf__cover.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = marbles__perf__cover.xcconfig; sourceTree = "<group>"; };
+		2F14CFE519C68BBF0037E31C /* marbles__perf__debug.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = marbles__perf__debug.xcconfig; sourceTree = "<group>"; };
+		2F14CFE619C68BBF0037E31C /* marbles__perf__release.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = marbles__perf__release.xcconfig; sourceTree = "<group>"; };
+		2F14CFE719C68BBF0037E31C /* marbles__perf.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = marbles__perf.xcconfig; sourceTree = "<group>"; };
+		2F26C62E19C6C5EF008D4538 /* marbles__mobile_tests__cover.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = marbles__mobile_tests__cover.xcconfig; sourceTree = "<group>"; };
+		2F26C62F19C6C5EF008D4538 /* marbles__mobile_tests__debug.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = marbles__mobile_tests__debug.xcconfig; sourceTree = "<group>"; };
+		2F26C63019C6C5EF008D4538 /* marbles__mobile_tests__release.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = marbles__mobile_tests__release.xcconfig; sourceTree = "<group>"; };
+		2F26C63119C6C5EF008D4538 /* marbles__mobile_tests.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = marbles__mobile_tests.xcconfig; sourceTree = "<group>"; };
+		2F42A431162FAE6E001496B1 /* MarblesMobile.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MarblesMobile.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		2F42A433162FAE6E001496B1 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
+		2F42A436162FAE6E001496B1 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = Library/Frameworks/CoreGraphics.framework; sourceTree = DEVELOPER_DIR; };
+		2F42A43A162FAE6E001496B1 /* MarblesMobile-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "MarblesMobile-Info.plist"; sourceTree = "<group>"; };
+		2F42A43C162FAE6E001496B1 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		2F42A43E162FAE6E001496B1 /* MarblesMobile.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MarblesMobile.m; sourceTree = "<group>"; };
+		2F42A440162FAE6E001496B1 /* MarblesMobile-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "MarblesMobile-Prefix.pch"; sourceTree = "<group>"; };
+		2F42A441162FAE6E001496B1 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = MarblesMobile/AppDelegate.h; sourceTree = SOURCE_ROOT; };
+		2F42A442162FAE6E001496B1 /* AppDelegate.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; name = AppDelegate.mm; path = MarblesMobile/AppDelegate.mm; sourceTree = SOURCE_ROOT; };
+		2F42A450162FAE6E001496B1 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = ViewController.h; path = MarblesMobile/ViewController.h; sourceTree = SOURCE_ROOT; };
+		2F42A451162FAE6E001496B1 /* ViewController.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; name = ViewController.mm; path = MarblesMobile/ViewController.mm; sourceTree = SOURCE_ROOT; };
+		2F42A47F162FB445001496B1 /* BoardView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BoardView.h; path = MarblesMobile/BoardView.h; sourceTree = SOURCE_ROOT; };
+		2F42A480162FB445001496B1 /* BoardView.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = BoardView.mm; path = MarblesMobile/BoardView.mm; sourceTree = SOURCE_ROOT; };
+		2F4C4D4119C67BFF0033BD3B /* marbles__base.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = marbles__base.xcconfig; sourceTree = "<group>"; };
+		2F4C4D4619C67DA30033BD3B /* marbles__base__cover.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = marbles__base__cover.xcconfig; sourceTree = "<group>"; };
+		2F4C4D4719C67DA30033BD3B /* marbles__base__debug.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = marbles__base__debug.xcconfig; sourceTree = "<group>"; };
+		2F4C4D4819C67DA30033BD3B /* marbles__base__release.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = marbles__base__release.xcconfig; sourceTree = "<group>"; };
+		2F4C4D4919C67DA30033BD3B /* marbles__cmd__cover.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = marbles__cmd__cover.xcconfig; sourceTree = "<group>"; };
+		2F4C4D4A19C67DA30033BD3B /* marbles__cmd__debug.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = marbles__cmd__debug.xcconfig; sourceTree = "<group>"; };
+		2F4C4D4B19C67DA30033BD3B /* marbles__cmd__release.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = marbles__cmd__release.xcconfig; sourceTree = "<group>"; };
+		2F4C4D4C19C67DA30033BD3B /* marbles__cmd.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = marbles__cmd.xcconfig; sourceTree = "<group>"; };
+		2F4C4D4D19C67DA30033BD3B /* marbles__framework__cover.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = marbles__framework__cover.xcconfig; sourceTree = "<group>"; };
+		2F4C4D4E19C67DA30033BD3B /* marbles__framework__debug.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = marbles__framework__debug.xcconfig; sourceTree = "<group>"; };
+		2F4C4D4F19C67DA30033BD3B /* marbles__framework__release.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = marbles__framework__release.xcconfig; sourceTree = "<group>"; };
+		2F4C4D5019C67DA30033BD3B /* marbles__framework.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = marbles__framework.xcconfig; sourceTree = "<group>"; };
+		2F5671B41D16018700B8596B /* Media.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Media.xcassets; sourceTree = "<group>"; };
+		2F6EDCC12318D72500CABEEC /* MarblesMobileTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MarblesMobileTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		2F77490715B73F8800250B26 /* Marble.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Marble.h; sourceTree = "<group>"; };
+		2F77490815B73F8800250B26 /* Marble.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Marble.cpp; sourceTree = "<group>"; };
+		2F7C301B171B6B8600BEE95D /* DeckList.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DeckList.h; sourceTree = "<group>"; };
+		2F7C301C171B6B8600BEE95D /* DeckList.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = DeckList.cpp; sourceTree = "<group>"; };
+		2F7FF000227D5FF900ACE52C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainStoryboard_iPad.storyboard; sourceTree = "<group>"; };
+		2F7FF001227D5FF900ACE52C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainStoryboard_iPhone.storyboard; sourceTree = "<group>"; };
+		2F825022167ED91F0034A905 /* UIImageExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UIImageExtensions.h; path = MarblesMobile/UIImageExtensions.h; sourceTree = SOURCE_ROOT; };
+		2F825023167ED91F0034A905 /* UIImageExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UIImageExtensions.m; path = MarblesMobile/UIImageExtensions.m; sourceTree = SOURCE_ROOT; };
+		2F84417A150C034A0039260B /* ComputerPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ComputerPlayer.h; sourceTree = "<group>"; };
+		2F84417B150C034A0039260B /* ComputerPlayer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ComputerPlayer.cpp; sourceTree = "<group>"; };
+		2F84417D150C034A0039260B /* Board.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Board.h; sourceTree = "<group>"; };
+		2F84417E150C034A0039260B /* Board.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Board.cpp; sourceTree = "<group>"; };
+		2F84417F150C034A0039260B /* Card.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Card.h; sourceTree = "<group>"; };
+		2F844180150C034A0039260B /* Card.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Card.cpp; sourceTree = "<group>"; };
+		2F844181150C034A0039260B /* Deck.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Deck.h; sourceTree = "<group>"; };
+		2F844182150C034A0039260B /* Deck.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Deck.cpp; sourceTree = "<group>"; };
+		2F844183150C034A0039260B /* Game.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Game.h; sourceTree = "<group>"; };
+		2F844184150C034A0039260B /* Game.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Game.cpp; sourceTree = "<group>"; };
+		2F844189150C034A0039260B /* Move.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Move.h; sourceTree = "<group>"; };
+		2F84418A150C034A0039260B /* Move.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Move.cpp; sourceTree = "<group>"; };
+		2F84418B150C034A0039260B /* Player.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Player.h; sourceTree = "<group>"; };
+		2F84418C150C034A0039260B /* Player.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Player.cpp; sourceTree = "<group>"; };
+		2F84418E150C034A0039260B /* HiResTimer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HiResTimer.h; sourceTree = "<group>"; };
+		2F84418F150C034A0039260B /* HiResTimer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = HiResTimer.cpp; sourceTree = "<group>"; };
+		2F844190150C034A0039260B /* Logging.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Logging.h; sourceTree = "<group>"; };
+		2F844191150C034A0039260B /* Logging.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Logging.m; sourceTree = "<group>"; };
+		2F8AC10719C6ADBF00F776A7 /* marbles__mobile__cover.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = marbles__mobile__cover.xcconfig; sourceTree = "<group>"; };
+		2F8AC10819C6ADBF00F776A7 /* marbles__mobile__debug.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = marbles__mobile__debug.xcconfig; sourceTree = "<group>"; };
+		2F8AC10919C6ADBF00F776A7 /* marbles__mobile__release.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = marbles__mobile__release.xcconfig; sourceTree = "<group>"; };
+		2F8AC10A19C6ADBF00F776A7 /* marbles__mobile.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = marbles__mobile.xcconfig; sourceTree = "<group>"; };
+		2F8AC10F19C6BDC600F776A7 /* marbles__framework_tests__cover.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = marbles__framework_tests__cover.xcconfig; sourceTree = "<group>"; };
+		2F8AC11019C6BDC600F776A7 /* marbles__framework_tests__debug.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = marbles__framework_tests__debug.xcconfig; sourceTree = "<group>"; };
+		2F8AC11119C6BDC600F776A7 /* marbles__framework_tests__release.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = marbles__framework_tests__release.xcconfig; sourceTree = "<group>"; };
+		2F8AC11219C6BDC600F776A7 /* marbles__framework_tests.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = marbles__framework_tests.xcconfig; sourceTree = "<group>"; };
+		2F91F24115BD05EB00F3E3DF /* MoveRanker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MoveRanker.h; sourceTree = "<group>"; };
+		2F91F24215BD05EB00F3E3DF /* MoveRanker.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MoveRanker.cpp; sourceTree = "<group>"; };
+		2FA44A9022DEE7FA0060A9A1 /* TGMarblesTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TGMarblesTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		2FA780BE15FFE5D300A0669D /* MoveTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MoveTests.h; path = TGMarblesTests/MoveTests.h; sourceTree = SOURCE_ROOT; };
+		2FA780BF15FFE5D300A0669D /* MoveTests.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = MoveTests.mm; path = TGMarblesTests/MoveTests.mm; sourceTree = SOURCE_ROOT; };
+		2FBB64A9164CE63800C44B9F /* MoveList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MoveList.h; sourceTree = "<group>"; };
+		2FBB64AA164CE63800C44B9F /* MoveList.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MoveList.cpp; sourceTree = "<group>"; };
+		2FBC2454167FDAF80070FE07 /* MarblesMobile.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; name = MarblesMobile.entitlements; path = MarblesMobile/MarblesMobile.entitlements; sourceTree = SOURCE_ROOT; };
+		2FBD8D9E151533AF00989CD4 /* BoardTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BoardTests.h; path = TGMarblesTests/BoardTests.h; sourceTree = SOURCE_ROOT; };
+		2FBD8D9F151533AF00989CD4 /* BoardTests.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = BoardTests.mm; path = TGMarblesTests/BoardTests.mm; sourceTree = SOURCE_ROOT; };
+		2FBEBA8D16D6C22A00481CC3 /* AITest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AITest.h; path = TGMarbles/Perf/AITest.h; sourceTree = SOURCE_ROOT; };
+		2FBEBA8E16D6C22A00481CC3 /* AITest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = AITest.cpp; path = TGMarbles/Perf/AITest.cpp; sourceTree = SOURCE_ROOT; };
+		2FBEBA9616D6C42700481CC3 /* PerfTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PerfTest.h; path = TGMarbles/Perf/PerfTest.h; sourceTree = SOURCE_ROOT; };
+		2FBEBA9716D6C42700481CC3 /* PerfTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = PerfTest.cpp; path = TGMarbles/Perf/PerfTest.cpp; sourceTree = SOURCE_ROOT; };
+		2FBF73C816C04E7300D2F74C /* HandView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HandView.h; path = MarblesMobile/HandView.h; sourceTree = SOURCE_ROOT; };
+		2FBF73C916C04E7300D2F74C /* HandView.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = HandView.mm; path = MarblesMobile/HandView.mm; sourceTree = SOURCE_ROOT; };
+		2FBF73CB16C0990E00D2F74C /* ReplayGame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReplayGame.h; sourceTree = "<group>"; };
+		2FBF73CC16C0990E00D2F74C /* ReplayGame.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ReplayGame.cpp; sourceTree = "<group>"; };
+		2FC6C9DF19C68D89006DB279 /* marbles__replay__cover.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = marbles__replay__cover.xcconfig; sourceTree = "<group>"; };
+		2FC6C9E019C68D89006DB279 /* marbles__replay__debug.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = marbles__replay__debug.xcconfig; sourceTree = "<group>"; };
+		2FC6C9E119C68D89006DB279 /* marbles__replay__release.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = marbles__replay__release.xcconfig; sourceTree = "<group>"; };
+		2FC6C9E219C68D89006DB279 /* marbles__replay.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = marbles__replay.xcconfig; sourceTree = "<group>"; };
+		2FC728B1177BFCEC00E61F51 /* Platform_Win32.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Platform_Win32.h; path = TGMarbles/Platform/Platform_Win32.h; sourceTree = SOURCE_ROOT; };
+		2FC728B2177BFCFD00E61F51 /* Platform_Mac.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Platform_Mac.h; path = TGMarbles/Platform/Platform_Mac.h; sourceTree = SOURCE_ROOT; };
+		2FC81E4E16AE4F21004925B4 /* Random.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Random.h; sourceTree = "<group>"; };
+		2FC81E4F16AE4F21004925B4 /* Random.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Random.cpp; sourceTree = "<group>"; };
+		2FD21A301766D44800FA2C29 /* Teammates.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Teammates.h; sourceTree = "<group>"; };
+		2FD21A311766D44800FA2C29 /* Teammates.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Teammates.cpp; sourceTree = "<group>"; };
+		2FD31EFA17701D1F00E31561 /* PoolAllocator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PoolAllocator.h; sourceTree = "<group>"; };
+		2FD31EFB17701D1F00E31561 /* PoolAllocator.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PoolAllocator.cpp; sourceTree = "<group>"; };
+		2FD7B2E11502E7A400D47715 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
+		2FD7B2EA1503001600D47715 /* TGMarbles.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = TGMarbles.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		2FD7B2EB1503001600D47715 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
+		2FD7B2EE1503001600D47715 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
+		2FD7B2EF1503001600D47715 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		2FD7B2F01503001600D47715 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		2FD7B2F31503001600D47715 /* TGMarbles-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "TGMarbles-Info.plist"; sourceTree = "<group>"; };
+		2FD7B2F51503001600D47715 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		2FD7B2F71503001600D47715 /* TGMarbles-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "TGMarbles-Prefix.pch"; sourceTree = "<group>"; };
+		2FD7B3091503001700D47715 /* TGMarblesTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "TGMarblesTests-Info.plist"; sourceTree = "<group>"; };
+		2FD7B30B1503001700D47715 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		2FD9110A19AC00CF00E8171E /* ConsoleUtilities.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ConsoleUtilities.cpp; sourceTree = "<group>"; };
+		2FD9110B19AC00CF00E8171E /* ConsoleUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConsoleUtilities.h; sourceTree = "<group>"; };
+		2FE1E0E0171A70D20081C5EE /* MarblesMem.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = MarblesMem.h; path = TGMarbles/MarblesMem.h; sourceTree = SOURCE_ROOT; };
+		2FE1E0E1171A72F90081C5EE /* MarblesMem.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = MarblesMem.cpp; path = TGMarbles/MarblesMem.cpp; sourceTree = SOURCE_ROOT; };
+		2FE228E615BF14A2000D7683 /* MarblesPerf.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; name = MarblesPerf.mm; path = MarblesPerf/MarblesPerf.mm; sourceTree = SOURCE_ROOT; };
+		2FE228EB15BF14CC000D7683 /* MarblesPerf */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = MarblesPerf; sourceTree = BUILT_PRODUCTS_DIR; };
+		2FE228F215BF14CD000D7683 /* MarblesPerf-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "MarblesPerf-Prefix.pch"; sourceTree = "<group>"; };
+		2FE228F315BF14CD000D7683 /* MarblesPerf.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; name = MarblesPerf.1; path = MarblesPerf/MarblesPerf.1; sourceTree = SOURCE_ROOT; };
+		2FEA468316D0863800EE0699 /* MoveGenerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MoveGenerator.h; sourceTree = "<group>"; };
+		2FEA468416D0863900EE0699 /* MoveGenerator.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MoveGenerator.cpp; sourceTree = "<group>"; };
+		2FEFFFD916D33B58003EFAF2 /* CardList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CardList.h; sourceTree = "<group>"; };
+		2FEFFFDA16D33B58003EFAF2 /* CardList.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CardList.cpp; sourceTree = "<group>"; };
+		2FF52B9D169D314F00F521F9 /* GameLog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameLog.h; sourceTree = "<group>"; };
+		2FF52B9E169D314F00F521F9 /* GameLog.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GameLog.cpp; sourceTree = "<group>"; };
+		2FF52BA4169D366A00F521F9 /* DataExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataExtensions.h; sourceTree = "<group>"; };
+		2FF52BA5169D366A00F521F9 /* DataExtensions.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = DataExtensions.mm; sourceTree = "<group>"; };
+		2FF9B106169B8BE700E5E16B /* Options.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Options.h; path = MarblesMobile/Options.h; sourceTree = SOURCE_ROOT; };
+		2FF9B107169B8BE700E5E16B /* Options.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = Options.mm; path = MarblesMobile/Options.mm; sourceTree = SOURCE_ROOT; };
+		2FFA84C41481F41600EDDCDE /* Marbles */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = Marbles; sourceTree = BUILT_PRODUCTS_DIR; };
+		2FFA84C81481F41600EDDCDE /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		2FFA84CB1481F41600EDDCDE /* Marbles.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Marbles.cpp; sourceTree = "<group>"; };
+		2FFA84CE1481F41600EDDCDE /* Marbles-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "Marbles-Prefix.pch"; path = "../Marbles/Marbles-Prefix.pch"; sourceTree = "<group>"; };
+		2FFA84CF1481F41600EDDCDE /* Marbles.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; name = Marbles.1; path = ../Marbles/Marbles.1; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		2F0E069816BCCC83001E8818 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2F0E069C16BCCC83001E8818 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2F42A42E162FAE6E001496B1 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2F42A434162FAE6E001496B1 /* UIKit.framework in Frameworks */,
+				2F42A435162FAE6E001496B1 /* Foundation.framework in Frameworks */,
+				2F42A437162FAE6E001496B1 /* CoreGraphics.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2F6EDCBE2318D72500CABEEC /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2FA44A8D22DEE7FA0060A9A1 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2FA44A9522DEE7FA0060A9A1 /* TGMarbles.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2FD7B2E61503001600D47715 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2FD7B2EC1503001600D47715 /* Cocoa.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2FE228E815BF14CC000D7683 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2FE228ED15BF14CC000D7683 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2FFA84C11481F41600EDDCDE /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2FFA84C91481F41600EDDCDE /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		2F0BE36916C0BE7500C799D2 /* Unit Tests */ = {
+			isa = PBXGroup;
+			children = (
+				2F0BE36A16C0BE7500C799D2 /* Supporting Files */,
+			);
+			name = "Unit Tests";
+			path = MarblesMobileTests;
+			sourceTree = SOURCE_ROOT;
+		};
+		2F0BE36A16C0BE7500C799D2 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				2F0BE36B16C0BE7500C799D2 /* MarblesMobileTests-Info.plist */,
+				2F0BE36C16C0BE7500C799D2 /* InfoPlist.strings */,
+				2F0BE37216C0BE7500C799D2 /* MarblesMobileTests-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		2F0E069D16BCCC83001E8818 /* MarblesReplay */ = {
+			isa = PBXGroup;
+			children = (
+				2F0E069E16BCCC83001E8818 /* MarblesReplay.mm */,
+				2F0E06A016BCCC83001E8818 /* Supporting Files */,
+			);
+			path = MarblesReplay;
+			sourceTree = SOURCE_ROOT;
+		};
+		2F0E06A016BCCC83001E8818 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				2F0E06A216BCCC83001E8818 /* MarblesReplay.1 */,
+				2F0E06A116BCCC83001E8818 /* MarblesReplay-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		2F42A439162FAE6E001496B1 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				2F42A43B162FAE6E001496B1 /* InfoPlist.strings */,
+				2F42A43E162FAE6E001496B1 /* MarblesMobile.m */,
+				2F42A44D162FAE6E001496B1 /* MainStoryboard_iPad.storyboard */,
+				2F42A44A162FAE6E001496B1 /* MainStoryboard_iPhone.storyboard */,
+				2F42A43A162FAE6E001496B1 /* MarblesMobile-Info.plist */,
+				2F42A440162FAE6E001496B1 /* MarblesMobile-Prefix.pch */,
+				2FBC2454167FDAF80070FE07 /* MarblesMobile.entitlements */,
+				2F142735169BDBB100327395 /* OptionsView.xib */,
+				2F5671B41D16018700B8596B /* Media.xcassets */,
+			);
+			name = "Supporting Files";
+			path = MarblesMobile;
+			sourceTree = SOURCE_ROOT;
+		};
+		2F42A46E162FAE7C001496B1 /* Mobile */ = {
+			isa = PBXGroup;
+			children = (
+				2F0BE36916C0BE7500C799D2 /* Unit Tests */,
+				2F42A439162FAE6E001496B1 /* Supporting Files */,
+				2F42A441162FAE6E001496B1 /* AppDelegate.h */,
+				2F42A442162FAE6E001496B1 /* AppDelegate.mm */,
+				2F42A47F162FB445001496B1 /* BoardView.h */,
+				2F42A480162FB445001496B1 /* BoardView.mm */,
+				2F104D98167FF102003382C7 /* CardView.h */,
+				2F104D99167FF102003382C7 /* CardView.mm */,
+				2FBF73C816C04E7300D2F74C /* HandView.h */,
+				2FBF73C916C04E7300D2F74C /* HandView.mm */,
+				2FF9B106169B8BE700E5E16B /* Options.h */,
+				2FF9B107169B8BE700E5E16B /* Options.mm */,
+				2F142733169BDBB100327395 /* OptionsViewController.h */,
+				2F142734169BDBB100327395 /* OptionsViewController.mm */,
+				2F104D90167FF053003382C7 /* TouchPlayer.h */,
+				2F104D91167FF053003382C7 /* TouchPlayer.mm */,
+				2F054FB01682967200081993 /* TouchSpot.h */,
+				2F054FB11682967200081993 /* TouchSpot.mm */,
+				2F825022167ED91F0034A905 /* UIImageExtensions.h */,
+				2F825023167ED91F0034A905 /* UIImageExtensions.m */,
+				2F42A450162FAE6E001496B1 /* ViewController.h */,
+				2F42A451162FAE6E001496B1 /* ViewController.mm */,
+			);
+			name = Mobile;
+			sourceTree = "<group>";
+		};
+		2F4C4D4019C67BC10033BD3B /* XCConfig */ = {
+			isa = PBXGroup;
+			children = (
+				2F4C4D4119C67BFF0033BD3B /* marbles__base.xcconfig */,
+				2F4C4D4619C67DA30033BD3B /* marbles__base__cover.xcconfig */,
+				2F4C4D4719C67DA30033BD3B /* marbles__base__debug.xcconfig */,
+				2F4C4D4819C67DA30033BD3B /* marbles__base__release.xcconfig */,
+				2F4C4D4919C67DA30033BD3B /* marbles__cmd__cover.xcconfig */,
+				2F4C4D4A19C67DA30033BD3B /* marbles__cmd__debug.xcconfig */,
+				2F4C4D4B19C67DA30033BD3B /* marbles__cmd__release.xcconfig */,
+				2F4C4D4C19C67DA30033BD3B /* marbles__cmd.xcconfig */,
+				2F4C4D4D19C67DA30033BD3B /* marbles__framework__cover.xcconfig */,
+				2F4C4D4E19C67DA30033BD3B /* marbles__framework__debug.xcconfig */,
+				2F4C4D4F19C67DA30033BD3B /* marbles__framework__release.xcconfig */,
+				2F4C4D5019C67DA30033BD3B /* marbles__framework.xcconfig */,
+				2F8AC10F19C6BDC600F776A7 /* marbles__framework_tests__cover.xcconfig */,
+				2F8AC11019C6BDC600F776A7 /* marbles__framework_tests__debug.xcconfig */,
+				2F8AC11119C6BDC600F776A7 /* marbles__framework_tests__release.xcconfig */,
+				2F8AC11219C6BDC600F776A7 /* marbles__framework_tests.xcconfig */,
+				2F8AC10719C6ADBF00F776A7 /* marbles__mobile__cover.xcconfig */,
+				2F8AC10819C6ADBF00F776A7 /* marbles__mobile__debug.xcconfig */,
+				2F8AC10919C6ADBF00F776A7 /* marbles__mobile__release.xcconfig */,
+				2F8AC10A19C6ADBF00F776A7 /* marbles__mobile.xcconfig */,
+				2F26C62E19C6C5EF008D4538 /* marbles__mobile_tests__cover.xcconfig */,
+				2F26C62F19C6C5EF008D4538 /* marbles__mobile_tests__debug.xcconfig */,
+				2F26C63019C6C5EF008D4538 /* marbles__mobile_tests__release.xcconfig */,
+				2F26C63119C6C5EF008D4538 /* marbles__mobile_tests.xcconfig */,
+				2F14CFE419C68BBF0037E31C /* marbles__perf__cover.xcconfig */,
+				2F14CFE519C68BBF0037E31C /* marbles__perf__debug.xcconfig */,
+				2F14CFE619C68BBF0037E31C /* marbles__perf__release.xcconfig */,
+				2F14CFE719C68BBF0037E31C /* marbles__perf.xcconfig */,
+				2FC6C9DF19C68D89006DB279 /* marbles__replay__cover.xcconfig */,
+				2FC6C9E019C68D89006DB279 /* marbles__replay__debug.xcconfig */,
+				2FC6C9E119C68D89006DB279 /* marbles__replay__release.xcconfig */,
+				2FC6C9E219C68D89006DB279 /* marbles__replay.xcconfig */,
+			);
+			path = XCConfig;
+			sourceTree = "<group>";
+		};
+		2F844179150C034A0039260B /* AI */ = {
+			isa = PBXGroup;
+			children = (
+				2F84417A150C034A0039260B /* ComputerPlayer.h */,
+				2F84417B150C034A0039260B /* ComputerPlayer.cpp */,
+				2F0E06BB16BCD125001E8818 /* DumbPlayer.h */,
+				2F0E06BC16BCD125001E8818 /* DumbPlayer.cpp */,
+				2FEA468316D0863800EE0699 /* MoveGenerator.h */,
+				2FEA468416D0863900EE0699 /* MoveGenerator.cpp */,
+				2F91F24115BD05EB00F3E3DF /* MoveRanker.h */,
+				2F91F24215BD05EB00F3E3DF /* MoveRanker.cpp */,
+				2FBF73CB16C0990E00D2F74C /* ReplayGame.h */,
+				2FBF73CC16C0990E00D2F74C /* ReplayGame.cpp */,
+			);
+			name = AI;
+			path = TGMarbles/AI;
+			sourceTree = SOURCE_ROOT;
+		};
+		2F84417C150C034A0039260B /* Game */ = {
+			isa = PBXGroup;
+			children = (
+				2F84417E150C034A0039260B /* Board.cpp */,
+				2F84417D150C034A0039260B /* Board.h */,
+				2F844180150C034A0039260B /* Card.cpp */,
+				2F84417F150C034A0039260B /* Card.h */,
+				2FEFFFDA16D33B58003EFAF2 /* CardList.cpp */,
+				2FEFFFD916D33B58003EFAF2 /* CardList.h */,
+				2F104C77243ACB69003E36A1 /* CardNumber.cpp */,
+				2F104C78243ACB69003E36A1 /* CardNumber.h */,
+				2F104C71243ACB68003E36A1 /* CardSuit.h */,
+				2F844182150C034A0039260B /* Deck.cpp */,
+				2F844181150C034A0039260B /* Deck.h */,
+				2F7C301C171B6B8600BEE95D /* DeckList.cpp */,
+				2F7C301B171B6B8600BEE95D /* DeckList.h */,
+				2F844184150C034A0039260B /* Game.cpp */,
+				2F844183150C034A0039260B /* Game.h */,
+				2FF52B9E169D314F00F521F9 /* GameLog.cpp */,
+				2FF52B9D169D314F00F521F9 /* GameLog.h */,
+				2F104C72243ACB68003E36A1 /* GameState.h */,
+				2F77490815B73F8800250B26 /* Marble.cpp */,
+				2F77490715B73F8800250B26 /* Marble.h */,
+				2F104C79243ACB69003E36A1 /* MarbleColor.cpp */,
+				2F104C76243ACB69003E36A1 /* MarbleColor.h */,
+				2F104C73243ACB69003E36A1 /* MarbleStrategy.h */,
+				2F84418A150C034A0039260B /* Move.cpp */,
+				2F844189150C034A0039260B /* Move.h */,
+				2FBB64AA164CE63800C44B9F /* MoveList.cpp */,
+				2FBB64A9164CE63800C44B9F /* MoveList.h */,
+				2F84418C150C034A0039260B /* Player.cpp */,
+				2F84418B150C034A0039260B /* Player.h */,
+				2F104C75243ACB69003E36A1 /* PlayerColor.h */,
+				2FD31EFB17701D1F00E31561 /* PoolAllocator.cpp */,
+				2FD31EFA17701D1F00E31561 /* PoolAllocator.h */,
+				2F104C74243ACB69003E36A1 /* Spots.h */,
+				2FD21A311766D44800FA2C29 /* Teammates.cpp */,
+				2FD21A301766D44800FA2C29 /* Teammates.h */,
+			);
+			name = Game;
+			path = TGMarbles/Game;
+			sourceTree = SOURCE_ROOT;
+		};
+		2F84418D150C034A0039260B /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				2F104C85243ACBAF003E36A1 /* RandomPlayerColor.cpp */,
+				2F104C84243ACBAF003E36A1 /* RandomPlayerColor.h */,
+				2FF52BA4169D366A00F521F9 /* DataExtensions.h */,
+				2FF52BA5169D366A00F521F9 /* DataExtensions.mm */,
+				2F84418E150C034A0039260B /* HiResTimer.h */,
+				2F84418F150C034A0039260B /* HiResTimer.cpp */,
+				2F844190150C034A0039260B /* Logging.h */,
+				2F844191150C034A0039260B /* Logging.m */,
+				2FC81E4E16AE4F21004925B4 /* Random.h */,
+				2FC81E4F16AE4F21004925B4 /* Random.cpp */,
+			);
+			name = Utilities;
+			path = TGMarbles/Utilities;
+			sourceTree = SOURCE_ROOT;
+		};
+		2FBEBA8C16D6C1ED00481CC3 /* Perf */ = {
+			isa = PBXGroup;
+			children = (
+				2FBEBA8D16D6C22A00481CC3 /* AITest.h */,
+				2FBEBA8E16D6C22A00481CC3 /* AITest.cpp */,
+				2FBEBA9616D6C42700481CC3 /* PerfTest.h */,
+				2FBEBA9716D6C42700481CC3 /* PerfTest.cpp */,
+			);
+			name = Perf;
+			sourceTree = "<group>";
+		};
+		2FC728B0177BFCBC00E61F51 /* Platform */ = {
+			isa = PBXGroup;
+			children = (
+				2F104C5C24392BF1003E36A1 /* Thread_apple.mm */,
+				2F104C5D24392BF2003E36A1 /* Thread.h */,
+				2FC728B1177BFCEC00E61F51 /* Platform_Win32.h */,
+				2FC728B2177BFCFD00E61F51 /* Platform_Mac.h */,
+			);
+			name = Platform;
+			sourceTree = "<group>";
+		};
+		2FD7B2E31502FFB500D47715 /* Framework */ = {
+			isa = PBXGroup;
+			children = (
+				2FD7B3161503003400D47715 /* Source */,
+				2FD7B3171503003800D47715 /* Unit */,
+			);
+			name = Framework;
+			sourceTree = "<group>";
+		};
+		2FD7B2E41502FFE400D47715 /* Command Line */ = {
+			isa = PBXGroup;
+			children = (
+				2FD7B2F21503001600D47715 /* Supporting Files */,
+				2F10979315BF4AED00B044F9 /* ConsolePlayer.h */,
+				2F10979415BF4AED00B044F9 /* ConsolePlayer.cpp */,
+				2FFA84CB1481F41600EDDCDE /* Marbles.cpp */,
+				2FD9110A19AC00CF00E8171E /* ConsoleUtilities.cpp */,
+				2FD9110B19AC00CF00E8171E /* ConsoleUtilities.h */,
+			);
+			name = "Command Line";
+			sourceTree = "<group>";
+		};
+		2FD7B2ED1503001600D47715 /* Other Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				2FD7B2EE1503001600D47715 /* AppKit.framework */,
+				2FD7B2EF1503001600D47715 /* CoreData.framework */,
+				2FD7B2F01503001600D47715 /* Foundation.framework */,
+			);
+			name = "Other Frameworks";
+			sourceTree = "<group>";
+		};
+		2FD7B2F21503001600D47715 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				2FD7B2F41503001600D47715 /* InfoPlist.strings */,
+				2FFA84CE1481F41600EDDCDE /* Marbles-Prefix.pch */,
+				2FFA84CF1481F41600EDDCDE /* Marbles.1 */,
+				2FD7B2F31503001600D47715 /* TGMarbles-Info.plist */,
+				2FD7B2F71503001600D47715 /* TGMarbles-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			path = ../TGMarbles;
+			sourceTree = "<group>";
+		};
+		2FD7B3081503001700D47715 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				2FD7B3091503001700D47715 /* TGMarblesTests-Info.plist */,
+				2FD7B30A1503001700D47715 /* InfoPlist.strings */,
+			);
+			name = "Supporting Files";
+			path = ../TGMarblesTests;
+			sourceTree = "<group>";
+		};
+		2FD7B3161503003400D47715 /* Source */ = {
+			isa = PBXGroup;
+			children = (
+				2F104C6A243ACB45003E36A1 /* DebugAssert.cpp */,
+				2F104C6B243ACB45003E36A1 /* DebugAssert.h */,
+				2F104C69243ACB45003E36A1 /* precomp.h */,
+				2F104C63243A5B3E003E36A1 /* Descriptions.cpp */,
+				2F104C5524390A88003E36A1 /* Descriptions.h */,
+				2FC728B0177BFCBC00E61F51 /* Platform */,
+				2FE1E0E0171A70D20081C5EE /* MarblesMem.h */,
+				2FE1E0E1171A72F90081C5EE /* MarblesMem.cpp */,
+				2F844179150C034A0039260B /* AI */,
+				2F84417C150C034A0039260B /* Game */,
+				2FBEBA8C16D6C1ED00481CC3 /* Perf */,
+				2F84418D150C034A0039260B /* Utilities */,
+			);
+			name = Source;
+			sourceTree = "<group>";
+		};
+		2FD7B3171503003800D47715 /* Unit */ = {
+			isa = PBXGroup;
+			children = (
+				2FD7B3081503001700D47715 /* Supporting Files */,
+				2FBD8D9E151533AF00989CD4 /* BoardTests.h */,
+				2FBD8D9F151533AF00989CD4 /* BoardTests.mm */,
+				2FA780BE15FFE5D300A0669D /* MoveTests.h */,
+				2FA780BF15FFE5D300A0669D /* MoveTests.mm */,
+			);
+			name = Unit;
+			sourceTree = "<group>";
+		};
+		2FE228F115BF14CD000D7683 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				2FE228F215BF14CD000D7683 /* MarblesPerf-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			path = MarblesPerf;
+			sourceTree = SOURCE_ROOT;
+		};
+		2FE2290A15BF15E8000D7683 /* PerfTest */ = {
+			isa = PBXGroup;
+			children = (
+				2FE228F315BF14CD000D7683 /* MarblesPerf.1 */,
+				2FE228F115BF14CD000D7683 /* Supporting Files */,
+				2FE228E615BF14A2000D7683 /* MarblesPerf.mm */,
+			);
+			name = PerfTest;
+			sourceTree = "<group>";
+		};
+		2FFA84B91481F41600EDDCDE = {
+			isa = PBXGroup;
+			children = (
+				2F4C4D4019C67BC10033BD3B /* XCConfig */,
+				2FFA84CA1481F41600EDDCDE /* Source */,
+				2FFA84C71481F41600EDDCDE /* Frameworks */,
+				2FFA84C51481F41600EDDCDE /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		2FFA84C51481F41600EDDCDE /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				2FFA84C41481F41600EDDCDE /* Marbles */,
+				2FD7B2EA1503001600D47715 /* TGMarbles.framework */,
+				2FE228EB15BF14CC000D7683 /* MarblesPerf */,
+				2F42A431162FAE6E001496B1 /* MarblesMobile.app */,
+				2F0E069B16BCCC83001E8818 /* MarblesReplay */,
+				2FA44A9022DEE7FA0060A9A1 /* TGMarblesTests.xctest */,
+				2F6EDCC12318D72500CABEEC /* MarblesMobileTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		2FFA84C71481F41600EDDCDE /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				2FD7B2E11502E7A400D47715 /* Cocoa.framework */,
+				2FFA84C81481F41600EDDCDE /* Foundation.framework */,
+				2FD7B2EB1503001600D47715 /* Cocoa.framework */,
+				2F42A433162FAE6E001496B1 /* UIKit.framework */,
+				2F42A436162FAE6E001496B1 /* CoreGraphics.framework */,
+				2FD7B2ED1503001600D47715 /* Other Frameworks */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		2FFA84CA1481F41600EDDCDE /* Source */ = {
+			isa = PBXGroup;
+			children = (
+				2F0E069D16BCCC83001E8818 /* MarblesReplay */,
+				2F42A46E162FAE7C001496B1 /* Mobile */,
+				2FE2290A15BF15E8000D7683 /* PerfTest */,
+				2FD7B2E41502FFE400D47715 /* Command Line */,
+				2FD7B2E31502FFB500D47715 /* Framework */,
+			);
+			name = Source;
+			path = Marbles;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		2FD7B2E71503001600D47715 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2F844192150C034A0039260B /* ComputerPlayer.h in Headers */,
+				2F844194150C034A0039260B /* Board.h in Headers */,
+				2F844196150C034A0039260B /* Card.h in Headers */,
+				2F844198150C034A0039260B /* Deck.h in Headers */,
+				2F84419A150C034A0039260B /* Game.h in Headers */,
+				2F8441A0150C034A0039260B /* Move.h in Headers */,
+				2F8441A2150C034A0039260B /* Player.h in Headers */,
+				2F8441A4150C034A0039260B /* HiResTimer.h in Headers */,
+				2F8441A6150C034A0039260B /* Logging.h in Headers */,
+				2F77490915B73F8800250B26 /* Marble.h in Headers */,
+				2FE228FD15BF15AE000D7683 /* MoveRanker.h in Headers */,
+				2FBB64AB164CE63800C44B9F /* MoveList.h in Headers */,
+				2FF52B9F169D314F00F521F9 /* GameLog.h in Headers */,
+				2FF52BA6169D366A00F521F9 /* DataExtensions.h in Headers */,
+				2FC81E5016AE4F21004925B4 /* Random.h in Headers */,
+				2F0E06BD16BCD125001E8818 /* DumbPlayer.h in Headers */,
+				2FBF73CD16C0990E00D2F74C /* ReplayGame.h in Headers */,
+				2FEA468516D0863900EE0699 /* MoveGenerator.h in Headers */,
+				2FEFFFDB16D33B58003EFAF2 /* CardList.h in Headers */,
+				2FBEBA8F16D6C22A00481CC3 /* AITest.h in Headers */,
+				2FBEBA9816D6C42700481CC3 /* PerfTest.h in Headers */,
+				2F7C301D171B6B9500BEE95D /* DeckList.h in Headers */,
+				2FD21A321766D44800FA2C29 /* Teammates.h in Headers */,
+				2FD31EFC17701D1F00E31561 /* PoolAllocator.h in Headers */,
+				2FC728B3177BFD0100E61F51 /* Platform_Mac.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		2F0E069A16BCCC83001E8818 /* MarblesReplay */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 2F0E06A416BCCC83001E8818 /* Build configuration list for PBXNativeTarget "MarblesReplay" */;
+			buildPhases = (
+				2F0E069716BCCC83001E8818 /* Sources */,
+				2F0E069816BCCC83001E8818 /* Frameworks */,
+				2F0E069916BCCC83001E8818 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = MarblesReplay;
+			productName = MarblesReplay;
+			productReference = 2F0E069B16BCCC83001E8818 /* MarblesReplay */;
+			productType = "com.apple.product-type.tool";
+		};
+		2F42A430162FAE6E001496B1 /* MarblesMobile */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 2F42A46B162FAE6E001496B1 /* Build configuration list for PBXNativeTarget "MarblesMobile" */;
+			buildPhases = (
+				2F42A42D162FAE6E001496B1 /* Sources */,
+				2F42A42E162FAE6E001496B1 /* Frameworks */,
+				2F42A42F162FAE6E001496B1 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = MarblesMobile;
+			productName = MarblesMobile;
+			productReference = 2F42A431162FAE6E001496B1 /* MarblesMobile.app */;
+			productType = "com.apple.product-type.application";
+		};
+		2F6EDCC02318D72500CABEEC /* MarblesMobileTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 2F6EDCC82318D72500CABEEC /* Build configuration list for PBXNativeTarget "MarblesMobileTests" */;
+			buildPhases = (
+				2F6EDCBD2318D72500CABEEC /* Sources */,
+				2F6EDCBE2318D72500CABEEC /* Frameworks */,
+				2F6EDCBF2318D72500CABEEC /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				2F6EDCC72318D72500CABEEC /* PBXTargetDependency */,
+			);
+			name = MarblesMobileTests;
+			productName = MarblesMobileTests;
+			productReference = 2F6EDCC12318D72500CABEEC /* MarblesMobileTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		2FA44A8F22DEE7FA0060A9A1 /* TGMarblesTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 2FA44A9822DEE7FA0060A9A1 /* Build configuration list for PBXNativeTarget "TGMarblesTests" */;
+			buildPhases = (
+				2FA44A8C22DEE7FA0060A9A1 /* Sources */,
+				2FA44A8D22DEE7FA0060A9A1 /* Frameworks */,
+				2FA44A8E22DEE7FA0060A9A1 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = TGMarblesTests;
+			productName = TGMarblesTests;
+			productReference = 2FA44A9022DEE7FA0060A9A1 /* TGMarblesTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		2FD7B2E91503001600D47715 /* TGMarbles */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 2FD7B3101503001700D47715 /* Build configuration list for PBXNativeTarget "TGMarbles" */;
+			buildPhases = (
+				2FD7B2E51503001600D47715 /* Sources */,
+				2FD7B2E61503001600D47715 /* Frameworks */,
+				2FD7B2E71503001600D47715 /* Headers */,
+				2FD7B2E81503001600D47715 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = TGMarbles;
+			productName = TGMarbles;
+			productReference = 2FD7B2EA1503001600D47715 /* TGMarbles.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		2FE228EA15BF14CC000D7683 /* MarblesPerf */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 2FE228F515BF14CD000D7683 /* Build configuration list for PBXNativeTarget "MarblesPerf" */;
+			buildPhases = (
+				2FE228E715BF14CC000D7683 /* Sources */,
+				2FE228E815BF14CC000D7683 /* Frameworks */,
+				2FE228E915BF14CC000D7683 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = MarblesPerf;
+			productName = MarblesPerf;
+			productReference = 2FE228EB15BF14CC000D7683 /* MarblesPerf */;
+			productType = "com.apple.product-type.tool";
+		};
+		2FFA84C31481F41600EDDCDE /* Marbles */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 2FFA84D31481F41600EDDCDE /* Build configuration list for PBXNativeTarget "Marbles" */;
+			buildPhases = (
+				2FFA84C01481F41600EDDCDE /* Sources */,
+				2FFA84C11481F41600EDDCDE /* Frameworks */,
+				2FFA84C21481F41600EDDCDE /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Marbles;
+			productName = Marbles;
+			productReference = 2FFA84C41481F41600EDDCDE /* Marbles */;
+			productType = "com.apple.product-type.tool";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		2FFA84BB1481F41600EDDCDE /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				CLASSPREFIX = TGM;
+				LastTestingUpgradeCheck = 0610;
+				LastUpgradeCheck = 1100;
+				ORGANIZATIONNAME = toadgee.com;
+				TargetAttributes = {
+					2F0E069A16BCCC83001E8818 = {
+						DevelopmentTeam = Q4FWUZ9SEL;
+						ProvisioningStyle = Automatic;
+					};
+					2F42A430162FAE6E001496B1 = {
+						DevelopmentTeam = Q4FWUZ9SEL;
+					};
+					2F6EDCC02318D72500CABEEC = {
+						CreatedOnToolsVersion = 10.3;
+						TestTargetID = 2F42A430162FAE6E001496B1;
+					};
+					2F71320922C9CB9F008BDCA1 = {
+						CreatedOnToolsVersion = 10.2.1;
+					};
+					2FA44A8F22DEE7FA0060A9A1 = {
+						CreatedOnToolsVersion = 10.2.1;
+					};
+					2FD7B2E91503001600D47715 = {
+						DevelopmentTeam = Q4FWUZ9SEL;
+						ProvisioningStyle = Automatic;
+					};
+					2FFA84C31481F41600EDDCDE = {
+						ProvisioningStyle = Automatic;
+					};
+				};
+			};
+			buildConfigurationList = 2FFA84BE1481F41600EDDCDE /* Build configuration list for PBXProject "Marbles" */;
+			compatibilityVersion = "Xcode 10.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 2FFA84B91481F41600EDDCDE;
+			productRefGroup = 2FFA84C51481F41600EDDCDE /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				2FFA84C31481F41600EDDCDE /* Marbles */,
+				2FD7B2E91503001600D47715 /* TGMarbles */,
+				2FE228EA15BF14CC000D7683 /* MarblesPerf */,
+				2F42A430162FAE6E001496B1 /* MarblesMobile */,
+				2F0E069A16BCCC83001E8818 /* MarblesReplay */,
+				2F71320922C9CB9F008BDCA1 /* Build All */,
+				2FA44A8F22DEE7FA0060A9A1 /* TGMarblesTests */,
+				2F6EDCC02318D72500CABEEC /* MarblesMobileTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		2F42A42F162FAE6E001496B1 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2F42A43D162FAE6E001496B1 /* InfoPlist.strings in Resources */,
+				2F42A44C162FAE6E001496B1 /* MainStoryboard_iPhone.storyboard in Resources */,
+				2F42A44F162FAE6E001496B1 /* MainStoryboard_iPad.storyboard in Resources */,
+				2F5671B51D16018700B8596B /* Media.xcassets in Resources */,
+				2F142737169BDBB200327395 /* OptionsView.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2F6EDCBF2318D72500CABEEC /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2FA44A8E22DEE7FA0060A9A1 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2FD7B2E81503001600D47715 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2FD7B2F61503001600D47715 /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		2F0E069716BCCC83001E8818 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2F0E069F16BCCC83001E8818 /* MarblesReplay.mm in Sources */,
+				2F0E06A716BCCCA2001E8818 /* ComputerPlayer.cpp in Sources */,
+				2F104C5E24392BFC003E36A1 /* Thread_apple.mm in Sources */,
+				2F0E06A816BCCCA5001E8818 /* MoveRanker.cpp in Sources */,
+				2F0E06A916BCCCAA001E8818 /* Board.cpp in Sources */,
+				2F0E06AA16BCCCB3001E8818 /* Card.cpp in Sources */,
+				2F0E06AB16BCCCB3001E8818 /* Deck.cpp in Sources */,
+				2F0E06AC16BCCCB3001E8818 /* Game.cpp in Sources */,
+				2F104C86243ACBB9003E36A1 /* RandomPlayerColor.cpp in Sources */,
+				2F104C7A243ACB74003E36A1 /* CardNumber.cpp in Sources */,
+				2F0E06AD16BCCCB3001E8818 /* GameLog.cpp in Sources */,
+				2F0E06AF16BCCCB3001E8818 /* Marble.cpp in Sources */,
+				2F0E06B016BCCCB3001E8818 /* Move.cpp in Sources */,
+				2F104C68243A5B3E003E36A1 /* Descriptions.cpp in Sources */,
+				2F0E06B116BCCCB3001E8818 /* MoveList.cpp in Sources */,
+				2F0E06B216BCCCB3001E8818 /* Player.cpp in Sources */,
+				2F104C6C243ACB49003E36A1 /* DebugAssert.cpp in Sources */,
+				2F0E06B416BCCCBE001E8818 /* DataExtensions.mm in Sources */,
+				2F104C7F243ACB82003E36A1 /* MarbleColor.cpp in Sources */,
+				2F0E06B516BCCCBE001E8818 /* HiResTimer.cpp in Sources */,
+				2F0E06B616BCCCBE001E8818 /* Logging.m in Sources */,
+				2F0E06B816BCCCBE001E8818 /* Random.cpp in Sources */,
+				2F0E06C516BCD6EE001E8818 /* DumbPlayer.cpp in Sources */,
+				2FBF73D216C0990E00D2F74C /* ReplayGame.cpp in Sources */,
+				2FEA468A16D0863900EE0699 /* MoveGenerator.cpp in Sources */,
+				2FEFFFE016D33B58003EFAF2 /* CardList.cpp in Sources */,
+				2FBEBA9416D6C22A00481CC3 /* AITest.cpp in Sources */,
+				2FBEBA9D16D6C42700481CC3 /* PerfTest.cpp in Sources */,
+				2FE1E0E6171A72FA0081C5EE /* MarblesMem.cpp in Sources */,
+				2F7C3022171B6B9B00BEE95D /* DeckList.cpp in Sources */,
+				2FD21A381766D44800FA2C29 /* Teammates.cpp in Sources */,
+				2FD31F0117701D1F00E31561 /* PoolAllocator.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2F42A42D162FAE6E001496B1 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2F42A43F162FAE6E001496B1 /* MarblesMobile.m in Sources */,
+				2F42A443162FAE6E001496B1 /* AppDelegate.mm in Sources */,
+				2F42A452162FAE6E001496B1 /* ViewController.mm in Sources */,
+				2F42A46F162FAE94001496B1 /* ComputerPlayer.cpp in Sources */,
+				2F42A470162FAE94001496B1 /* MoveRanker.cpp in Sources */,
+				2F42A471162FAE9D001496B1 /* Board.cpp in Sources */,
+				2F42A472162FAE9D001496B1 /* Card.cpp in Sources */,
+				2F42A473162FAE9D001496B1 /* Deck.cpp in Sources */,
+				2F42A474162FAE9D001496B1 /* Game.cpp in Sources */,
+				2F42A476162FAE9D001496B1 /* Marble.cpp in Sources */,
+				2F42A477162FAE9D001496B1 /* Move.cpp in Sources */,
+				2F42A478162FAE9D001496B1 /* Player.cpp in Sources */,
+				2F42A479162FAEA9001496B1 /* HiResTimer.cpp in Sources */,
+				2F42A47A162FAEA9001496B1 /* Logging.m in Sources */,
+				2F42A481162FB445001496B1 /* BoardView.mm in Sources */,
+				2F104C87243ACBBA003E36A1 /* RandomPlayerColor.cpp in Sources */,
+				2FBB64AF164CE63800C44B9F /* MoveList.cpp in Sources */,
+				2F825024167ED91F0034A905 /* UIImageExtensions.m in Sources */,
+				2F104D9A167FF102003382C7 /* CardView.mm in Sources */,
+				2F054E7B1681201300081993 /* TouchPlayer.mm in Sources */,
+				2F054FB21682967200081993 /* TouchSpot.mm in Sources */,
+				2FF9B108169B8BE700E5E16B /* Options.mm in Sources */,
+				2F142736169BDBB200327395 /* OptionsViewController.mm in Sources */,
+				2FF52BAA169D410C00F521F9 /* GameLog.cpp in Sources */,
+				2FF52BAB169D411300F521F9 /* DataExtensions.mm in Sources */,
+				2F104C6D243ACB4A003E36A1 /* DebugAssert.cpp in Sources */,
+				2FC81E5416AE4F21004925B4 /* Random.cpp in Sources */,
+				2F0E06C116BCD125001E8818 /* DumbPlayer.cpp in Sources */,
+				2F104C5F24392BFD003E36A1 /* Thread_apple.mm in Sources */,
+				2FBF73CA16C04E7300D2F74C /* HandView.mm in Sources */,
+				2FBF73D116C0990E00D2F74C /* ReplayGame.cpp in Sources */,
+				2FEA468916D0863900EE0699 /* MoveGenerator.cpp in Sources */,
+				2F104C67243A5B3E003E36A1 /* Descriptions.cpp in Sources */,
+				2FEFFFDF16D33B58003EFAF2 /* CardList.cpp in Sources */,
+				2FBEBA9316D6C22A00481CC3 /* AITest.cpp in Sources */,
+				2FBEBA9C16D6C42700481CC3 /* PerfTest.cpp in Sources */,
+				2F104C80243ACB82003E36A1 /* MarbleColor.cpp in Sources */,
+				2FE1E0E5171A72FA0081C5EE /* MarblesMem.cpp in Sources */,
+				2F7C3021171B6B9B00BEE95D /* DeckList.cpp in Sources */,
+				2FD21A371766D44800FA2C29 /* Teammates.cpp in Sources */,
+				2FD31F0017701D1F00E31561 /* PoolAllocator.cpp in Sources */,
+				2F104C7B243ACB75003E36A1 /* CardNumber.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2F6EDCBD2318D72500CABEEC /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2F6EDCCD2318D75600CABEEC /* MoveTests.mm in Sources */,
+				2F6EDCCC2318D75600CABEEC /* BoardTests.mm in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2FA44A8C22DEE7FA0060A9A1 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2FA44A9C22DEE8070060A9A1 /* BoardTests.mm in Sources */,
+				2FA44A9D22DEE8070060A9A1 /* MoveTests.mm in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2FD7B2E51503001600D47715 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2F104C6F243ACB4B003E36A1 /* DebugAssert.cpp in Sources */,
+				2F844193150C034A0039260B /* ComputerPlayer.cpp in Sources */,
+				2F844195150C034A0039260B /* Board.cpp in Sources */,
+				2F844197150C034A0039260B /* Card.cpp in Sources */,
+				2F844199150C034A0039260B /* Deck.cpp in Sources */,
+				2F84419B150C034A0039260B /* Game.cpp in Sources */,
+				2F8441A1150C034A0039260B /* Move.cpp in Sources */,
+				2F8441A3150C034A0039260B /* Player.cpp in Sources */,
+				2F8441A5150C034A0039260B /* HiResTimer.cpp in Sources */,
+				2F8441A7150C034A0039260B /* Logging.m in Sources */,
+				2F77490B15B73F8800250B26 /* Marble.cpp in Sources */,
+				2F104C82243ACB83003E36A1 /* MarbleColor.cpp in Sources */,
+				2FE228FE15BF15B4000D7683 /* MoveRanker.cpp in Sources */,
+				2FBB64AD164CE63800C44B9F /* MoveList.cpp in Sources */,
+				2FF52BA1169D314F00F521F9 /* GameLog.cpp in Sources */,
+				2FF52BA8169D366A00F521F9 /* DataExtensions.mm in Sources */,
+				2FC81E5216AE4F21004925B4 /* Random.cpp in Sources */,
+				2F0E06BF16BCD125001E8818 /* DumbPlayer.cpp in Sources */,
+				2FBF73CF16C0990E00D2F74C /* ReplayGame.cpp in Sources */,
+				2F104C89243ACBBB003E36A1 /* RandomPlayerColor.cpp in Sources */,
+				2FEA468716D0863900EE0699 /* MoveGenerator.cpp in Sources */,
+				2F104C65243A5B3E003E36A1 /* Descriptions.cpp in Sources */,
+				2FEFFFDD16D33B58003EFAF2 /* CardList.cpp in Sources */,
+				2FBEBA9116D6C22A00481CC3 /* AITest.cpp in Sources */,
+				2FBEBA9A16D6C42700481CC3 /* PerfTest.cpp in Sources */,
+				2FE1E0E3171A72FA0081C5EE /* MarblesMem.cpp in Sources */,
+				2F104C7D243ACB76003E36A1 /* CardNumber.cpp in Sources */,
+				2F7C301F171B6B9900BEE95D /* DeckList.cpp in Sources */,
+				2F104C6124392BFD003E36A1 /* Thread_apple.mm in Sources */,
+				2FD21A341766D44800FA2C29 /* Teammates.cpp in Sources */,
+				2FD31EFE17701D1F00E31561 /* PoolAllocator.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2FE228E715BF14CC000D7683 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2FE228F915BF1595000D7683 /* MarblesPerf.mm in Sources */,
+				2FE228FA15BF15A6000D7683 /* ComputerPlayer.cpp in Sources */,
+				2F104C6024392BFD003E36A1 /* Thread_apple.mm in Sources */,
+				2FE228FB15BF15A6000D7683 /* MoveRanker.cpp in Sources */,
+				2FE228FF15BF15BF000D7683 /* Board.cpp in Sources */,
+				2FE2290015BF15C9000D7683 /* Card.cpp in Sources */,
+				2FE2290115BF15C9000D7683 /* Deck.cpp in Sources */,
+				2FE2290215BF15C9000D7683 /* Game.cpp in Sources */,
+				2F104C88243ACBBA003E36A1 /* RandomPlayerColor.cpp in Sources */,
+				2F104C7C243ACB76003E36A1 /* CardNumber.cpp in Sources */,
+				2FE2290415BF15C9000D7683 /* Marble.cpp in Sources */,
+				2FE2290515BF15C9000D7683 /* Move.cpp in Sources */,
+				2FE2290615BF15C9000D7683 /* Player.cpp in Sources */,
+				2F104C66243A5B3E003E36A1 /* Descriptions.cpp in Sources */,
+				2FE2290715BF15D7000D7683 /* HiResTimer.cpp in Sources */,
+				2FE2290815BF15DC000D7683 /* Logging.m in Sources */,
+				2F104C6E243ACB4A003E36A1 /* DebugAssert.cpp in Sources */,
+				2FBB64AE164CE63800C44B9F /* MoveList.cpp in Sources */,
+				2F104C81243ACB83003E36A1 /* MarbleColor.cpp in Sources */,
+				2FF52BA2169D314F00F521F9 /* GameLog.cpp in Sources */,
+				2FF52BA9169D366A00F521F9 /* DataExtensions.mm in Sources */,
+				2FC81E5316AE4F21004925B4 /* Random.cpp in Sources */,
+				2F0E06C016BCD125001E8818 /* DumbPlayer.cpp in Sources */,
+				2FBF73D016C0990E00D2F74C /* ReplayGame.cpp in Sources */,
+				2FEA468816D0863900EE0699 /* MoveGenerator.cpp in Sources */,
+				2FEFFFDE16D33B58003EFAF2 /* CardList.cpp in Sources */,
+				2FBEBA9216D6C22A00481CC3 /* AITest.cpp in Sources */,
+				2FBEBA9B16D6C42700481CC3 /* PerfTest.cpp in Sources */,
+				2FE1E0E4171A72FA0081C5EE /* MarblesMem.cpp in Sources */,
+				2F7C3020171B6B9A00BEE95D /* DeckList.cpp in Sources */,
+				2FD21A361766D44800FA2C29 /* Teammates.cpp in Sources */,
+				2FD31EFF17701D1F00E31561 /* PoolAllocator.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2FFA84C01481F41600EDDCDE /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2FFA84CC1481F41600EDDCDE /* Marbles.cpp in Sources */,
+				2F7748F815B7338700250B26 /* ComputerPlayer.cpp in Sources */,
+				2F7748F915B7339300250B26 /* Board.cpp in Sources */,
+				2F104C8A243ACBBB003E36A1 /* RandomPlayerColor.cpp in Sources */,
+				2F7748FA15B7339300250B26 /* Card.cpp in Sources */,
+				2F7748FB15B7339300250B26 /* Deck.cpp in Sources */,
+				2F104C6224392BFE003E36A1 /* Thread_apple.mm in Sources */,
+				2F104C83243ACB83003E36A1 /* MarbleColor.cpp in Sources */,
+				2F7748FC15B7339300250B26 /* Game.cpp in Sources */,
+				2F7748FE15B7339300250B26 /* Move.cpp in Sources */,
+				2F7748FF15B7339300250B26 /* Player.cpp in Sources */,
+				2F77490015B7339800250B26 /* HiResTimer.cpp in Sources */,
+				2F77490115B7339800250B26 /* Logging.m in Sources */,
+				2F77490A15B73F8800250B26 /* Marble.cpp in Sources */,
+				2F91F24315BD05EB00F3E3DF /* MoveRanker.cpp in Sources */,
+				2F10979515BF4AED00B044F9 /* ConsolePlayer.cpp in Sources */,
+				2FBB64AC164CE63800C44B9F /* MoveList.cpp in Sources */,
+				2FF52BA0169D314F00F521F9 /* GameLog.cpp in Sources */,
+				2FF52BA7169D366A00F521F9 /* DataExtensions.mm in Sources */,
+				2FC81E5116AE4F21004925B4 /* Random.cpp in Sources */,
+				2FD9110C19AC00CF00E8171E /* ConsoleUtilities.cpp in Sources */,
+				2F0E06BE16BCD125001E8818 /* DumbPlayer.cpp in Sources */,
+				2FBF73CE16C0990E00D2F74C /* ReplayGame.cpp in Sources */,
+				2FEA468616D0863900EE0699 /* MoveGenerator.cpp in Sources */,
+				2F104C64243A5B3E003E36A1 /* Descriptions.cpp in Sources */,
+				2FEFFFDC16D33B58003EFAF2 /* CardList.cpp in Sources */,
+				2F104C70243ACB4B003E36A1 /* DebugAssert.cpp in Sources */,
+				2FBEBA9016D6C22A00481CC3 /* AITest.cpp in Sources */,
+				2FBEBA9916D6C42700481CC3 /* PerfTest.cpp in Sources */,
+				2FE1E0E2171A72FA0081C5EE /* MarblesMem.cpp in Sources */,
+				2F7C301E171B6B9900BEE95D /* DeckList.cpp in Sources */,
+				2F104C7E243ACB77003E36A1 /* CardNumber.cpp in Sources */,
+				2FD21A331766D44800FA2C29 /* Teammates.cpp in Sources */,
+				2FD31EFD17701D1F00E31561 /* PoolAllocator.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		2F6EDCC72318D72500CABEEC /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 2F42A430162FAE6E001496B1 /* MarblesMobile */;
+			targetProxy = 2F6EDCC62318D72500CABEEC /* PBXContainerItemProxy */;
+		};
+		2F6EDCCF2318D77C00CABEEC /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 2F6EDCC02318D72500CABEEC /* MarblesMobileTests */;
+			targetProxy = 2F6EDCCE2318D77C00CABEEC /* PBXContainerItemProxy */;
+		};
+		2F71320F22C9CBA9008BDCA1 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 2FFA84C31481F41600EDDCDE /* Marbles */;
+			targetProxy = 2F71320E22C9CBA9008BDCA1 /* PBXContainerItemProxy */;
+		};
+		2F71321122C9CBA9008BDCA1 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 2FD7B2E91503001600D47715 /* TGMarbles */;
+			targetProxy = 2F71321022C9CBA9008BDCA1 /* PBXContainerItemProxy */;
+		};
+		2F71321522C9CBA9008BDCA1 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 2FE228EA15BF14CC000D7683 /* MarblesPerf */;
+			targetProxy = 2F71321422C9CBA9008BDCA1 /* PBXContainerItemProxy */;
+		};
+		2F71321722C9CBA9008BDCA1 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 2F42A430162FAE6E001496B1 /* MarblesMobile */;
+			targetProxy = 2F71321622C9CBA9008BDCA1 /* PBXContainerItemProxy */;
+		};
+		2F71321922C9CBA9008BDCA1 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 2F0E069A16BCCC83001E8818 /* MarblesReplay */;
+			targetProxy = 2F71321822C9CBA9008BDCA1 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		2F0BE36C16C0BE7500C799D2 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				2F0BE36D16C0BE7500C799D2 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		2F42A43B162FAE6E001496B1 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				2F42A43C162FAE6E001496B1 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		2F42A44A162FAE6E001496B1 /* MainStoryboard_iPhone.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				2F7FF001227D5FF900ACE52C /* Base */,
+			);
+			name = MainStoryboard_iPhone.storyboard;
+			path = MarblesMobile;
+			sourceTree = SOURCE_ROOT;
+		};
+		2F42A44D162FAE6E001496B1 /* MainStoryboard_iPad.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				2F7FF000227D5FF900ACE52C /* Base */,
+			);
+			name = MainStoryboard_iPad.storyboard;
+			path = MarblesMobile;
+			sourceTree = SOURCE_ROOT;
+		};
+		2FD7B2F41503001600D47715 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				2FD7B2F51503001600D47715 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		2FD7B30A1503001700D47715 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				2FD7B30B1503001700D47715 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		2F0E06A516BCCC83001E8818 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2FC6C9E019C68D89006DB279 /* marbles__replay__debug.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "Mac Developer";
+				DEVELOPMENT_TEAM = Q4FWUZ9SEL;
+				ENABLE_HARDENED_RUNTIME = YES;
+			};
+			name = Debug;
+		};
+		2F0E06A616BCCC83001E8818 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2FC6C9E119C68D89006DB279 /* marbles__replay__release.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "Mac Developer";
+				DEVELOPMENT_TEAM = Q4FWUZ9SEL;
+				ENABLE_HARDENED_RUNTIME = YES;
+			};
+			name = Release;
+		};
+		2F14CFD919C67E1D0037E31C /* Cover */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2F4C4D4619C67DA30033BD3B /* marbles__base__cover.xcconfig */;
+			buildSettings = {
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+			};
+			name = Cover;
+		};
+		2F14CFDA19C67E1D0037E31C /* Cover */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2F4C4D4919C67DA30033BD3B /* marbles__cmd__cover.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "Mac Developer";
+				DEVELOPMENT_TEAM = Q4FWUZ9SEL;
+				ENABLE_HARDENED_RUNTIME = YES;
+			};
+			name = Cover;
+		};
+		2F14CFDB19C67E1D0037E31C /* Cover */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2F4C4D4D19C67DA30033BD3B /* marbles__framework__cover.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = Q4FWUZ9SEL;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.toadgee.${PRODUCT_NAME:rfc1034identifier}";
+			};
+			name = Cover;
+		};
+		2F14CFDD19C67E1D0037E31C /* Cover */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2F14CFE419C68BBF0037E31C /* marbles__perf__cover.xcconfig */;
+			buildSettings = {
+				CLANG_WARN_SEMICOLON_BEFORE_METHOD_BODY = YES;
+				CODE_SIGN_IDENTITY = "Mac Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = Q4FWUZ9SEL;
+				ENABLE_HARDENED_RUNTIME = YES;
+				GCC_ENABLE_CPP_EXCEPTIONS = NO;
+				GCC_ENABLE_CPP_RTTI = NO;
+				GCC_UNROLL_LOOPS = YES;
+				GCC_WARN_UNUSED_PARAMETER = YES;
+				LLVM_LTO = YES;
+				PROVISIONING_PROFILE_SPECIFIER = "";
+			};
+			name = Cover;
+		};
+		2F14CFDE19C67E1D0037E31C /* Cover */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2F8AC10719C6ADBF00F776A7 /* marbles__mobile__cover.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-2";
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "LaunchImage-2";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.toadgee.${PRODUCT_NAME:rfc1034identifier}";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Cover;
+		};
+		2F14CFDF19C67E1D0037E31C /* Cover */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2FC6C9DF19C68D89006DB279 /* marbles__replay__cover.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "Mac Developer";
+				DEVELOPMENT_TEAM = Q4FWUZ9SEL;
+				ENABLE_HARDENED_RUNTIME = YES;
+			};
+			name = Cover;
+		};
+		2F42A467162FAE6E001496B1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2F8AC10819C6ADBF00F776A7 /* marbles__mobile__debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-2";
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "LaunchImage-2";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.toadgee.${PRODUCT_NAME:rfc1034identifier}";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		2F42A468162FAE6E001496B1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2F8AC10919C6ADBF00F776A7 /* marbles__mobile__release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-2";
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "LaunchImage-2";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.toadgee.${PRODUCT_NAME:rfc1034identifier}";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		2F6EDCC92318D72500CABEEC /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = Q4FWUZ9SEL;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				INFOPLIST_FILE = "MarblesMobileTests/MarblesMobileTests-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 12.4;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = com.toadgee.MarblesMobileTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MarblesMobile.app/MarblesMobile";
+			};
+			name = Debug;
+		};
+		2F6EDCCA2318D72500CABEEC /* Cover */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = Q4FWUZ9SEL;
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				INFOPLIST_FILE = "MarblesMobileTests/MarblesMobileTests-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 12.4;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = com.toadgee.MarblesMobileTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MarblesMobile.app/MarblesMobile";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Cover;
+		};
+		2F6EDCCB2318D72500CABEEC /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = Q4FWUZ9SEL;
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				INFOPLIST_FILE = "MarblesMobileTests/MarblesMobileTests-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 12.4;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = com.toadgee.MarblesMobileTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MarblesMobile.app/MarblesMobile";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		2F71320B22C9CB9F008BDCA1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = Q4FWUZ9SEL;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		2F71320C22C9CB9F008BDCA1 /* Cover */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = Q4FWUZ9SEL;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Cover;
+		};
+		2F71320D22C9CB9F008BDCA1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = Q4FWUZ9SEL;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		2FA44A9922DEE7FA0060A9A1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_IDENTITY = "-";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = Q4FWUZ9SEL;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				INFOPLIST_FILE = "TGMarblesTests/TGMarblesTests-Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.14;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = com.toadgee.TGMarblesTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		2FA44A9A22DEE7FA0060A9A1 /* Cover */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_IDENTITY = "-";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = Q4FWUZ9SEL;
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				INFOPLIST_FILE = "TGMarblesTests/TGMarblesTests-Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.14;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = com.toadgee.TGMarblesTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+			};
+			name = Cover;
+		};
+		2FA44A9B22DEE7FA0060A9A1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_IDENTITY = "-";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = Q4FWUZ9SEL;
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				INFOPLIST_FILE = "TGMarblesTests/TGMarblesTests-Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.14;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = com.toadgee.TGMarblesTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		2FD7B3111503001700D47715 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2F4C4D4E19C67DA30033BD3B /* marbles__framework__debug.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = Q4FWUZ9SEL;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.toadgee.${PRODUCT_NAME:rfc1034identifier}";
+			};
+			name = Debug;
+		};
+		2FD7B3121503001700D47715 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2F4C4D4F19C67DA30033BD3B /* marbles__framework__release.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = Q4FWUZ9SEL;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.toadgee.${PRODUCT_NAME:rfc1034identifier}";
+			};
+			name = Release;
+		};
+		2FE228F615BF14CD000D7683 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2F14CFE519C68BBF0037E31C /* marbles__perf__debug.xcconfig */;
+			buildSettings = {
+				CLANG_WARN_SEMICOLON_BEFORE_METHOD_BODY = YES;
+				CODE_SIGN_IDENTITY = "Mac Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = Q4FWUZ9SEL;
+				ENABLE_HARDENED_RUNTIME = YES;
+				GCC_ENABLE_CPP_EXCEPTIONS = NO;
+				GCC_ENABLE_CPP_RTTI = NO;
+				GCC_UNROLL_LOOPS = YES;
+				GCC_WARN_UNUSED_PARAMETER = YES;
+				LLVM_LTO = YES;
+				PROVISIONING_PROFILE_SPECIFIER = "";
+			};
+			name = Debug;
+		};
+		2FE228F715BF14CD000D7683 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2F14CFE619C68BBF0037E31C /* marbles__perf__release.xcconfig */;
+			buildSettings = {
+				CLANG_WARN_SEMICOLON_BEFORE_METHOD_BODY = YES;
+				CODE_SIGN_IDENTITY = "Mac Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = Q4FWUZ9SEL;
+				ENABLE_HARDENED_RUNTIME = YES;
+				GCC_ENABLE_CPP_EXCEPTIONS = NO;
+				GCC_ENABLE_CPP_RTTI = NO;
+				GCC_UNROLL_LOOPS = YES;
+				GCC_WARN_UNUSED_PARAMETER = YES;
+				LLVM_LTO = YES;
+				PROVISIONING_PROFILE_SPECIFIER = "";
+			};
+			name = Release;
+		};
+		2FFA84D11481F41600EDDCDE /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2F4C4D4719C67DA30033BD3B /* marbles__base__debug.xcconfig */;
+			buildSettings = {
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				ONLY_ACTIVE_ARCH = YES;
+			};
+			name = Debug;
+		};
+		2FFA84D21481F41600EDDCDE /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2F4C4D4819C67DA30033BD3B /* marbles__base__release.xcconfig */;
+			buildSettings = {
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+			};
+			name = Release;
+		};
+		2FFA84D41481F41600EDDCDE /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2F4C4D4A19C67DA30033BD3B /* marbles__cmd__debug.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "Mac Developer";
+				DEVELOPMENT_TEAM = Q4FWUZ9SEL;
+				ENABLE_HARDENED_RUNTIME = YES;
+			};
+			name = Debug;
+		};
+		2FFA84D51481F41600EDDCDE /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2F4C4D4B19C67DA30033BD3B /* marbles__cmd__release.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "Mac Developer";
+				DEVELOPMENT_TEAM = Q4FWUZ9SEL;
+				ENABLE_HARDENED_RUNTIME = YES;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		2F0E06A416BCCC83001E8818 /* Build configuration list for PBXNativeTarget "MarblesReplay" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2F0E06A516BCCC83001E8818 /* Debug */,
+				2F14CFDF19C67E1D0037E31C /* Cover */,
+				2F0E06A616BCCC83001E8818 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		2F42A46B162FAE6E001496B1 /* Build configuration list for PBXNativeTarget "MarblesMobile" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2F42A467162FAE6E001496B1 /* Debug */,
+				2F14CFDE19C67E1D0037E31C /* Cover */,
+				2F42A468162FAE6E001496B1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		2F6EDCC82318D72500CABEEC /* Build configuration list for PBXNativeTarget "MarblesMobileTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2F6EDCC92318D72500CABEEC /* Debug */,
+				2F6EDCCA2318D72500CABEEC /* Cover */,
+				2F6EDCCB2318D72500CABEEC /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		2F71320A22C9CB9F008BDCA1 /* Build configuration list for PBXAggregateTarget "Build All" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2F71320B22C9CB9F008BDCA1 /* Debug */,
+				2F71320C22C9CB9F008BDCA1 /* Cover */,
+				2F71320D22C9CB9F008BDCA1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		2FA44A9822DEE7FA0060A9A1 /* Build configuration list for PBXNativeTarget "TGMarblesTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2FA44A9922DEE7FA0060A9A1 /* Debug */,
+				2FA44A9A22DEE7FA0060A9A1 /* Cover */,
+				2FA44A9B22DEE7FA0060A9A1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		2FD7B3101503001700D47715 /* Build configuration list for PBXNativeTarget "TGMarbles" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2FD7B3111503001700D47715 /* Debug */,
+				2F14CFDB19C67E1D0037E31C /* Cover */,
+				2FD7B3121503001700D47715 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		2FE228F515BF14CD000D7683 /* Build configuration list for PBXNativeTarget "MarblesPerf" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2FE228F615BF14CD000D7683 /* Debug */,
+				2F14CFDD19C67E1D0037E31C /* Cover */,
+				2FE228F715BF14CD000D7683 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		2FFA84BE1481F41600EDDCDE /* Build configuration list for PBXProject "Marbles" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2FFA84D11481F41600EDDCDE /* Debug */,
+				2F14CFD919C67E1D0037E31C /* Cover */,
+				2FFA84D21481F41600EDDCDE /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		2FFA84D31481F41600EDDCDE /* Build configuration list for PBXNativeTarget "Marbles" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2FFA84D41481F41600EDDCDE /* Debug */,
+				2F14CFDA19C67E1D0037E31C /* Cover */,
+				2FFA84D51481F41600EDDCDE /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 2FFA84BB1481F41600EDDCDE /* Project object */;
+}
