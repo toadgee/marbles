@@ -45,7 +45,7 @@
     <OutDir>$(USERPROFILE)\Builds\$(ProjectName)\$(Configuration)\</OutDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-    <IncludePath>C:\Users\toadg\depot\marbles\TGMarbles\Utilities;C:\Users\toadg\depot\marbles\TGMarbles\Platform;C:\Users\toadg\depot\marbles\TGMarbles\Perf;C:\Users\toadg\depot\marbles\TGMarbles\AI;C:\Users\toadg\depot\marbles\TGMarbles\Game;C:\Users\toadg\depot\marbles\TGMarbles;$(IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir)..\TGMarbles\Utilities;$(SolutionDir)..\TGMarbles\Platform;$(SolutionDir)..\TGMarbles\Perf;$(SolutionDir)..\TGMarbles\AI;$(SolutionDir)..\TGMarbles\Game;$(SolutionDir)..\TGMarbles;$(IncludePath)</IncludePath>
     <OutDir>$(USERPROFILE)\Builds\$(ProjectName)\$(Configuration)\</OutDir>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
