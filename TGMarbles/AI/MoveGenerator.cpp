@@ -40,7 +40,6 @@ TGMMoveList* AllPossibleMovesForAllTeamPlayers(TGMGame* game, bool team1)
 		
 		TGMMoveList* playerMoves = MovesForPlayer(player, handWithOnlyJoker, NULL, GameGetBoard(game), joker, game);
 		
-		// OldMoveListIterateWithBlock
 		{
 			TGMMove* move = playerMoves->first;
 			while (move != NULL)
@@ -80,8 +79,6 @@ TGMMoveList* MovesForPlayer(
 	
 	{
 		filteredMoves = StartingMovesForPlayer(pc, PlayerUnusedMarbleCount(player), hand, board);
-		
-		// OldMoveListIterateWithBlock
 		{
 			TGMMove* move = filteredMoves->first;
 			while (move != NULL)
@@ -114,7 +111,6 @@ TGMMoveList* MovesForPlayer(
 			PlayerColor tc = PlayerGetColor(teammate);
 			TGMMoveList* teammateMoves = StartingMovesForPlayer(tc, PlayerUnusedMarbleCount(teammate), hand, board);
 			
-			// OldMoveListIterateWithBlock
 			{
 				TGMMove* move = teammateMoves->first;
 				while (move != NULL)
@@ -135,7 +131,6 @@ TGMMoveList* MovesForPlayer(
 
 	if (card != nullptr)
 	{
-		// OldMoveListIterateWithBlock
 		{
 			TGMMove* move = filteredMoves->first;
 			while (move != NULL)
@@ -194,7 +189,6 @@ TGMMove* BestDiscardMoveInGameFromMoves(
 	// this is a really naiive comparison today
 	TGMMove* discardMove = nullptr;
 	
-	// OldMoveListIterateWithBlock
 	{
 		TGMMove* move = discardMoves->first;
 		while (move != NULL)
@@ -228,7 +222,6 @@ TGMMove* BestMoveFromMoves(
 	TGMMove* choiceMove = nullptr;
 	int bestScore = 0;
 	
-	// OldMoveListIterateWithBlock
 	{
 		TGMMove* move = moves->first;
 		while (move != NULL)
@@ -254,10 +247,12 @@ TGMMove* BestMoveFromMoves(
 	// make sure all moves are discard moves if we've found one.
 	if (choiceMove && choiceMove->isDiscard)
 	{
-		MoveListIterateWithBlock(moves, ^(__unused int i, TGMMove* move)
+		TGMMove* move = moves->first;
+		while (move != nullptr)
 		{
 			dassert(move->isDiscard);
-		});
+			move = move->nextMove;
+		}
 	}
 #endif
 	

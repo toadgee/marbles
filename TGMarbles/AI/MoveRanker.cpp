@@ -75,7 +75,6 @@ void DoWeightOfMoveBasedOnLikelihoodOfBeingKilled(TGMMoveRankerData *data, TGMMo
 		
 		TGMMoveList *allPossibleMoves = *allPossibleOpponentMoves;
 		
-		// OldMoveListIterateWithBlock
 		{
 			TGMMove* possibleKillMove = allPossibleMoves->first;
 			while (possibleKillMove != NULL)

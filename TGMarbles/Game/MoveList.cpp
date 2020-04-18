@@ -26,7 +26,6 @@ void DeallocateMoveList(TGMMoveList* moveList)
 	dassert(moveList);
 	if (!moveList) return;
 	
-	// OldMoveListIterateWithBlock
 	{
 		TGMMove* move = moveList->first;
 		while (move != NULL)
@@ -98,7 +97,7 @@ void ReleaseMoveList(TGMMoveList* moveList)
 TGMMoveList* CopyMoveList(TGMMoveList* moveList)
 {
 	TGMMoveList* list = CreateMoveList();
-	// OldMoveListIterateWithBlock
+	
 	{
 		TGMMove* move = moveList->first;
 		while (move != NULL)
@@ -116,24 +115,6 @@ void TransferMoveFromList(TGMMove* move, TGMMoveList* fromList, TGMMoveList* toL
 {
 	MoveListRemoveNoRelease(fromList, move);
 	MoveListTransfer(toList, move);
-}
-
-void MoveListIterateWithBlock(TGMMoveList* moveList, TGMMoveListIterationBlock block)
-{
-	dassert(block != NULL);
-	if (!block) return;
-
-	int i = 0;
-	TGMMove* move = moveList->first;
-	while (move != NULL)
-	{
-		TGMMove* next = move->nextMove;
-		block(i, move);
-		move = next;
-		i++;
-	}
-	
-	return;
 }
 
 void ClearMoveList(TGMMoveList* moveList)

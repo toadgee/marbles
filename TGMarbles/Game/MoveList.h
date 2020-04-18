@@ -30,21 +30,6 @@ void ReleaseMoveList(TGMMoveList* moveList);
 
 TGMMoveList* CopyMoveList(TGMMoveList* moveList);
 
-/* MoveListIterateWithBlock is deprecated. Recommended:
-// OldMoveListIterateWithBlock
-{
-	TGMMove* move = moveList->first;
-	while (move != NULL)
-	{
-		TGMMove* next = move->nextMove;
-		
-		## BLOCK ##
-		
-		move = next;
-	}
-}
-*/
-void MoveListIterateWithBlock(TGMMoveList* moveList, TGMMoveListIterationBlock block);
 void ClearMoveList(TGMMoveList* moveList);
 void MoveListAdd(TGMMoveList* moveList, TGMMove* move);
 void MoveListTransfer(TGMMoveList* moveList, TGMMove* move); // like MoveListAdd, but does not retain the move
