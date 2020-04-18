@@ -43,10 +43,12 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <IncludePath>$(SolutionDir)..\TGMarbles\Utilities;$(SolutionDir)..\TGMarbles\Platform;$(SolutionDir)..\TGMarbles\Perf;$(SolutionDir)..\TGMarbles\AI;$(SolutionDir)..\TGMarbles\Game;$(SolutionDir)..\TGMarbles;$(IncludePath)</IncludePath>
     <OutDir>$(USERPROFILE)\Builds\$(ProjectName)\$(Configuration)\</OutDir>
+    <IntDir>$(USERPROFILE)\Builds\$(ProjectName)\tmp\$(Configuration)\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <IncludePath>$(SolutionDir)..\TGMarbles\Utilities;$(SolutionDir)..\TGMarbles\Platform;$(SolutionDir)..\TGMarbles\Perf;$(SolutionDir)..\TGMarbles\AI;$(SolutionDir)..\TGMarbles\Game;$(SolutionDir)..\TGMarbles;$(IncludePath)</IncludePath>
     <OutDir>$(USERPROFILE)\Builds\$(ProjectName)\$(Configuration)\</OutDir>
+    <IntDir>$(USERPROFILE)\Builds\$(ProjectName)\tmp\$(Configuration)\</IntDir>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>

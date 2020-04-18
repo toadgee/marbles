@@ -88,11 +88,13 @@
     <LinkIncremental>false</LinkIncremental>
     <IncludePath>$(SolutionDir)..\TGMarbles\Utilities\;$(SolutionDir)..\TGMarbles\Game\;$(SolutionDir)..\TGMarbles\AI;$(SolutionDir)..\TGMarbles\;$(IncludePath)</IncludePath>
     <OutDir>$(USERPROFILE)\Builds\$(ProjectName)\$(Configuration)\</OutDir>
+    <IntDir>$(USERPROFILE)\Builds\$(ProjectName)\tmp\$(Configuration)\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
     <IncludePath>$(SolutionDir)..\TGMarbles\Utilities\;$(SolutionDir)..\TGMarbles\Game\;$(SolutionDir)..\TGMarbles\AI;$(SolutionDir)..\TGMarbles\;$(IncludePath)</IncludePath>
     <OutDir>$(USERPROFILE)\Builds\$(ProjectName)\$(Configuration)\</OutDir>
+    <IntDir>$(USERPROFILE)\Builds\$(ProjectName)\tmp\$(Configuration)\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
