@@ -26,7 +26,7 @@ TGMMoveList* AllPossibleMovesForAllTeamPlayers(TGMGame* game, bool team1)
 	// so by having a hand with just a joker, we can generate all possible moves - and we shouldn't
 	// have any of the same moves
 	TGMCardList* handWithOnlyJoker = CreateCardList();
-	TGMCard* joker = CreateCard(-1, CardNumber_Joker, CardSuit_Joker);
+	TGMCard* joker = CreateCard(-1, CardNumber::Joker, CardSuit_Joker);
 	CardListTransfer(handWithOnlyJoker, joker);
 	
 	for (int i = 0; i < kPlayers; i++)
@@ -284,10 +284,10 @@ TGMMoveList* StartingMovesForPlayer(
 		// we will just do one iteration of a for-loop if it's not a joker
 		CardNumber min = cardNum;
 		CardNumber max = cardNum;
-		if (cardNum == CardNumber_Joker)
+		if (cardNum == CardNumber::Joker)
 		{
-			min = CardNumber_MinNumbered;
-			max = static_cast<CardNumber>(CardNumber_Max - 1);
+			min = CardNumber::MinNumbered;
+			max = static_cast<CardNumber>(static_cast<int>(CardNumber::Max) - 1);
 		}
 	
 		// for each spot we have, add a new move
@@ -427,7 +427,7 @@ TGMMoveList* StartingMovesForPlayer(
 		// if it's a get out card, add a move
 		if (unusedMarbles > 0)
 		{
-			if ((cardNum == CardNumber_King || cardNum == CardNumber_Joker || cardNum == CardNumber_Ace))
+			if ((cardNum == CardNumber::King || cardNum == CardNumber::Joker || cardNum == CardNumber::Ace))
 			{
 				TGMMove* move = MakeMove(card, nullptr, false, pc, kGetOutSpot, PlayerStartingSpot(pc), 0, 0, false);
 				MoveListTransfer(startingMoves, move);

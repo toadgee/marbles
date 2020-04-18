@@ -9,7 +9,7 @@
 uint16_t DeckCapacity()
 {
 	// normally we'd add 1 to suit & card diffs, but since we're excluding jokers from both it works out
-	uint16_t retval = kDecksToShuffle * ((CardSuit_Max - CardSuit_Min) * (CardNumber_Max - CardNumber_Min) + kNumberOfJokersPerDeck);
+	uint16_t retval = kDecksToShuffle * ((CardSuit_Max - CardSuit_Min) * (static_cast<int>(CardNumber::Max) - static_cast<int>(CardNumber::Min)) + kNumberOfJokersPerDeck);
 	dassert(retval == 108);
 	return retval;
 }
@@ -40,9 +40,9 @@ TGMDeck* CreateDeck(bool emptyDeck)
 			for (CardSuit suit = CardSuit_Min; suit <= CardSuit_Max; IterateCardSuit(suit))
 			{
 				if (suit == CardSuit_Joker) continue;
-				for (CardNumber number = CardNumber_Min; number <= CardNumber_Max; IterateCardNumber(number))
+				for (CardNumber number = CardNumber::Min; number <= CardNumber::Max; IterateCardNumber(number))
 				{
-					if (number == CardNumber_Joker) continue;
+					if (number == CardNumber::Joker) continue;
 					TGMCard* card = CreateCard(uniqueId++, number, suit);
 					CardListTransfer(deck->_cards, card);
 				}
@@ -50,7 +50,7 @@ TGMDeck* CreateDeck(bool emptyDeck)
 			// just make jokers the 
 			for (int jokers = 0; jokers < kNumberOfJokersPerDeck; jokers++)
 			{
-				TGMCard* card = CreateCard(uniqueId++, CardNumber_Joker, CardSuit_Joker);
+				TGMCard* card = CreateCard(uniqueId++, CardNumber::Joker, CardSuit_Joker);
 				CardListTransfer(deck->_cards, card);
 			}
 		}

@@ -64,7 +64,7 @@ TGMMove* MakeMoveUnfiltered(
 	
 	// note that card.card may not be cardNum if card.card was a wild card -- thus we fall back on to cardNum
 	// Kings can only be get-outs unless we don't have any more marbles
-	if (cardNum == CardNumber_King && unusedMarbles != 0)
+	if (cardNum == CardNumber::King && unusedMarbles != 0)
 	{
 		return NULL;
 	}

@@ -300,17 +300,17 @@ void DoWeightOfGetOutMove(TGMMoveRankerData *data)
 		}
 		
 		// basic order goes : use kings first, then aces, then jokers
-		if (CardNumber(data->move->card) == CardNumber_King)
+		if (CardNumber(data->move->card) == CardNumber::King)
 		{
 			data->move->weight += 1;
 		}
-		else if (CardNumber(data->move->card) == CardNumber_Joker)
+		else if (CardNumber(data->move->card) == CardNumber::Joker)
 		{
 			data->move->weight -=1;
 		}
 		else
 		{
-			dassert(CardNumber(data->move->card) == CardNumber_Ace);
+			dassert(CardNumber(data->move->card) == CardNumber::Ace);
 		}
 	}
 }
@@ -356,11 +356,11 @@ void DoWeightOfDiscardMove(TGMMoveRankerData *data)
 		// we are only saved if another player on our team has a get out. if they do, the best cards
 		// to have are 5s (and maybe 4s), so discard those last
 		int baseWeight = -1500;
-		if (CardNumber(data->move->card) == CardNumber_5)
+		if (CardNumber(data->move->card) == CardNumber::Card5)
 		{
 			baseWeight -= 100;
 		}
-		else if (CardNumber(data->move->card) == CardNumber_4)
+		else if (CardNumber(data->move->card) == CardNumber::Card4)
 		{
 			baseWeight -= 50;
 		}
@@ -373,7 +373,7 @@ void DoWeightOfJokerMove(TGMMoveRankerData *data)
 {
 	// joker moves should be considered less valuable since other cards that aren't jokers are better - so that 
 	// two moves with a joker & non-joker, the non-joker comes out ahead
-	if (CardNumber(data->move->card) == CardNumber_Joker)
+	if (CardNumber(data->move->card) == CardNumber::Joker)
 	{
 		data->move->weight += -1;
 	}
@@ -381,7 +381,7 @@ void DoWeightOfJokerMove(TGMMoveRankerData *data)
 
 void DoWeightOfMoveFromHomeBackFour(TGMMoveRankerData *data)
 {
-	if (CardNumber(data->move->card) == CardNumber_4
+	if (CardNumber(data->move->card) == CardNumber::Card4
 	 && data->oldSpotNormalized == 4 
 	 && data->newSpotNormalized == 0)
 	{

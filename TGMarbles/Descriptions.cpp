@@ -138,21 +138,21 @@ std::string CardNumberToString(CardNumber card)
 	const char* str = NULL;
 	switch (card)
 	{
-		etstr(str, CardNumber_Joker, "Joker");
-		etstr(str, CardNumber_Ace, "Ace");
-		etstr(str, CardNumber_2, "2");
-		etstr(str, CardNumber_3, "3");
-		etstr(str, CardNumber_4, "4");
-		etstr(str, CardNumber_5, "5");
-		etstr(str, CardNumber_6, "6");
-		etstr(str, CardNumber_7, "7");
-		etstr(str, CardNumber_8, "8");
-		etstr(str, CardNumber_9, "9");
-		etstr(str, CardNumber_10, "10");
-		etstr(str, CardNumber_Jack, "Jack");
-		etstr(str, CardNumber_Queen, "Queen");
-		etstr(str, CardNumber_King, "King");
-		etstr(str, CardNumber_None, "NONE");
+		etstr(str, CardNumber::Joker, "Joker");
+		etstr(str, CardNumber::Ace, "Ace");
+		etstr(str, CardNumber::Card2, "2");
+		etstr(str, CardNumber::Card3, "3");
+		etstr(str, CardNumber::Card4, "4");
+		etstr(str, CardNumber::Card5, "5");
+		etstr(str, CardNumber::Card6, "6");
+		etstr(str, CardNumber::Card7, "7");
+		etstr(str, CardNumber::Card8, "8");
+		etstr(str, CardNumber::Card9, "9");
+		etstr(str, CardNumber::Card10, "10");
+		etstr(str, CardNumber::Jack, "Jack");
+		etstr(str, CardNumber::Queen, "Queen");
+		etstr(str, CardNumber::King, "King");
+		etstr(str, CardNumber::None, "NONE");
 	}
 
 	return str;
@@ -449,7 +449,7 @@ std::string CardDescription(TGMCard *card, bool shortDescription)
 {
 	if (card == nullptr) return "[null card]";
 	std::string num = CardNumberToString(card->_number);
-	if (card->_number == CardNumber_Joker)
+	if (card->_number == CardNumber::Joker)
 	{
 		return num;
 	}
