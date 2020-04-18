@@ -109,7 +109,7 @@ void ResetBoardInternal(TGMBoard *board, bool releaseMarbles)
 		board->_playerMarblesInPlay[i] = 0;
 		for (unsigned j = 0; j < kMarblesPerPlayer; j++)
 		{
-			board->_finalSpots[i][j] = Color_None;
+			board->_finalSpots[i][j] = MarbleColor::None;
 			board->_playerMarbles[i][j] = kPlayersMarbleHomeSpotMarker;
 		}
 	}
@@ -172,7 +172,7 @@ MarbleColor BoardMarbleColorAtSpot(TGMBoard *board, int spot)
 	dassert(IsValidSpot(spot));
 	
 	TGMMarble* marble = board->_board[spot];
-	return (marble == NULL) ? Color_None : marble->color;
+	return (marble == NULL) ? MarbleColor::None : marble->color;
 }
 
 MarbleColor BoardMarbleColorInFinalSpot(TGMBoard *board, int finalSpot, PlayerColor pc)
@@ -192,7 +192,7 @@ int BoardFirstMarbleInFinalSpots(TGMBoard *board, int startingSpot, PlayerColor 
 	int pos = PositionForPlayerColor(pc);
 	for (int fs = startingSpot; fs < kMarblesPerPlayer; fs++)
 	{
-		if (board->_finalSpots[pos][fs] != Color_None)
+		if (board->_finalSpots[pos][fs] != MarbleColor::None)
 		{
 			return fs;
 		}
@@ -248,7 +248,7 @@ uint8_t BoardCountScoreForPlayer(TGMBoard *board, PlayerColor pc)
 	uint8_t score = 0;
 	for (int finalSpot = kMarblesPerPlayer - 1; finalSpot >= 0; --finalSpot)
 	{
-		if (board->_finalSpots[pos][finalSpot] != Color_None)
+		if (board->_finalSpots[pos][finalSpot] != MarbleColor::None)
 		{
 			score++;
 		}
@@ -280,7 +280,7 @@ void BoardPlaceMarbleAtFinalSpot(TGMBoard* board, MarbleColor mc, PlayerColor pc
 	dassert(IsValidMarbleColor(mc));
 	dassert(IsPlayerColor(pc));
 	dassert(PlayerColorForMarbleColor(mc) == pc);
-	dassert(board->_finalSpots[pos][finalSpot] == Color_None);
+	dassert(board->_finalSpots[pos][finalSpot] == MarbleColor::None);
 	dassert(board->_playerMarbles[pos][offset] != kPlayersMarbleFinalSpotMarker);
 	
 	board->_playerMarbles[pos][offset] = kPlayersMarbleFinalSpotMarker;
@@ -298,11 +298,11 @@ void BoardRemoveMarbleAtFinalSpot(TGMBoard* board, PlayerColor pc, int finalSpot
 	
 	MarbleColor mc = board->_finalSpots[pos][finalSpot];
 	int offset = MarbleColorToOffset(mc);
-	dassert(mc != Color_None);
+	dassert(mc != MarbleColor::None);
 	dassert(board->_playerMarbles[pos][offset] == kPlayersMarbleFinalSpotMarker);
 	
 	board->_playerMarbles[pos][offset] = kPlayersMarbleHomeSpotMarker;
-	board->_finalSpots[pos][finalSpot] = Color_None;
+	board->_finalSpots[pos][finalSpot] = MarbleColor::None;
 	board->_finalSpotCounts[pos]--;
 }
 
@@ -315,11 +315,11 @@ void BoardMoveMarbleAtFinalSpot(TGMBoard* board, PlayerColor pc, int oldFinalSpo
 	dassert(IsValidFinalSpot(newFinalSpot));
 	
 	MarbleColor mc = board->_finalSpots[pos][oldFinalSpot];
-	dassert(mc != Color_None);
-	dassert(board->_finalSpots[pos][newFinalSpot] == Color_None);
+	dassert(mc != MarbleColor::None);
+	dassert(board->_finalSpots[pos][newFinalSpot] == MarbleColor::None);
 	dassert(board->_playerMarbles[pos][MarbleColorToOffset(mc)] == kPlayersMarbleFinalSpotMarker);
 	
-	board->_finalSpots[pos][oldFinalSpot] = Color_None;
+	board->_finalSpots[pos][oldFinalSpot] = MarbleColor::None;
 	board->_finalSpots[pos][newFinalSpot] = mc;
 }
 

@@ -6,27 +6,27 @@
 MarbleColor GetMarbleForPlayer(PlayerColor color, int i)
 {
 	dassert(IsPlayerColor(color));
-	MarbleColor mc = Color_None;
+	MarbleColor mc = MarbleColor::None;
 	bool set = true;
 	switch (color)
 	{
 		case Player_Red:
-			mc = Color_Red1;
+			mc = MarbleColor::Red1;
 			break;
 		case Player_Yellow:
-			mc = Color_Yellow1;
+			mc = MarbleColor::Yellow1;
 			break;
 		case Player_Green:
-			mc = Color_Green1;
+			mc = MarbleColor::Green1;
 			break;
 		case Player_Blue:
-			mc = Color_Blue1;
+			mc = MarbleColor::Blue1;
 			break;
 		case Player_White:
-			mc = Color_White1;
+			mc = MarbleColor::White1;
 			break;
 		case Player_Black:
-			mc = Color_Black1;
+			mc = MarbleColor::Black1;
 			break;
 		case Player_None:
 			set = false;
@@ -36,7 +36,7 @@ MarbleColor GetMarbleForPlayer(PlayerColor color, int i)
 
 	if (set)
 	{
-		mc = static_cast<MarbleColor>(mc + i);
+		mc = static_cast<MarbleColor>(static_cast<int>(mc) + i);
 		dassert(IsMarbleColor(mc));
 		dassert(PlayerColorForMarbleColor(mc) == color);
 	}
@@ -89,7 +89,7 @@ PlayerColor PlayerColorForMarbleColor(MarbleColor color)
 		pcs[29] = Player_Black;
 	}
 
-	return pcs[color - 200];
+	return pcs[static_cast<int>(color) - 200];
 }
 
 bool IsPlayersMarble(MarbleColor marble, PlayerColor player)
@@ -100,17 +100,17 @@ bool IsPlayersMarble(MarbleColor marble, PlayerColor player)
 		dassert(false);
 		break;
 	case Player_Red:
-		return (marble == Color_Red1 || marble == Color_Red2 || marble == Color_Red3 || marble == Color_Red4 || marble == Color_Red5);
+		return (marble == MarbleColor::Red1 || marble == MarbleColor::Red2 || marble == MarbleColor::Red3 || marble == MarbleColor::Red4 || marble == MarbleColor::Red5);
 	case Player_Yellow:
-		return (marble == Color_Yellow1 || marble == Color_Yellow2 || marble == Color_Yellow3 || marble == Color_Yellow4 || marble == Color_Yellow5);
+		return (marble == MarbleColor::Yellow1 || marble == MarbleColor::Yellow2 || marble == MarbleColor::Yellow3 || marble == MarbleColor::Yellow4 || marble == MarbleColor::Yellow5);
 	case Player_Green:
-		return (marble == Color_Green1 || marble == Color_Green2 || marble == Color_Green3 || marble == Color_Green4 || marble == Color_Green5);
+		return (marble == MarbleColor::Green1 || marble == MarbleColor::Green2 || marble == MarbleColor::Green3 || marble == MarbleColor::Green4 || marble == MarbleColor::Green5);
 	case Player_Blue:
-		return (marble == Color_Blue1 || marble == Color_Blue2 || marble == Color_Blue3 || marble == Color_Blue4 || marble == Color_Blue5);
+		return (marble == MarbleColor::Blue1 || marble == MarbleColor::Blue2 || marble == MarbleColor::Blue3 || marble == MarbleColor::Blue4 || marble == MarbleColor::Blue5);
 	case Player_White:
-		return (marble == Color_White1 || marble == Color_White2 || marble == Color_White3 || marble == Color_White4 || marble == Color_White5);
+		return (marble == MarbleColor::White1 || marble == MarbleColor::White2 || marble == MarbleColor::White3 || marble == MarbleColor::White4 || marble == MarbleColor::White5);
 	case Player_Black:
-		return (marble == Color_Black1 || marble == Color_Black2 || marble == Color_Black3 || marble == Color_Black4 || marble == Color_Black5);
+		return (marble == MarbleColor::Black1 || marble == MarbleColor::Black2 || marble == MarbleColor::Black3 || marble == MarbleColor::Black4 || marble == MarbleColor::Black5);
 	}
 
 	return false;

@@ -169,7 +169,7 @@ bool PlayerHasUnusedMarbleColor(TGMPlayer* player, MarbleColor mc)
 
 MarbleColor PlayerRemoveFirstUnusedMarbleColor(TGMPlayer* player)
 {
-	MarbleColor mc = Color_None;
+	MarbleColor mc = MarbleColor::None;
 	for (int i = 0; i < kMarblesPerPlayer; i++)
 	{
 		if (player->_marblesInHome[i])

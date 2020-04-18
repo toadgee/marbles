@@ -170,7 +170,7 @@ void DoWeightOfMoveIntoHomeBase(TGMMoveRankerData *data)
 			for (int finalSpotCounter = newSpotFinalSpot + 1; finalSpotCounter < kMarblesPerPlayer; finalSpotCounter++)
 			{
 				MarbleColor mc = BoardMarbleColorInFinalSpot(data->board, finalSpotCounter, data->move->playerColor);
-				if (mc == Color_None)
+				if (mc == MarbleColor::None)
 				{
 					isFull = false;
 					break;
@@ -251,7 +251,7 @@ void DoWeightOfMoveKill(TGMMoveRankerData *data)
 	if (!data->oldSpotIsFinalSpot && !data->newSpotIsFinalSpot)
 	{
 		MarbleColor existingColor = BoardMarbleColorAtSpot(data->board, data->move->newSpot);
-		if (existingColor != Color_None)
+		if (existingColor != MarbleColor::None)
 		{
 			PlayerColor marblePlayerColor = PlayerColorForMarbleColor(existingColor);
 			PlayerColor playerColor = data->playerColor;

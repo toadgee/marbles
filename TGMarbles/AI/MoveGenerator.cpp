@@ -402,7 +402,7 @@ TGMMoveList* StartingMovesForPlayer(
 		// look at all final spots
 		for (int finalSpot = 0; finalSpot < kMarblesPerPlayer; finalSpot++)
 		{
-			if (BoardMarbleColorInFinalSpot(board, finalSpot, pc) != Color_None)
+			if (BoardMarbleColorInFinalSpot(board, finalSpot, pc) != MarbleColor::None)
 			{
 				for (CardNumber num = min; num <= max; IterateCardNumber(num))
 				{

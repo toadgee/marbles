@@ -733,7 +733,7 @@ void GameDoMove(TGMGame* game, TGMMove* move)
 		if (!IsFinalSpot(move->newSpot))
 		{
 			MarbleColor existingColor = BoardMarbleColorAtSpot(game->_board, move->newSpot);
-			bool isKill = (existingColor != Color_None);
+			bool isKill = (existingColor != MarbleColor::None);
 			if (isKill)
 			{
 				// now remove the marble
@@ -834,7 +834,7 @@ void GameConsistencyCheck(TGMGame* game)
 		
 		for (int i = 0; i < kMarblesPerPlayer; i++)
 		{
-			if (BoardMarbleColorInFinalSpot(game->_board, i, color) != Color_None)
+			if (BoardMarbleColorInFinalSpot(game->_board, i, color) != MarbleColor::None)
 			{
 				count++;
 			}

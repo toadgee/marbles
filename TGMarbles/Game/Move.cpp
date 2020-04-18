@@ -372,7 +372,7 @@ bool IsMoveValid_DoesPassOrKillOurMarbles(TGMMove* move, PlayerColor pc, TGMBoar
 			mc = BoardMarbleColorAtSpot(board, spot);
 		}
 		
-		if (mc != Color_None && IsPlayersMarble(mc, pc))
+		if (mc != MarbleColor::None && IsPlayersMarble(mc, pc))
 		{
 			return false;
 		}

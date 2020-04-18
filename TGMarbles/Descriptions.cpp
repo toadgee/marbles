@@ -180,43 +180,43 @@ std::string MarbleColorToShortString(MarbleColor color)
 	const char* str = NULL;
 	switch (color)
 	{
-		etstr(str, Color_None, "_");
+		etstr(str, MarbleColor::None, "_");
 
-		etstr(str, Color_Red1, "R");
-		etstr(str, Color_Red2, "R");
-		etstr(str, Color_Red3, "R");
-		etstr(str, Color_Red4, "R");
-		etstr(str, Color_Red5, "R");
+		etstr(str, MarbleColor::Red1, "R");
+		etstr(str, MarbleColor::Red2, "R");
+		etstr(str, MarbleColor::Red3, "R");
+		etstr(str, MarbleColor::Red4, "R");
+		etstr(str, MarbleColor::Red5, "R");
 
-		etstr(str, Color_Yellow1, "Y");
-		etstr(str, Color_Yellow2, "Y");
-		etstr(str, Color_Yellow3, "Y");
-		etstr(str, Color_Yellow4, "Y");
-		etstr(str, Color_Yellow5, "Y");
+		etstr(str, MarbleColor::Yellow1, "Y");
+		etstr(str, MarbleColor::Yellow2, "Y");
+		etstr(str, MarbleColor::Yellow3, "Y");
+		etstr(str, MarbleColor::Yellow4, "Y");
+		etstr(str, MarbleColor::Yellow5, "Y");
 
-		etstr(str, Color_Blue1, "L");
-		etstr(str, Color_Blue2, "L");
-		etstr(str, Color_Blue3, "L");
-		etstr(str, Color_Blue4, "L");
-		etstr(str, Color_Blue5, "L");
+		etstr(str, MarbleColor::Blue1, "L");
+		etstr(str, MarbleColor::Blue2, "L");
+		etstr(str, MarbleColor::Blue3, "L");
+		etstr(str, MarbleColor::Blue4, "L");
+		etstr(str, MarbleColor::Blue5, "L");
 
-		etstr(str, Color_Green1, "G");
-		etstr(str, Color_Green2, "G");
-		etstr(str, Color_Green3, "G");
-		etstr(str, Color_Green4, "G");
-		etstr(str, Color_Green5, "G");
+		etstr(str, MarbleColor::Green1, "G");
+		etstr(str, MarbleColor::Green2, "G");
+		etstr(str, MarbleColor::Green3, "G");
+		etstr(str, MarbleColor::Green4, "G");
+		etstr(str, MarbleColor::Green5, "G");
 
-		etstr(str, Color_White1, "W");
-		etstr(str, Color_White2, "W");
-		etstr(str, Color_White3, "W");
-		etstr(str, Color_White4, "W");
-		etstr(str, Color_White5, "W");
+		etstr(str, MarbleColor::White1, "W");
+		etstr(str, MarbleColor::White2, "W");
+		etstr(str, MarbleColor::White3, "W");
+		etstr(str, MarbleColor::White4, "W");
+		etstr(str, MarbleColor::White5, "W");
 
-		etstr(str, Color_Black1, "B");
-		etstr(str, Color_Black2, "B");
-		etstr(str, Color_Black3, "B");
-		etstr(str, Color_Black4, "B");
-		etstr(str, Color_Black5, "B");
+		etstr(str, MarbleColor::Black1, "B");
+		etstr(str, MarbleColor::Black2, "B");
+		etstr(str, MarbleColor::Black3, "B");
+		etstr(str, MarbleColor::Black4, "B");
+		etstr(str, MarbleColor::Black5, "B");
 	}
 
 	return str;
@@ -480,7 +480,7 @@ std::string BoardDescriptionWithCustomBreaker(TGMBoard *board, int8_t breaker)
 			if (IsPlayerLastSpot(i))
 			{
 				PlayerColor color = PlayerColorForLastSpot(i);
-				if (board->_finalSpots[PositionForPlayerColor(color)][j] != Color_None)
+				if (board->_finalSpots[PositionForPlayerColor(color)][j] != MarbleColor::None)
 				{
 					str << ColoredString(color, PlayerColorToShortString(color).c_str());
 				}
@@ -508,9 +508,9 @@ std::string BoardDescriptionWithCustomBreaker(TGMBoard *board, int8_t breaker)
 	for (int i = kTotalSpots - 1; i >= 0; i--)
 	{
 		TGMMarble* marble = board->_board[i];
-		MarbleColor mc = marble == NULL ? Color_None : marble->color;
+		MarbleColor mc = marble == NULL ? MarbleColor::None : marble->color;
 
-		if (mc != Color_None)
+		if (mc != MarbleColor::None)
 		{
 			PlayerColor pc = PlayerColorForMarbleColor(mc);
 			str << ColoredString(pc, MarbleColorToShortString(mc).c_str());
