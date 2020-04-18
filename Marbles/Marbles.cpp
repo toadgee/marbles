@@ -65,7 +65,7 @@ int main (int argc, const char * argv[])
 		{
 			for (int i = Strategy_Min; i <= Strategy_Max; i++)
 			{
-				MarbleStrategy ms = (MarbleStrategy)i;
+				const MarbleStrategy ms = (MarbleStrategy)i;
 				if (ms == Strategy_Human) continue;
 				printf("%d) %s\n", i, StrategyToString(ms).c_str());
 			}
