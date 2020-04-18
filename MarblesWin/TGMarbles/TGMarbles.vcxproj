@@ -14,6 +14,7 @@
     <ProjectGuid>{16482CBC-A98D-4360-97A5-4FDDB37ECCD2}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>TGMarbles</RootNamespace>
+    <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -40,10 +41,12 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <IncludePath>C:\Users\toadg\depot\marbles\TGMarbles\Utilities;C:\Users\toadg\depot\marbles\TGMarbles\Platform;C:\Users\toadg\depot\marbles\TGMarbles\Perf;C:\Users\toadg\depot\marbles\TGMarbles\AI;C:\Users\toadg\depot\marbles\TGMarbles\Game;C:\Users\toadg\depot\marbles\TGMarbles;$(IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir)..\TGMarbles\Utilities;$(SolutionDir)..\TGMarbles\Platform;$(SolutionDir)..\TGMarbles\Perf;$(SolutionDir)..\TGMarbles\AI;$(SolutionDir)..\TGMarbles\Game;$(SolutionDir)..\TGMarbles;$(IncludePath)</IncludePath>
+    <OutDir>$(USERPROFILE)\Builds\$(ProjectName)\$(Configuration)\</OutDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <IncludePath>C:\Users\toadg\depot\marbles\TGMarbles\Utilities;C:\Users\toadg\depot\marbles\TGMarbles\Platform;C:\Users\toadg\depot\marbles\TGMarbles\Perf;C:\Users\toadg\depot\marbles\TGMarbles\AI;C:\Users\toadg\depot\marbles\TGMarbles\Game;C:\Users\toadg\depot\marbles\TGMarbles;$(IncludePath)</IncludePath>
+    <OutDir>$(USERPROFILE)\Builds\$(ProjectName)\$(Configuration)\</OutDir>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
