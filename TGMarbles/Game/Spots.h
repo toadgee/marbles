@@ -12,7 +12,7 @@
 #define IsValidHomeSpot(x) ((x) >= 0 && (x) < kMarblesPerPlayer)
 #define kPlayerStartingPosition 4 // starting position for the player
 #define kPlayerPointPosition	9 // point offset from player's starting position
-#define PositionForPlayerColor(pc) ((pc) - Player_Min)
+#define PositionForPlayerColor(pc) (static_cast<int>(pc) - static_cast<int>(PlayerColor::Min))
 #define MarbleColorToOffset(mc) (static_cast<int>(mc) % kMarblesPerPlayer)
 #define IsFinalSpot(x) ((x) >= kFinalSpotsOffset && (x) < (kFinalSpotsOffset + kMarblesPerPlayer))
 #define FinalSpotToSpot(x) ((x) + kFinalSpotsOffset)
@@ -21,8 +21,8 @@
 #define IsPlayerStartingSpot(spot) (((spot) - kPlayerStartingPosition) % kPlayerSpots == 0)
 #define IsPlayerLastSpot(spot) ((spot) % kPlayerSpots == 0)
 #define WrapSpot(spot) (((spot) + kTotalSpots) % kTotalSpots)
-#define PlayerColorForLastSpot(spot) ((PlayerColor)(((spot) / kPlayerSpots) + Player_Min))
-#define PlayerColorForPosition(position) static_cast<PlayerColor>(Player_Min + (position))
+#define PlayerColorForLastSpot(spot) (static_cast<PlayerColor>(((spot) / kPlayerSpots) + static_cast<int>(PlayerColor::Min)))
+#define PlayerColorForPosition(position) static_cast<PlayerColor>(static_cast<int>(PlayerColor::Min) + (position))
 #define PositionForMarble(mc) ((static_cast<int>(mc) - (static_cast<int>(MarbleColor::Min) + 1)) % kMarblesPerPlayer) // 1 to include non-none
 #define PlayerSectionStart(pc) (PositionForPlayerColor(pc) * kPlayerSpots)
 // this converts the spot to be from 0-total spots from the player's perspective

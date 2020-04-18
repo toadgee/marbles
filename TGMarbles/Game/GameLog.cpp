@@ -12,7 +12,7 @@ TGMGameLog* CreateGameLog(void)
 	MemIncreaseGlobalCount(g_gameLogsLiving);
 	
 	TGMGameLog* gameLog = (TGMGameLog*)malloc(sizeof(TGMGameLog));
-	gameLog->_dealingPlayer = Player_None;
+	gameLog->_dealingPlayer = PlayerColor::None;
 	gameLog->_deckList = CreateDeckList();
 	gameLog->_moveList = CreateMoveList();
 	gameLog->_retainCount = 1;

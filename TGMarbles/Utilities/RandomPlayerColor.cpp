@@ -5,7 +5,7 @@
 void GenerateRandomColors(TGRandom* rng, PlayerColor* color1, PlayerColor* color2, PlayerColor* color3, PlayerColor* color4, PlayerColor* color5, PlayerColor* color6)
 {
 	// generate random colors for the 6 players
-	PlayerColor c1 = (PlayerColor)((RandomRandom(rng) % (Player_Max - Player_Min)) + Player_Min); // GenerateRandomColors
+	PlayerColor c1 = static_cast<PlayerColor>((RandomRandom(rng) % (static_cast<int>(PlayerColor::Max) - static_cast<int>(PlayerColor::Min))) + static_cast<int>(PlayerColor::Min)); // GenerateRandomColors
 	PlayerColor c2 = NextPlayerColor(c1);
 	PlayerColor c3 = NextPlayerColor(c2);
 	PlayerColor c4 = NextPlayerColor(c3);

@@ -33,7 +33,7 @@ void AddPlayersToGame(TGMGame* game, Strategy team1, Strategy team2, bool output
 
 void DoGame(TGMGame* game, Strategy team1, Strategy team2)
 {
-	for (PlayerColor pc = Player_Min; pc <= Player_Max; IteratePlayerColor(pc))
+	for (PlayerColor pc = PlayerColor::Min; pc <= PlayerColor::Max; IteratePlayerColor(pc))
 	{
 		TGMPlayer* player = GamePlayerForColor(game, pc);
 		std::ostringstream str;

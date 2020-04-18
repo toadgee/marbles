@@ -113,8 +113,8 @@ TGMGame* CreateGame(TGMGameLog* replayLog, TGRandom* rng)
 	game->_state = GameState::NotStarted;
 	game->_board = CreateBoard();
 	game->_turn = 0;
-	game->_dealingPlayer = Player_None;
-	game->_currentPlayer = Player_None;
+	game->_dealingPlayer = PlayerColor::None;
+	game->_currentPlayer = PlayerColor::None;
 	game->_deck = nullptr;
 	
 	game->_callbackContext = nullptr;
@@ -434,12 +434,12 @@ void GameStart(TGMGame* game)
 		PlayerGameStarting(player, game);
 	}
 	
-	if (game->_currentPlayer == Player_None)
+	if (game->_currentPlayer == PlayerColor::None)
 	{
 		uint32_t randomNumber = RandomRandom(GameGetRandomNumberGenerator(game)); // setting the current player at game start
 		uint32_t startingPosition = randomNumber % kPlayers;
 		game->_currentPlayer = PlayerGetColor(game->_players[startingPosition]);
-		dassert(game->_currentPlayer != Player_None);
+		dassert(game->_currentPlayer != PlayerColor::None);
 	}
 	
 	GameEventGameStarted(game);
@@ -484,10 +484,10 @@ void GameStartHand(TGMGame* game)
 		
 		GameLogAddDeck(game->_gameLog, game->_deck);
 		
-		if (game->_dealingPlayer == Player_None)
+		if (game->_dealingPlayer == PlayerColor::None)
 		{
 			uint32_t randomNumber = RandomRandom(game->_rng); // setting the dealing player at start
-			if (game->_replayLog != NULL && GameLogDealingPlayer(game->_replayLog) != Player_None)
+			if (game->_replayLog != NULL && GameLogDealingPlayer(game->_replayLog) != PlayerColor::None)
 			{
 				game->_dealingPlayer = GameLogDealingPlayer(game->_replayLog);
 			}
@@ -495,7 +495,7 @@ void GameStartHand(TGMGame* game)
 			{
 				uint32_t dealerPosition = randomNumber % kPlayers;
 				game->_dealingPlayer = PlayerColorForPosition(dealerPosition);
-				dassert(game->_dealingPlayer >= Player_Min && game->_dealingPlayer <= Player_Max);
+				dassert(game->_dealingPlayer >= PlayerColor::Min && game->_dealingPlayer <= PlayerColor::Max);
 			}
 			
 			GameLogSetDealingPlayer(game->_gameLog, game->_dealingPlayer);
@@ -653,7 +653,7 @@ bool GameIsEndOfGame(TGMGame* game, bool* team1Won)
 	bool team1Finished = true;
 	bool team2Finished = true;
 	
-	for (PlayerColor pc = Player_Min; pc <= Player_Max; IteratePlayerColor(pc))
+	for (PlayerColor pc = PlayerColor::Min; pc <= PlayerColor::Max; IteratePlayerColor(pc))
 	{
 		if (BoardCountMarblesInFinalSpotForPlayer(game->_board, pc) != kMarblesPerPlayer)
 		{
@@ -694,7 +694,7 @@ void GameDoMove(TGMGame* game, TGMMove* move)
 	
 	// remove the card from the player's hand
 	TGMCard *playingCard = nullptr;
-	if (game->_currentPlayer != Player_None) // _currentPlayer can be Player_None in unit tests
+	if (game->_currentPlayer != PlayerColor::None) // _currentPlayer can be PlayerColor::None in unit tests
 	{
 		TGMCardList *hand = PlayerGetHand(GameGetCurrentPlayer(game));
 		playingCard = CardListRemoveCardLike(hand, move->card); // owns reference
@@ -793,7 +793,7 @@ void GameMoveCurrentPlayerToNextPlayer(TGMGame* game, PlayerColor pc)
 	PlayerColor nextPlayerColor = NextPlayerColor(pc);
 	int nextPos = PositionForPlayerColor(nextPlayerColor);
 	game->_currentPlayer = PlayerGetColor(game->_players[nextPos]);
-	dassert(game->_currentPlayer != Player_None);
+	dassert(game->_currentPlayer != PlayerColor::None);
 }
 
 void GameReturnCardsToDeck(TGMGame* game)

@@ -51,7 +51,7 @@ TGMReplayGame* CreateReplayGame(TGMGameLog* gameLog, TGRandom* newRandom)
 {
 	TGMReplayGame* replayGame = AllocateReplayGame();
 	replayGame->_game = CreateGame(gameLog, newRandom);
-	for (PlayerColor pc = Player_Min; pc <= Player_Max; IteratePlayerColor(pc))
+	for (PlayerColor pc = PlayerColor::Min; pc <= PlayerColor::Max; IteratePlayerColor(pc))
 	{
 		TGMPlayer* dumbPlayer = CreateDumbPlayer(PlayerColorToString(pc), GameLogStrategyForPlayerColor(gameLog, pc), pc);
 		GameAddPlayer(replayGame->_game, dumbPlayer);

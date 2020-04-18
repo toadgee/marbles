@@ -65,28 +65,28 @@ AITest::AITest(Strategy team1, Strategy team2, unsigned seed)
 		
 	TGMPlayer* player;
 	// team 1
-	player = CreateComputerPlayer("Aubrey", team1, Player_Red);
+	player = CreateComputerPlayer("Aubrey", team1, PlayerColor::Red);
 	GameAddPlayer(_game, player);
 	ReleasePlayer(player);
 	
-	player = CreateComputerPlayer("Katie", team1, Player_White);
+	player = CreateComputerPlayer("Katie", team1, PlayerColor::White);
 	GameAddPlayer(_game, player);
 	ReleasePlayer(player);
 	
-	player = CreateComputerPlayer("Shauna", team1, Player_Blue);
+	player = CreateComputerPlayer("Shauna", team1, PlayerColor::Blue);
 	GameAddPlayer(_game, player);
 	ReleasePlayer(player);
 	
 	// team 2
-	player = CreateComputerPlayer("Jason", team2, Player_Yellow);
+	player = CreateComputerPlayer("Jason", team2, PlayerColor::Yellow);
 	GameAddPlayer(_game, player);
 	ReleasePlayer(player);
 		
-	player = CreateComputerPlayer("Ryan", team2, Player_Green);
+	player = CreateComputerPlayer("Ryan", team2, PlayerColor::Green);
 	GameAddPlayer(_game, player);
 	ReleasePlayer(player);
 	
-	player = CreateComputerPlayer("Todd", team2, Player_Black);
+	player = CreateComputerPlayer("Todd", team2, PlayerColor::Black);
 	GameAddPlayer(_game, player);
 	ReleasePlayer(player);
 }

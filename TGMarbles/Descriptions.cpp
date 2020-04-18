@@ -59,26 +59,26 @@ std::string ColoredString(PlayerColor color, const char* str)
 	const char* colorStr = nullptr;
 	switch (color)
 	{
-		case Player_Black:
+		case PlayerColor::Black:
 			colorStr = "\033[0;35m";// @"\033[1;30m"; // purple hack
 			break;
-		case Player_Blue:
+		case PlayerColor::Blue:
 			colorStr = "\033[0;34m";
 			break;
-		case Player_Green:
+		case PlayerColor::Green:
 			colorStr = "\033[0;32m";
 			break;
-		case Player_Red:
+		case PlayerColor::Red:
 			colorStr = "\033[0;31m";
 			break;
-		case Player_White:
+		case PlayerColor::White:
 			colorStr = "\033[0;36m";// @"\033[0;37m"; // cyan hack
 			break;
-		case Player_Yellow:
+		case PlayerColor::Yellow:
 			colorStr = "\033[0;33m";
 			break;
 
-		case Player_None:
+		case PlayerColor::None:
 			dassert(0);
 			break;
 	}
@@ -143,13 +143,13 @@ const char *PlayerColorToString(PlayerColor color)
 	const char* str = NULL;
 	switch (color)
 	{
-		etstr(str, Player_Red, "Red");
-		etstr(str, Player_Yellow, "Yellow");
-		etstr(str, Player_Blue, "Blue");
-		etstr(str, Player_Green, "Green");
-		etstr(str, Player_White, "White");
-		etstr(str, Player_Black, "Black");
-		etstr(str, Player_None, "NONE");
+		etstr(str, PlayerColor::Red, "Red");
+		etstr(str, PlayerColor::Yellow, "Yellow");
+		etstr(str, PlayerColor::Blue, "Blue");
+		etstr(str, PlayerColor::Green, "Green");
+		etstr(str, PlayerColor::White, "White");
+		etstr(str, PlayerColor::Black, "Black");
+		etstr(str, PlayerColor::None, "NONE");
 	}
 
 	return str;
@@ -207,13 +207,13 @@ std::string PlayerColorToShortString(PlayerColor color)
 	const char* str = NULL;
 	switch (color)
 	{
-		etstr(str, Player_None, "_");
-		etstr(str, Player_Red, "R");
-		etstr(str, Player_Yellow, "Y");
-		etstr(str, Player_Blue, "L");
-		etstr(str, Player_Green, "G");
-		etstr(str, Player_White, "W");
-		etstr(str, Player_Black, "B");
+		etstr(str, PlayerColor::None, "_");
+		etstr(str, PlayerColor::Red, "R");
+		etstr(str, PlayerColor::Yellow, "Y");
+		etstr(str, PlayerColor::Blue, "L");
+		etstr(str, PlayerColor::Green, "G");
+		etstr(str, PlayerColor::White, "W");
+		etstr(str, PlayerColor::Black, "B");
 	}
 
 	return str;
@@ -545,7 +545,7 @@ std::string BoardDescriptionWithCustomBreaker(TGMBoard *board, int8_t breaker)
 
 	// do another pass outputting marbles we haven't played yet
 	str << "\n";
-	PlayerColor currentSectionColor = Player_None;
+	PlayerColor currentSectionColor = PlayerColor::None;
 	int distanceToUnusedMarblesStartingSpot = 0;
 	int unusedMarblesCount = 0;
 	for (int i = kTotalSpots - 1; i >= 0; i--)
