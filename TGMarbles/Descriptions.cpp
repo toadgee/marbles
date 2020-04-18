@@ -113,26 +113,6 @@ std::string CardSuitToString(CardSuit suit)
 	return str;
 }
 
-
-std::string MarbleGameStateToString(MarbleGameState state)
-{
-	const char* str = NULL;
-	switch (state)
-	{
-		etstr2(str, State_NotStarted);
-		etstr2(str, State_GameStarting);
-		etstr2(str, State_HandStarting);
-		etstr2(str, State_TurnStarting);
-		etstr2(str, State_Playing);
-		etstr2(str, State_TurnEnding);
-		etstr2(str, State_HandEnding);
-		etstr2(str, State_GameEnding);
-		etstr2(str, State_GameOver);
-	}
-
-	return str;
-}
-
 std::string CardNumberToString(CardNumber card)
 {
 	const char* str = NULL;
@@ -258,20 +238,20 @@ std::string StrategyToString(MarbleStrategy strategy)
 	return str;
 }
 
-std::string GameStateToString(MarbleGameState state)
+std::string GameStateToString(GameState state)
 {
 	const char* str = NULL;
 	switch (state)
 	{
-		etstr(str, State_NotStarted, "Not Started");
-		etstr(str, State_GameStarting, "Game Starting");
-		etstr(str, State_HandStarting, "Hand Starting");
-		etstr(str, State_TurnStarting, "Turn Starting");
-		etstr(str, State_Playing, "Playing");
-		etstr(str, State_TurnEnding, "Turn Ending");
-		etstr(str, State_HandEnding, "Hand Ending");
-		etstr(str, State_GameEnding, "Game Ending");
-		etstr(str, State_GameOver, "Game Over");
+		etstr(str, GameState::NotStarted, "Not Started");
+		etstr(str, GameState::GameStarting, "Game Starting");
+		etstr(str, GameState::HandStarting, "Hand Starting");
+		etstr(str, GameState::TurnStarting, "Turn Starting");
+		etstr(str, GameState::Playing, "Playing");
+		etstr(str, GameState::TurnEnding, "Turn Ending");
+		etstr(str, GameState::HandEnding, "Hand Ending");
+		etstr(str, GameState::GameEnding, "Game Ending");
+		etstr(str, GameState::GameOver, "Game Over");
 	}
 
 	return str;
@@ -710,7 +690,7 @@ std::string GameFeedbackStats(TGMGame* game)
 	{
 		NSMutableString* stats = [NSMutableString string];
 		[stats appendFormat:@"score          = %d to %d\r\n", GameGetTeam1Score(game), GameGetTeam2Score(game)];
-		[stats appendFormat:@"state          = %s\r\n", MarbleGameStateToString(game->_state)];
+		[stats appendFormat:@"state          = %s\r\n", GameStateToString(game->_state)];
 		[stats appendFormat:@"turn number    = %d\r\n", game->_turn];
 		[stats appendFormat:@"dealer player  = %s\r\n", PlayerColorToString(game->_dealingPlayer)];
 		[stats appendFormat:@"current player = %s\r\n", PlayerColorToString(game->_currentPlayer)];

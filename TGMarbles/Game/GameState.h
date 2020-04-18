@@ -1,14 +1,14 @@
 #pragma once
 
-typedef enum
+enum class GameState
 {
-	State_NotStarted   = 400,
-	State_GameStarting = 401,
-	State_HandStarting = 402,
-	State_TurnStarting = 403,
-	State_Playing	   = 404,
-	State_TurnEnding   = 405,
-	State_HandEnding   = 406,
-	State_GameEnding   = 407,
-	State_GameOver	   = 408
-} MarbleGameState;
+	NotStarted   = 400,
+	GameStarting = 401,
+	HandStarting = 402,
+	TurnStarting = 403,
+	Playing	   = 404,
+	TurnEnding   = 405,
+	HandEnding   = 406,
+	GameEnding   = 407,
+	GameOver	   = 408
+};

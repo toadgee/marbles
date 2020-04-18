@@ -110,7 +110,7 @@ TGMGame* CreateGame(TGMGameLog* replayLog, TGRandom* rng)
 		RetainGameLog(replayLog);
 	}
 	
-	game->_state = State_NotStarted;
+	game->_state = GameState::NotStarted;
 	game->_board = CreateBoard();
 	game->_turn = 0;
 	game->_dealingPlayer = Player_None;
@@ -259,7 +259,7 @@ void GameStartNewWithSeed(TGMGame* game, unsigned seed)
 
 void GameStartNew(TGMGame* game)
 {
-	dassert(game->_state == State_NotStarted || game->_state == State_GameOver);
+	dassert(game->_state == GameState::NotStarted || game->_state == GameState::GameOver);
 	
 	GameGo(game, true);
 }
@@ -323,77 +323,77 @@ uint8_t GameGetScoreForTeam(TGMGame* game, bool team1)
 
 void RunGame(TGMGame* game)
 {
-	game->_state = State_NotStarted;
+	game->_state = GameState::NotStarted;
 	ContinueGame(game);
 }
 
 void ContinueGame(TGMGame* game)
 {
-	while (game->_state != State_GameOver)
+	while (game->_state != GameState::GameOver)
 	{
 		switch (game->_state)
 		{
-			case State_NotStarted:
+			case GameState::NotStarted:
 				GetGameReady(game);
-				game->_state = State_GameStarting;
+				game->_state = GameState::GameStarting;
 				break;
 				
-			case State_GameStarting:
+			case GameState::GameStarting:
 				GameStart(game);
-				game->_state = State_HandStarting;
+				game->_state = GameState::HandStarting;
 				break;
 				
-			case State_HandStarting:
+			case GameState::HandStarting:
 				GameStartHand(game);
-				game->_state = State_TurnStarting;
+				game->_state = GameState::TurnStarting;
 				break;
 				
-			case State_TurnStarting:
-				game->_state = State_Playing;
+			case GameState::TurnStarting:
+				game->_state = GameState::Playing;
 				game->_turn++;
 				GameEventTurnStarted(game);
 				break;
 				
-			case State_Playing:
+			case GameState::Playing:
 				GameDoPlay(game);
-				game->_state = State_TurnEnding;
+				game->_state = GameState::TurnEnding;
 				break;
 				
-			case State_TurnEnding:
+			case GameState::TurnEnding:
 				{
 					TGMPlayer* oldPlayer = GameGetCurrentPlayer(game);
 					if (GameEndTurn(game))
 					{
-						game->_state = State_HandEnding;
+						game->_state = GameState::HandEnding;
 					}
 					else
 					{
-						game->_state = State_TurnStarting;
+						game->_state = GameState::TurnStarting;
 					}
 					
 					GameEventTurnEnded(game, oldPlayer);
 				}
 				break;
 				
-			case State_HandEnding:
+			case GameState::HandEnding:
 				if (GameEndHand(game))
 				{
-					game->_state = State_GameEnding;
+					game->_state = GameState::GameEnding;
 				}
 				else
 				{
-					game->_state = State_HandStarting;
+					game->_state = GameState::HandStarting;
 				}
 				
 				GameEventHandEnded(game);
 				break;
 				
-			case State_GameEnding:
+			case GameState::GameEnding:
 				GameEndGame(game);
-				game->_state = State_GameOver;
+				game->_state = GameState::GameOver;
 				break;
 				
-			case State_GameOver:
+			case GameState::GameOver:
 				dassert(0); // shouldn't get here ever
 				break;
 		}

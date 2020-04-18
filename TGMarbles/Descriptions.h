@@ -31,8 +31,8 @@ std::string PlayerColorToShortString(PlayerColor color);
 const char * PlayerColorToString(PlayerColor color);
 std::string MarbleColorToShortString(MarbleColor color);
 std::string CardNumberToString(CardNumber card);
-std::string MarbleGameStateToString(MarbleGameState state);
+std::string GameStateToString(GameState state);
 std::string CardSuitToString(CardSuit suit);
 std::string StrategyToString(MarbleStrategy strategy);
-std::string GameStateToString(MarbleGameState state);
+std::string GameStateToString(GameState state);
 

@@ -66,7 +66,7 @@ struct TGMGameStruct
 	PlayerColor _dealingPlayer;
 	PlayerColor _currentPlayer;
 	
-	MarbleGameState _state;
+	GameState _state;
 	TGMBoard* _board;
 	TGMDeck* _deck;
 	
