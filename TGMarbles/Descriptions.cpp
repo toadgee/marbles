@@ -102,12 +102,12 @@ std::string CardSuitToString(CardSuit suit)
 	const char* str = NULL;
 	switch (suit)
 	{
-		etstr(str, CardSuit_None, "None");
-		etstr(str, CardSuit_Hearts, "Hearts");
-		etstr(str, CardSuit_Diamonds, "Diamonds");
-		etstr(str, CardSuit_Clubs, "Clubs");
-		etstr(str, CardSuit_Spades, "Spades");
-		etstr(str, CardSuit_Max, "MAX");
+		etstr(str, CardSuit::None, "None");
+		etstr(str, CardSuit::Hearts, "Hearts");
+		etstr(str, CardSuit::Diamonds, "Diamonds");
+		etstr(str, CardSuit::Clubs, "Clubs");
+		etstr(str, CardSuit::Spades, "Spades");
+		etstr(str, CardSuit::Max, "MAX");
 	}
 
 	return str;

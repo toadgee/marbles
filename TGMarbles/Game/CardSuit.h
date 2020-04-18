@@ -1,18 +1,18 @@
 #pragma once
 
-typedef enum
+enum class CardSuit
 {
-	CardSuit_Hearts	  = 800,
-	CardSuit_Diamonds = 801,
-	CardSuit_Clubs	  = 802,
-	CardSuit_Spades	  = 803,
-	CardSuit_Joker	  = 804,
+	Hearts	= 800,
+	Diamonds = 801,
+	Clubs	   = 802,
+	Spades   = 803,
+	Joker	   = 804,
 
-	CardSuit_None	  = 799,
-	CardSuit_Min	  = 800,
-	CardSuit_Max	  = 804
-} CardSuit;
+	None	   = 799,
+	Min	   = 800,
+	Max	   = 804
+};
 
-#define IsCardSuit(x) ((x) <= CardSuit_Max && (x) >= CardSuit_Min)
+#define IsCardSuit(x) ((x) <= CardSuit::Max && (x) >= CardSuit::Min)
 #define IterateCardSuit(x) (x = (static_cast<CardSuit>(((int)(x)) + 1)))
 

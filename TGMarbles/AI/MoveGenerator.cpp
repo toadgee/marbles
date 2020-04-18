@@ -26,7 +26,7 @@ TGMMoveList* AllPossibleMovesForAllTeamPlayers(TGMGame* game, bool team1)
 	// so by having a hand with just a joker, we can generate all possible moves - and we shouldn't
 	// have any of the same moves
 	TGMCardList* handWithOnlyJoker = CreateCardList();
-	TGMCard* joker = CreateCard(-1, CardNumber::Joker, CardSuit_Joker);
+	TGMCard* joker = CreateCard(-1, CardNumber::Joker, CardSuit::Joker);
 	CardListTransfer(handWithOnlyJoker, joker);
 	
 	for (int i = 0; i < kPlayers; i++)
