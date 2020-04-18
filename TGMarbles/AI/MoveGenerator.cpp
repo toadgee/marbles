@@ -220,7 +220,7 @@ TGMMove* BestMoveFromMoves(
 	TGMMoveList* moves, 
 	TGMGame* game, 
 	PlayerColor pc,
-	MarbleStrategy strategy)
+	Strategy strategy)
 {
 	dassert(MoveListCount(moves) > 0);
 	

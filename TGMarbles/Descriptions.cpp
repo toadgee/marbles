@@ -219,20 +219,20 @@ std::string PlayerColorToShortString(PlayerColor color)
 	return str;
 }
 
-std::string StrategyToString(MarbleStrategy strategy)
+std::string StrategyToString(Strategy strategy)
 {
 	const char* str = NULL;
 	switch (strategy)
 	{
-		etstr(str, Strategy_None, "NONE");
-		etstr(str, Strategy_Human, "Human");
-		etstr(str, Strategy_Passive, "Passive");
-		etstr(str, Strategy_Aggressive, "Aggressive");
-		etstr(str, Strategy_PassiveAggressive, "Passive/Aggressive mix");
-		etstr(str, Strategy_Adaptive1, "Passive until near the end of the game");
-		etstr(str, Strategy_Adaptive2, "Aggressive until near the end of the game");
-		etstr(str, Strategy_DefensivePassive, "Defensive/Passive");
-		etstr(str, Strategy_DefensiveAggressive, "Defensive/Aggressive");
+		etstr(str, Strategy::None, "NONE");
+		etstr(str, Strategy::Human, "Human");
+		etstr(str, Strategy::Passive, "Passive");
+		etstr(str, Strategy::Aggressive, "Aggressive");
+		etstr(str, Strategy::PassiveAggressive, "Passive/Aggressive mix");
+		etstr(str, Strategy::Adaptive1, "Passive until near the end of the game");
+		etstr(str, Strategy::Adaptive2, "Aggressive until near the end of the game");
+		etstr(str, Strategy::DefensivePassive, "Defensive/Passive");
+		etstr(str, Strategy::DefensiveAggressive, "Defensive/Aggressive");
 	}
 
 	return str;

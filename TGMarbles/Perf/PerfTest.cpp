@@ -10,8 +10,8 @@
 
 void PrintPerfTestResults(
 	uint64_t testCount,
-	MarbleStrategy s1,
-	MarbleStrategy s2,
+	Strategy s1,
+	Strategy s2,
 	uint64_t totalMilliseconds,
 	uint64_t games,
 	uint64_t hands,
@@ -27,8 +27,8 @@ void PrintPerfTestResults(
 	uint64_t team2KilledTeam2);
 void PrintPerfTestResults(
 	uint64_t testCount,
-	MarbleStrategy s1,
-	MarbleStrategy s2,
+	Strategy s1,
+	Strategy s2,
 	uint64_t totalMilliseconds,
 	uint64_t games,
 	uint64_t hands,
@@ -47,7 +47,7 @@ void PrintPerfTestResults(
 	float averageHandMS = (float)totalMilliseconds / (float)hands;
 	float averageTurnMS = (float)totalMilliseconds / (float)turns;
 	
-	MarbleStrategy winningStrategy = s1;
+	Strategy winningStrategy = s1;
 	if (team1WonGames > team2WonGames) winningStrategy = s1;
 	else if (team1WonGames < team2WonGames) winningStrategy = s2;
 	
@@ -83,7 +83,7 @@ void PrintPerfTestResults(
 	printf("Dealing team won %llu times\n", dealingTeamWonGames);
 	printf("Team 1 won       %llu times\n", team1WonGames);
 	printf("Team 2 won       %llu times\n", team2WonGames);
-	if (winningStrategy != Strategy_None)
+	if (winningStrategy != Strategy::None)
 	{
 		printf("Best Strategy : %s\n", StrategyToString(winningStrategy).c_str());
 	}
@@ -134,15 +134,15 @@ int RunAllPerfTestsWithOptions(uint64_t testCount, uint64_t statusUpdates)
 	TGHiResTimer* timer = CreateHiResTimer(true, true);
 	
 	int game = 0;
-	int maxStrategies = (Strategy_Max - Strategy_Min); // -1 for ignoring human players, + 1 for being inclusive (== 0)
+	int maxStrategies = (static_cast<int>(Strategy::Max) - static_cast<int>(Strategy::Min)); // -1 for ignoring human players, + 1 for being inclusive (== 0)
 	int maxGames = maxStrategies * maxStrategies;
-	for (MarbleStrategy s1 = Strategy_Min; s1 <= Strategy_Max; IterateMarbleStrategy(s1))
+	for (Strategy s1 = Strategy::Min; s1 <= Strategy::Max; IterateStrategy(s1))
 	{
-		if (s1 == Strategy_Human) continue;
+		if (s1 == Strategy::Human) continue;
 		
-		for (MarbleStrategy s2 = Strategy_Min; s2 <= Strategy_Max; IterateMarbleStrategy(s2))
+		for (Strategy s2 = Strategy::Min; s2 <= Strategy::Max; IterateStrategy(s2))
 		{
-			if (s2 == Strategy_Human) continue;
+			if (s2 == Strategy::Human) continue;
 			
 			std::unique_ptr<AITest> test(new AITest(s1, s2, seed));
 			test->SetStatusUpdates(statusUpdates);
@@ -212,7 +212,7 @@ int RunAllPerfTestsWithOptions(uint64_t testCount, uint64_t statusUpdates)
 	printf("\n");
 	printf("\n");
 	
-	PrintPerfTestResults(overallTestCount, Strategy_None, Strategy_None, HiResTimerTotalMilliseconds(timer), overallGames, overallHands, overallTurns,
+	PrintPerfTestResults(overallTestCount, Strategy::None, Strategy::None, HiResTimerTotalMilliseconds(timer), overallGames, overallHands, overallTurns,
 		overallTeam1WonGames, overallTeam2WonGames, overallDealingTeamWonGames, nullptr, overallKills, overallTeam1KilledTeam1,
 		overallTeam1KilledTeam2, overallTeam2KilledTeam1, overallTeam2KilledTeam2);
 	DestroyHiResTimer(timer);

@@ -21,4 +21,4 @@ TGMMoveList* AllPossibleMovesForAllTeamPlayers(TGMGame* game, bool team1);
 TGMMoveList* MovesForPlayerSimple(TGMPlayer* player, TGMGame *game, TGMCard* card);
 TGMMoveList* MovesForPlayer(TGMPlayer* player, TGMCardList* hand, TGMTeammates* teammates, TGMBoard* board, TGMCard* card, TGMGame* game);
 TGMMove* BestDiscardMoveInGameFromMoves(TGMMoveList *discardMoves);
-TGMMove* BestMoveFromMoves(TGMMoveList* moves, TGMGame* game, PlayerColor pc, MarbleStrategy strategy);
+TGMMove* BestMoveFromMoves(TGMMoveList* moves, TGMGame* game, PlayerColor pc, Strategy strategy);

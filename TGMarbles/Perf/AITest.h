@@ -32,7 +32,7 @@ public:
 	unsigned GetSeed() { return _seed; }
 
 	AITest();
-	AITest(MarbleStrategy team1, MarbleStrategy team2, unsigned seed);
+	AITest(Strategy team1, Strategy team2, unsigned seed);
 	~AITest();
 	void Run(uint64_t test);
 

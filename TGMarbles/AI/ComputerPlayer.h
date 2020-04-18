@@ -9,6 +9,6 @@
 #pragma once
 #include "Player.h"
 
-TGMPlayer* CreateComputerPlayer(const char* name, MarbleStrategy strategy, PlayerColor pc);
+TGMPlayer* CreateComputerPlayer(const char* name, Strategy strategy, PlayerColor pc);
 
-void ComputerPlayerPlayInGameWithStrategy(TGMPlayer* player, MarbleStrategy s);
+void ComputerPlayerPlayInGameWithStrategy(TGMPlayer* player, Strategy s);

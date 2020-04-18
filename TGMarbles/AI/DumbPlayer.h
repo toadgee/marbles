@@ -10,4 +10,4 @@
 #include "Player.h"
 
 
-TGMPlayer* CreateDumbPlayer(const char* name, MarbleStrategy strategy, PlayerColor pc);
+TGMPlayer* CreateDumbPlayer(const char* name, Strategy strategy, PlayerColor pc);

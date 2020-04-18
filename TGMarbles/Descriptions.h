@@ -33,6 +33,6 @@ std::string MarbleColorToShortString(MarbleColor color);
 std::string CardNumberToString(CardNumber card);
 std::string GameStateToString(GameState state);
 std::string CardSuitToString(CardSuit suit);
-std::string StrategyToString(MarbleStrategy strategy);
+std::string StrategyToString(Strategy strategy);
 std::string GameStateToString(GameState state);
 

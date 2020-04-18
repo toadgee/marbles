@@ -13,7 +13,7 @@
 struct TGMMoveRankerDataStruct
 {
 	TGMMove *move;
-	MarbleStrategy strategy;
+	Strategy strategy;
 	TGMGame* game;
 	TGMBoard *board;
 	PlayerColor playerColor;
@@ -400,7 +400,7 @@ void DoWeightOfMoveFromHomeBackFour(TGMMoveRankerData *data)
 	}
 }
 
-int CalculateWeightOfMoveInGame(TGMMove* move, TGMGame* game, PlayerColor pc, MarbleStrategy strategy, TGMMoveList** allPossibleOpponentMoves)
+int CalculateWeightOfMoveInGame(TGMMove* move, TGMGame* game, PlayerColor pc, Strategy strategy, TGMMoveList** allPossibleOpponentMoves)
 {
 	// calculate weight of the move for comparison reasons
 	// a higher weight is a better move

@@ -35,7 +35,7 @@ void ComputerPlayerDestroy(TGMPlayer *player);
 
 void ComputerPlayerPlayInGame(TGMPlayer* player);
 
-TGMPlayer* CreateComputerPlayer(const char* name, MarbleStrategy strategy, PlayerColor pc)
+TGMPlayer* CreateComputerPlayer(const char* name, Strategy strategy, PlayerColor pc)
 {
 	TGMPlayer* player = CreatePlayer(name, strategy, pc);
 	
@@ -58,30 +58,30 @@ void ComputerPlayerDestroy(TGMPlayer *player)
 
 void ComputerPlayerPlayInGame(TGMPlayer* player)
 {
-	MarbleStrategy s = player->_strategy;
-	if (s == Strategy_PassiveAggressive)
+	Strategy s = player->_strategy;
+	if (s == Strategy::PassiveAggressive)
 	{
 		// for passive/agressive switch between the two
 		TGMComputerPlayer* computerPlayer = (TGMComputerPlayer*)PlayerGetContext(player);
 		computerPlayer->_passiveAggressive++;
 		
-		s = (computerPlayer->_passiveAggressive % 2 == 0) ? Strategy_Passive : Strategy_Aggressive;
+		s = (computerPlayer->_passiveAggressive % 2 == 0) ? Strategy::Passive : Strategy::Aggressive;
 	}
 	
 	ComputerPlayerPlayInGameWithStrategy(player, s);
 }
 
-void ComputerPlayerPlayInGameWithStrategy(TGMPlayer* player, MarbleStrategy s)
+void ComputerPlayerPlayInGameWithStrategy(TGMPlayer* player, Strategy s)
 {
 	// perf note : it seems to be more intensive to just find the unique cards than
 	// it does to just always use all cards and deal with a slightly larger move set
 	TGMMoveList* moves = MovesForPlayerSimple(player, player->_game, nullptr);
 	
-	if (s == Strategy_PassiveAggressive)
+	if (s == Strategy::PassiveAggressive)
 	{
 		assert(false);
 	}
-	else if (s == Strategy_Adaptive1 || s == Strategy_Adaptive2)
+	else if (s == Strategy::Adaptive1 || s == Strategy::Adaptive2)
 	{
 		// for adaptive, count the number of marbles that aren't in play and then decide
 		// based on that number how to play
@@ -95,13 +95,13 @@ void ComputerPlayerPlayInGameWithStrategy(TGMPlayer* player, MarbleStrategy s)
 		}
 		while (first != color);
 		
-		if (s == Strategy_Adaptive1)
+		if (s == Strategy::Adaptive1)
 		{
-			s = (unusedMarbleCount <= kStrategyAdaptive1Threshhold) ? Strategy_Aggressive : Strategy_Passive;
+			s = (unusedMarbleCount <= kStrategyAdaptive1Threshhold) ? Strategy::Aggressive : Strategy::Passive;
 		}
-		else if (s == Strategy_Adaptive2)
+		else if (s == Strategy::Adaptive2)
 		{
-			s = (unusedMarbleCount <= kStrategyAdaptive2Threshhold) ? Strategy_Passive : Strategy_Aggressive;
+			s = (unusedMarbleCount <= kStrategyAdaptive2Threshhold) ? Strategy::Passive : Strategy::Aggressive;
 		}
 	}
 	

@@ -18,7 +18,7 @@ TGMGameLog* CreateGameLog(void)
 	gameLog->_retainCount = 1;
 	for (unsigned p = 0; p < kPlayers; p++)
 	{
-		gameLog->_playerStrategy[p] = Strategy_None;
+		gameLog->_playerStrategy[p] = Strategy::None;
 	}
 	
 #ifdef CARD_MEMORY_LOGGING
@@ -88,13 +88,13 @@ void GameLogSetMoveList(TGMGameLog* gameLog, TGMMoveList* moveList)
 	gameLog->_moveList = RetainMoveList(moveList);
 }
 
-MarbleStrategy GameLogStrategyForPlayerColor(TGMGameLog* gameLog, PlayerColor pc)
+Strategy GameLogStrategyForPlayerColor(TGMGameLog* gameLog, PlayerColor pc)
 {
 	dassert(IsPlayerColor(pc));
 	return gameLog->_playerStrategy[PositionForPlayerColor(pc)];
 }
 
-void GameLogSetStrategyForPlayerColor(TGMGameLog* gameLog, MarbleStrategy strategy, PlayerColor pc)
+void GameLogSetStrategyForPlayerColor(TGMGameLog* gameLog, Strategy strategy, PlayerColor pc)
 {
 	dassert(IsPlayerColor(pc));
 	dassert(IsValidStrategy(strategy));

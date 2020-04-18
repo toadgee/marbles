@@ -35,11 +35,11 @@ void AITest_PlayerKilledPlayer(void* context, TGMGame* game, TGMPlayer* player, 
 @end
 */
 AITest::AITest() :
-	AITest(Strategy_Aggressive, Strategy_Passive, 0)
+	AITest(Strategy::Aggressive, Strategy::Passive, 0)
 {
 }
 
-AITest::AITest(MarbleStrategy team1, MarbleStrategy team2, unsigned seed)
+AITest::AITest(Strategy team1, Strategy team2, unsigned seed)
 	: _seed(seed)
 {
 

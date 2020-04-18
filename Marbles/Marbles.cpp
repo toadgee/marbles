@@ -6,10 +6,10 @@
 #include "ConsolePlayer.h"
 #include "RandomPlayerColor.h"
 
-void AddPlayersToGame(TGMGame* game, MarbleStrategy team1, MarbleStrategy team2, bool outputHowTheComputerWouldDo);
-void DoGame(TGMGame* game, MarbleStrategy team1, MarbleStrategy team2);
+void AddPlayersToGame(TGMGame* game, Strategy team1, Strategy team2, bool outputHowTheComputerWouldDo);
+void DoGame(TGMGame* game, Strategy team1, Strategy team2);
 
-void AddPlayersToGame(TGMGame* game, MarbleStrategy team1, MarbleStrategy team2, bool outputHowTheComputerWouldDo)
+void AddPlayersToGame(TGMGame* game, Strategy team1, Strategy team2, bool outputHowTheComputerWouldDo)
 {
 	// generate random colors for the 6 players
 	PlayerColor color1;
@@ -31,7 +31,7 @@ void AddPlayersToGame(TGMGame* game, MarbleStrategy team1, MarbleStrategy team2,
 	GameAddPlayer(game, CreateConsolePlayer(color6, game, outputHowTheComputerWouldDo));
 }
 
-void DoGame(TGMGame* game, MarbleStrategy team1, MarbleStrategy team2)
+void DoGame(TGMGame* game, Strategy team1, Strategy team2)
 {
 	for (PlayerColor pc = Player_Min; pc <= Player_Max; IteratePlayerColor(pc))
 	{
@@ -57,40 +57,40 @@ int main (int argc, const char * argv[])
 	while (true)
 	{
 		// TODO : improve reading names, strategies, colors
-		MarbleStrategy team1 = Strategy_DefensiveAggressive;
-		MarbleStrategy team2 = Strategy_DefensiveAggressive;
+		Strategy team1 = Strategy::DefensiveAggressive;
+		Strategy team2 = Strategy::DefensiveAggressive;
 		bool onlyTryLosingGames = false;
 		
 		if (/* DISABLES CODE */ (false))
 		{
-			for (int i = Strategy_Min; i <= Strategy_Max; i++)
+			for (int i = static_cast<int>(Strategy::Min); i <= static_cast<int>(Strategy::Max); i++)
 			{
-				const MarbleStrategy ms = (MarbleStrategy)i;
-				if (ms == Strategy_Human) continue;
+				const Strategy ms = static_cast<Strategy>(i);
+				if (ms == Strategy::Human) continue;
 				printf("%d) %s\n", i, StrategyToString(ms).c_str());
 			}
 			
-			int strat = Strategy_Max + 1;
-			while (strat == Strategy_Max + 1)
+			int strat = static_cast<int>(Strategy::Max) + 1;
+			while (strat == static_cast<int>(Strategy::Max) + 1)
 			{
-				strat = ConsoleGetInputNumber("Enter strategy of opposing team", (Strategy_Max + 1), Strategy_Min, Strategy_Max);
-				if (strat == Strategy_Human)
+				strat = ConsoleGetInputNumber("Enter strategy of opposing team", static_cast<int>(Strategy::Max) + 1, static_cast<int>(Strategy::Min), static_cast<int>(Strategy::Max));
+				if (static_cast<Strategy>(strat) == Strategy::Human)
 				{
-					strat = Strategy_Max + 1;
+					strat = static_cast<int>(Strategy::Max) + 1;
 				}
 			}
-			team1 = static_cast<MarbleStrategy>(strat);
+			team1 = static_cast<Strategy>(strat);
 			
-			strat = Strategy_Max + 1;
-			while (strat == Strategy_Max + 1)
+			strat = static_cast<int>(Strategy::Max) + 1;
+			while (strat == static_cast<int>(Strategy::Max) + 1)
 			{
-				strat = ConsoleGetInputNumber("Enter strategy of your team", (Strategy_Max + 1), Strategy_Min, Strategy_Max);
-				if (strat == Strategy_Human)
+				strat = ConsoleGetInputNumber("Enter strategy of your team", static_cast<int>(Strategy::Max) + 1, static_cast<int>(Strategy::Min), static_cast<int>(Strategy::Max));
+				if (static_cast<Strategy>(strat) == Strategy::Human)
 				{
-					strat = Strategy_Max + 1;
+					strat = static_cast<int>(Strategy::Max) + 1;
 				}
 			}
-			team2 = static_cast<MarbleStrategy>(strat);
+			team2 = static_cast<Strategy>(strat);
 			
 			printf("Opposing team is %s\n", StrategyToString(team1).c_str());
 			printf("Your team is %s\n", StrategyToString(team2).c_str());

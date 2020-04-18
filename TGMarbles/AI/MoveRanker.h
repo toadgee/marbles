@@ -14,5 +14,5 @@ int CalculateWeightOfMoveInGame(
 	TGMMove* move, 
 	TGMGame* game, 
 	PlayerColor pc, 
-	MarbleStrategy strategy,
+	Strategy strategy,
 	TGMMoveList** allPossibleOpponentMoves);

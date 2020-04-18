@@ -74,7 +74,7 @@ void ReleasePlayer(TGMPlayer* player)
 	}
 }
 
-TGMPlayer* CreatePlayer(const char* name, MarbleStrategy strategy, PlayerColor pc)
+TGMPlayer* CreatePlayer(const char* name, Strategy strategy, PlayerColor pc)
 {
 	dassert(IsValidStrategy(strategy));
 	

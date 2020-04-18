@@ -35,10 +35,10 @@ void SimulateGame(TGMGame* game, bool* playerTeamWon, bool output)
 		TGMPlayer* p = GameGetPlayerAtIndex(game, i);
 		
 		PlayerColor pc = PlayerGetColor(p);
-		MarbleStrategy strategy = PlayerGetStrategy(p);
+		Strategy strategy = PlayerGetStrategy(p);
 		const char* name = PlayerGetName(p);
 		
-		if (strategy == Strategy_Human)
+		if (strategy == Strategy::Human)
 		{
 			humanIsTeam1 = PlayerIsTeam1(p);
 			
@@ -84,7 +84,7 @@ void SimulateGame(TGMGame* game, bool* playerTeamWon, bool output)
 static bool s_outputHowTheComputerWouldDo = false;
 TGMPlayer* CreateConsolePlayer(PlayerColor pc, TGMGame* game, bool outputHowTheComputerWouldDo)
 {
-	TGMPlayer* player = CreatePlayer("You", Strategy_Human, pc);
+	TGMPlayer* player = CreatePlayer("You", Strategy::Human, pc);
 	s_outputHowTheComputerWouldDo = outputHowTheComputerWouldDo;
 	
 	PlayerSetOnPlayInGame(player, &PlayInGame);

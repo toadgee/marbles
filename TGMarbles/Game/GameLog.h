@@ -19,7 +19,7 @@ struct TGMGameLogStruct
 	int32_t _retainCount;
 	
 	PlayerColor _dealingPlayer;
-	MarbleStrategy _playerStrategy[kPlayers];
+	Strategy _playerStrategy[kPlayers];
 	
 	TGMDeckList* _deckList;
 	TGMMoveList* _moveList;
@@ -37,8 +37,8 @@ void ReleaseGameLog(TGMGameLog* gameLog);
 
 void GameLogSetMoveList(TGMGameLog* gameLog, TGMMoveList* moveList);
 
-MarbleStrategy GameLogStrategyForPlayerColor(TGMGameLog* gameLog, PlayerColor pc);
-void GameLogSetStrategyForPlayerColor(TGMGameLog* gameLog, MarbleStrategy strategy, PlayerColor pc);
+Strategy GameLogStrategyForPlayerColor(TGMGameLog* gameLog, PlayerColor pc);
+void GameLogSetStrategyForPlayerColor(TGMGameLog* gameLog, Strategy strategy, PlayerColor pc);
 
 // for keeping track of the current game
 void GameLogAddDeck(TGMGameLog* gameLog, TGMDeck* deck);

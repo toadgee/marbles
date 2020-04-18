@@ -40,7 +40,7 @@ struct TGMPlayerStruct
 	TGMCardList* _hand;
 	PlayerColor _pc;
 	bool _isTeam1;
-	MarbleStrategy _strategy;
+	Strategy _strategy;
 	struct TGMGameStruct *_game;
 	
 	TGMPlayerGameStartingFunction _onGameStarting;
@@ -55,7 +55,7 @@ struct TGMPlayerStruct
 TGMPlayer* RetainPlayer(TGMPlayer* player);
 void ReleasePlayer(TGMPlayer* player);
 
-TGMPlayer* CreatePlayer(const char* name, MarbleStrategy strategy, PlayerColor pc);
+TGMPlayer* CreatePlayer(const char* name, Strategy strategy, PlayerColor pc);
 void PlayerCopyData(TGMPlayer* oldPlayer, TGMPlayer* newPlayer);
 
 void PlayerSetName(TGMPlayer* player, const char* name);
