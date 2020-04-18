@@ -79,7 +79,7 @@ void RetainMarble(TGMMarble* marble)
 #ifdef MARBLE_MEMORY_LOGGING
 	NSLog(@"<<MARBLE %p : %d (+)>>", marble, rc);
 #else
-	#pragma unused (rc)
+	(void)rc;
 #endif
 }
 
