@@ -3,14 +3,20 @@
 //
 
 #ifdef __OBJC__
-	#import <Cocoa/Cocoa.h>
 #elif defined(TARGET_APPLE)
 #define TARGET_OS_OSX 1
 #endif
 
 #if WIN32
 #include <Windows.h>
-#elif TARGET_OS_OSX || TARGET_OS_IPHONE
+#elif TARGET_OS_IPHONE
+	#ifdef __OBJC__
+	#import <UIKit/UIKit.h>
+	#endif
+#elif TARGET_OS_OSX
+	#ifdef __OBJC__
+	#import <Cocoa/Cocoa.h>
+	#endif
 #else
 #error Unknown platform
 #endif
