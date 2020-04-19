@@ -35,7 +35,7 @@
 -(CardSuit)cardSuitAtOffset:(uint16_t *)offset;
 -(MarbleColor)marbleColorAtOffset:(uint16_t *)offset;
 -(PlayerColor)playerColorAtOffset:(uint16_t *)offset;
--(MarbleStrategy)strategyAtOffset:(uint16_t *)offset;
+-(Strategy)strategyAtOffset:(uint16_t *)offset;
 @end
 
 @interface NSMutableData (MarblesExtensions)
@@ -46,7 +46,7 @@
 -(void)appendCardSuit:(CardSuit)value;
 -(void)appendMarbleColor:(MarbleColor)value;
 -(void)appendPlayerColor:(PlayerColor)value;
--(void)appendMarbleStrategy:(MarbleStrategy)value;
+-(void)appendStrategy:(Strategy)value;
 @end
 
 @implementation NSData (MarblesExtensions)
@@ -65,7 +65,7 @@
 -(CardSuit)cardSuitAtOffset:(uint16_t *)offset { typeAtOffset(CardSuit); }
 -(MarbleColor)marbleColorAtOffset:(uint16_t *)offset { typeAtOffset(MarbleColor); }
 -(PlayerColor)playerColorAtOffset:(uint16_t *)offset { typeAtOffset(PlayerColor); }
--(MarbleStrategy)strategyAtOffset:(uint16_t *)offset { typeAtOffset(MarbleStrategy); }
+-(Strategy)strategyAtOffset:(uint16_t *)offset { typeAtOffset(Strategy); }
 @end
 
 #define appendType(type, value) [self appendBytes:(void*)&value length:sizeof(type)]
@@ -78,7 +78,7 @@
 -(void)appendCardSuit:(CardSuit)value { appendType(CardSuit, value); }
 -(void)appendMarbleColor:(MarbleColor)value { appendType(MarbleColor, value); }
 -(void)appendPlayerColor:(PlayerColor)value { appendType(PlayerColor, value); }
--(void)appendMarbleStrategy:(MarbleStrategy)value { appendType(MarbleStrategy, value); }
+-(void)appendStrategy:(Strategy)value { appendType(Strategy, value); }
 @end
 
 uint16_t MarbleDataLength()
@@ -265,7 +265,7 @@ TGMGameLog* CreateGameLogFromData(TGMData *data)
 	
 	for (unsigned p = 0; p < kPlayers; p++)
 	{
-		MarbleStrategy strategy = [data strategyAtOffset:&offset];
+		Strategy strategy = [data strategyAtOffset:&offset];
 		if (!IsValidStrategy(strategy))
 		{
 			dassert(false);
@@ -344,7 +344,7 @@ TGMData* GameLogData(TGMGameLog* gameLog)
 	
 	for (unsigned p = 0; p < kPlayers; p++)
 	{
-		[data appendMarbleStrategy:gameLog->_playerStrategy[p]];
+		[data appendStrategy:gameLog->_playerStrategy[p]];
 	}
 	
 	[data appendInt:(int)DeckListCount(gameLog->_deckList)];
@@ -356,11 +356,15 @@ TGMData* GameLogData(TGMGameLog* gameLog)
 	});
 	
 	[data appendInt:(int)MoveListCount(gameLog->_moveList)];
-	MoveListIterateWithBlock(gameLog->_moveList,^(int i, TGMMove *move)
+	TGMMove *move = gameLog->_moveList->first;
+	int i = 0;
+	while (move != nullptr)
 	{
 		[data appendInt:i];
 		[data appendData:GetMoveData(move)];
-	});
+		move = move->nextMove;
+		++i;
+	}
 	
 	return data;
 }
@@ -412,7 +416,7 @@ TGMData* GetMarbleData(TGMMarble *marble)
 	[data appendInt:kMarbleDataVersion];
 	
 	BOOL isNullMarble = YES;
-	MarbleColor mc = Color_None;
+	MarbleColor mc = MarbleColor::None;
 	int16_t distanceFromHome = 0;
 	BOOL wentBehindHome = NO;
 	

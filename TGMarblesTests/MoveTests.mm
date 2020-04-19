@@ -113,10 +113,10 @@ BOOL MovesMatch(TGMMoveList* actualMoves, TGMMoveList* expectedMoves, NSUInteger
 	_mem = CreateMemorySnapshot();
 #endif
 	
-	_playerColor = Player_Red;
-	_teammate1Color = Player_White;
-	_player = CreateDumbPlayer("MoveTests", Strategy_Human, _playerColor);
-	_teammate1 = CreateDumbPlayer("MoveTests-TeamMate1", Strategy_Human, _teammate1Color);
+	_playerColor = PlayerColor::Red;
+	_teammate1Color = PlayerColor::White;
+	_player = CreateDumbPlayer("MoveTests", Strategy::Human, _playerColor);
+	_teammate1 = CreateDumbPlayer("MoveTests-TeamMate1", Strategy::Human, _teammate1Color);
 	
 	_game = CreateGame(NULL, NULL);
 	GameAddPlayer(_game, _player);
@@ -169,7 +169,7 @@ BOOL MovesMatch(TGMMoveList* actualMoves, TGMMoveList* expectedMoves, NSUInteger
 		BoardPlaceMarble(_board, marble, 0);
 		ReleaseMarble(marble);
 	
-		TGMCard* card = CreateCard(1, CardNumber_Ace, CardSuit_Diamonds);
+		TGMCard* card = CreateCard(1, CardNumber::Ace, CardSuit::Diamonds);
 		CardListAdd(_hand, card);
 		ReleaseCard(card);
 	
@@ -189,7 +189,7 @@ BOOL MovesMatch(TGMMoveList* actualMoves, TGMMoveList* expectedMoves, NSUInteger
 		BoardPlaceMarble(_board, marble, 0);
 		ReleaseMarble(marble);
 	
-		TGMCard* card = CreateCard(1, CardNumber_Ace, CardSuit_Diamonds);
+		TGMCard* card = CreateCard(1, CardNumber::Ace, CardSuit::Diamonds);
 		CardListAdd(_hand, card);
 		ReleaseCard(card);
 	
@@ -211,7 +211,7 @@ BOOL MovesMatch(TGMMoveList* actualMoves, TGMMoveList* expectedMoves, NSUInteger
 		ReleaseMarble(marble);
 		PlayerGameStarting(_player, _game);
 	
-		TGMCard* card = CreateCard(1, CardNumber_5, CardSuit_Diamonds);
+		TGMCard* card = CreateCard(1, CardNumber::Card5, CardSuit::Diamonds);
 		CardListAdd(_hand, card);
 		ReleaseCard(card);
 	
@@ -258,7 +258,7 @@ BOOL MovesMatch(TGMMoveList* actualMoves, TGMMoveList* expectedMoves, NSUInteger
 		TGMMoveList* actualMoves = nil;
 		TGMMoveList* expectedMoves = nil;
 	
-		card = CreateCard(1, CardNumber_4, CardSuit_Diamonds);
+		card = CreateCard(1, CardNumber::Card4, CardSuit::Diamonds);
 		CardListAdd(_hand, card);
 		ReleaseCard(card);
 	
@@ -273,7 +273,7 @@ BOOL MovesMatch(TGMMoveList* actualMoves, TGMMoveList* expectedMoves, NSUInteger
 		ReleaseMove(move);
 		ClearCardList(_hand);
 	
-		card = CreateCard(2, CardNumber_9, CardSuit_Diamonds);
+		card = CreateCard(2, CardNumber::Card9, CardSuit::Diamonds);
 		CardListAdd(_hand, card);
 		ReleaseCard(card);
 	
@@ -294,7 +294,7 @@ BOOL MovesMatch(TGMMoveList* actualMoves, TGMMoveList* expectedMoves, NSUInteger
 		marble->distanceFromHome = kGetInSpot;
 		marble->wentBehindHome = YES;
 	
-		TGMCard* card = CreateCard(1, CardNumber_5, CardSuit_Diamonds);
+		TGMCard* card = CreateCard(1, CardNumber::Card5, CardSuit::Diamonds);
 		CardListAdd(_hand, card);
 		ReleaseCard(card);
 	
@@ -313,7 +313,7 @@ BOOL MovesMatch(TGMMoveList* actualMoves, TGMMoveList* expectedMoves, NSUInteger
 		BoardPlaceMarble(_board, marble, 99);
 		ReleaseMarble(marble);
 	
-		TGMCard* card = CreateCard(1, CardNumber_4, CardSuit_Diamonds);
+		TGMCard* card = CreateCard(1, CardNumber::Card4, CardSuit::Diamonds);
 		CardListAdd(_hand, card);
 		ReleaseCard(card);
 	
@@ -349,7 +349,7 @@ BOOL MovesMatch(TGMMoveList* actualMoves, TGMMoveList* expectedMoves, NSUInteger
 		ReleaseMarble(marble);
 		marble->distanceFromHome = 9;
 	
-		TGMCard* card = CreateCard(1, CardNumber_4, CardSuit_Diamonds);
+		TGMCard* card = CreateCard(1, CardNumber::Card4, CardSuit::Diamonds);
 		CardListAdd(_hand, card);
 		ReleaseCard(card);
 	
@@ -370,7 +370,7 @@ BOOL MovesMatch(TGMMoveList* actualMoves, TGMMoveList* expectedMoves, NSUInteger
 		ClearCardList(_hand);
 	
 		// generate the new moves we expect from that spot
-		card = CreateCard(2, CardNumber_Jack, CardSuit_Diamonds);
+		card = CreateCard(2, CardNumber::Jack, CardSuit::Diamonds);
 		CardListAdd(_hand, card);
 		ReleaseCard(card);
 	
@@ -386,9 +386,9 @@ BOOL MovesMatch(TGMMoveList* actualMoves, TGMMoveList* expectedMoves, NSUInteger
 		ClearCardList(_hand);
 	
 		// create 3 cards - of which some we don't expect moves for
-		TGMCard* card5 = CreateCard(3, CardNumber_5, CardSuit_Diamonds);
-		TGMCard* card6 = CreateCard(4, CardNumber_6, CardSuit_Diamonds);
-		TGMCard* card7 = CreateCard(5, CardNumber_7, CardSuit_Diamonds);
+		TGMCard* card5 = CreateCard(3, CardNumber::Card5, CardSuit::Diamonds);
+		TGMCard* card6 = CreateCard(4, CardNumber::Card6, CardSuit::Diamonds);
+		TGMCard* card7 = CreateCard(5, CardNumber::Card7, CardSuit::Diamonds);
 		CardListAdd(_hand, card5);
 		CardListAdd(_hand, card6);
 		CardListAdd(_hand, card7);
@@ -411,7 +411,7 @@ BOOL MovesMatch(TGMMoveList* actualMoves, TGMMoveList* expectedMoves, NSUInteger
 		TGMMarble* marble = CreateMarble(GetMarbleForPlayer(_playerColor, 0), 9, NO);
 		BoardPlaceMarble(_board, marble, 9);
 	
-		TGMCard* card = CreateCard(1, CardNumber_4, CardSuit_Diamonds);
+		TGMCard* card = CreateCard(1, CardNumber::Card4, CardSuit::Diamonds);
 		TGMMove* move = MakeMove(card, marble, NO, _playerColor, 9, 96, -4, 0, NO);
 	
 		XCTAssertTrue(IsMoveValidOnBoard(move, _board, _playerColor), @"Move is not valid!");
@@ -429,7 +429,7 @@ BOOL MovesMatch(TGMMoveList* actualMoves, TGMMoveList* expectedMoves, NSUInteger
 		BoardPlaceMarble(_board, marble, 0);
 		ReleaseMarble(marble);
 	
-		TGMCard* card = CreateCard(1, CardNumber_4, CardSuit_Diamonds);
+		TGMCard* card = CreateCard(1, CardNumber::Card4, CardSuit::Diamonds);
 	
 		TGMMove* move = MakeMove(card, marble, NO, _playerColor, 0, 104, -4, 0, YES);
 		XCTAssertTrue(IsMoveValidOnBoard(move, _board, _playerColor), @"Move is not valid!");
@@ -450,7 +450,7 @@ BOOL MovesMatch(TGMMoveList* actualMoves, TGMMoveList* expectedMoves, NSUInteger
 	@autoreleasepool
 	{
 		TGMMarble* marble = CreateMarble(GetMarbleForPlayer(_playerColor, 0), 0, NO);
-		TGMCard* card = CreateCard(1, CardNumber_King, CardSuit_Diamonds);
+		TGMCard* card = CreateCard(1, CardNumber::King, CardSuit::Diamonds);
 		TGMMove* move = MakeMove(card, marble, NO, _teammate1Color, kGetOutSpot, PlayerStartingSpot(_teammate1Color), 0, 0, NO);
 		ReleaseCard(card);
 		ReleaseMarble(marble);
@@ -481,7 +481,7 @@ BOOL MovesMatch(TGMMoveList* actualMoves, TGMMoveList* expectedMoves, NSUInteger
 		TGMMarble* marble = CreateMarble(GetMarbleForPlayer(_playerColor, 0), -27, NO);
 		BoardPlaceMarble(_board, marble, 81);
 	
-		TGMCard* card = CreateCard(1, CardNumber_2, CardSuit_Diamonds);
+		TGMCard* card = CreateCard(1, CardNumber::Card2, CardSuit::Diamonds);
 		TGMMove* move = MakeMove(card, marble, NO, _teammate1Color, 81, 83, 2, 0, NO);
 		BOOL isValid = IsMoveValidOnBoard(move, _board, _playerColor);
 		XCTAssertTrue(isValid, @"Move is not valid!");
@@ -500,7 +500,7 @@ BOOL MovesMatch(TGMMoveList* actualMoves, TGMMoveList* expectedMoves, NSUInteger
 		BoardPlaceMarble(_board, marble, 9);
 		ReleaseMarble(marble);
 	
-		TGMCard* card = CreateCard(1, CardNumber_Jack, CardSuit_Diamonds);
+		TGMCard* card = CreateCard(1, CardNumber::Jack, CardSuit::Diamonds);
 	
 		CardListAdd(_hand, card);
 		ReleaseCard(card);
@@ -525,7 +525,7 @@ BOOL MovesMatch(TGMMoveList* actualMoves, TGMMoveList* expectedMoves, NSUInteger
 		BoardPlaceMarble(_board, marble, 27);
 		ReleaseMarble(marble);
 	
-		TGMCard* card = CreateCard(1, CardNumber_Jack, CardSuit_Diamonds);
+		TGMCard* card = CreateCard(1, CardNumber::Jack, CardSuit::Diamonds);
 	
 		CardListAdd(_hand, card);
 		ReleaseCard(card);
@@ -572,7 +572,7 @@ BOOL MovesMatch(TGMMoveList* actualMoves, TGMMoveList* expectedMoves, NSUInteger
 		BoardPlaceMarble(_board, marble, 81);
 		ReleaseMarble(marble);
 
-		TGMCard* card = CreateCard(1, CardNumber_Jack, CardSuit_Diamonds);
+		TGMCard* card = CreateCard(1, CardNumber::Jack, CardSuit::Diamonds);
 
 		CardListAdd(_hand, card);
 		ReleaseCard(card);
@@ -605,7 +605,7 @@ BOOL MovesMatch(TGMMoveList* actualMoves, TGMMoveList* expectedMoves, NSUInteger
 		// we should generate the correct moves
 	
 		// make the marble get out
-		card = CreateCard(1, CardNumber_King, CardSuit_Diamonds);
+		card = CreateCard(1, CardNumber::King, CardSuit::Diamonds);
 		CardListAdd(_hand, card);
 		ReleaseCard(card);
 		playMove = RetainMove(MakeMove(card, marble, NO, _playerColor, kGetOutSpot, pss, 0, 0, NO));
@@ -621,7 +621,7 @@ BOOL MovesMatch(TGMMoveList* actualMoves, TGMMoveList* expectedMoves, NSUInteger
 		XCTAssertTrue(marble->distanceFromHome == 4, @"Marble isn't 4 from home = %d", marble->distanceFromHome);
 	
 		// move the marble 2
-		card = CreateCard(2, CardNumber_2, CardSuit_Diamonds);
+		card = CreateCard(2, CardNumber::Card2, CardSuit::Diamonds);
 		CardListAdd(_hand, card);
 		ReleaseCard(card);
 		playMove = RetainMove(MakeMove(card, marble, NO, _playerColor, 4, 6, 2, 0, NO));
@@ -635,7 +635,7 @@ BOOL MovesMatch(TGMMoveList* actualMoves, TGMMoveList* expectedMoves, NSUInteger
 		XCTAssertTrue(marble->distanceFromHome == 6, @"Marble isn't 6 from home = %d", marble->distanceFromHome);
 	
 		// move the marble 4
-		card = CreateCard(3, CardNumber_4, CardSuit_Diamonds);
+		card = CreateCard(3, CardNumber::Card4, CardSuit::Diamonds);
 		CardListAdd(_hand, card);
 		ReleaseCard(card);
 		playMove = RetainMove(MakeMove(card, marble, NO, _playerColor, 6, 2, -4, 0, NO));
@@ -649,7 +649,7 @@ BOOL MovesMatch(TGMMoveList* actualMoves, TGMMoveList* expectedMoves, NSUInteger
 		XCTAssertTrue(marble->distanceFromHome == 2, @"Marble isn't 2 from home = %d", marble->distanceFromHome);
 	
 		// move the marble 4
-		card = CreateCard(4, CardNumber_4, CardSuit_Diamonds);
+		card = CreateCard(4, CardNumber::Card4, CardSuit::Diamonds);
 		CardListAdd(_hand, card);
 		ReleaseCard(card);
 		playMove = RetainMove(MakeMove(card, marble, NO, _playerColor, 2, 106, -4, 0, YES));
@@ -664,9 +664,9 @@ BOOL MovesMatch(TGMMoveList* actualMoves, TGMMoveList* expectedMoves, NSUInteger
 	
 		// see what moves are generated for a 6, 7 and a jack
 		// move the marble 4
-		TGMCard* card6 = CreateCard(5, CardNumber_6, CardSuit_Diamonds);
-		TGMCard* card7 = CreateCard(6, CardNumber_7, CardSuit_Diamonds);
-		TGMCard* cardJ = CreateCard(7, CardNumber_Jack, CardSuit_Diamonds);
+		TGMCard* card6 = CreateCard(5, CardNumber::Card6, CardSuit::Diamonds);
+		TGMCard* card7 = CreateCard(6, CardNumber::Card7, CardSuit::Diamonds);
+		TGMCard* cardJ = CreateCard(7, CardNumber::Jack, CardSuit::Diamonds);
 		CardListAdd(_hand, card6);
 		CardListAdd(_hand, card7);
 		CardListAdd(_hand, cardJ);
@@ -708,13 +708,13 @@ BOOL MovesMatch(TGMMoveList* actualMoves, TGMMoveList* expectedMoves, NSUInteger
 	*/
 	@autoreleasepool
 	{
-		TGMMarble* whiteMarble = CreateMarble(GetMarbleForPlayer(Player_White, 0), 0, NO);
+		TGMMarble* whiteMarble = CreateMarble(GetMarbleForPlayer(PlayerColor::White, 0), 0, NO);
 	
 		BoardPlaceMarble(_board, whiteMarble, 70);
 		whiteMarble->distanceFromHome = 106;
 		ReleaseMarble(whiteMarble);
 	
-		TGMCard* card = CreateCard(1, CardNumber_9, CardSuit_Diamonds);
+		TGMCard* card = CreateCard(1, CardNumber::Card9, CardSuit::Diamonds);
 		CardListAdd(_hand, card);
 		ReleaseCard(card);
 		
@@ -750,7 +750,7 @@ BOOL MovesMatch(TGMMoveList* actualMoves, TGMMoveList* expectedMoves, NSUInteger
 		BoardPlaceMarble(_board, marble, 104);
 		ReleaseMarble(marble);
 	
-		TGMCard* card = CreateCard(1, CardNumber_7, CardSuit_Diamonds);
+		TGMCard* card = CreateCard(1, CardNumber::Card7, CardSuit::Diamonds);
 		CardListAdd(_hand, card);
 		ReleaseCard(card);
 	
@@ -857,7 +857,7 @@ BOOL MovesMatch(TGMMoveList* actualMoves, TGMMoveList* expectedMoves, NSUInteger
 		// then given a hand of a Jack and -4, we should play a negative 4
 	
 		// make the marble get out
-		card = CreateCard(1, CardNumber_King, CardSuit_Diamonds);
+		card = CreateCard(1, CardNumber::King, CardSuit::Diamonds);
 		CardListAdd(_hand, card);
 		ReleaseCard(card);
 		playMove = RetainMove(MakeMove(card, marble, NO, _playerColor, kGetOutSpot, pss, 0, 0, NO));
@@ -873,7 +873,7 @@ BOOL MovesMatch(TGMMoveList* actualMoves, TGMMoveList* expectedMoves, NSUInteger
 		XCTAssertTrue(marble->distanceFromHome == 4, @"Marble isn't 4 from home = %d", marble->distanceFromHome);
 	
 		// move the marble 5
-		card = CreateCard(2, CardNumber_5, CardSuit_Diamonds);
+		card = CreateCard(2, CardNumber::Card5, CardSuit::Diamonds);
 		CardListAdd(_hand, card);
 		ReleaseCard(card);
 		playMove = RetainMove(MakeMove(card, marble, NO, _playerColor, 4, 9, 5, 0, NO));
@@ -887,7 +887,7 @@ BOOL MovesMatch(TGMMoveList* actualMoves, TGMMoveList* expectedMoves, NSUInteger
 		XCTAssertTrue(marble->distanceFromHome == 9, @"Marble isn't 9 from home = %d", marble->distanceFromHome);
 	
 		// move the marble 7
-		card = CreateCard(3, CardNumber_7, CardSuit_Diamonds);
+		card = CreateCard(3, CardNumber::Card7, CardSuit::Diamonds);
 		CardListAdd(_hand, card);
 		ReleaseCard(card);
 		playMove = RetainMove(MakeMove(card, marble, NO, _playerColor, 9, 101, 7, 5, NO));
@@ -906,7 +906,7 @@ BOOL MovesMatch(TGMMoveList* actualMoves, TGMMoveList* expectedMoves, NSUInteger
 		XCTAssertTrue(marble->distanceFromHome == 101, @"Marble isn't 101 from home = %d", marble->distanceFromHome);
 	
 		// move the marble 7
-		card = CreateCard(4, CardNumber_7, CardSuit_Diamonds);
+		card = CreateCard(4, CardNumber::Card7, CardSuit::Diamonds);
 		CardListAdd(_hand, card);
 		ReleaseCard(card);
 		playMove = RetainMove(MakeMove(card, marble, NO, _playerColor, 101, 0, 7, 0, YES));
@@ -920,8 +920,8 @@ BOOL MovesMatch(TGMMoveList* actualMoves, TGMMoveList* expectedMoves, NSUInteger
 		XCTAssertTrue(marble->distanceFromHome == 0, @"Marble isn't 0 from home = %d", marble->distanceFromHome);
 	
 		// see what moves are generated for a Jack and -4
-		TGMCard* card4 = CreateCard(5, CardNumber_4, CardSuit_Diamonds);
-		TGMCard* cardJ = CreateCard(6, CardNumber_Jack, CardSuit_Diamonds);
+		TGMCard* card4 = CreateCard(5, CardNumber::Card4, CardSuit::Diamonds);
+		TGMCard* cardJ = CreateCard(6, CardNumber::Jack, CardSuit::Diamonds);
 		CardListAdd(_hand, card4);
 		CardListAdd(_hand, cardJ);
 		ReleaseCard(card4);
@@ -942,8 +942,8 @@ BOOL MovesMatch(TGMMoveList* actualMoves, TGMMoveList* expectedMoves, NSUInteger
 	// as the Ace is more valuable, so we need to value the 1 playing over the 2.
 	@autoreleasepool
 	{
-		PlayerColor pc = Player_Green;
-		TGMPlayer* player = CreatePlayer("testMoveGenerationBug_CanPassMarblesRightBeforeHome", Strategy_Human, pc);
+		PlayerColor pc = PlayerColor::Green;
+		TGMPlayer* player = CreatePlayer("testMoveGenerationBug_CanPassMarblesRightBeforeHome", Strategy::Human, pc);
 		TGMGame* game = CreateGame(NULL, NULL);
 		GameAddPlayer(game, player);
 		ReleasePlayer(player);
@@ -956,7 +956,7 @@ BOOL MovesMatch(TGMMoveList* actualMoves, TGMMoveList* expectedMoves, NSUInteger
 		TGMMarble* marble2 = CreateMarble(GetMarbleForPlayer(pc, 1), 0, NO);
 		BoardPlaceMarbleAtFinalSpot(board, marble2->color, pc, 1);
 		
-		TGMCard* card = CreateCard(1, CardNumber_Ace, CardSuit_Diamonds);
+		TGMCard* card = CreateCard(1, CardNumber::Ace, CardSuit::Diamonds);
 		CardListAdd(_hand, card);
 		ReleaseCard(card);
 	
@@ -965,7 +965,7 @@ BOOL MovesMatch(TGMMoveList* actualMoves, TGMMoveList* expectedMoves, NSUInteger
 		TGMMove* move1 = MakeMove(card, marble1, NO, pc, FinalSpotToSpot(3), FinalSpotToSpot(4), 1, 0, NO);
 		TGMMove* move2 = MakeMove(card, marble1, NO, pc, FinalSpotToSpot(1), FinalSpotToSpot(2), 1, 0, NO);
 		
-		for (MarbleStrategy strategy = Strategy_Min; strategy < Strategy_Max; IterateMarbleStrategy(strategy))
+		for (MarbleStrategy strategy = Strategy::Min; strategy < Strategy::Max; IterateMarbleStrategy(strategy))
 		{
 			if (IsPassiveStrategy(strategy) || IsAggressiveStrategy(strategy))
 			{
@@ -1001,8 +1001,8 @@ BOOL MovesMatch(TGMMoveList* actualMoves, TGMMoveList* expectedMoves, NSUInteger
 	// we could play a 6, strangely
 	@autoreleasepool
 	{
-		PlayerColor pc = Player_Green;
-		TGMPlayer* player = CreatePlayer("testMoveGenerationBug_CanPassMarblesRightBeforeHome", Strategy_Human, pc);
+		PlayerColor pc = PlayerColor::Green;
+		TGMPlayer* player = CreatePlayer("testMoveGenerationBug_CanPassMarblesRightBeforeHome", Strategy::Human, pc);
 		TGMGame* game = CreateGame(NULL, NULL);
 		GameAddPlayer(game, player);
 		ReleasePlayer(player);
@@ -1018,7 +1018,7 @@ BOOL MovesMatch(TGMMoveList* actualMoves, TGMMoveList* expectedMoves, NSUInteger
 		TGMMarble* marble3 = CreateMarble(GetMarbleForPlayer(pc, 2), 0, NO);
 		BoardPlaceMarbleAtFinalSpot(board, marble3->color, pc, 4);
 	
-		TGMCard* card = CreateCard(1, CardNumber_6, CardSuit_Diamonds);
+		TGMCard* card = CreateCard(1, CardNumber::Card6, CardSuit::Diamonds);
 		CardListAdd(_hand, card);
 		ReleaseCard(card);
 	
@@ -1044,8 +1044,8 @@ BOOL MovesMatch(TGMMoveList* actualMoves, TGMMoveList* expectedMoves, NSUInteger
 	// checking the board.
 	@autoreleasepool
 	{
-		PlayerColor pc = Player_Black;
-		TGMPlayer* player = CreatePlayer("testMoveGenerationBug_CanPassMarblesOverThe2dBoardBoundary", Strategy_Human, pc);
+		PlayerColor pc = PlayerColor::Black;
+		TGMPlayer* player = CreatePlayer("testMoveGenerationBug_CanPassMarblesOverThe2dBoardBoundary", Strategy::Human, pc);
 		TGMGame* game = CreateGame(NULL, NULL);
 		GameAddPlayer(game, player);
 		ReleasePlayer(player);
@@ -1057,7 +1057,7 @@ BOOL MovesMatch(TGMMoveList* actualMoves, TGMMoveList* expectedMoves, NSUInteger
 		TGMMarble* marble2 = CreateMarble(GetMarbleForPlayer(pc, 1), 20, NO);
 		BoardPlaceMarble(GameGetBoard(game), marble2, 2);
 		
-		TGMCard* card = CreateCard(1, CardNumber_Queen, CardSuit_Diamonds);
+		TGMCard* card = CreateCard(1, CardNumber::Queen, CardSuit::Diamonds);
 		CardListAdd(_hand, card);
 		
 		TGMMoveList* actualMoves = MovesForPlayer(player, _hand, CreateEmptyTeammates(), GameGetBoard(game), card, game);
@@ -1089,7 +1089,7 @@ BOOL MovesMatch(TGMMoveList* actualMoves, TGMMoveList* expectedMoves, NSUInteger
 			NSMutableArray* expectedPoints = [NSMutableArray array];
 			[expectedPoints addObject:[NSNumber numberWithInt:startingSpot]];
 			int spot = startingSpot;
-			for (CardNumber cn = CardNumber_Min; cn <= CardNumber_Max; IterateCardNumber(cn))
+			for (CardNumber cn = CardNumber::Min; cn <= CardNumber::Max; IterateCardNumber(cn))
 			{
 				if (!IsNumberedCard(cn))
 				{
@@ -1103,7 +1103,7 @@ BOOL MovesMatch(TGMMoveList* actualMoves, TGMMoveList* expectedMoves, NSUInteger
 				spot = WrapSpot(spot + 1);
 				[expectedPoints addObject:[NSNumber numberWithInt:spot]];
 			
-				TGMCard* card = CreateCard(1, cn, CardSuit_Diamonds);
+				TGMCard* card = CreateCard(1, cn, CardSuit::Diamonds);
 				TGMMove* move = MakeMove(card, unusedMarble, NO, unusedPC, startingSpot, WrapSpot(startingSpot + CardMoves(cn)), CardMoves(cn), 0, unusedWentBehindHome);
 				MoveCalculateIntermediateSpots(move);
 			
@@ -1132,9 +1132,9 @@ BOOL MovesMatch(TGMMoveList* actualMoves, TGMMoveList* expectedMoves, NSUInteger
 	@autoreleasepool
 	{
 		TGMCardList* hand = CreateCardList();
-		TGMCard* cardQ = CreateCard(1, CardNumber_Queen, CardSuit_Hearts);
-		TGMCard* card5 = CreateCard(2, CardNumber_5, CardSuit_Diamonds);
-		TGMCard* cardK = CreateCard(2, CardNumber_King, CardSuit_Spades);
+		TGMCard* cardQ = CreateCard(1, CardNumber::Queen, CardSuit::Hearts);
+		TGMCard* card5 = CreateCard(2, CardNumber::Card5, CardSuit::Diamonds);
+		TGMCard* cardK = CreateCard(2, CardNumber::King, CardSuit::Spades);
 		
 		CardListAdd(hand, cardQ);
 		CardListAdd(hand, card5);
@@ -1224,10 +1224,10 @@ BOOL MovesMatch(TGMMoveList* actualMoves, TGMMoveList* expectedMoves, NSUInteger
 	{
 		// run an entire game
 		TGMGame* game = CreateGame(NULL, NULL);
-		MarbleStrategy strategy = Strategy_Min;
+		MarbleStrategy strategy = Strategy::Min;
 		for (unsigned p = 0; p < kPlayers; p++)
 		{
-			if (strategy == Strategy_Human) strategy = NextMarbleStrategy(strategy);
+			if (strategy == Strategy::Human) strategy = NextMarbleStrategy(strategy);
 			PlayerColor pc = PlayerColorForPosition(p);
 			TGMPlayer* player = CreateComputerPlayer(PlayerColorToString(pc), strategy, pc);
 			GameAddPlayer(game, player);
@@ -1254,10 +1254,10 @@ BOOL MovesMatch(TGMMoveList* actualMoves, TGMMoveList* expectedMoves, NSUInteger
 		@autoreleasepool
 		{
 			TGMGame* game = CreateGame(NULL, NULL);
-			MarbleStrategy strategy = Strategy_Min;
+			MarbleStrategy strategy = Strategy::Min;
 			for (unsigned p = 0; p < kPlayers; p++)
 			{
-				if (strategy == Strategy_Human) strategy = NextMarbleStrategy(strategy);
+				if (strategy == Strategy::Human) strategy = NextMarbleStrategy(strategy);
 				PlayerColor pc = PlayerColorForPosition(p);
 				TGMPlayer* player = CreateComputerPlayer(PlayerColorToString(pc), strategy, pc);
 				GameAddPlayer(game, player);
@@ -1298,10 +1298,10 @@ BOOL MovesMatch(TGMMoveList* actualMoves, TGMMoveList* expectedMoves, NSUInteger
 	{
 		// run an entire game
 		TGMGame* game = CreateGame(NULL, NULL);
-		MarbleStrategy strategy = Strategy_Min;
+		MarbleStrategy strategy = Strategy::Min;
 		for (unsigned p = 0; p < kPlayers; p++)
 		{
-			if (strategy == Strategy_Human) strategy = NextMarbleStrategy(strategy);
+			if (strategy == Strategy::Human) strategy = NextMarbleStrategy(strategy);
 			PlayerColor pc = PlayerColorForPosition(p);
 			
 			TGMPlayer* player = CreateComputerPlayer(PlayerColorToString(pc), strategy, pc);

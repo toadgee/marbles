@@ -150,25 +150,26 @@ void PlayerWillPlayMoveInGame(void* context, TGMGame* game, TGMPlayer* player, T
 	
 	TGMMoveList* allMoves = MovesForPlayerSimple(player, game, NULL);
 	printf("All Moves : \n");
-	__block BOOL foundGenMove = NO;
-	
-	__block TGMMoveList *allPossibleOpponentMoves = NULL;
-	MoveListIterateWithBlock(allMoves, ^(int i, TGMMove *genMove)
+	BOOL foundGenMove = NO;
+	TGMMoveList *allPossibleOpponentMoves = NULL;
+	TGMMove *genMove = allMoves->first;
+	while (genMove != nullptr)
 	{
 		BOOL isGenMove = AreMovesEqual(genMove, move);
 		if (!foundGenMove && isGenMove)
 			foundGenMove = YES;
 	
-		if (PlayerGetStrategy(player) != Strategy_Human)
+		if (PlayerGetStrategy(player) != Strategy::Human)
 		{
 			CalculateWeightOfMoveInGame(genMove, game, PlayerGetColor(player), PlayerGetStrategy(player), &allPossibleOpponentMoves); // calculate so we output the weight
 		}
 		printf("\t%s%s\n", (isGenMove ? "***" : "   "), [MoveDescription(genMove) UTF8String]);
+		genMove = genMove->nextMove;
 	});
 	
 	ReleaseMoveList(allPossibleOpponentMoves);
 	
-	if (PlayerGetStrategy(player) != Strategy_Human)
+	if (PlayerGetStrategy(player) != Strategy::Human)
 	{
 		TGMMove* ourBestMove = BestMoveFromMoves(allMoves, game, PlayerGetColor(player), PlayerGetStrategy(player));
 		if (!AreMovesEquivalent(ourBestMove, move))

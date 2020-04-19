@@ -10,6 +10,7 @@
 #include "Marble.h"
 #include "Board.h"
 #include "CardList.h"
+#include "MarblesMem.h"
 #include "Player.h"
 #include "Game.h"
 
