@@ -8,6 +8,8 @@
 
 #include "Game.h"
 #include "GameLog.h"
+#include "DataExtensions.h"
+#include "Descriptions.h"
 #include "Player.h"
 #include "MoveGenerator.h"
 #include "MoveRanker.h"
@@ -94,7 +96,7 @@ int main(int argc, const char * argv[])
 			exit(1);
 		}
 		
-		printf("Replaying gamelog: \n%s\n", [GameLogDescription(gameLog) UTF8String]);
+		printf("Replaying gamelog: \n%s\n", GameLogDescription(gameLog).c_str());
 		TGMGame* replayGame = CreateGame(gameLog, nullptr);
 		GameSetOnPlayerDidPlay(replayGame, &PlayerPlayedMoveInGame);
 		GameSetOnPlayerWillPlay(replayGame, &PlayerWillPlayMoveInGame);
@@ -141,12 +143,12 @@ void HandEndedInGame(void* context, TGMGame* game)
 
 void TurnStartedInGame(void* context, TGMGame* game, TGMPlayer* player)
 {
-	printf("Turn #%d started for %s\n", GameGetTurn(game), [PlayerDescription(player) UTF8String]);
+	printf("Turn #%d started for %s\n", GameGetTurn(game), PlayerDescription(player).c_str());
 }
 
 void PlayerWillPlayMoveInGame(void* context, TGMGame* game, TGMPlayer* player, TGMMove* move)
 {
-	printf("#%d    %s ===> %s\n", GameGetTurn(game), [PlayerDescription(player) UTF8String], [MoveDescription(move) UTF8String]);
+	printf("#%d    %s ===> %s\n", GameGetTurn(game), PlayerDescription(player).c_str(), MoveDescription(move).c_str());
 	
 	TGMMoveList* allMoves = MovesForPlayerSimple(player, game, NULL);
 	printf("All Moves : \n");
@@ -163,9 +165,9 @@ void PlayerWillPlayMoveInGame(void* context, TGMGame* game, TGMPlayer* player, T
 		{
 			CalculateWeightOfMoveInGame(genMove, game, PlayerGetColor(player), PlayerGetStrategy(player), &allPossibleOpponentMoves); // calculate so we output the weight
 		}
-		printf("\t%s%s\n", (isGenMove ? "***" : "   "), [MoveDescription(genMove) UTF8String]);
+		printf("\t%s%s\n", (isGenMove ? "***" : "   "), MoveDescription(genMove).c_str());
 		genMove = genMove->nextMove;
-	});
+	}
 	
 	ReleaseMoveList(allPossibleOpponentMoves);
 	
@@ -174,17 +176,17 @@ void PlayerWillPlayMoveInGame(void* context, TGMGame* game, TGMPlayer* player, T
 		TGMMove* ourBestMove = BestMoveFromMoves(allMoves, game, PlayerGetColor(player), PlayerGetStrategy(player));
 		if (!AreMovesEquivalent(ourBestMove, move))
 		{
-			printf("%s\n", [ColoredString(Player_Yellow, "### NOTE : Different move than what we would have picked") UTF8String]);
-			printf("%s\n", [MoveDescription(ourBestMove) UTF8String]);
+			printf("%s\n", ColoredString(PlayerColor::Yellow, "### NOTE : Different move than what we would have picked").c_str());
+			printf("%s\n", MoveDescription(ourBestMove).c_str());
 		}
 	}
 	
-	printf("%s", [CardListDescription(PlayerGetHand(player), YES) UTF8String]);
+	printf("%s", CardListDescription(PlayerGetHand(player), YES).c_str());
 }
 
 void PlayerPlayedMoveInGame(void* context, TGMGame* game, TGMPlayer* player, TGMMove* move)
 {
-	printf("%s\n", [BoardDescription(GameGetBoard(game)) UTF8String]);
+	printf("%s\n", BoardDescription(GameGetBoard(game)).c_str());
 	ReadLine();
 }
 

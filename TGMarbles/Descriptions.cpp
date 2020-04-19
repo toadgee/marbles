@@ -663,7 +663,6 @@ std::string CardListDescription(TGMCardList *cardList, bool detailed)
 
 std::string DeckDescription(TGMDeck *deck)
 {
-
 	std::ostringstream str;
 	str << "Marbles Deck\n";
 	str << "\t" << CardListCount(deck->_cards) << " Cards\n";
@@ -683,76 +682,67 @@ std::string DeckDescription(TGMDeck *deck)
 	return str.str();
 }
 
-#if 0
 std::string GameFeedbackStats(TGMGame* game)
 {
-	@autoreleasepool
+	std::ostringstream str;
+	str << "score          = " << GameGetTeam1Score(game) << " to " << GameGetTeam2Score(game) << "\n";
+	str << "state          = " << GameStateToString(game->_state) << "\n";
+	str << "turn number    = " << game->_turn << "\n";
+	str << "dealer player  = " << PlayerColorToString(game->_dealingPlayer) << "\n";
+	str << "current player = " << PlayerColorToString(game->_currentPlayer) << "\n";
+	for (unsigned p = 0; p < kPlayers; p++)
 	{
-		NSMutableString* stats = [NSMutableString string];
-		[stats appendFormat:@"score          = %d to %d\r\n", GameGetTeam1Score(game), GameGetTeam2Score(game)];
-		[stats appendFormat:@"state          = %s\r\n", GameStateToString(game->_state)];
-		[stats appendFormat:@"turn number    = %d\r\n", game->_turn];
-		[stats appendFormat:@"dealer player  = %s\r\n", PlayerColorToString(game->_dealingPlayer)];
-		[stats appendFormat:@"current player = %s\r\n", PlayerColorToString(game->_currentPlayer)];
-		for (unsigned p = 0; p < kPlayers; p++)
-		{
-			TGMPlayer* pl = game->_players[p];
-			[stats appendFormat:@"player %u = %@\r\n", p, pl];
-		}
-		[stats appendFormat:@"random seed    = %d\r\n", RandomSeed(game->_rng)];
-		[stats appendFormat:@"random calls   = %d\r\n", RandomCalls(game->_rng)];
-		[stats appendFormat:@"%s\r\n", BoardDescription(game->_board).c_str()];
-		[stats appendFormat:@"%s\r\n", DeckDescription(game->_deck).c_str()];
-	
-		return std::string([[stats stringByReplacingOccurrencesOfString:@"\t" withString:@"    "] UTF8String]);
+		TGMPlayer* pl = game->_players[p];
+		str << "player " << p << " = " << PlayerDescription(pl) << "\n";
 	}
+	str << "random seed    = " << RandomSeed(game->_rng) << "\n";
+	str << "random calls   = " << RandomCalls(game->_rng) << "\n";
+	str << BoardDescription(game->_board) << "\n";
+	str << DeckDescription(game->_deck) << "\n";
+	
+	return str.str();
 }
 
 std::string GameLogDescription(TGMGameLog* gameLog)
 {
-	@autoreleasepool
+	std::ostringstream str;
+	str << "GAME LOG\n";
+	str << "Dealing player : " << PlayerColorToString(gameLog->_dealingPlayer) << "\n";
+	for (uint16_t p = 0; p < kPlayers; p++)
 	{
-		NSMutableString *str = [NSMutableString string];
-	
-		[str appendString:@"GAME LOG\n"];
-		[str appendFormat:@"Dealing player : %s\n", PlayerColorToString(gameLog->_dealingPlayer)];
-		for (uint16_t p = 0; p < kPlayers; p++)
-		{
-			[str appendFormat:@"Player strategy %s: %s\n", PlayerColorToString(PlayerColorForPosition((int)p)), StrategyToString(gameLog->_playerStrategy[p])];
-		}
-	
-		// TODO : add DeckListDescription to decklist
-		[str appendFormat:@"Deck count : %lu\n", (unsigned long)DeckListCount(gameLog->_deckList)];
-		DeckListIterateWithBlock(gameLog->_deckList, ^(unsigned d, TGMDeck* deck)
-		{
-			[str appendFormat:@"\n\nDeck #%lu\n", (unsigned long)d];
-			[str appendString:[NSString stringWithUTF8String:DeckDescription(deck).c_str()]];
-			[str appendString:@"\n"];
-			return YES;
-		});
-	
-		[str appendFormat:@"Move count : %u", MoveListCount(gameLog->_moveList)];
-		MoveListIterateWithBlock(gameLog->_moveList, ^(int i, TGMMove *move)
-		{
-			[str appendFormat:@"\nMove #%d    ", i++];
-			[str appendString:[NSString stringWithUTF8String:MoveDescription(move).c_str()]];
-		});
-	
-		return [str UTF8String];
+		str << "Player strategy " << PlayerColorToString(PlayerColorForPosition(static_cast<int>(p))) << ": " << StrategyToString(gameLog->_playerStrategy[p]) << "\n";
 	}
+
+	// TODO : add DeckListDescription to decklist
+	str << "Deck count : " << DeckListCount(gameLog->_deckList) << "\n";
+	DeckListIterateWithBlock(gameLog->_deckList, [str2 = &str](unsigned d, TGMDeck* deck) mutable
+	{
+		(*str2) << "\n\nDeck #" << d << "\n" << DeckDescription(deck) << "\n";
+		return true;
+	});
+
+	str << "Move count : %u" << MoveListCount(gameLog->_moveList);
+	int i = 0;
+	TGMMove *move = gameLog->_moveList->first;
+	while (move != nullptr)
+	{
+		str << "\nMove #" << i++ << "    ";
+		str << MoveDescription(move);
+		move = move->nextMove;
+	}
+
+	return str.str();
 }
 
 std::string MoveListDescription(TGMMoveList *moveList)
 {
-	@autoreleasepool
+	std::ostringstream str;
+	TGMMove *m = moveList->first;
+	while (m != nullptr)
 	{
-		NSMutableArray* moveDescriptions = [NSMutableArray new];
-		MoveListIterateWithBlock(moveList, ^(int /*i*/, TGMMove *m)
-		{
-			[moveDescriptions addObject:[NSString stringWithUTF8String:MoveDescription(m).c_str()]];
-		});
-		return [[moveDescriptions description] UTF8String];
+		str << MoveDescription(m) << "\n";
+		m = m->nextMove;
 	}
+	
+	return str.str();
 }
-
-#endif
