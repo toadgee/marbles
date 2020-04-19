@@ -6,7 +6,9 @@
 //  Copyright (c) 2012 toadgee.com. All rights reserved.
 //
 
-#import "MarblesCommon.h"
+#import "precomp.h"
+#import "DebugAssert.h"
+#import "Descriptions.h"
 #import "TouchSpot.h"
 
 @implementation TGMTouchSpot
@@ -24,7 +26,7 @@
 		return [TGMTouchSpot touchSpotWithSpot:SpotToFinalSpot(move->oldSpot) playerColor:move->playerColor isFinalSpot:YES isHomeSpot:NO];
 	}
 	
-	return [TGMTouchSpot touchSpotWithSpot:move->oldSpot playerColor:Player_None isFinalSpot:NO isHomeSpot:NO];
+	return [TGMTouchSpot touchSpotWithSpot:move->oldSpot playerColor:PlayerColor::None isFinalSpot:NO isHomeSpot:NO];
 }
 
 +(TGMTouchSpot*)touchSpotFromMoveEnd:(TGMMove *)move
@@ -35,7 +37,7 @@
 		return [TGMTouchSpot touchSpotWithSpot:SpotToFinalSpot(move->newSpot) playerColor:move->playerColor isFinalSpot:YES isHomeSpot:NO];
 	}
 	
-	return [TGMTouchSpot touchSpotWithSpot:move->newSpot playerColor:Player_None isFinalSpot:NO isHomeSpot:NO];
+	return [TGMTouchSpot touchSpotWithSpot:move->newSpot playerColor:PlayerColor::None isFinalSpot:NO isHomeSpot:NO];
 }
 
 +(instancetype)touchSpotWithSpot:(int)spot playerColor:(PlayerColor)pc isFinalSpot:(BOOL)isFinal isHomeSpot:(BOOL)isHomeSpot

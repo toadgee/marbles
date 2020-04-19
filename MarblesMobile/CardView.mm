@@ -6,9 +6,9 @@
 //	Copyright (c) 2012 toadgee.com. All rights reserved.
 //
 
-#import "MarblesCommon.h"
+#import "precomp.h"
 #import "CardView.h"
-#import "MarblesCommon.h"
+#import "DebugAssert.h"
 #import "UIImageExtensions.h"
 
 @interface TGMCardView ()
@@ -27,7 +27,7 @@ static CGSize s_cardImageDefaultSize;
 	assert(s_cardImages == nil);
 	BOOL first = YES;
 	s_cardImages = [NSMutableDictionary new];
-	for (CardSuit suit = CardSuit_Min; suit <= CardSuit_Max; IterateCardSuit(suit))
+	for (CardSuit suit = CardSuit::Min; suit <= CardSuit::Max; IterateCardSuit(suit))
 	{
 		NSString *suffix = @"";
 		NSString *suffix2 = @"";
@@ -35,81 +35,81 @@ static CGSize s_cardImageDefaultSize;
 		// image has clubs, diamonds, hearts, spades
 		switch (suit)
 		{
-			case CardSuit_Hearts:
+			case CardSuit::Hearts:
 				suffix = @"_of_hearts";
 				break;
-			case CardSuit_Diamonds:
+			case CardSuit::Diamonds:
 				suffix = @"_of_diamonds";
 				break;
-			case CardSuit_Clubs:
+			case CardSuit::Clubs:
 				suffix = @"_of_clubs";
 				break;
-			case CardSuit_Spades:
+			case CardSuit::Spades:
 				suffix = @"_of_spades";
 				break;
-			case CardSuit_Joker:
+			case CardSuit::Joker:
 				suffix = @"";
 				break;
-			case CardSuit_None:
+			case CardSuit::None:
 				dassert(false);
 				break;
 		}
 		
 		NSMutableDictionary<NSNumber *, UIImage *> *suitImages = [NSMutableDictionary dictionary];
-		for (CardNumber card = CardNumber_Min; card <= CardNumber_Max; IterateCardNumber(card))
+		for (CardNumber card = CardNumber::Min; card <= CardNumber::Max; IterateCardNumber(card))
 		{
-			if (suit == CardSuit_Joker && card != CardNumber_Joker) continue;
-			if (suit != CardSuit_Joker && card == CardNumber_Joker) continue;
+			if (suit == CardSuit::Joker && card != CardNumber::Joker) continue;
+			if (suit != CardSuit::Joker && card == CardNumber::Joker) continue;
 		
 			NSString *prefix = @"";
 			switch (card)
 			{
-				case CardNumber_Joker:
+				case CardNumber::Joker:
 					prefix = @"red_joker"; // TODO : there are actually two joker cards...
 					break;
-				case CardNumber_Ace:
+				case CardNumber::Ace:
 					prefix = @"ace";
 					break;
-				case CardNumber_2:
+				case CardNumber::Card2:
 					prefix = @"2";
 					break;
-				case CardNumber_3:
+				case CardNumber::Card3:
 					prefix = @"3";
 					break;
-				case CardNumber_4:
+				case CardNumber::Card4:
 					prefix = @"4";
 					break;
-				case CardNumber_5:
+				case CardNumber::Card5:
 					prefix = @"5";
 					break;
-				case CardNumber_6:
+				case CardNumber::Card6:
 					prefix = @"6";
 					break;
-				case CardNumber_7:
+				case CardNumber::Card7:
 					prefix = @"7";
 					break;
-				case CardNumber_8:
+				case CardNumber::Card8:
 					prefix = @"8";
 					break;
-				case CardNumber_9:
+				case CardNumber::Card9:
 					prefix = @"9";
 					break;
-				case CardNumber_10:
+				case CardNumber::Card10:
 					prefix = @"10";
 					break;
-				case CardNumber_Jack:
+				case CardNumber::Jack:
 					prefix = @"jack";
 					suffix2 = @"2";
 					break;
-				case CardNumber_Queen:
+				case CardNumber::Queen:
 					prefix = @"queen";
 					suffix2 = @"2";
 					break;
-				case CardNumber_King:
+				case CardNumber::King:
 					prefix = @"king";
 					suffix2 = @"2";
 					break;
-				case CardNumber_None:
+				case CardNumber::None:
 					dassert(false);
 					break;
 			}
@@ -117,7 +117,7 @@ static CGSize s_cardImageDefaultSize;
 			NSString *name = [NSString stringWithFormat:@"%@%@%@", prefix, suffix, suffix2];
 			UIImage *cardImg = [UIImage imageNamed:name];
 			cardImg = [cardImg resizableImageWithCapInsets:UIEdgeInsetsZero resizingMode:UIImageResizingModeStretch];
-			[suitImages setObject:cardImg forKey:@(card)];
+			[suitImages setObject:cardImg forKey:@(static_cast<int>(card))];
 			
 			if (first)
 			{
@@ -126,16 +126,16 @@ static CGSize s_cardImageDefaultSize;
 			}
 		}
 		
-		[s_cardImages setObject:suitImages forKey:@(suit)];
+		[s_cardImages setObject:suitImages forKey:@(static_cast<int>(suit))];
 	}
 }
 
 +(UIImage *)imageForCard:(TGMCard *)card
 {
 	dassert(card != nil);
-	NSDictionary *suitImages = [s_cardImages objectForKey:@(CardSuit(card))];
+	NSDictionary *suitImages = [s_cardImages objectForKey:@(static_cast<int>(CardSuit(card)))];
 	dassert(suitImages != nil);
-	UIImage *image = [suitImages objectForKey:@(CardNumber(card))];
+	UIImage *image = [suitImages objectForKey:@(static_cast<int>(CardNumber(card)))];
 	dassert(image != nil);
 	return [image copy];
 }

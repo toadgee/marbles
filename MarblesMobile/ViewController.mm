@@ -6,9 +6,12 @@
 //	Copyright (c) 2012 toadgee.com. All rights reserved.
 //
 
-#import "MarblesCommon.h"
+#import "precomp.h"
+#import "DebugAssert.h"
+#import "DataExtensions.h"
 #import "ViewController.h"
 #import "OptionsViewController.h"
+#import "RandomPlayerColor.h"
 #import "TouchPlayer.h"
 #import "MoveList.h"
 #import "UIImageExtensions.h"
@@ -399,29 +402,29 @@ void ViewController_PlayerDiscarded(void* context, TGMGame* game, TGMPlayer* pla
 
 	TGMPlayer* computerPlayer;
 	
-	computerPlayer = CreateComputerPlayer("Aubrey", Strategy_DefensiveAggressive, color1);
+	computerPlayer = CreateComputerPlayer("Aubrey", Strategy::DefensiveAggressive, color1);
 	GameAddPlayer(game, computerPlayer);
 	ReleasePlayer(computerPlayer);
 	
-	computerPlayer = CreateComputerPlayer("Jason", Strategy_DefensiveAggressive, color2);
+	computerPlayer = CreateComputerPlayer("Jason", Strategy::DefensiveAggressive, color2);
 	GameAddPlayer(game, computerPlayer);
 	ReleasePlayer(computerPlayer);
 	
-	computerPlayer = CreateComputerPlayer("Katie", Strategy_DefensiveAggressive, color3);
+	computerPlayer = CreateComputerPlayer("Katie", Strategy::DefensiveAggressive, color3);
 	GameAddPlayer(game, computerPlayer);
 	ReleasePlayer(computerPlayer);
 	
-	computerPlayer = CreateComputerPlayer("Ryan" , Strategy_DefensiveAggressive, color4);
+	computerPlayer = CreateComputerPlayer("Ryan" , Strategy::DefensiveAggressive, color4);
 	GameAddPlayer(game, computerPlayer);
 	ReleasePlayer(computerPlayer);
 	
-	computerPlayer = CreateComputerPlayer("Shauna", Strategy_DefensiveAggressive, color5);
+	computerPlayer = CreateComputerPlayer("Shauna", Strategy::DefensiveAggressive, color5);
 	GameAddPlayer(game, computerPlayer);
 	ReleasePlayer(computerPlayer);
 	
 	if ([self isAutomatedPlay])
 	{
-		computerPlayer = CreateComputerPlayer("Todd", Strategy_DefensiveAggressive, color6);
+		computerPlayer = CreateComputerPlayer("Todd", Strategy::DefensiveAggressive, color6);
 		[self setPlayer:computerPlayer];
 	}
 	else
@@ -590,13 +593,19 @@ void ViewController_PlayerDiscarded(void* context, TGMGame* game, TGMPlayer* pla
 			{
 				// change play button to discard if we only have discard moves
 				{
-					__block BOOL onlyDiscardMoves = (CardListCount(PlayerGetHand([self player])) != 0); // don't need to show pass if we don't have any more cards in our hand
+					BOOL onlyDiscardMoves = (CardListCount(PlayerGetHand([self player])) != 0); // don't need to show pass if we don't have any more cards in our hand
 					TGMMoveList* allMoves = MovesForPlayerSimple(player, game, nullptr);
-					MoveListIterateWithBlock(allMoves, ^(int i, TGMMove* mv)
+					TGMMove *mv = allMoves->first;
+					while (mv != nullptr)
 					{
-						// technically we don't have to iterate through all the moves...
-						onlyDiscardMoves = onlyDiscardMoves && mv->isDiscard;
-					});
+						onlyDiscardMoves = mv->isDiscard;
+						if (!onlyDiscardMoves)
+						{
+							break;
+						}
+						
+						mv = mv->nextMove;
+					}
 					ReleaseMoveList(allMoves);
 					
 					if (onlyDiscardMoves)
@@ -737,7 +746,7 @@ void ViewController_PlayerDiscarded(void* context, TGMGame* game, TGMPlayer* pla
 	if ([oldSpot isHomeSpot] && [newSpot isFinalSpot]) return nil; // don't support moving from home to final
 	
 	PlayerColor pc = PlayerGetColor([self player]);
-	if (oldSpot != nil && [oldSpot playerColor] != Player_None)
+	if (oldSpot != nil && [oldSpot playerColor] != PlayerColor::None)
 	{
 		pc = [oldSpot playerColor];
 	}
@@ -803,8 +812,9 @@ void ViewController_PlayerDiscarded(void* context, TGMGame* game, TGMPlayer* pla
 		return;
 	}
 	
-	NSMutableArray *spots = [NSMutableArray arrayWithCapacity:MoveListCount([self currentValidMoves])];
-	MoveListIterateWithBlock([self currentValidMoves], ^(int i, TGMMove *mv)
+	NSMutableArray<TGMTouchSpot *> *spots = [NSMutableArray arrayWithCapacity:MoveListCount([self currentValidMoves])];
+	TGMMove *mv = [self currentValidMoves]->first;
+	while (mv != nullptr)
 	{
 		if (self->_handView.selectedCardView.card == NULL || mv->card == self->_handView.selectedCardView.card)
 		{
@@ -825,7 +835,9 @@ void ViewController_PlayerDiscarded(void* context, TGMGame* game, TGMPlayer* pla
 				[spots addObject:spot];
 			}
 		}
-	});
+		
+		mv = mv->nextMove;
+	};
 	
 	[_boardView setValidTouchSpots:spots];
 	if ([spots count] == 1 && automaticallyChoose)
@@ -845,8 +857,9 @@ void ViewController_PlayerDiscarded(void* context, TGMGame* game, TGMPlayer* pla
 		return;
 	}
 	
-	NSMutableArray *spots = [NSMutableArray arrayWithCapacity:MoveListCount([self currentValidMoves])];
-	MoveListIterateWithBlock([self currentValidMoves], ^(int i, TGMMove *mv)
+	NSMutableArray<TGMTouchSpot *> *spots = [NSMutableArray arrayWithCapacity:MoveListCount([self currentValidMoves])];
+	TGMMove *mv = [self currentValidMoves]->first;
+	while (mv != nullptr)
 	{
 		if ([[TGMTouchSpot touchSpotFromMoveBegin:mv] isEqualToSpot:spot1] && mv->card == [[self->_handView selectedCardView] card])
 		{
@@ -867,7 +880,9 @@ void ViewController_PlayerDiscarded(void* context, TGMGame* game, TGMPlayer* pla
 				[spots addObject:spot];
 			}
 		}
-	});
+		
+		mv = mv->nextMove;
+	}
 	
 	[_boardView setValidTouchSpots:spots];
 }
@@ -881,11 +896,17 @@ void ViewController_PlayerDiscarded(void* context, TGMGame* game, TGMPlayer* pla
 	{
 		TGMPlayer* player = TeammatesPlayer(teammates, p);
 		TGMMoveList* allMoves = MovesForPlayerSimple(player, game, NULL)	;
-		MoveListIterateWithBlock(allMoves, ^(int i, TGMMove* mv)
+		TGMMove *mv = allMoves->first;
+		while (mv != nullptr)
 		{
-			// technically we don't have to iterate through all the moves...
-			allDiscardMoves = allDiscardMoves && mv->isDiscard;
-		});
+			allDiscardMoves = mv->isDiscard;
+			if (!allDiscardMoves)
+			{
+				break;
+			}
+			
+			mv = mv->nextMove;
+		}
 		ReleaseMoveList(allMoves);
 	}
 	

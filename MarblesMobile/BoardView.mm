@@ -6,7 +6,8 @@
 //	Copyright (c) 2012 toadgee.com. All rights reserved.
 //
 
-#import "MarblesCommon.h"
+#import "precomp.h"
+#import "DebugAssert.h"
 #import "BoardView.h"
 #import <math.h>
 #import "UIImageExtensions.h"
@@ -531,7 +532,7 @@ static inline CGRect MakeMarbleDrawRect(CGRect touchRect)
 #endif
 	
 #if DRAW_PLAYER_POINTS
-	for (PlayerColor pc = Player_Min; pc <= Player_Max; IteratePlayerColor(pc))
+	for (PlayerColor pc = PlayerColor::Min; pc <= PlayerColor::Max; IteratePlayerColor(pc))
 	{
 		CGPoint playerPoint = [self pointForPlayerColor:pc];
 		[self labelPoint:playerPoint withText:@"PT" inContext:ctx];
@@ -559,7 +560,7 @@ static inline CGRect MakeMarbleDrawRect(CGRect touchRect)
 
 - (UIColor *)colorForMarbleColor:(MarbleColor)mc
 {
-	if (mc == Color_None)
+	if (mc == MarbleColor::None)
 		return _holeColor;
 	
 	PlayerColor pc = PlayerColorForMarbleColor(mc);
@@ -571,19 +572,19 @@ static inline CGRect MakeMarbleDrawRect(CGRect touchRect)
 	// TODO : it would be much better to have actual images, right? ... or does that make it that much slower?
 	switch (pc)
 	{
-		case Player_Red:
+		case PlayerColor::Red:
 			return _redColor;
-		case Player_Yellow:
+		case PlayerColor::Yellow:
 			return _yellowColor;
-		case Player_Green:
+		case PlayerColor::Green:
 			return _greenColor;
-		case Player_Blue:
+		case PlayerColor::Blue:
 			return _blueColor;
-		case Player_White:
+		case PlayerColor::White:
 			return _whiteColor;
-		case Player_Black:
+		case PlayerColor::Black:
 			return _blackColor;
-		case Player_None:
+		case PlayerColor::None:
 			dassert(0);
 			return nil;
 	}
@@ -798,7 +799,7 @@ static inline CGRect MakeMarbleDrawRect(CGRect touchRect)
 	
 	BOOL isFinalSpot = spot >= kFinalPointsStarting && spot < kHomePointsStarting;
 	BOOL isHomeSpot = spot >= kHomePointsStarting;
-	PlayerColor pc = Player_None;
+	PlayerColor pc = PlayerColor::None;
 	if (isHomeSpot)
 	{
 		int sp = spot - kHomePointsStarting;

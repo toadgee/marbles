@@ -6,7 +6,8 @@
 //	Copyright (c) 2013 toadgee.com. All rights reserved.
 //
 
-#import "MarblesCommon.h"
+#import "precomp.h"
+#import "DebugAssert.h"
 #import "Options.h"
 
 @interface TGMOptions ()

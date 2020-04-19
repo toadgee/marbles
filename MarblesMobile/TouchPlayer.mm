@@ -6,7 +6,9 @@
 //	Copyright (c) 2012 toadgee.com. All rights reserved.
 //
 
-#import "MarblesCommon.h"
+#import "precomp.h"
+#import "DebugAssert.h"
+#import "Descriptions.h"
 #import "TouchPlayer.h"
 #import "Game.h"
 #import "MoveList.h"
@@ -23,7 +25,7 @@ struct TGMTouchPlayerStruct
 };
 
 void TouchPlayerPlayInGame(TGMPlayer* player);
-NSString *TouchPlayerDescription(TGMPlayer* player);
+std::string TouchPlayerDescription(TGMPlayer* player);
 BOOL TouchPlayerDoAutoDiscardInGame(TGMPlayer* player, TGMGame* game);
 void TouchPlayerSetIsMyTurn(TGMPlayer *player, BOOL isMyTurn);
 TGMMove* TouchPlayerGetMove(TGMPlayer* player);
@@ -37,7 +39,7 @@ BOOL TouchPlayerReplaceMoveWithValidMoveInGame(TGMPlayer* player, TGMGame* game)
 
 TGMPlayer* CreateTouchPlayer(const char* name, PlayerColor pc, TGMGame* game)
 {
-	TGMPlayer* player = CreatePlayer(name, Strategy_Human, pc);
+	TGMPlayer* player = CreatePlayer(name, Strategy::Human, pc);
 	
 	TGMTouchPlayer* touchPlayer = (TGMTouchPlayer*)malloc(sizeof(TGMTouchPlayer));
 	touchPlayer->_playLock = (__bridge_retained CFTypeRef)[[NSConditionLock alloc] initWithCondition:kConditionWaitingForPlay];
@@ -192,18 +194,20 @@ void TouchPlayerFinishedPlaying(TGMPlayer* player)
 
 BOOL TouchPlayerReplaceMoveWithValidMoveInGame(TGMPlayer* player, TGMGame* game)
 {
-	__block BOOL validated = NO;
+	BOOL validated = NO;
 	TGMMoveList* moveList = MovesForPlayerSimple(player, game, NULL);
-	MoveListIterateWithBlock(moveList, ^(int i, TGMMove* move)
+	TGMMove *move = moveList->first;
+	while (move != nullptr)
 	{
-		if (validated) return;
-		
 		validated = AreMovesEquivalent(move, TouchPlayerGetMove(player));
 		if (validated)
 		{
 			TouchPlayerSetMove(player, move);
+			break;
 		}
-	});
+		
+		move = move->nextMove;
+	}
 	
 	ReleaseMoveList(moveList);
 	return validated;
@@ -223,9 +227,11 @@ BOOL TouchPlayerDoAutoDiscardInGame(TGMPlayer* player, TGMGame* game)
 		return NO;
 	}
 	
-	__block BOOL automaticallyDiscard = YES;
-	__block TGMMove* discardMove = NULL;
-	MoveListIterateWithBlock(moves, ^(int i, TGMMove* move)
+	BOOL automaticallyDiscard = YES;
+	TGMMove* discardMove = NULL;
+	int i = 0;
+	TGMMove *move = moves->first;
+	while (move != nullptr)
 	{
 		if (i == 0)
 		{
@@ -238,7 +244,10 @@ BOOL TouchPlayerDoAutoDiscardInGame(TGMPlayer* player, TGMGame* game)
 				discardMove = move;
 			}
 		}
-	});
+		
+		++i;
+		move = move->nextMove;
+	}
 	
 	if (!automaticallyDiscard)
 	{
@@ -252,9 +261,11 @@ BOOL TouchPlayerDoAutoDiscardInGame(TGMPlayer* player, TGMGame* game)
 	return YES;
 }
 
-NSString *TouchPlayerDescription(TGMPlayer* player)
+std::string TouchPlayerDescription(TGMPlayer* player)
 {
-    return [NSString stringWithFormat:@"[%d] TouchPlayer (%s)",
+    NSString *description = [NSString stringWithFormat:@"[%d] TouchPlayer (%s)",
 		PlayerIsTeam1(player) ? 1 : 2,
 		PlayerColorToString(PlayerGetColor(player))];
+	std::string descriptionStr { [description UTF8String] };
+	return descriptionStr;
 }
