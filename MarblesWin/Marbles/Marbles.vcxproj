@@ -22,10 +22,14 @@
     <ClCompile Include="..\..\Marbles\ConsolePlayer.cpp" />
     <ClCompile Include="..\..\Marbles\ConsoleUtilities.cpp" />
     <ClCompile Include="..\..\Marbles\Marbles.cpp" />
+    <ClCompile Include="..\..\Marbles\MarblesReplay.cpp" />
+    <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\Marbles\ConsolePlayer.h" />
     <ClInclude Include="..\..\Marbles\ConsoleUtilities.h" />
+    <ClInclude Include="..\..\Marbles\Marbles.h" />
+    <ClInclude Include="..\..\Marbles\MarblesReplay.h" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\TGMarbles\TGMarbles.vcxproj">
@@ -86,7 +90,7 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
-    <IncludePath>$(SolutionDir)..\TGMarbles\Utilities\;$(SolutionDir)..\TGMarbles\Game\;$(SolutionDir)..\TGMarbles\AI;$(SolutionDir)..\TGMarbles\;$(IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir)..\TGMarbles\Perf\;$(SolutionDir)..\TGMarbles\Utilities\;$(SolutionDir)..\TGMarbles\Game\;$(SolutionDir)..\TGMarbles\AI;$(SolutionDir)..\TGMarbles\;$(SolutionDir)..\Marbles\;$(IncludePath)</IncludePath>
     <OutDir>$(USERPROFILE)\Builds\$(ProjectName)\$(Configuration)\</OutDir>
     <IntDir>$(USERPROFILE)\Builds\$(ProjectName)\tmp\$(Configuration)\</IntDir>
     <RunCodeAnalysis>false</RunCodeAnalysis>
@@ -94,7 +98,7 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>$(SolutionDir)..\TGMarbles\Utilities\;$(SolutionDir)..\TGMarbles\Game\;$(SolutionDir)..\TGMarbles\AI;$(SolutionDir)..\TGMarbles\;$(IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir)..\TGMarbles\Perf\;$(SolutionDir)..\TGMarbles\Utilities\;$(SolutionDir)..\TGMarbles\Game\;$(SolutionDir)..\TGMarbles\AI;$(SolutionDir)..\TGMarbles\;$(SolutionDir)..\Marbles\;$(IncludePath)</IncludePath>
     <OutDir>$(USERPROFILE)\Builds\$(ProjectName)\$(Configuration)\</OutDir>
     <IntDir>$(USERPROFILE)\Builds\$(ProjectName)\tmp\$(Configuration)\</IntDir>
     <RunCodeAnalysis>false</RunCodeAnalysis>

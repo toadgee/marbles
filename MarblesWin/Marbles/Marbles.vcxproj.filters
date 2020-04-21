@@ -24,12 +24,24 @@
     <ClCompile Include="..\..\Marbles\Marbles.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="main.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Marbles\MarblesReplay.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\Marbles\ConsolePlayer.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Marbles\ConsoleUtilities.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Marbles\Marbles.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Marbles\MarblesReplay.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
