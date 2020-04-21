@@ -1,2 +1,2 @@
-void ReplayGame();
+void ReplayGame(std::string filename) noexcept;
 
