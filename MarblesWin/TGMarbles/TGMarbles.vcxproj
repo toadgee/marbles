@@ -117,6 +117,7 @@
     <ClInclude Include="..\..\TGMarbles\Perf\AITest.h" />
     <ClInclude Include="..\..\TGMarbles\Perf\PerfTest.h" />
     <ClInclude Include="..\..\TGMarbles\Platform\Thread.h" />
+    <ClInclude Include="..\..\TGMarbles\Utilities\DataExtensions.h" />
     <ClInclude Include="..\..\TGMarbles\Utilities\HiResTimer.h" />
     <ClInclude Include="..\..\TGMarbles\Utilities\Logging.h" />
     <ClInclude Include="..\..\TGMarbles\Utilities\Random.h" />
@@ -169,6 +170,7 @@
       <FileType>Document</FileType>
     </ClCompile>
     <None Include="..\..\TGMarbles\precomp.h" />
+    <ClCompile Include="..\..\TGMarbles\Utilities\DataExtensions.cpp" />
     <None Include="..\..\TGMarbles\Utilities\Logging.m" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
