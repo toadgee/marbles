@@ -24,10 +24,10 @@
     <ClCompile Include="..\..\Marbles\Marbles.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="main.cpp">
+    <ClCompile Include="..\..\Marbles\MarblesReplay.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Marbles\MarblesReplay.cpp">
+    <ClCompile Include="..\..\Marbles\main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

@@ -21,9 +21,9 @@
   <ItemGroup>
     <ClCompile Include="..\..\Marbles\ConsolePlayer.cpp" />
     <ClCompile Include="..\..\Marbles\ConsoleUtilities.cpp" />
+    <ClCompile Include="..\..\Marbles\main.cpp" />
     <ClCompile Include="..\..\Marbles\Marbles.cpp" />
     <ClCompile Include="..\..\Marbles\MarblesReplay.cpp" />
-    <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\Marbles\ConsolePlayer.h" />
