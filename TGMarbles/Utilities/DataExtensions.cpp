@@ -6,8 +6,10 @@
 //  Copyright (c) 2013 toadgee.com. All rights reserved.
 //
 
+#include "precomp.h"
 #include "DebugAssert.h"
 #include "MarblesMem.h"
+#include "DataExtensions.h"
 
 #define kCardDataVersion 1
 #define kDeckDataVersion 1
@@ -25,8 +27,7 @@
 #define kMarblesMinorVersion 0
 #define kMarblesBuildVersion 0
 
-#import "DataExtensions.h"
-
+/*
 @interface NSData (MarblesExtensions)
 -(BOOL)boolAtOffset:(uint16_t *)offset;
 -(int)intAtOffset:(uint16_t *)offset;
@@ -50,7 +51,7 @@
 @end
 
 @implementation NSData (MarblesExtensions)
-
+*/
 #define typeAtOffset(type) \
     NSRange rng = NSMakeRange(*offset, sizeof(type)); \
     *offset += sizeof(type); \
@@ -124,9 +125,9 @@ TGMCard* CreateCardFromData(TGMData *data, uint16_t* offset)
 		return NULL;
 	}
 	
-	int uniqueId = [data intAtOffset:offset];
-	CardNumber cn = [data cardNumberAtOffset:offset];
-	CardSuit cs = [data cardSuitAtOffset:offset];
+	int uniqueId = data->GetInt(offset);
+	CardNumber cn = data->GetCardNumber(offset);
+	CardSuit cs = data->GetCardSuit(offset);
 	return CreateCard(uniqueId, cn, cs);
 }
 

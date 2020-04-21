@@ -10,13 +10,19 @@
 #include "Deck.h"
 #include "Card.h"
 
-uint16_t MoveDataLength();
-uint16_t CardDataLength();
-uint16_t MarbleDataLength();
+uint16_t MoveDataLength() noexcept;
+uint16_t CardDataLength() noexcept;
+uint16_t MarbleDataLength() noexcept;
 
-#if __OBJC__
-#if TARGET_OS_OSX || TARGET_OS_IPHONE // TGMData
-#define TGMData NSData // temporary
+class TGMData final
+{
+public:
+private:
+	int GetInt(uint16_t* offset);
+	CardNumber GetCardNumber(uint16_t* offset);
+	CardSuit GetCardSuit(uint16_t* offset);
+};
+
 TGMGameLog* CreateGameLogFromData(TGMData *data);
 TGMData* GameLogData(TGMGameLog* gameLog);
 TGMCard* CreateCardFromData(TGMData *data, uint16_t* offset);
@@ -26,5 +32,3 @@ TGMDeck* CreateDeckFromData(TGMData *data, uint16_t* offset);
 TGMData* GetMarbleData(TGMMarble *marble);
 TGMMove* CreateMoveFromData(TGMData *data, uint16_t* offset);
 TGMData* GetMoveData(TGMMove *move);
-#endif
-#endif
