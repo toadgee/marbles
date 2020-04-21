@@ -52,7 +52,7 @@ void DoGame(TGMGame* game, Strategy team1, Strategy team2)
 	GameStartNew(game);
 }
 
-int main (int argc, const char * argv[])
+void RunConsoleGame()
 {
 	while (true)
 	{
@@ -150,7 +150,5 @@ int main (int argc, const char * argv[])
 		// TODO : Play again?
 		break;
 	}
-	
-	return 0;
 }
 
