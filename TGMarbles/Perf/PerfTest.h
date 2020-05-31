@@ -8,3 +8,4 @@
 
 void RunAllPerfTests();
 int RunAllPerfTestsWithOptions(uint64_t testCount, uint64_t statusUpdates);
+void RunMultithreadedPerfTests();
