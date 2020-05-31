@@ -36,6 +36,7 @@ int main(int argc, const char* argv[])
 		{
 			printf("--replay [filename]: replay game\n");
 			printf("--perf : perf tests\n");
+			printf("--test : multi-threaded perf tests (temporary)\n");
 			printf("--help : help message\n");
 			return 0;
 		}
