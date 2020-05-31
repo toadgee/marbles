@@ -7,11 +7,13 @@
 TGMMoveList* AllocateMoveList(void);
 void DeallocateMoveList(TGMMoveList* moveList);
 
+static std::mutex s_lock;
 static TGMPoolAllocator* s_MoveListAllocationPoolUnusedFirst = NULL;
 static TGMPoolAllocator* s_MoveListAllocationPoolUsedFirst = NULL;
 
 TGMMoveList* AllocateMoveList(void)
 {
+	const std::lock_guard<std::mutex> lock(s_lock);
 	TGMPoolAllocator* allocator = AllocatePoolObject(sizeof(TGMMoveList), &s_MoveListAllocationPoolUnusedFirst, &s_MoveListAllocationPoolUsedFirst);
 	TGMMoveList* moveList = (TGMMoveList *)allocator->_object;
 	moveList->_holder = allocator; // need a back pointer to the allocator for a quick return policy
@@ -44,6 +46,7 @@ void DeallocateMoveList(TGMMoveList* moveList)
 	moveList->_holder = allocator;
 #endif
 	
+	const std::lock_guard<std::mutex> lock(s_lock);
 	DeallocatePoolObject(allocator, &s_MoveListAllocationPoolUnusedFirst, &s_MoveListAllocationPoolUsedFirst);
 	MemDecreaseGlobalCount(g_moveListsLiving);
 }

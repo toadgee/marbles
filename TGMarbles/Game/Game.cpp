@@ -47,11 +47,13 @@ void GameEventPlayerDiscarded(TGMGame* game, TGMCard* card);
 TGMGame* AllocateGame(void);
 void DeallocateGame(TGMGame* game);
 
+static std::mutex s_lock;
 static TGMPoolAllocator* s_gameAllocationPoolUnusedFirst = NULL;
 static TGMPoolAllocator* s_gameAllocationPoolUsedFirst = NULL;
 
 TGMGame* AllocateGame(void)
 {
+	const std::lock_guard<std::mutex> lock(s_lock);
 	TGMPoolAllocator* allocator = AllocatePoolObject(sizeof(TGMGame), &s_gameAllocationPoolUnusedFirst, &s_gameAllocationPoolUsedFirst);
 	TGMGame* game = (TGMGame *)allocator->_object;
 	game->_holder = allocator; // need a back pointer to the allocator for a quick return policy
@@ -63,6 +65,7 @@ TGMGame* AllocateGame(void)
 
 void DeallocateGame(TGMGame* game)
 {
+	const std::lock_guard<std::mutex> lock(s_lock);
 	dassert(game);
 	if (!game) return;
 	

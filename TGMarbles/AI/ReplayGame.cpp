@@ -13,11 +13,14 @@
 TGMReplayGame* AllocateReplayGame(void);
 void DeallocateReplayGame(TGMReplayGame* replayGame);
 
+std::mutex s_lock;
 static TGMPoolAllocator* s_ReplayGameAllocationPoolUnusedFirst = NULL;
 static TGMPoolAllocator* s_ReplayGameAllocationPoolUsedFirst = NULL;
 
 TGMReplayGame* AllocateReplayGame(void)
 {
+	const std::lock_guard<std::mutex> lock(s_lock);
+
 	TGMPoolAllocator* allocator = AllocatePoolObject(sizeof(TGMReplayGame), &s_ReplayGameAllocationPoolUnusedFirst, &s_ReplayGameAllocationPoolUsedFirst);
 	TGMReplayGame* replayGame = (TGMReplayGame *)allocator->_object;
 	replayGame->_holder = allocator; // need a back pointer to the allocator for a quick return policy
@@ -30,6 +33,8 @@ TGMReplayGame* AllocateReplayGame(void)
 
 void DeallocateReplayGame(TGMReplayGame* replayGame)
 {
+	const std::lock_guard<std::mutex> lock(s_lock);
+
 	dassert(replayGame);
 	if (!replayGame) return;
 	

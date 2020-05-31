@@ -14,11 +14,14 @@
 
 TGMCard* AllocateCard(void);
 
+static std::mutex s_lock;
 static TGMPoolAllocator* s_CardAllocationPoolUnusedFirst = NULL;
 static TGMPoolAllocator* s_CardAllocationPoolUsedFirst = NULL;
 
 TGMCard* AllocateCard(void)
 {
+	const std::lock_guard<std::mutex> lock(s_lock);
+
 	TGMPoolAllocator* allocator = AllocatePoolObject(sizeof(TGMCard), &s_CardAllocationPoolUnusedFirst, &s_CardAllocationPoolUsedFirst);
 	TGMCard* card = (TGMCard *)allocator->_object;
 	card->_holder = allocator; // need a back pointer to the allocator for a quick return policy
@@ -30,6 +33,8 @@ TGMCard* AllocateCard(void)
 
 void DeallocateCard(TGMCard* card)
 {
+	const std::lock_guard<std::mutex> lock(s_lock);
+
 #ifdef DEBUG
 	TGMPoolAllocator* allocator = (TGMPoolAllocator*)card->_holder; // need to do this before memset...
 	memset(card, (int)0xDEADBEEF, sizeof(TGMCard));
