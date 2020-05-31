@@ -27,6 +27,11 @@ int main(int argc, const char* argv[])
 			++matchedOptions;
 			perf = true;
 		}
+		else if (_strnicmp(argv[i], "--test", 6) == 0)
+		{
+			RunMultithreadedPerfTests();
+			return 0;
+		}
 		else if (_strnicmp(argv[i], "--help", 6) == 0)
 		{
 			printf("--replay [filename]: replay game\n");
