@@ -7,6 +7,7 @@
 //
 
 #include "precomp.h"
+#ifndef WIN32
 #include "DebugAssert.h"
 #include "MarblesMem.h"
 #include "DataExtensions.h"
@@ -520,3 +521,4 @@ TGMData* GetMoveData(TGMMove *move)
 	return data;
 }
 
+#endif
