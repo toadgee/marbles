@@ -100,7 +100,15 @@ AITest::~AITest()
 void AITest::Run(uint64_t test)
 {
 	HiResTimerStart(_gameTimer);
-	GameStartNewWithSeed(_game, _seed);
+	if (_seed != 0)
+	{
+		GameStartNewWithSeed(_game, _seed);
+	}
+	else
+	{
+		GameStartNew(_game);
+	}
+
 	uint64_t elapsed = HiResTimerStop(_gameTimer);
 	
 	if (_statusUpdates != 0 && test % _statusUpdates == 0)
