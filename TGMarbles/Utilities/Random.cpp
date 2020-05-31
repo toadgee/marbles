@@ -5,8 +5,6 @@
 #define RandomPointer(rnd) (rnd)
 #endif
 
-static TGRandom *s_currentRandom = nullptr;
-
 TGRandom* CreateRandomAndSeed(void)
 {
 	return CreateRandomWithSeed((unsigned)time(0));
@@ -22,7 +20,6 @@ TGRandom* CreateRandomWithSeed(unsigned seed)
 	printf("RandomDoSeed on %p, new seed is %d\n", RandomPointer(rnd), seed);
 #endif
 	
-	s_currentRandom = rnd;
 #if WIN32
 	srand((unsigned)seed);
 #elif TARGET_OS_OSX || TARGET_OS_IPHONE
@@ -41,11 +38,6 @@ void DestroyRandom(TGRandom* random)
 	memset(random, (int)0xDEADBEEF, sizeof(TGRandom));
 #endif
 	
-	if (s_currentRandom == random)
-	{
-		s_currentRandom = nullptr;
-	}
-
 	free(random);
 }
 
@@ -64,14 +56,10 @@ void ResetRandom(TGRandom* rnd)
 #else
 	#error unknown platform
 #endif
-	
-	s_currentRandom = rnd;
 }
 
 uint32_t RandomRandom(TGRandom* rnd)
 {
-	assert(rnd == s_currentRandom);
-	
 	if (rnd == NULL)
 	{
 #ifdef RANDOM_LOGGING
@@ -127,8 +115,6 @@ void RestoreRandom(TGRandom* rnd)
 	#error unknown platform
 #endif
 	}
-	
-	s_currentRandom = rnd;
 }
 
 TGRandom* CopyRandom(TGRandom* rnd)
