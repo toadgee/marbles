@@ -7,182 +7,249 @@
 //
 
 #include "precomp.h"
-#ifndef WIN32
 #include "DebugAssert.h"
 #include "MarblesMem.h"
 #include "DataExtensions.h"
 
-#define kCardDataVersion 1
-#define kDeckDataVersion 1
-#define kGameLogDataVersion 1
-#define kMarbleDataVersion 1
-#define kMoveDataVersion 1
+static const uint8_t kCardDataVersion = 1;
+static const uint8_t kDeckDataVersion = 1;
+static const uint8_t kGameLogDataVersion = 1;
+static const uint8_t kMarbleDataVersion = 1;
+static const uint8_t kMoveDataVersion = 1;
 
-#define kCardDataMarker 1000
-#define kDeckDataMarker 1001
-#define kGameLogDataMarker 1002
-#define kMarbleDataMarker 1003
-#define kMoveDataMarker 1004
+static const uint8_t kCardDataMarker = 0;
+static const uint8_t kDeckDataMarker = 1;
+static const uint8_t kGameLogDataMarker = 2;
+static const uint8_t kMarbleDataMarker = 3;
+static const uint8_t kMoveDataMarker = 4;
 
-#define kMarblesMajorVersion 1
-#define kMarblesMinorVersion 0
-#define kMarblesBuildVersion 0
+static const uint8_t kMarblesMajorVersion = 1;
+static const uint8_t kMarblesMinorVersion = 0;
+static const uint8_t kMarblesBuildVersion = 0;
 
-/*
-@interface NSData (MarblesExtensions)
--(BOOL)boolAtOffset:(uint16_t *)offset;
--(int)intAtOffset:(uint16_t *)offset;
--(int16_t)int16AtOffset:(uint16_t *)offset;
--(CardNumber)cardNumberAtOffset:(uint16_t *)offset;
--(CardSuit)cardSuitAtOffset:(uint16_t *)offset;
--(MarbleColor)marbleColorAtOffset:(uint16_t *)offset;
--(PlayerColor)playerColorAtOffset:(uint16_t *)offset;
--(Strategy)strategyAtOffset:(uint16_t *)offset;
-@end
+TGMData::TGMData(int initialSize) noexcept
+{
+	m_data.reserve(initialSize);
+}
 
-@interface NSMutableData (MarblesExtensions)
--(void)appendBool:(BOOL)value;
--(void)appendInt:(int)value;
--(void)appendInt16:(int16_t)value;
--(void)appendCardNumber:(CardNumber)value;
--(void)appendCardSuit:(CardSuit)value;
--(void)appendMarbleColor:(MarbleColor)value;
--(void)appendPlayerColor:(PlayerColor)value;
--(void)appendStrategy:(Strategy)value;
-@end
+void TGMData::WriteData(TGMData&& data) noexcept
+{
+	m_data.insert(m_data.cend(), data.m_data.begin(), data.m_data.end());
+}
 
-@implementation NSData (MarblesExtensions)
-*/
-#define typeAtOffset(type) \
-    NSRange rng = NSMakeRange(*offset, sizeof(type)); \
-    *offset += sizeof(type); \
-    type value; \
-    [self getBytes:(void*)&value range:rng]; \
-    return value
+void TGMData::WriteHeader(uint8_t marker, uint8_t version) noexcept
+{
+	m_data.push_back(marker);
+	m_data.push_back(version);
+}
 
--(BOOL)boolAtOffset:(uint16_t *)offset { typeAtOffset(BOOL); }
--(int16_t)int16AtOffset:(uint16_t *)offset { typeAtOffset(int16_t); }
--(int)intAtOffset:(uint16_t *)offset { typeAtOffset(int); }
--(CardNumber)cardNumberAtOffset:(uint16_t *)offset { typeAtOffset(CardNumber); }
--(CardSuit)cardSuitAtOffset:(uint16_t *)offset { typeAtOffset(CardSuit); }
--(MarbleColor)marbleColorAtOffset:(uint16_t *)offset { typeAtOffset(MarbleColor); }
--(PlayerColor)playerColorAtOffset:(uint16_t *)offset { typeAtOffset(PlayerColor); }
--(Strategy)strategyAtOffset:(uint16_t *)offset { typeAtOffset(Strategy); }
-@end
+void TGMData::WriteBool(bool value) noexcept
+{
+	m_data.push_back(value ? 1 : 0);
+}
 
-#define appendType(type, value) [self appendBytes:(void*)&value length:sizeof(type)]
+bool TGMData::ReadBool(TGMDataIterator& iterator) noexcept
+{
+	uint8_t value = *iterator; ++iterator;
+	return (value == 1);
+}
 
-@implementation NSMutableData (MarblesExtensions)
--(void)appendBool:(BOOL)value { appendType(BOOL, value); }
--(void)appendInt:(int)value { appendType(int, value); }
--(void)appendInt16:(int16_t)value { appendType(int16_t, value); }
--(void)appendCardNumber:(CardNumber)value { appendType(CardNumber, value); }
--(void)appendCardSuit:(CardSuit)value { appendType(CardSuit, value); }
--(void)appendMarbleColor:(MarbleColor)value { appendType(MarbleColor, value); }
--(void)appendPlayerColor:(PlayerColor)value { appendType(PlayerColor, value); }
--(void)appendStrategy:(Strategy)value { appendType(Strategy, value); }
-@end
+void TGMData::WriteMarbleColor(MarbleColor mc) noexcept
+{
+	dassert(static_cast<int>(mc) < 256);
+	m_data.push_back(static_cast<uint8_t>(mc));
+}
 
-uint16_t MarbleDataLength()
+MarbleColor TGMData::ReadMarbleColor(TGMDataIterator& iterator) noexcept
+{
+	uint8_t value = *iterator++;
+	return static_cast<MarbleColor>(value);
+}
+
+void TGMData::WriteInt16(uint16_t value) noexcept
+{
+	m_data.push_back(static_cast<uint8_t>((value >> 8) & 0xFF));
+	m_data.push_back(static_cast<uint8_t>(value & 0xFF));
+}
+
+int16_t TGMData::ReadInt16(TGMDataIterator& iterator) noexcept
+{
+	int16_t value = *iterator++;
+	value <<= 8; value += *iterator++;
+	return value;
+}
+
+void TGMData::WriteInt(int value) noexcept
+{
+	m_data.push_back(static_cast<uint8_t>((value >> 24) & 0xFF));
+	m_data.push_back(static_cast<uint8_t>((value >> 16) & 0xFF));
+	m_data.push_back(static_cast<uint8_t>((value >> 8) & 0xFF));
+	m_data.push_back(static_cast<uint8_t>(value & 0xFF));
+}
+
+int TGMData::ReadInt(TGMDataIterator& iterator) noexcept
+{
+	int value = *iterator++;
+	value <<= 8; value += *iterator++;
+	value <<= 8; value += *iterator++;
+	value <<= 8; value += *iterator++;
+	return value;
+}
+
+void TGMData::WriteCardNumber(CardNumber number) noexcept
+{
+	WriteInt16(static_cast<uint16_t>(number));
+}
+
+CardNumber TGMData::ReadCardNumber(TGMDataIterator& iterator) noexcept
+{
+	uint16_t value = *iterator; ++iterator;
+	value <<= 8; value += *iterator++;
+	return static_cast<CardNumber>(value);
+}
+
+void TGMData::WriteCardSuit(CardSuit suit) noexcept
+{
+	WriteInt16(static_cast<uint16_t>(suit));
+}
+
+CardSuit TGMData::ReadCardSuit(TGMDataIterator& iterator) noexcept
+{
+	uint16_t value = *iterator++;
+	value <<= 8; value += *iterator++;
+	return static_cast<CardSuit>(value);
+}
+
+void TGMData::WritePlayerColor(PlayerColor pc) noexcept
+{
+	dassert(static_cast<int>(pc) < 256);
+	m_data.push_back(static_cast<uint8_t>(pc));
+}
+
+PlayerColor TGMData::ReadPlayerColor(TGMDataIterator& iterator) noexcept
+{
+	uint8_t value = *iterator++;
+	return static_cast<PlayerColor>(value);
+}
+
+void TGMData::WriteUInt8(uint8_t value) noexcept
+{
+	m_data.push_back(value);
+}
+
+uint8_t TGMData::ReadUInt8(TGMDataIterator& iterator) noexcept
+{
+	return *iterator++;
+}
+
+void TGMData::WriteStrategy(Strategy strategy) noexcept
+{
+	WriteInt16(static_cast<uint16_t>(strategy));
+}
+
+Strategy TGMData::ReadStrategy(TGMDataIterator& iterator) noexcept
+{
+	uint16_t value = *iterator++;
+	value <<= 8; value += *iterator++;
+	return static_cast<Strategy>(value);
+}
+
+TGMDataIterator TGMData::StartReading() const noexcept
+{
+	return m_data.cbegin();
+}
+
+uint16_t MarbleDataLength() noexcept
 {
 	return (
-		sizeof(int) // marker
-		 + sizeof(int) // version
-		 + sizeof(bool) // null marble
-		 + sizeof(MarbleColor) // color
+		sizeof(uint8_t) // marker
+		 + sizeof(uint8_t) // version
+		 + sizeof(uint8_t) // null marble
+		 + sizeof(uint8_t) // color
 		 + sizeof(int16_t) // distanceFromHome
-		 + sizeof(bool)); // wentBehindHome
+		 + sizeof(uint8_t)); // wentBehindHome
 }
 
-uint16_t CardDataLength()
+uint16_t CardDataLength() noexcept
 {
 	return (
-		sizeof(int)  // marker
-		+ sizeof(int) // version
+		sizeof(uint8_t)  // marker
+		+ sizeof(uint8_t) // version
 		+ sizeof(int) // unique Id
-		+ sizeof(CardNumber) // number
-		+ sizeof(CardSuit)); // suit
+		+ sizeof(uint16_t) // number
+		+ sizeof(uint16_t)); // suit
 }
 
-TGMCard* CreateCardFromData(TGMData *data, uint16_t* offset)
+TGMCard* CreateCardFromData(TGMDataIterator& iter) noexcept
 {
-	if (offset == NULL || [data length] < CardDataLength() + *offset)
-	{
-		dassert(false);
-		return NULL;
-	}
-	
-	int marker = [data intAtOffset:offset];
+	uint8_t marker = TGMData::ReadUInt8(iter);
 	if (marker != kCardDataMarker)
 	{
 		dassert(false);
 		return NULL;
 	}
 	
-	int version = [data intAtOffset:offset];
+	uint8_t version = TGMData::ReadUInt8(iter);
 	if (version != kCardDataVersion)
 	{
 		dassert(false);
 		return NULL;
 	}
 	
-	int uniqueId = data->GetInt(offset);
-	CardNumber cn = data->GetCardNumber(offset);
-	CardSuit cs = data->GetCardSuit(offset);
+	int uniqueId = TGMData::ReadInt(iter);
+	CardNumber cn = TGMData::ReadCardNumber(iter);
+	CardSuit cs = TGMData::ReadCardSuit(iter);
 	return CreateCard(uniqueId, cn, cs);
 }
 
-TGMData* GetCardData(TGMCard *card)
+TGMData GetCardData(TGMCard *card) noexcept
 {
-	NSMutableData* data = [NSMutableData dataWithCapacity:CardDataLength()];
-	[data appendInt:kCardDataMarker];
-	[data appendInt:kCardDataVersion];
-	[data appendInt:card->_uniqueId];
-	[data appendCardNumber:card->_number];
-	[data appendCardSuit:card->_suit];
+	TGMData data(CardDataLength());
+	data.WriteHeader(kCardDataMarker, kCardDataVersion);
+	data.WriteInt(card->_uniqueId);
+	data.WriteCardNumber(card->_number);
+	data.WriteCardSuit(card->_suit);
 	return data;
 }
 
-TGMData* DeckData(TGMDeck *deck)
+TGMData GetDeckData(TGMDeck *deck) noexcept
 {
-	NSMutableData* data = [NSMutableData data];
-	[data appendInt:kDeckDataMarker];
-	[data appendInt:kDeckDataVersion];
-	[data appendInt:(int)CardListCount(deck->_cards)];
-	CardListIterateWithBlock(deck->_cards, ^(unsigned i, TGMCard *card)
-	{
-		[data appendInt:(int)i];
-		[data appendData:GetCardData(card)];
-		return true;
-	});
-	
-	[data appendInt:(int)CardListCount(deck->_discarded)];
-	CardListIterateWithBlock(deck->_discarded, ^(unsigned i, TGMCard *card)
-	{
-		[data appendInt:(int)i];
-		[data appendData:GetCardData(card)];
-		return true;
-	});
-	
-	return data;
-}
+	TGMData data;
+	data.WriteHeader(kDeckDataMarker, kDeckDataVersion);
 
-TGMDeck* CreateDeckFromData(TGMData *data, uint16_t* offset)
-{
-	if (offset == NULL)
+	int i = 0;
+	TGMCard* card = deck->_cards->_first;
+	data.WriteInt(CardListCount(deck->_cards));
+	while (card != NULL)
 	{
-		dassert(false);
-		return NULL;
+		data.WriteInt(i++);
+		data.WriteData(GetCardData(card));
+		card = card->nextCard;
 	}
 	
-	int marker = [data intAtOffset:offset];
+	i = 0;
+	card = deck->_discarded->_first;
+	data.WriteInt(CardListCount(deck->_discarded));
+	while (card != NULL)
+	{
+		data.WriteInt(i++);
+		data.WriteData(GetCardData(card));
+		card = card->nextCard;
+	}
+	
+	return data;
+}
+
+TGMDeck* CreateDeckFromData(TGMDataIterator &iter) noexcept
+{
+	int marker = TGMData::ReadInt(iter);
 	if (marker != kDeckDataMarker)
 	{
 		dassert(false);
 		return NULL;
 	}
 	
-	int version = [data intAtOffset:offset];
+	int version = TGMData::ReadInt(iter);
 	if (version != kDeckDataVersion)
 	{
 		dassert(false);
@@ -191,10 +258,10 @@ TGMDeck* CreateDeckFromData(TGMData *data, uint16_t* offset)
 	
 	TGMDeck* deck = CreateDeck(true);
 	
-	int cardCount = [data intAtOffset:offset];
+	int cardCount = TGMData::ReadInt(iter);
 	for (int i = 0; i < cardCount; i++)
 	{
-		int j = [data intAtOffset:offset];
+		int j = TGMData::ReadInt(iter);
 		if (i != j)
 		{
 			dassert(false);
@@ -202,7 +269,7 @@ TGMDeck* CreateDeckFromData(TGMData *data, uint16_t* offset)
 			return NULL;
 		}
 		
-		TGMCard* card = CreateCardFromData(data, offset);
+		TGMCard* card = CreateCardFromData(iter);
 		if (card == NULL)
 		{
 			dassert(false);
@@ -213,10 +280,10 @@ TGMDeck* CreateDeckFromData(TGMData *data, uint16_t* offset)
 		CardListTransfer(deck->_cards, card);
 	}
 	
-	int discardCount = [data intAtOffset:offset];
+	int discardCount = TGMData::ReadInt(iter);
 	for (int i = 0; i < discardCount; i++)
 	{
-		int j = [data intAtOffset:offset];
+		int j = TGMData::ReadInt(iter);
 		if (i != j)
 		{
 			dassert(false);
@@ -224,7 +291,7 @@ TGMDeck* CreateDeckFromData(TGMData *data, uint16_t* offset)
 			return NULL;
 		}
 		
-		TGMCard* card = CreateCardFromData(data, offset);
+		TGMCard* card = CreateCardFromData(iter);
 		if (card == NULL)
 		{
 			dassert(false);
@@ -238,23 +305,23 @@ TGMDeck* CreateDeckFromData(TGMData *data, uint16_t* offset)
 	return deck;
 }
 
-TGMGameLog* CreateGameLogFromData(TGMData *data)
+TGMGameLog* CreateGameLogFromData(TGMData &data) noexcept
 {
-	uint16_t offset = 0;
-	
 	// gets the major, minor, build versions
-	[data intAtOffset:&offset];
-	[data intAtOffset:&offset];
-	[data intAtOffset:&offset];
+	TGMDataIterator iter{ data.StartReading() };
+
+	TGMData::ReadInt(iter);
+	TGMData::ReadInt(iter);
+	TGMData::ReadInt(iter);
 	
-	int marker = [data intAtOffset:&offset];
+	int marker = TGMData::ReadInt(iter);
 	if (marker != kGameLogDataMarker)
 	{
 		dassert(false);
 		return nullptr;
 	}
 	
-	int version = [data intAtOffset:&offset];
+	int version = TGMData::ReadInt(iter);
 	if (version != kGameLogDataVersion)
 	{
 		dassert(false);
@@ -262,61 +329,61 @@ TGMGameLog* CreateGameLogFromData(TGMData *data)
 	}
 	
 	TGMGameLog* gameLog = CreateGameLog();
-	PlayerColor pc = (PlayerColor)[data intAtOffset:&offset];
+	PlayerColor pc = TGMData::ReadPlayerColor(iter);
 	GameLogSetDealingPlayer(gameLog, pc);
 	
 	for (unsigned p = 0; p < kPlayers; p++)
 	{
-		Strategy strategy = [data strategyAtOffset:&offset];
+		Strategy strategy = TGMData::ReadStrategy(iter);
 		if (!IsValidStrategy(strategy))
 		{
 			dassert(false);
-			return nil;
+			return nullptr;
 		}
 		
 		gameLog->_playerStrategy[p] = strategy;
 	}
 	
-	uint16_t deckCount = (uint16_t)[data intAtOffset:&offset];
+	uint16_t deckCount = TGMData::ReadInt(iter);
 	for (uint16_t d = 0; d < deckCount; d++)
 	{
-		uint16_t dEncoded = (uint16_t)[data intAtOffset:&offset];
+		uint16_t dEncoded = (uint16_t)TGMData::ReadInt(iter);
 		if (d != dEncoded)
 		{
 			dassert(false);
-			return nil;
+			return nullptr;
 		}
 		
-		TGMDeck* deck = CreateDeckFromData(data, &offset);
+		TGMDeck* deck = CreateDeckFromData(iter);
 		if (!deck)
 		{
 			dassert(false);
-			return nil;
+			return nullptr;
 		}
 		
 		DeckListAdd(gameLog->_deckList, deck);
 		ReleaseDeck(deck);
 	}
 	
-	int moveCount = [data intAtOffset:&offset];
+	int moveCount = TGMData::ReadInt(iter);
 	for (int i = 0; i < moveCount; i++)
 	{
-		int iEnc = [data intAtOffset:&offset];
+		int iEnc = TGMData::ReadInt(iter);
 		if (i != iEnc)
 		{
 			dassert(false);
-			return nil;
+			return nullptr;
 		}
 		
-		TGMMove* move = CreateMoveFromData(data, &offset);
+		TGMMove* move = CreateMoveFromData(iter);
 		if (move == NULL)
 		{
 			dassert(false);
-			return nil;
+			return nullptr;
 		}
 		
-		dassert(gameLog != nil);
-		if (gameLog != nil)
+		dassert(gameLog != nullptr);
+		if (gameLog != nullptr)
 		{
 			MoveListTransfer(gameLog->_moveList, move);
 		}
@@ -329,74 +396,67 @@ TGMGameLog* CreateGameLogFromData(TGMData *data)
 	return gameLog;
 }
 
-TGMData* GameLogData(TGMGameLog* gameLog)
+TGMData GameLogData(TGMGameLog* gameLog) noexcept
 {
 	// not perfect as it's not the serialized move size, but close enough
-	NSMutableData *data = [NSMutableData dataWithCapacity:(sizeof(int) + MoveListCount(gameLog->_moveList) * sizeof(TGMMove))];
+	TGMData data(3 + (sizeof(int) + MoveListCount(gameLog->_moveList) * sizeof(TGMMove)));
 	
 	// version
-	[data appendInt:kMarblesMajorVersion];
-	[data appendInt:kMarblesMinorVersion];
-	[data appendInt:kMarblesBuildVersion];
+	data.WriteUInt8(kMarblesMajorVersion);
+	data.WriteUInt8(kMarblesMinorVersion);
+	data.WriteUInt8(kMarblesBuildVersion);
 	
-	[data appendInt:kGameLogDataMarker];
-	[data appendInt:kGameLogDataVersion];
-	
-	[data appendPlayerColor:gameLog->_dealingPlayer];
+	data.WriteHeader(kGameLogDataMarker, kGameLogDataVersion);
+	data.WritePlayerColor(gameLog->_dealingPlayer);
 	
 	for (unsigned p = 0; p < kPlayers; p++)
 	{
-		[data appendStrategy:gameLog->_playerStrategy[p]];
+		data.WriteStrategy(gameLog->_playerStrategy[p]);
 	}
 	
-	[data appendInt:(int)DeckListCount(gameLog->_deckList)];
-	DeckListIterateWithBlock(gameLog->_deckList, ^(unsigned d, TGMDeck* deck)
+	data.WriteInt(DeckListCount(gameLog->_deckList));
+	TGMDeck* deck = gameLog->_deckList->_first;
+	int d = 0;
+	while (deck != nullptr)
 	{
-		[data appendInt:(int)d];
-		[data appendData:DeckData(deck)];
-		return YES;
-	});
+		data.WriteInt(d++);
+		data.WriteData(GetDeckData(deck));
+		deck = deck->_nextDeck;
+	}
 	
-	[data appendInt:(int)MoveListCount(gameLog->_moveList)];
+	data.WriteInt((int)MoveListCount(gameLog->_moveList));
 	TGMMove *move = gameLog->_moveList->first;
 	int i = 0;
 	while (move != nullptr)
 	{
-		[data appendInt:i];
-		[data appendData:GetMoveData(move)];
+		data.WriteInt(i++);
+		data.WriteData(GetMoveData(move));
 		move = move->nextMove;
-		++i;
 	}
 	
 	return data;
 }
 
-TGMMarble* CreateMarbleFromData(TGMData *data, uint16_t* offset, bool* nullMarbleEncoded)
+TGMMarble* CreateMarbleFromData(TGMDataIterator& iter, bool* nullMarbleEncoded) noexcept
 {
-	if (offset == NULL || [data length] < MarbleDataLength() + *offset)
-	{
-		dassert(false);
-		return NULL;
-	}
-	
-	int marker = [data intAtOffset:offset];
+	int marker = TGMData::ReadInt(iter);
 	if (marker != kMarbleDataMarker)
 	{
 		dassert(false);
 		return NULL;
 	}
 	
-	int version = [data intAtOffset:offset];
+	int version = TGMData::ReadInt(iter);
 	if (version != kMarbleDataVersion)
 	{
 		dassert(false);
 		return NULL;
 	}
 	
-	BOOL nullMarble = [data boolAtOffset:offset];
-	MarbleColor mc = [data marbleColorAtOffset:offset];
-	int16_t distanceFromHome = [data int16AtOffset:offset];
-	BOOL wentBehindHome = [data boolAtOffset:offset];
+	bool nullMarble = TGMData::ReadBool(iter);
+	MarbleColor mc = TGMData::ReadMarbleColor(iter);
+	int16_t distanceFromHome = TGMData::ReadInt16(iter);
+	bool wentBehindHome = TGMData::ReadBool(iter);
 	
 	if (nullMarbleEncoded)
 	{
@@ -411,50 +471,42 @@ TGMMarble* CreateMarbleFromData(TGMData *data, uint16_t* offset, bool* nullMarbl
 	return CreateMarble(mc, distanceFromHome, wentBehindHome);
 }
 
-TGMData* GetMarbleData(TGMMarble *marble)
+TGMData GetMarbleData(TGMMarble *marble) noexcept
 {
-	NSMutableData* data = [NSMutableData dataWithCapacity:MarbleDataLength()];
-	[data appendInt:kMarbleDataMarker];
-	[data appendInt:kMarbleDataVersion];
+	TGMData data(MarbleDataLength());
+	data.WriteHeader(kMarbleDataMarker, kMarbleDataVersion);
 	
-	BOOL isNullMarble = YES;
+	BOOL isNullMarble = true;
 	MarbleColor mc = MarbleColor::None;
 	int16_t distanceFromHome = 0;
-	BOOL wentBehindHome = NO;
+	bool wentBehindHome = false;
 	
 	if (marble)
 	{
-		isNullMarble = NO;
+		isNullMarble = false;
 		mc = marble->color;
 		distanceFromHome = marble->distanceFromHome;
 		wentBehindHome = marble->wentBehindHome;
 	}
 	
-	
-	[data appendBool:isNullMarble];
-	[data appendMarbleColor:mc];
-	[data appendInt16:distanceFromHome];
-	[data appendBool:wentBehindHome];
+	data.WriteBool(isNullMarble);
+	data.WriteMarbleColor(mc);
+	data.WriteInt16(distanceFromHome);
+	data.WriteBool(wentBehindHome);
 	
 	return data;
 }
 
-TGMMove* CreateMoveFromData(TGMData *data, uint16_t* offset)
+TGMMove* CreateMoveFromData(TGMDataIterator& iter) noexcept
 {
-	if (offset == NULL || [data length] < MoveDataLength() + *offset)
-	{
-		dassert(false);
-		return NULL;
-	}
-	
-	int marker = [data intAtOffset:offset];
+	uint8_t marker = TGMData::ReadUInt8(iter);
 	if (marker != kMoveDataMarker)
 	{
 		dassert(false);
 		return NULL;
 	}
 	
-	int version = [data intAtOffset:offset];
+	int version = TGMData::ReadInt(iter);
 	if (version != kMoveDataVersion)
 	{
 		dassert(false);
@@ -462,40 +514,40 @@ TGMMove* CreateMoveFromData(TGMData *data, uint16_t* offset)
 	}
 
 	bool nullMarbleEncoded = false;
-	TGMMarble* marble = CreateMarbleFromData(data, offset, &nullMarbleEncoded);
+	TGMMarble* marble = CreateMarbleFromData(iter, &nullMarbleEncoded);
 	if (marble == NULL && !nullMarbleEncoded)
 	{
 		dassert(false);
 		return NULL;
 	}
 	
-	TGMCard* card = CreateCardFromData(data, offset);
+	TGMCard* card = CreateCardFromData(iter);
 	if (card == NULL)
 	{
 		dassert(false);
 		return NULL;
 	}
 	
-	PlayerColor playerColor = [data playerColorAtOffset:offset];
-	int oldSpot = [data intAtOffset:offset];
-	int newSpot = [data intAtOffset:offset];
-	BOOL isDiscard = [data boolAtOffset:offset];
-	int moves = [data intAtOffset:offset];
-	BOOL wentBehindHome = [data boolAtOffset:offset];
-	int jumps = [data intAtOffset:offset];
+	PlayerColor playerColor = TGMData::ReadPlayerColor(iter);
+	int oldSpot = TGMData::ReadInt(iter);
+	int newSpot = TGMData::ReadInt(iter);
+	bool isDiscard = TGMData::ReadBool(iter);
+	int moves = TGMData::ReadInt(iter);
+	bool wentBehindHome = TGMData::ReadBool(iter);
+	int jumps = TGMData::ReadInt(iter);
 	TGMMove* move = MakeMove(card, marble, isDiscard, playerColor, oldSpot, newSpot, moves, jumps, wentBehindHome);
 	if (marble != NULL) ReleaseMarble(marble);
 	ReleaseCard(card);
 	return move;
 }
 
-inline uint16_t MoveDataLength()
+inline uint16_t MoveDataLength() noexcept
 {
 	return sizeof(int) // marker
 		+ sizeof(int) // version
 		+ MarbleDataLength() // marble
 		+ CardDataLength() // card
-		+ sizeof(PlayerColor) // color
+		+ sizeof(uint16_t) // color
 		+ sizeof(int) // old spot
 		+ sizeof(int) // new spot
 		+ sizeof(bool) // isDiscard
@@ -504,21 +556,18 @@ inline uint16_t MoveDataLength()
 		+ sizeof(int) ; // jumps
 }
 
-TGMData* GetMoveData(TGMMove *move)
+TGMData GetMoveData(TGMMove *move) noexcept
 {
-	NSMutableData* data = [NSMutableData dataWithCapacity:MoveDataLength()];
-	[data appendInt:kMoveDataMarker];
-	[data appendInt:kMoveDataVersion];
-	[data appendData:GetMarbleData(move->marble)];
-	[data appendData:GetCardData(move->card)];
-	[data appendPlayerColor:move->playerColor];
-	[data appendInt:move->oldSpot];
-	[data appendInt:move->newSpot];
-	[data appendBool:move->isDiscard];
-	[data appendInt:move->moves];
-	[data appendBool:move->wentBehindHome];
-	[data appendInt:move->jumps];
+	TGMData data(MoveDataLength());
+	data.WriteHeader(kMoveDataMarker, kMoveDataVersion);
+	data.WriteData(GetMarbleData(move->marble));
+	data.WriteData(GetCardData(move->card));
+	data.WritePlayerColor(move->playerColor);
+	data.WriteInt(move->oldSpot);
+	data.WriteInt(move->newSpot);
+	data.WriteBool(move->isDiscard);
+	data.WriteInt(move->moves);
+	data.WriteBool(move->wentBehindHome);
+	data.WriteInt(move->jumps);
 	return data;
 }
-
-#endif

@@ -45,14 +45,8 @@ TGMGameLog* CopyGameLog(TGMGameLog* gameLog)
 	TGMGameLog* copy = nullptr;
 	if (gameLog)
 	{
-	#if 0 // TODO
-#if TARGET_OS_OSX || TARGET_OS_IPHONE // TGMData
-		TGMData* data = GameLogData(gameLog);
+		TGMData data = GameLogData(gameLog);
 		copy = CreateGameLogFromData(data);
-#endif
-#else
-		copy = CreateGameLog();
-#endif
 	}
 	
 	return copy;
