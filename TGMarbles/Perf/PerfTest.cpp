@@ -220,7 +220,7 @@ int RunAllPerfTestsWithOptions(uint64_t testCount, uint64_t statusUpdates)
 	return maxGames;
 }
 
-int RunGames(int count)
+int RunGames(unsigned count)
 {
 	std::unique_ptr<AITest> test(new AITest(Strategy::Aggressive, Strategy::Aggressive, 0));
 	for (uint64_t i = 0; i < count; i++)
@@ -234,16 +234,16 @@ int RunGames(int count)
 void RunMultithreadedPerfTests()
 {
 	TGHiResTimer* timer = CreateHiResTimer(true, true);
-	const int threadsToUse = std::thread::hardware_concurrency();
+	const unsigned threadsToUse = std::thread::hardware_concurrency();
 	printf("Using %d threads\n", threadsToUse);
 
 	const uint32_t maxGames = 10000;
 	printf("starting tests...\n");
 	std::vector<std::future<int>> futures;
-	const int jobsPerThread = maxGames / threadsToUse;
-	for (int i = 0; i < threadsToUse; ++i)
+	const unsigned jobsPerThread = maxGames / threadsToUse;
+	for (unsigned i = 0; i < threadsToUse; ++i)
 	{
-		int gamesForThisThread = jobsPerThread;
+		unsigned gamesForThisThread = jobsPerThread;
 		if (i == 0)
 		{
 			gamesForThisThread += maxGames % threadsToUse;
@@ -255,7 +255,7 @@ void RunMultithreadedPerfTests()
 	}
 
 	printf("Waiting for jobs to complete...\n");
-	int jobsLeft = threadsToUse;
+	unsigned jobsLeft = threadsToUse;
 	for (std::future<int>& f : futures)
 	{
 		f.wait();
