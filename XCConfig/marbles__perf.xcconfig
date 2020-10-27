@@ -1,7 +1,0 @@
-#include "marbles__base.xcconfig"
-
-PRODUCT_NAME = MarblesPerf
-GCC_PRECOMPILE_PREFIX_HEADER = YES
-GCC_PREFIX_HEADER = MarblesPerf/MarblesPerf-Prefix.pch
-
-DEAD_CODE_STRIPPING = YES
