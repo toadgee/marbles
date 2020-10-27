@@ -42,7 +42,7 @@
 		2F0E06B016BCCCB3001E8818 /* Move.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2F84418A150C034A0039260B /* Move.cpp */; };
 		2F0E06B116BCCCB3001E8818 /* MoveList.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2FBB64AA164CE63800C44B9F /* MoveList.cpp */; };
 		2F0E06B216BCCCB3001E8818 /* Player.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2F84418C150C034A0039260B /* Player.cpp */; };
-		2F0E06B416BCCCBE001E8818 /* DataExtensions.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2FF52BA5169D366A00F521F9 /* DataExtensions.mm */; };
+		2F0E06B416BCCCBE001E8818 /* DataExtensions.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2FF52BA5169D366A00F521F9 /* DataExtensions.cpp */; };
 		2F0E06B516BCCCBE001E8818 /* HiResTimer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2F84418F150C034A0039260B /* HiResTimer.cpp */; };
 		2F0E06B616BCCCBE001E8818 /* Logging.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F844191150C034A0039260B /* Logging.m */; };
 		2F0E06B816BCCCBE001E8818 /* Random.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2FC81E4F16AE4F21004925B4 /* Random.cpp */; };
@@ -234,11 +234,11 @@
 		2FF52BA1169D314F00F521F9 /* GameLog.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2FF52B9E169D314F00F521F9 /* GameLog.cpp */; };
 		2FF52BA2169D314F00F521F9 /* GameLog.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2FF52B9E169D314F00F521F9 /* GameLog.cpp */; };
 		2FF52BA6169D366A00F521F9 /* DataExtensions.h in Headers */ = {isa = PBXBuildFile; fileRef = 2FF52BA4169D366A00F521F9 /* DataExtensions.h */; };
-		2FF52BA7169D366A00F521F9 /* DataExtensions.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2FF52BA5169D366A00F521F9 /* DataExtensions.mm */; };
-		2FF52BA8169D366A00F521F9 /* DataExtensions.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2FF52BA5169D366A00F521F9 /* DataExtensions.mm */; };
-		2FF52BA9169D366A00F521F9 /* DataExtensions.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2FF52BA5169D366A00F521F9 /* DataExtensions.mm */; };
+		2FF52BA7169D366A00F521F9 /* DataExtensions.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2FF52BA5169D366A00F521F9 /* DataExtensions.cpp */; };
+		2FF52BA8169D366A00F521F9 /* DataExtensions.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2FF52BA5169D366A00F521F9 /* DataExtensions.cpp */; };
+		2FF52BA9169D366A00F521F9 /* DataExtensions.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2FF52BA5169D366A00F521F9 /* DataExtensions.cpp */; };
 		2FF52BAA169D410C00F521F9 /* GameLog.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2FF52B9E169D314F00F521F9 /* GameLog.cpp */; };
-		2FF52BAB169D411300F521F9 /* DataExtensions.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2FF52BA5169D366A00F521F9 /* DataExtensions.mm */; };
+		2FF52BAB169D411300F521F9 /* DataExtensions.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2FF52BA5169D366A00F521F9 /* DataExtensions.cpp */; };
 		2FF9B108169B8BE700E5E16B /* Options.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2FF9B107169B8BE700E5E16B /* Options.mm */; };
 		2FFA84C91481F41600EDDCDE /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2FFA84C81481F41600EDDCDE /* Foundation.framework */; };
 		2FFA84CC1481F41600EDDCDE /* Marbles.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2FFA84CB1481F41600EDDCDE /* Marbles.cpp */; };
@@ -494,7 +494,7 @@
 		2FF52B9D169D314F00F521F9 /* GameLog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameLog.h; sourceTree = "<group>"; };
 		2FF52B9E169D314F00F521F9 /* GameLog.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GameLog.cpp; sourceTree = "<group>"; };
 		2FF52BA4169D366A00F521F9 /* DataExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataExtensions.h; sourceTree = "<group>"; };
-		2FF52BA5169D366A00F521F9 /* DataExtensions.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = DataExtensions.mm; sourceTree = "<group>"; };
+		2FF52BA5169D366A00F521F9 /* DataExtensions.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = DataExtensions.cpp; sourceTree = "<group>"; };
 		2FF9B106169B8BE700E5E16B /* Options.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Options.h; path = MarblesMobile/Options.h; sourceTree = SOURCE_ROOT; };
 		2FF9B107169B8BE700E5E16B /* Options.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = Options.mm; path = MarblesMobile/Options.mm; sourceTree = SOURCE_ROOT; };
 		2FFA84C41481F41600EDDCDE /* Marbles */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = Marbles; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -754,7 +754,7 @@
 				2F104C85243ACBAF003E36A1 /* RandomPlayerColor.cpp */,
 				2F104C84243ACBAF003E36A1 /* RandomPlayerColor.h */,
 				2FF52BA4169D366A00F521F9 /* DataExtensions.h */,
-				2FF52BA5169D366A00F521F9 /* DataExtensions.mm */,
+				2FF52BA5169D366A00F521F9 /* DataExtensions.cpp */,
 				2F84418E150C034A0039260B /* HiResTimer.h */,
 				2F84418F150C034A0039260B /* HiResTimer.cpp */,
 				2F844190150C034A0039260B /* Logging.h */,
@@ -1223,7 +1223,7 @@
 				2F0E06B116BCCCB3001E8818 /* MoveList.cpp in Sources */,
 				2F0E06B216BCCCB3001E8818 /* Player.cpp in Sources */,
 				2F104C6C243ACB49003E36A1 /* DebugAssert.cpp in Sources */,
-				2F0E06B416BCCCBE001E8818 /* DataExtensions.mm in Sources */,
+				2F0E06B416BCCCBE001E8818 /* DataExtensions.cpp in Sources */,
 				2F104C7F243ACB82003E36A1 /* MarbleColor.cpp in Sources */,
 				2F0E06B516BCCCBE001E8818 /* HiResTimer.cpp in Sources */,
 				2F0E06B616BCCCBE001E8818 /* Logging.m in Sources */,
@@ -1269,7 +1269,7 @@
 				2FF9B108169B8BE700E5E16B /* Options.mm in Sources */,
 				2F142736169BDBB200327395 /* OptionsViewController.mm in Sources */,
 				2FF52BAA169D410C00F521F9 /* GameLog.cpp in Sources */,
-				2FF52BAB169D411300F521F9 /* DataExtensions.mm in Sources */,
+				2FF52BAB169D411300F521F9 /* DataExtensions.cpp in Sources */,
 				2F104C6D243ACB4A003E36A1 /* DebugAssert.cpp in Sources */,
 				2FC81E5416AE4F21004925B4 /* Random.cpp in Sources */,
 				2F0E06C116BCD125001E8818 /* DumbPlayer.cpp in Sources */,
@@ -1327,7 +1327,7 @@
 				2FE228FE15BF15B4000D7683 /* MoveRanker.cpp in Sources */,
 				2FBB64AD164CE63800C44B9F /* MoveList.cpp in Sources */,
 				2FF52BA1169D314F00F521F9 /* GameLog.cpp in Sources */,
-				2FF52BA8169D366A00F521F9 /* DataExtensions.mm in Sources */,
+				2FF52BA8169D366A00F521F9 /* DataExtensions.cpp in Sources */,
 				2FC81E5216AE4F21004925B4 /* Random.cpp in Sources */,
 				2F0E06BF16BCD125001E8818 /* DumbPlayer.cpp in Sources */,
 				2FBF73CF16C0990E00D2F74C /* ReplayGame.cpp in Sources */,
@@ -1370,7 +1370,7 @@
 				2FBB64AE164CE63800C44B9F /* MoveList.cpp in Sources */,
 				2F104C81243ACB83003E36A1 /* MarbleColor.cpp in Sources */,
 				2FF52BA2169D314F00F521F9 /* GameLog.cpp in Sources */,
-				2FF52BA9169D366A00F521F9 /* DataExtensions.mm in Sources */,
+				2FF52BA9169D366A00F521F9 /* DataExtensions.cpp in Sources */,
 				2FC81E5316AE4F21004925B4 /* Random.cpp in Sources */,
 				2F0E06C016BCD125001E8818 /* DumbPlayer.cpp in Sources */,
 				2FBF73D016C0990E00D2F74C /* ReplayGame.cpp in Sources */,
@@ -1407,7 +1407,7 @@
 				2F10979515BF4AED00B044F9 /* ConsolePlayer.cpp in Sources */,
 				2FBB64AC164CE63800C44B9F /* MoveList.cpp in Sources */,
 				2FF52BA0169D314F00F521F9 /* GameLog.cpp in Sources */,
-				2FF52BA7169D366A00F521F9 /* DataExtensions.mm in Sources */,
+				2FF52BA7169D366A00F521F9 /* DataExtensions.cpp in Sources */,
 				2FC81E5116AE4F21004925B4 /* Random.cpp in Sources */,
 				2FD9110C19AC00CF00E8171E /* ConsoleUtilities.cpp in Sources */,
 				2F0E06BE16BCD125001E8818 /* DumbPlayer.cpp in Sources */,
