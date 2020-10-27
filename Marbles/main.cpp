@@ -2,6 +2,11 @@
 #include "Marbles.h"
 #include "MarblesReplay.h"
 #include "PerfTest.h"
+
+#if !(WIN32)
+#define _strnicmp(x, y, z) strncasecmp(x, y, z)
+#endif
+
 int main(int argc, const char* argv[])
 {
 	bool replay{ false };
