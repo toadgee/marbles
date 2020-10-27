@@ -234,9 +234,6 @@
 		2F0BE36B16C0BE7500C799D2 /* MarblesMobileTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "MarblesMobileTests-Info.plist"; sourceTree = "<group>"; };
 		2F0BE36D16C0BE7500C799D2 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		2F0BE37216C0BE7500C799D2 /* MarblesMobileTests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "MarblesMobileTests-Prefix.pch"; sourceTree = "<group>"; };
-		2F0E069E16BCCC83001E8818 /* MarblesReplay.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = MarblesReplay.mm; sourceTree = "<group>"; };
-		2F0E06A116BCCC83001E8818 /* MarblesReplay-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "MarblesReplay-Prefix.pch"; sourceTree = "<group>"; };
-		2F0E06A216BCCC83001E8818 /* MarblesReplay.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; path = MarblesReplay.1; sourceTree = "<group>"; };
 		2F0E06BB16BCD125001E8818 /* DumbPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DumbPlayer.h; sourceTree = "<group>"; };
 		2F0E06BC16BCD125001E8818 /* DumbPlayer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = DumbPlayer.cpp; sourceTree = "<group>"; };
 		2F104C5524390A88003E36A1 /* Descriptions.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Descriptions.h; path = TGMarbles/Descriptions.h; sourceTree = SOURCE_ROOT; };
@@ -376,9 +373,6 @@
 		2FD9110B19AC00CF00E8171E /* ConsoleUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConsoleUtilities.h; sourceTree = "<group>"; };
 		2FE1E0E0171A70D20081C5EE /* MarblesMem.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = MarblesMem.h; path = TGMarbles/MarblesMem.h; sourceTree = SOURCE_ROOT; };
 		2FE1E0E1171A72F90081C5EE /* MarblesMem.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = MarblesMem.cpp; path = TGMarbles/MarblesMem.cpp; sourceTree = SOURCE_ROOT; };
-		2FE228E615BF14A2000D7683 /* MarblesPerf.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; name = MarblesPerf.mm; path = MarblesPerf/MarblesPerf.mm; sourceTree = SOURCE_ROOT; };
-		2FE228F215BF14CD000D7683 /* MarblesPerf-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "MarblesPerf-Prefix.pch"; sourceTree = "<group>"; };
-		2FE228F315BF14CD000D7683 /* MarblesPerf.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; name = MarblesPerf.1; path = MarblesPerf/MarblesPerf.1; sourceTree = SOURCE_ROOT; };
 		2FEA468316D0863800EE0699 /* MoveGenerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MoveGenerator.h; sourceTree = "<group>"; };
 		2FEA468416D0863900EE0699 /* MoveGenerator.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MoveGenerator.cpp; sourceTree = "<group>"; };
 		2FEFFFD916D33B58003EFAF2 /* CardList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CardList.h; sourceTree = "<group>"; };
@@ -456,24 +450,6 @@
 				2F0BE36B16C0BE7500C799D2 /* MarblesMobileTests-Info.plist */,
 				2F0BE36C16C0BE7500C799D2 /* InfoPlist.strings */,
 				2F0BE37216C0BE7500C799D2 /* MarblesMobileTests-Prefix.pch */,
-			);
-			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		2F0E069D16BCCC83001E8818 /* MarblesReplay */ = {
-			isa = PBXGroup;
-			children = (
-				2F0E069E16BCCC83001E8818 /* MarblesReplay.mm */,
-				2F0E06A016BCCC83001E8818 /* Supporting Files */,
-			);
-			path = MarblesReplay;
-			sourceTree = SOURCE_ROOT;
-		};
-		2F0E06A016BCCC83001E8818 /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				2F0E06A216BCCC83001E8818 /* MarblesReplay.1 */,
-				2F0E06A116BCCC83001E8818 /* MarblesReplay-Prefix.pch */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -746,25 +722,6 @@
 			name = Unit;
 			sourceTree = "<group>";
 		};
-		2FE228F115BF14CD000D7683 /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				2FE228F215BF14CD000D7683 /* MarblesPerf-Prefix.pch */,
-			);
-			name = "Supporting Files";
-			path = MarblesPerf;
-			sourceTree = SOURCE_ROOT;
-		};
-		2FE2290A15BF15E8000D7683 /* PerfTest */ = {
-			isa = PBXGroup;
-			children = (
-				2FE228F315BF14CD000D7683 /* MarblesPerf.1 */,
-				2FE228F115BF14CD000D7683 /* Supporting Files */,
-				2FE228E615BF14A2000D7683 /* MarblesPerf.mm */,
-			);
-			name = PerfTest;
-			sourceTree = "<group>";
-		};
 		2FFA84B91481F41600EDDCDE = {
 			isa = PBXGroup;
 			children = (
@@ -803,9 +760,7 @@
 		2FFA84CA1481F41600EDDCDE /* Source */ = {
 			isa = PBXGroup;
 			children = (
-				2F0E069D16BCCC83001E8818 /* MarblesReplay */,
 				2F42A46E162FAE7C001496B1 /* Mobile */,
-				2FE2290A15BF15E8000D7683 /* PerfTest */,
 				2FD7B2E41502FFE400D47715 /* Command Line */,
 				2FD7B2E31502FFB500D47715 /* Framework */,
 			);
