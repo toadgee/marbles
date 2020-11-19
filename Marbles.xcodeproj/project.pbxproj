@@ -74,7 +74,6 @@
 		2F42A47A162FAEA9001496B1 /* Logging.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F844191150C034A0039260B /* Logging.m */; };
 		2F42A481162FB445001496B1 /* BoardView.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2F42A480162FB445001496B1 /* BoardView.mm */; };
 		2F5671B51D16018700B8596B /* Media.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2F5671B41D16018700B8596B /* Media.xcassets */; };
-		2F6EDCCC2318D75600CABEEC /* BoardTests.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2FBD8D9F151533AF00989CD4 /* BoardTests.mm */; };
 		2F6EDCCD2318D75600CABEEC /* MoveTests.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2FA780BF15FFE5D300A0669D /* MoveTests.mm */; };
 		2F7748F815B7338700250B26 /* ComputerPlayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2F84417B150C034A0039260B /* ComputerPlayer.cpp */; };
 		2F7748F915B7339300250B26 /* Board.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2F84417E150C034A0039260B /* Board.cpp */; };
@@ -113,7 +112,6 @@
 		2F8441A7150C034A0039260B /* Logging.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F844191150C034A0039260B /* Logging.m */; };
 		2F91F24315BD05EB00F3E3DF /* MoveRanker.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2F91F24215BD05EB00F3E3DF /* MoveRanker.cpp */; };
 		2FA44A9522DEE7FA0060A9A1 /* TGMarbles.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2FD7B2EA1503001600D47715 /* TGMarbles.framework */; };
-		2FA44A9C22DEE8070060A9A1 /* BoardTests.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2FBD8D9F151533AF00989CD4 /* BoardTests.mm */; };
 		2FA44A9D22DEE8070060A9A1 /* MoveTests.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2FA780BF15FFE5D300A0669D /* MoveTests.mm */; };
 		2FAA688C2547C34E0079B1E1 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2FAA68812547C33B0079B1E1 /* main.cpp */; };
 		2FAA688D2547C34E0079B1E1 /* MarblesReplay.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2FAA68822547C33B0079B1E1 /* MarblesReplay.cpp */; };
@@ -340,8 +338,6 @@
 		2FBB64A9164CE63800C44B9F /* MoveList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MoveList.h; sourceTree = "<group>"; };
 		2FBB64AA164CE63800C44B9F /* MoveList.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MoveList.cpp; sourceTree = "<group>"; };
 		2FBC2454167FDAF80070FE07 /* MarblesMobile.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; name = MarblesMobile.entitlements; path = MarblesMobile/MarblesMobile.entitlements; sourceTree = SOURCE_ROOT; };
-		2FBD8D9E151533AF00989CD4 /* BoardTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BoardTests.h; path = TGMarblesTests/BoardTests.h; sourceTree = SOURCE_ROOT; };
-		2FBD8D9F151533AF00989CD4 /* BoardTests.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = BoardTests.mm; path = TGMarblesTests/BoardTests.mm; sourceTree = SOURCE_ROOT; };
 		2FBEBA8D16D6C22A00481CC3 /* AITest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AITest.h; path = TGMarbles/Perf/AITest.h; sourceTree = SOURCE_ROOT; };
 		2FBEBA8E16D6C22A00481CC3 /* AITest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = AITest.cpp; path = TGMarbles/Perf/AITest.cpp; sourceTree = SOURCE_ROOT; };
 		2FBEBA9616D6C42700481CC3 /* PerfTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PerfTest.h; path = TGMarbles/Perf/PerfTest.h; sourceTree = SOURCE_ROOT; };
@@ -714,8 +710,6 @@
 			isa = PBXGroup;
 			children = (
 				2FD7B3081503001700D47715 /* Supporting Files */,
-				2FBD8D9E151533AF00989CD4 /* BoardTests.h */,
-				2FBD8D9F151533AF00989CD4 /* BoardTests.mm */,
 				2FA780BE15FFE5D300A0669D /* MoveTests.h */,
 				2FA780BF15FFE5D300A0669D /* MoveTests.mm */,
 			);
@@ -1041,7 +1035,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				2F6EDCCD2318D75600CABEEC /* MoveTests.mm in Sources */,
-				2F6EDCCC2318D75600CABEEC /* BoardTests.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1049,7 +1042,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2FA44A9C22DEE8070060A9A1 /* BoardTests.mm in Sources */,
 				2FA44A9D22DEE8070060A9A1 /* MoveTests.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
