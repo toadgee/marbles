@@ -159,6 +159,11 @@ TGMDataIterator TGMData::StartReading() const noexcept
 	return m_data.cbegin();
 }
 
+bool TGMData::IsAtEnd(const TGMDataIterator& iterator) const noexcept
+{
+	return m_data.cend() == iterator;
+}
+
 uint16_t MarbleDataLength() noexcept
 {
 	return (
@@ -309,10 +314,17 @@ TGMGameLog* CreateGameLogFromData(TGMData &data) noexcept
 {
 	// gets the major, minor, build versions
 	TGMDataIterator iter{ data.StartReading() };
+	if (data.IsAtEnd(iter)) {
+		return nullptr;
+	}
 
-	TGMData::ReadInt(iter);
-	TGMData::ReadInt(iter);
-	TGMData::ReadInt(iter);
+	int v1 = TGMData::ReadInt(iter);
+	int v2 = TGMData::ReadInt(iter);
+	int v3 = TGMData::ReadInt(iter);
+	if (v1 != kMarblesMajorVersion || v2 != kMarblesMinorVersion || v3 != kMarblesBuildVersion)
+	{
+		return nullptr;
+	}
 	
 	int marker = TGMData::ReadInt(iter);
 	if (marker != kGameLogDataMarker)

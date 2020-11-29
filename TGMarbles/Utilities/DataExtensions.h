@@ -45,6 +45,8 @@ public:
 	static PlayerColor ReadPlayerColor(TGMDataIterator &iterator) noexcept;
 	static Strategy ReadStrategy(TGMDataIterator& iterator) noexcept;
 
+	bool IsAtEnd(const TGMDataIterator& iterator) const noexcept;
+
 private:
 	std::vector<uint8_t> m_data;
 };
