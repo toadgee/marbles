@@ -44,8 +44,6 @@ TGMPoolAllocator* AllocatePoolObject(size_t size, TGMPoolAllocator** unusedFirst
 {
 	dassert(unusedFirst != NULL);
 	dassert(usedFirst != NULL);
-	if (unusedFirst == NULL || usedFirst == NULL)
-		return NULL;
 	
 	CheckAllocationPool(*usedFirst, *unusedFirst);
 	TGMPoolAllocator* current = *unusedFirst;
@@ -86,8 +84,6 @@ void DeallocatePoolObject(TGMPoolAllocator* allocator, TGMPoolAllocator** unused
 	dassert(allocator);
 	dassert(unusedFirst);
 	dassert(usedFirst);
-	if (!allocator || !unusedFirst || !usedFirst) 
-		return;
 	
 	CheckAllocationPool(*usedFirst, *unusedFirst);
 	

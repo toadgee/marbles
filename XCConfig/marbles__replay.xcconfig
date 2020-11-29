@@ -1,7 +1,0 @@
-#include "marbles__base.xcconfig"
-
-PRODUCT_NAME = MarblesReplay
-GCC_PRECOMPILE_PREFIX_HEADER = YES
-GCC_PREFIX_HEADER = MarblesReplay/MarblesReplay-Prefix.pch
-
-

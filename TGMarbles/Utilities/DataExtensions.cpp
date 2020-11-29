@@ -29,7 +29,7 @@ static const uint8_t kMarblesBuildVersion = 0;
 
 TGMData::TGMData(int initialSize) noexcept
 {
-	m_data.reserve(initialSize);
+	m_data.reserve(static_cast<size_t>(initialSize));
 }
 
 void TGMData::WriteData(TGMData&& data) noexcept
@@ -224,7 +224,7 @@ TGMData GetDeckData(TGMDeck *deck) noexcept
 
 	int i = 0;
 	TGMCard* card = deck->_cards->_first;
-	data.WriteInt(CardListCount(deck->_cards));
+	data.WriteInt(static_cast<int>(CardListCount(deck->_cards)));
 	while (card != NULL)
 	{
 		data.WriteInt(i++);
@@ -234,7 +234,7 @@ TGMData GetDeckData(TGMDeck *deck) noexcept
 	
 	i = 0;
 	card = deck->_discarded->_first;
-	data.WriteInt(CardListCount(deck->_discarded));
+	data.WriteInt(static_cast<int>(CardListCount(deck->_discarded)));
 	while (card != NULL)
 	{
 		data.WriteInt(i++);
@@ -356,7 +356,7 @@ TGMGameLog* CreateGameLogFromData(TGMData &data) noexcept
 		gameLog->_playerStrategy[p] = strategy;
 	}
 	
-	uint16_t deckCount = TGMData::ReadInt(iter);
+	uint16_t deckCount = static_cast<uint16_t>(TGMData::ReadInt(iter));
 	for (uint16_t d = 0; d < deckCount; d++)
 	{
 		uint16_t dEncoded = (uint16_t)TGMData::ReadInt(iter);
@@ -411,7 +411,7 @@ TGMGameLog* CreateGameLogFromData(TGMData &data) noexcept
 TGMData GameLogData(TGMGameLog* gameLog) noexcept
 {
 	// not perfect as it's not the serialized move size, but close enough
-	TGMData data(3 + (sizeof(int) + MoveListCount(gameLog->_moveList) * sizeof(TGMMove)));
+	TGMData data(3 + static_cast<int>((sizeof(int) + MoveListCount(gameLog->_moveList) * sizeof(TGMMove))));
 	
 	// version
 	data.WriteUInt8(kMarblesMajorVersion);
@@ -426,7 +426,7 @@ TGMData GameLogData(TGMGameLog* gameLog) noexcept
 		data.WriteStrategy(gameLog->_playerStrategy[p]);
 	}
 	
-	data.WriteInt(DeckListCount(gameLog->_deckList));
+	data.WriteInt(static_cast<int>(DeckListCount(gameLog->_deckList)));
 	TGMDeck* deck = gameLog->_deckList->_first;
 	int d = 0;
 	while (deck != nullptr)
@@ -488,16 +488,16 @@ TGMData GetMarbleData(TGMMarble *marble) noexcept
 	TGMData data(MarbleDataLength());
 	data.WriteHeader(kMarbleDataMarker, kMarbleDataVersion);
 	
-	BOOL isNullMarble = true;
+	bool isNullMarble = true;
 	MarbleColor mc = MarbleColor::None;
-	int16_t distanceFromHome = 0;
+	uint16_t distanceFromHome = 0;
 	bool wentBehindHome = false;
 	
 	if (marble)
 	{
 		isNullMarble = false;
 		mc = marble->color;
-		distanceFromHome = marble->distanceFromHome;
+		distanceFromHome = static_cast<uint16_t>(marble->distanceFromHome);
 		wentBehindHome = marble->wentBehindHome;
 	}
 	
