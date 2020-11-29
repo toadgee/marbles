@@ -23,30 +23,25 @@ std::string ColoredString(PlayerColor color, const char* str)
 #if WIN32
 		size_t size = 0;
 		char* term = nullptr;
-		errno_t result = _dupenv_s(&term, &size, "WSLENV");
+		errno_t result = _dupenv_s(&term, &size, "TERM");
+#else
+		const int result = 0;
+		const char* term = getenv("TERM");
+#endif
+
 		if (result == 0 && term != nullptr)
 		{
 			printf("%s\n", term);
-			if (strcmp(term, "WT_SESSION:") == 0)
-			{
-#ifdef COLOR_SUPPORTED
-				s_use_color = true;
-#endif
-			}
-			free(term);
-		}
-#else
-		const char *term = getenv("TERM");
-		if (term != nullptr)
-		{
 			if (strcmp(term, "xterm-256color") == 0)
 			{
 #ifdef COLOR_SUPPORTED
 				s_use_color = true;
 #endif
 			}
-		}
+#if WIN32
+			free(term);
 #endif
+		}
 
 		s_use_color_determined = true;
 	}
