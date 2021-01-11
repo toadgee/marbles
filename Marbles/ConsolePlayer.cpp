@@ -125,7 +125,7 @@ void PlayInGame(TGMPlayer* player)
 	{
 		DisplayHand(PlayerGetHand(player), true);
 		
-		int optionCount = (int)CardListCount(PlayerGetHand(player));
+		int optionCount = static_cast<int>(CardListCount(PlayerGetHand(player)));
 		
 		// TODO : Add discard option here if we know we have no more moves to play
 		// TODO : Add option for saving game log to disk!
@@ -134,7 +134,7 @@ void PlayInGame(TGMPlayer* player)
 		int index = ConsoleGetInputNumber("Enter card to play", 0, 1, optionCount);
 		if (index == 0) continue;
 		index--; // convert to real index
-		TGMCard* card = CardAtIndex(PlayerGetHand(player), (unsigned)index);
+		TGMCard* card = CardAtIndex(PlayerGetHand(player), static_cast<unsigned>(index));
 		
 		// check to see if any other cards have non-discard moves
 		TGMMoveList* moves = MovesForPlayerSimple(player, game, card);
@@ -163,7 +163,7 @@ void PlayInGame(TGMPlayer* player)
 		
 		printf("Playing %s\n", CardDescription(card, true).c_str());
 		
-		index = ConsoleGetInputNumber("Enter move to play", 0, 1, (int)MoveListCount(moves));
+		index = ConsoleGetInputNumber("Enter move to play", 0, 1, static_cast<int>(MoveListCount(moves)));
 		if (index == 0)
 		{
 			ReleaseCard(card);
@@ -209,7 +209,7 @@ void PlayedMove(void* context, TGMGame* game, TGMPlayer* player, TGMMove* move)
 
 void HandStarted(void* context, TGMGame* game)
 {
-	CardListSort(PlayerGetHand((TGMPlayer *)context));
+	CardListSort(PlayerGetHand(static_cast<TGMPlayer *>(context)));
 }
 
 void TurnStarted(void* context, TGMGame* game, TGMPlayer* player)
@@ -256,7 +256,7 @@ void GameStarted(void* context, TGMGame* game)
 void GameFinished(void* context, TGMGame* game, bool team1Won)
 {
 	printf("-- Game finished!\n");
-	TGMPlayer* consolePlayer = (TGMPlayer*)context;
+	TGMPlayer* consolePlayer = static_cast<TGMPlayer*>(context);
 	bool isTeam1 = PlayerIsTeam1(consolePlayer);
 	if ((team1Won && isTeam1) || (!team1Won && !isTeam1))
 	{
@@ -278,7 +278,7 @@ void PlayerKilledPlayer(void* context, TGMGame* game, TGMPlayer* player, TGMPlay
 bool DoesPlayerHaveAnyNonDiscardMoves(TGMPlayer* player, TGMCard* card, TGMMoveList* moves, TGMGame* game)
 {
 	// allMoves only used to detect if we have valid non-discard moves
-	TGMMoveList* allMoves = MovesForPlayerSimple(player, game, NULL);
+	TGMMoveList* allMoves = MovesForPlayerSimple(player, game, nullptr);
 		
 	// detect if we have non-discard moves
 	bool hasAnyNonDiscardMove = false;
