@@ -15,15 +15,15 @@
 TGMCard* AllocateCard(void);
 
 static std::mutex s_lock;
-static TGMPoolAllocator* s_CardAllocationPoolUnusedFirst = NULL;
-static TGMPoolAllocator* s_CardAllocationPoolUsedFirst = NULL;
+static TGMPoolAllocator* s_CardAllocationPoolUnusedFirst = nullptr;
+static TGMPoolAllocator* s_CardAllocationPoolUsedFirst = nullptr;
 
 TGMCard* AllocateCard(void)
 {
 	const std::lock_guard<std::mutex> lock(s_lock);
 
 	TGMPoolAllocator* allocator = AllocatePoolObject(sizeof(TGMCard), &s_CardAllocationPoolUnusedFirst, &s_CardAllocationPoolUsedFirst);
-	TGMCard* card = (TGMCard *)allocator->_object;
+	TGMCard* card = static_cast<TGMCard *>(allocator->_object);
 	card->_holder = allocator; // need a back pointer to the allocator for a quick return policy
 	
 	MemIncreaseGlobalCount(g_cardsLiving);
@@ -36,13 +36,13 @@ void DeallocateCard(TGMCard* card)
 	const std::lock_guard<std::mutex> lock(s_lock);
 
 #ifdef DEBUG
-	TGMPoolAllocator* allocator = (TGMPoolAllocator*)card->_holder; // need to do this before memset...
-	memset(card, (int)0xDEADBEEF, sizeof(TGMCard));
+	TGMPoolAllocator* allocator = static_cast<TGMPoolAllocator*>(card->_holder); // need to do this before memset...
+	memset(card, static_cast<int>(0xDEADBEEF), sizeof(TGMCard));
 	card->_retainCount = 0;
 	card->_holder = allocator;
 #endif
 	
-	DeallocatePoolObject((TGMPoolAllocator*)card->_holder, &s_CardAllocationPoolUnusedFirst, &s_CardAllocationPoolUsedFirst);
+	DeallocatePoolObject(static_cast<TGMPoolAllocator*>(card->_holder), &s_CardAllocationPoolUnusedFirst, &s_CardAllocationPoolUsedFirst);
 	MemDecreaseGlobalCount(g_cardsLiving);
 }
 
@@ -52,10 +52,10 @@ TGMCard* CreateCard(int uniqueId, CardNumber number, CardSuit suit)
 	dassert(IsCardSuit(suit));
 
 	TGMCard* card = AllocateCard();
-	dassert(card != NULL);
+	dassert(card != nullptr);
 	
-	card->nextCard = NULL;
-	card->previousCard = NULL;
+	card->nextCard = nullptr;
+	card->previousCard = nullptr;
 	card->_uniqueId = uniqueId;
 	card->_number = number;
 	card->_suit = suit;
@@ -104,7 +104,7 @@ void ReleaseCard(TGMCard *card)
 bool AreCardsEqual(TGMCard* card1, TGMCard* card2)
 {
 	if (card1 == card2) return true;
-	if (card1 == NULL || card2 == NULL) return false;
+	if (card1 == nullptr || card2 == nullptr) return false;
 	
 	return (card1->_number == card2->_number)
 		&& (card1->_suit == card2->_suit)
@@ -113,8 +113,8 @@ bool AreCardsEqual(TGMCard* card1, TGMCard* card2)
 
 bool AreCardsEquivalent(TGMCard* card1, TGMCard* card2)
 {
-	if (card1 == NULL && card2 == NULL) return true;
-	if (card1 == NULL || card2 == NULL || (card1->_number != card2->_number))
+	if (card1 == nullptr && card2 == nullptr) return true;
+	if (card1 == nullptr || card2 == nullptr || (card1->_number != card2->_number))
 	{
 		return false;
 	}
@@ -124,15 +124,15 @@ bool AreCardsEquivalent(TGMCard* card1, TGMCard* card2)
 
 TGMCardComparisonResult CompareCards(TGMCard* card1, TGMCard* card2)
 {
-	if (card1 == NULL && card2 == NULL)
+	if (card1 == nullptr && card2 == nullptr)
 	{
 		return TGMCardComparisonResult::Same;
 	}
-	else if (card1 == NULL)
+	else if (card1 == nullptr)
 	{
 		return TGMCardComparisonResult::Ascending;
 	}
-	else if (card2 == NULL)
+	else if (card2 == nullptr)
 	{
 		return TGMCardComparisonResult::Descending;
 	}

@@ -6,14 +6,14 @@
 TGMMarble* AllocateMarble(void);
 
 static std::mutex s_lock;
-static TGMPoolAllocator* s_MarbleAllocationPoolUnusedFirst = NULL;
-static TGMPoolAllocator* s_MarbleAllocationPoolUsedFirst = NULL;
+static TGMPoolAllocator* s_MarbleAllocationPoolUnusedFirst = nullptr;
+static TGMPoolAllocator* s_MarbleAllocationPoolUsedFirst = nullptr;
 
 TGMMarble* AllocateMarble(void)
 {
 	const std::lock_guard<std::mutex> lock(s_lock);
 	TGMPoolAllocator* allocator = AllocatePoolObject(sizeof(TGMMarble), &s_MarbleAllocationPoolUnusedFirst, &s_MarbleAllocationPoolUsedFirst);
-	TGMMarble* marble = (TGMMarble *)allocator->_object;
+	TGMMarble* marble = static_cast<TGMMarble *>(allocator->_object);
 	marble->_holder = allocator; // need a back pointer to the allocator for a quick return policy
 	
 	MemIncreaseGlobalCount(g_marblesLiving);
@@ -26,10 +26,10 @@ void DeallocateMarble(TGMMarble* marble)
 	dassert(marble);
 	if (!marble) return;
 	
-	TGMPoolAllocator* allocator = (TGMPoolAllocator*)marble->_holder; // need to do this before memset...
+	TGMPoolAllocator* allocator = static_cast<TGMPoolAllocator*>(marble->_holder); // need to do this before memset...
 	
 #ifdef DEBUG
-	memset(marble, (int)0xDEADBEEF, sizeof(TGMMarble));
+	memset(marble, static_cast<int>(0xDEADBEEF), sizeof(TGMMarble));
 	marble->_retainCount = 0;
 	marble->_holder = allocator;
 #endif
@@ -66,8 +66,8 @@ TGMMarble* CopyMarble(TGMMarble* marble)
 bool AreMarblesEqual(TGMMarble* m1, TGMMarble* m2)
 {
 	if (m1 == m2) return true;
-	if (m1 == NULL) return false;
-	if (m2 == NULL) return false;
+	if (m1 == nullptr) return false;
+	if (m2 == nullptr) return false;
 	if (m1->color != m2->color) return false;
 	if (m1->distanceFromHome != m2->distanceFromHome) return false;
 	if (m1->wentBehindHome != m2->wentBehindHome) return false;

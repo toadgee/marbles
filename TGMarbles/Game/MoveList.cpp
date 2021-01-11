@@ -8,14 +8,14 @@ TGMMoveList* AllocateMoveList(void);
 void DeallocateMoveList(TGMMoveList* moveList);
 
 static std::mutex s_lock;
-static TGMPoolAllocator* s_MoveListAllocationPoolUnusedFirst = NULL;
-static TGMPoolAllocator* s_MoveListAllocationPoolUsedFirst = NULL;
+static TGMPoolAllocator* s_MoveListAllocationPoolUnusedFirst = nullptr;
+static TGMPoolAllocator* s_MoveListAllocationPoolUsedFirst = nullptr;
 
 TGMMoveList* AllocateMoveList(void)
 {
 	const std::lock_guard<std::mutex> lock(s_lock);
 	TGMPoolAllocator* allocator = AllocatePoolObject(sizeof(TGMMoveList), &s_MoveListAllocationPoolUnusedFirst, &s_MoveListAllocationPoolUsedFirst);
-	TGMMoveList* moveList = (TGMMoveList *)allocator->_object;
+	TGMMoveList* moveList = static_cast<TGMMoveList *>(allocator->_object);
 	moveList->_holder = allocator; // need a back pointer to the allocator for a quick return policy
 	
 	MemIncreaseGlobalCount(g_moveListsLiving);
@@ -30,7 +30,7 @@ void DeallocateMoveList(TGMMoveList* moveList)
 	
 	{
 		TGMMove* move = moveList->first;
-		while (move != NULL)
+		while (move != nullptr)
 		{
 			TGMMove* next = move->nextMove;
 			ReleaseMove(move);
@@ -38,10 +38,10 @@ void DeallocateMoveList(TGMMoveList* moveList)
 		}
 	}
 	
-	TGMPoolAllocator* allocator = (TGMPoolAllocator*)moveList->_holder; // need to do this before memset...
+	TGMPoolAllocator* allocator = static_cast<TGMPoolAllocator*>(moveList->_holder); // need to do this before memset...
 	
 #ifdef DEBUG
-	memset(moveList, (int)0xDEADBEEF, sizeof(TGMMoveList));
+	memset(moveList, static_cast<int>(0xDEADBEEF), sizeof(TGMMoveList));
 	moveList->_retainCount = 0;
 	moveList->_holder = allocator;
 #endif
@@ -55,8 +55,8 @@ TGMMoveList* CreateMoveList(void)
 {
 	TGMMoveList* moveList = AllocateMoveList();
 	moveList->_retainCount = 1;
-	moveList->first = NULL;
-	moveList->last = NULL;
+	moveList->first = nullptr;
+	moveList->last = nullptr;
 	moveList->_count = 0;
 	
 #ifdef MOVELIST_MEMORY_LOGGING
@@ -103,7 +103,7 @@ TGMMoveList* CopyMoveList(TGMMoveList* moveList)
 	
 	{
 		TGMMove* move = moveList->first;
-		while (move != NULL)
+		while (move != nullptr)
 		{
 			TGMMove* copy = CopyMove(move);
 			MoveListTransfer(list, copy);
@@ -123,15 +123,15 @@ void TransferMoveFromList(TGMMove* move, TGMMoveList* fromList, TGMMoveList* toL
 void ClearMoveList(TGMMoveList* moveList)
 {
 	TGMMove* move = moveList->first;
-	moveList->first = NULL;
+	moveList->first = nullptr;
 	moveList->_count = 0;
 	
-	while (move != NULL)
+	while (move != nullptr)
 	{
 		TGMMove* next = move->nextMove;
 		
-		move->nextMove = NULL;
-		move->previousMove = NULL;
+		move->nextMove = nullptr;
+		move->previousMove = nullptr;
 		moveList->_count--;
 		ReleaseMove(move);
 		
@@ -147,12 +147,12 @@ void MoveListConsistencyCheck(TGMMoveList *moveList)
 	dassert(moveList->_count >= 0);
 	if (moveList->_count > 0)
 	{
-		dassert(moveList->first != NULL);
-		dassert(moveList->last != NULL);
+		dassert(moveList->first != nullptr);
+		dassert(moveList->last != nullptr);
 	}
 	else
 	{
-		dassert(moveList->first == NULL);
+		dassert(moveList->first == nullptr);
 	}
 #endif
 }
@@ -166,10 +166,10 @@ void MoveListAdd(TGMMoveList* moveList, TGMMove* move)
 
 void MoveListTransfer(TGMMoveList* moveList, TGMMove* move)
 {
-	dassert(move->nextMove == NULL);
-	dassert(move->previousMove == NULL);
+	dassert(move->nextMove == nullptr);
+	dassert(move->previousMove == nullptr);
 
-	if (moveList->first == NULL)
+	if (moveList->first == nullptr)
 	{
 		moveList->first = move;
 	}
@@ -189,15 +189,15 @@ void MoveListTransfer(TGMMoveList* moveList, TGMMove* move)
 
 void MoveListRemoveNoRelease(TGMMoveList* moveList, TGMMove* move)
 {
-	dassert(move != NULL);
-	dassert(moveList->first != NULL);
-	dassert(moveList->last != NULL);
+	dassert(move != nullptr);
+	dassert(moveList->first != nullptr);
+	dassert(moveList->last != nullptr);
 #ifdef DEBUG
 	{
 		// uh, make sure move exists in this list
 		TGMMove* tmp = moveList->first;
 		bool found = false;
-		while (tmp != NULL && !found)
+		while (tmp != nullptr && !found)
 		{
 			found = (tmp == move);
 			tmp = tmp->nextMove;
@@ -205,13 +205,13 @@ void MoveListRemoveNoRelease(TGMMoveList* moveList, TGMMove* move)
 		dassert(found);
 	}
 #endif
-	if (move->previousMove == NULL)
+	if (move->previousMove == nullptr)
 	{
 		// i think we can leave moveList->last in an inconsistent state
 		moveList->first = move->nextMove;
-		if (moveList->first != NULL)
+		if (moveList->first != nullptr)
 		{
-			moveList->first->previousMove = NULL;
+			moveList->first->previousMove = nullptr;
 		}
 	}
 	else
@@ -227,8 +227,8 @@ void MoveListRemoveNoRelease(TGMMoveList* moveList, TGMMove* move)
 		}
 	}
 	
-	move->nextMove = NULL;
-	move->previousMove = NULL;
+	move->nextMove = nullptr;
+	move->previousMove = nullptr;
 	moveList->_count--;
 }
 
@@ -249,15 +249,15 @@ bool AreMoveListsEqual(TGMMoveList* moveList1, TGMMoveList* moveList2)
 	{
 		return true;
 	}
-	else if (moveList1 != NULL && moveList2 == NULL)
+	else if (moveList1 != nullptr && moveList2 == nullptr)
 	{
 		return false;
 	}
-	else if (moveList1 == NULL && moveList2 != NULL)
+	else if (moveList1 == nullptr && moveList2 != nullptr)
 	{
 		return false;
 	}
-	else if (moveList1 == NULL && moveList2 == NULL)
+	else if (moveList1 == nullptr && moveList2 == nullptr)
 	{
 		// stupid branch for analyzer
 		return true;
@@ -269,7 +269,7 @@ bool AreMoveListsEqual(TGMMoveList* moveList1, TGMMoveList* moveList2)
 	
 	TGMMove *thisMove = moveList1->first;
 	TGMMove *thatMove = moveList2->first;
-	while (thisMove != NULL)
+	while (thisMove != nullptr)
 	{
 		if (!AreMovesEqual(thisMove, thatMove))
 		{

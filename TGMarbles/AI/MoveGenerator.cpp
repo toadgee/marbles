@@ -38,11 +38,11 @@ TGMMoveList* AllPossibleMovesForAllTeamPlayers(TGMGame* game, bool team1)
 			continue;
 		}
 		
-		TGMMoveList* playerMoves = MovesForPlayer(player, handWithOnlyJoker, NULL, GameGetBoard(game), joker, game);
+		TGMMoveList* playerMoves = MovesForPlayer(player, handWithOnlyJoker, nullptr, GameGetBoard(game), joker, game);
 		
 		{
 			TGMMove* move = playerMoves->first;
-			while (move != NULL)
+			while (move != nullptr)
 			{
 				TGMMove* next = move->nextMove;
 				TransferMoveFromList(move, playerMoves, allMoves);
@@ -63,7 +63,7 @@ TGMMoveList* MovesForPlayerSimple(
 	TGMGame *game,
 	TGMCard* card)
 {
-	return MovesForPlayer(player, PlayerGetHand(player), NULL, GameGetBoard(game), card, game);
+	return MovesForPlayer(player, PlayerGetHand(player), nullptr, GameGetBoard(game), card, game);
 }
 
 TGMMoveList* MovesForPlayer(
@@ -75,13 +75,13 @@ TGMMoveList* MovesForPlayer(
 	TGMGame* game)
 {
 	PlayerColor pc = PlayerGetColor(player);
-	TGMMoveList* filteredMoves = NULL;
+	TGMMoveList* filteredMoves = nullptr;
 	
 	{
 		filteredMoves = StartingMovesForPlayer(pc, PlayerUnusedMarbleCount(player), hand, board);
 		{
 			TGMMove* move = filteredMoves->first;
-			while (move != NULL)
+			while (move != nullptr)
 			{
 				TGMMove* next = move->nextMove;
 				if (!IsMoveValidOnBoard(move, board, pc))
@@ -99,7 +99,7 @@ TGMMoveList* MovesForPlayer(
 	{
 		// defer creation of teammates array until needed - but only if nullptr
 		// passing in empty teammate list (or any other teammate list) means we skip this part
-		if (teammates == NULL)
+		if (teammates == nullptr)
 		{
 			teammates = GameTeammatesForPlayer(game, PlayerGetColor(player));
 		}
@@ -113,7 +113,7 @@ TGMMoveList* MovesForPlayer(
 			
 			{
 				TGMMove* move = teammateMoves->first;
-				while (move != NULL)
+				while (move != nullptr)
 				{
 					TGMMove* next = move->nextMove;
 					if (IsMoveValidOnBoard(move, board, tc))
@@ -133,7 +133,7 @@ TGMMoveList* MovesForPlayer(
 	{
 		{
 			TGMMove* move = filteredMoves->first;
-			while (move != NULL)
+			while (move != nullptr)
 			{
 				TGMMove* next = move->nextMove;
 				if (!AreCardsEqual(move->card, card))
@@ -171,7 +171,7 @@ void GenerateDiscardMovesForPlayer(
 	TGMCardList* hand)
 {
 	TGMCard *card = FirstCardNoRef(hand);
-	while (card != NULL)
+	while (card != nullptr)
 	{
 		TGMMove* discardMove = MakeMove(card, nullptr, true, pc, 0, 0, 0, 0, false);
 		MoveListTransfer(moveList, discardMove);
@@ -191,7 +191,7 @@ TGMMove* BestDiscardMoveInGameFromMoves(
 	
 	{
 		TGMMove* move = discardMoves->first;
-		while (move != NULL)
+		while (move != nullptr)
 		{
 			dassert(move->isDiscard);
 			if (discardMove == nullptr)
@@ -218,13 +218,13 @@ TGMMove* BestMoveFromMoves(
 {
 	dassert(MoveListCount(moves) > 0);
 	
-	TGMMoveList* allPossibleOpponentMoves = NULL;
+	TGMMoveList* allPossibleOpponentMoves = nullptr;
 	TGMMove* choiceMove = nullptr;
 	int bestScore = 0;
 	
 	{
 		TGMMove* move = moves->first;
-		while (move != NULL)
+		while (move != nullptr)
 		{
 			int score = CalculateWeightOfMoveInGame(move, game, pc, strategy, &allPossibleOpponentMoves);
 			if (move == moves->first || bestScore < score)
@@ -271,7 +271,7 @@ TGMMoveList* StartingMovesForPlayer(
 
 	TGMMoveList* startingMoves = CreateMoveList();
 	TGMCard *card = FirstCardNoRef(hand);
-	while (card != NULL)
+	while (card != nullptr)
 	{
 		CardNumber cardNum = card->_number;
 	

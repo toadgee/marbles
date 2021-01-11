@@ -46,8 +46,8 @@ AITest::AITest(Strategy team1, Strategy team2, unsigned seed)
 	_gameTimer = CreateHiResTimer(true, false);
 	
 	// sets up game (which can be reused)
-	_game = CreateGame(NULL, NULL);
-	GameSetCallbackContext(_game, (void*)this);
+	_game = CreateGame(nullptr, nullptr);
+	GameSetCallbackContext(_game, static_cast<void*>(this));
 		
 #ifdef DEBUG_LOGGING_ON
 	GameSetOnDidStart(_game, &AITest_GameStarted);
@@ -218,7 +218,7 @@ void AITest_HandStarted(void* /*context*/, TGMGame* /*game*/)
 
 void AITest_HandEnded(void* context, TGMGame* game)
 {
-	((AITest*)context)->HandEnded(game);
+	static_cast<AITest*>(context)->HandEnded(game);
 }
 
 void AITest_TurnStarted(void* /*context*/, TGMGame* game, TGMPlayer* player)
@@ -228,16 +228,16 @@ void AITest_TurnStarted(void* /*context*/, TGMGame* game, TGMPlayer* player)
 
 void AITest_TurnEnded(void* context, TGMGame* game, TGMPlayer* player)
 {
-	((AITest*)context)->TurnEnded(game, player);
+	static_cast<AITest*>(context)->TurnEnded(game, player);
 }
 
 void AITest_GameEnded(void* context, TGMGame* game, bool team1Won)
 {
-	((AITest*)context)->GameEnded(game, team1Won);
+	static_cast<AITest*>(context)->GameEnded(game, team1Won);
 }
 
 void AITest_PlayerKilledPlayer(void* context, TGMGame* game, TGMPlayer* player, TGMPlayer* deadPlayer)
 {
-	((AITest*)context)->PlayerKilledPlayer(game, player, deadPlayer);
+	static_cast<AITest*>(context)->PlayerKilledPlayer(game, player, deadPlayer);
 }
 

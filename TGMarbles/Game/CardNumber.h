@@ -1,7 +1,7 @@
 #pragma once
 #define IsNumberedCard(x) ((x) >= CardNumber::Ace && (x) <= CardNumber::King)
 #define IsCardNumber(x) ((x) <= CardNumber::Max && (x) >= CardNumber::Min)
-#define IterateCardNumber(x) (x = (static_cast<CardNumber>(((int)(x)) + 1)))
+#define IterateCardNumber(x) (x = (static_cast<CardNumber>((static_cast<int>(x)) + 1)))
 
 enum class CardNumber
 {

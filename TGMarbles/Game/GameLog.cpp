@@ -11,7 +11,7 @@ TGMGameLog* CreateGameLog(void)
 {
 	MemIncreaseGlobalCount(g_gameLogsLiving);
 	
-	TGMGameLog* gameLog = (TGMGameLog*)malloc(sizeof(TGMGameLog));
+	TGMGameLog* gameLog = static_cast<TGMGameLog*>(malloc(sizeof(TGMGameLog)));
 	gameLog->_dealingPlayer = PlayerColor::None;
 	gameLog->_deckList = CreateDeckList();
 	gameLog->_moveList = CreateMoveList();
@@ -68,7 +68,7 @@ void ReleaseGameLog(TGMGameLog* gameLog)
 		ReleaseDeckList(gameLog->_deckList);
 		
 #ifdef DEBUG
-		memset(gameLog, (int)0xDEADBEEF, sizeof(TGMGameLog));
+		memset(gameLog, static_cast<int>(0xDEADBEEF), sizeof(TGMGameLog));
 		gameLog->_retainCount = 0;
 #endif
 		MemDecreaseGlobalCount(g_gameLogsLiving);
@@ -144,9 +144,9 @@ bool GameLogHasMove(TGMGameLog* gameLog)
 bool AreGameLogsEqual(TGMGameLog* gameLog1, TGMGameLog* gameLog2)
 {
 	if (gameLog1 == gameLog2) return true;
-	if (gameLog1 == NULL && gameLog2 != NULL) return false;
-	if (gameLog1 != NULL && gameLog2 == NULL) return false;
-	if (gameLog1 == NULL || gameLog2 == NULL) return false; // stupid analyzer branch
+	if (gameLog1 == nullptr && gameLog2 != nullptr) return false;
+	if (gameLog1 != nullptr && gameLog2 == nullptr) return false;
+	if (gameLog1 == nullptr || gameLog2 == nullptr) return false; // stupid analyzer branch
 	
 	if (gameLog1->_dealingPlayer != gameLog2->_dealingPlayer)
 	{

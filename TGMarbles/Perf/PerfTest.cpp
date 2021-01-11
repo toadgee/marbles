@@ -43,9 +43,9 @@ void PrintPerfTestResults(
 	uint64_t team2KilledTeam1,
 	uint64_t team2KilledTeam2)
 {
-	float averageGameMS = (float)totalMilliseconds / (float)games;
-	float averageHandMS = (float)totalMilliseconds / (float)hands;
-	float averageTurnMS = (float)totalMilliseconds / (float)turns;
+	float averageGameMS = static_cast<float>(totalMilliseconds) / static_cast<float>(games);
+	float averageHandMS = static_cast<float>(totalMilliseconds) / static_cast<float>(hands);
+	float averageTurnMS = static_cast<float>(totalMilliseconds) / static_cast<float>(turns);
 	
 	Strategy winningStrategy = s1;
 	if (team1WonGames > team2WonGames) winningStrategy = s1;
@@ -53,10 +53,10 @@ void PrintPerfTestResults(
 	
 	printf("\n");
 	printf("TIMING\n");
-	printf("Took %4.2f seconds to run the tests\n\n", (float)totalMilliseconds / 1000.0);
-	printf("Took %4.2f milliseconds per game, %llu games\n", averageGameMS, games);
-	printf("Took %4.2f milliseconds per hand, %llu hands\n", averageHandMS, hands);
-	printf("Took %4.4f milliseconds per turn, %llu turns\n", averageTurnMS, turns);
+	printf("Took %4.2f seconds to run the tests\n\n", static_cast<double>(totalMilliseconds) / 1000.0);
+	printf("Took %4.2f milliseconds per game, %llu games\n", static_cast<double>(averageGameMS), games);
+	printf("Took %4.2f milliseconds per hand, %llu hands\n", static_cast<double>(averageHandMS), hands);
+	printf("Took %4.4f milliseconds per turn, %llu turns\n", static_cast<double>(averageTurnMS), turns);
 	printf("\n");
 	printf("STATS\n");
 	printf("Average : %llu turns per hand\n", turns / hands);
@@ -208,7 +208,7 @@ int RunAllPerfTestsWithOptions(uint64_t testCount, uint64_t statusUpdates)
 	}
 	
 	HiResTimerStop(timer);
-	printf("Took %llu seconds to run ALL %llu tests\n", HiResTimerTotalMilliseconds(timer) / 1000, ((uint64_t)game * testCount));
+	printf("Took %llu seconds to run ALL %llu tests\n", HiResTimerTotalMilliseconds(timer) / 1000, (static_cast<uint64_t>(game) * testCount));
 	printf("\n");
 	printf("\n");
 	

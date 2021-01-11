@@ -48,14 +48,14 @@ TGMGame* AllocateGame(void);
 void DeallocateGame(TGMGame* game);
 
 static std::mutex s_lock;
-static TGMPoolAllocator* s_gameAllocationPoolUnusedFirst = NULL;
-static TGMPoolAllocator* s_gameAllocationPoolUsedFirst = NULL;
+static TGMPoolAllocator* s_gameAllocationPoolUnusedFirst = nullptr;
+static TGMPoolAllocator* s_gameAllocationPoolUsedFirst = nullptr;
 
 TGMGame* AllocateGame(void)
 {
 	const std::lock_guard<std::mutex> lock(s_lock);
 	TGMPoolAllocator* allocator = AllocatePoolObject(sizeof(TGMGame), &s_gameAllocationPoolUnusedFirst, &s_gameAllocationPoolUsedFirst);
-	TGMGame* game = (TGMGame *)allocator->_object;
+	TGMGame* game = static_cast<TGMGame *>(allocator->_object);
 	game->_holder = allocator; // need a back pointer to the allocator for a quick return policy
 	
 	LogMemoryCreate("GAME", game, MemIncreaseGlobalCount(g_gamesLiving));
@@ -72,7 +72,7 @@ void DeallocateGame(TGMGame* game)
 	for (int p = 0; p < kPlayers; p++)
 	{
 		TGMPlayer* player = game->_players[p];
-		if (player != NULL)
+		if (player != nullptr)
 		{
 			ReleasePlayer(player);
 		}
@@ -84,9 +84,9 @@ void DeallocateGame(TGMGame* game)
 	if (game->_deck) ReleaseDeck(game->_deck);
 	DestroyRandom(game->_rng);
 	
-	TGMPoolAllocator* allocator = (TGMPoolAllocator*)game->_holder; // need to do this before memset...
+	TGMPoolAllocator* allocator = static_cast<TGMPoolAllocator*>(game->_holder); // need to do this before memset...
 #ifdef DEBUG
-	memset(game, (int)0xDEADBEEF, sizeof(TGMGame));
+	memset(game, static_cast<int>(0xDEADBEEF), sizeof(TGMGame));
 	game->_retainCount = 0;
 	game->_holder = allocator;
 #endif
@@ -97,7 +97,7 @@ void DeallocateGame(TGMGame* game)
 
 TGMGame* CreateGame(TGMGameLog* replayLog, TGRandom* rng)
 {
-	if (rng == NULL)
+	if (rng == nullptr)
 	{
 		rng = CreateRandomAndSeed();
 	}
@@ -226,7 +226,7 @@ TGMTeammates* GameTeammatesForPlayer(TGMGame* game, PlayerColor pc)
 	return CreateTeammates(
 		game->_players[PositionForPlayerColor(teammate1)],
 		game->_players[PositionForPlayerColor(teammate2)],
-		NULL);
+		nullptr);
 }
 
 TGMTeammates* GameTeammatesIncludingPlayer(TGMGame* game, PlayerColor pc)
@@ -457,10 +457,10 @@ void GameStartHand(TGMGame* game)
 	}
 	
 	// see if the dealing player changed
-	if (game->_deck == NULL || DeckIsEmpty(game->_deck))
+	if (game->_deck == nullptr || DeckIsEmpty(game->_deck))
 	{
 		bool shuffle = true;
-		if (game->_replayLog != NULL && GameLogHasDeck(game->_replayLog))
+		if (game->_replayLog != nullptr && GameLogHasDeck(game->_replayLog))
 		{
 #ifdef DEBUG_LOGGING_ON
 			TGMLogGameMessage(@"%p : Popped replay deck", game);
@@ -471,7 +471,7 @@ void GameStartHand(TGMGame* game)
 			shuffle = false;
 		}
 		
-		if (game->_deck == NULL)
+		if (game->_deck == nullptr)
 		{
 			game->_deck = CreateNonEmptyDeck();
 		}
@@ -490,7 +490,7 @@ void GameStartHand(TGMGame* game)
 		if (game->_dealingPlayer == PlayerColor::None)
 		{
 			uint32_t randomNumber = RandomRandom(game->_rng); // setting the dealing player at start
-			if (game->_replayLog != NULL && GameLogDealingPlayer(game->_replayLog) != PlayerColor::None)
+			if (game->_replayLog != nullptr && GameLogDealingPlayer(game->_replayLog) != PlayerColor::None)
 			{
 				game->_dealingPlayer = GameLogDealingPlayer(game->_replayLog);
 			}
@@ -541,7 +541,7 @@ void GameStartHand(TGMGame* game)
 void GameDoPlay(TGMGame* game)
 {
 	bool replayMoveIsValid = false;
-	if (game->_replayLog != NULL && GameLogHasMove(game->_replayLog))
+	if (game->_replayLog != nullptr && GameLogHasMove(game->_replayLog))
 	{
 		bool replayLogEnded = false;
 		
@@ -583,7 +583,7 @@ void GameDoPlay(TGMGame* game)
 		{
 			GameEventReplayLogEnded(game, game->_replayLog);
 			ReleaseGameLog(game->_replayLog);
-			game->_replayLog = NULL;
+			game->_replayLog = nullptr;
 		}
 	}
 	
@@ -595,7 +595,7 @@ void GameDoPlay(TGMGame* game)
 
 bool GameEndTurn(TGMGame* game)
 {
-	bool endOfHand = GameIsEndOfHand(game) || GameIsEndOfGame(game, NULL);
+	bool endOfHand = GameIsEndOfHand(game) || GameIsEndOfGame(game, nullptr);
 	if (!endOfHand)
 	{
 		// move to next player
@@ -614,7 +614,7 @@ bool GameEndHand(TGMGame* game)
 {
 	GameReturnCardsToDeck(game);
 	
-	bool endOfGame = GameIsEndOfGame(game, NULL);
+	bool endOfGame = GameIsEndOfGame(game, nullptr);
 	return endOfGame;
 }
 
@@ -631,7 +631,7 @@ void GameEndGame(TGMGame* game)
 	
 	GameReturnCardsToDeck(game);
 	ReleaseDeck(game->_deck);
-	game->_deck = NULL;
+	game->_deck = nullptr;
 	
 	GameEventGameFinished(game, team1Won);
 }
@@ -678,7 +678,7 @@ bool GameIsEndOfGame(TGMGame* game, bool* team1Won)
 	}
 	
 	bool isEnd = team1Finished || team2Finished;
-	if (isEnd && team1Won != NULL)
+	if (isEnd && team1Won != nullptr)
 	{
 		*team1Won = team1Finished;
 	}
@@ -766,7 +766,7 @@ void GameDoMove(TGMGame* game, TGMMove* move)
 			if (move->oldSpot != kGetOutSpot)
 			{
 				// regular move
-				BoardMoveMarble(game->_board, (int8_t)move->oldSpot, (int8_t)move->newSpot);
+				BoardMoveMarble(game->_board, static_cast<int8_t>(move->oldSpot), static_cast<int8_t>(move->newSpot));
 			}
 			else
 			{
@@ -807,7 +807,7 @@ void GameReturnCardsToDeck(TGMGame* game)
 		TGMPlayer* player = game->_players[pc];
 		TGMCardList* cards = PlayerGetHand(player);
 		TGMCard *card = FirstCardNoRef(cards);
-		while (card != NULL)
+		while (card != nullptr)
 		{
 			TGMCard *next = card->nextCard;
 			RetainCard(card);
@@ -854,7 +854,7 @@ void GameConsistencyCheck(TGMGame* game)
 	}
 }
 
-#define CallGameEvent(evt, ...) if (game->evt != NULL) (*game->evt)(game->_callbackContext, game, ##__VA_ARGS__);
+#define CallGameEvent(evt, ...) if (game->evt != nullptr) (*game->evt)(game->_callbackContext, game, ##__VA_ARGS__);
 
 void GameSetCallbackContext(TGMGame* game, void* callbackContext) { game->_callbackContext = callbackContext; }
 void GameSetOnWillStart(TGMGame* game, TGMGameWillStartFunction onGameWillStart) { game->_onGameWillStart = onGameWillStart; }

@@ -7,10 +7,10 @@ TGMDeckList* CreateDeckList(void)
 {
 	MemIncreaseGlobalCount(g_deckListsLiving);
 
-	TGMDeckList* deckList = (TGMDeckList*)malloc(sizeof(TGMDeckList));
+	TGMDeckList* deckList = static_cast<TGMDeckList*>(malloc(sizeof(TGMDeckList)));
 	deckList->_retainCount = 1;
-	deckList->_first = NULL;
-	deckList->_last = NULL;
+	deckList->_first = nullptr;
+	deckList->_last = nullptr;
 	deckList->_count = 0;
 	
 #ifdef DECKLIST_MEMORY_LOGGING
@@ -53,7 +53,7 @@ void ReleaseDeckList(TGMDeckList* deckList)
 		});
 		
 #ifdef DEBUG
-		memset(deckList, (int)0xDEADBEEF, sizeof(TGMDeckList));
+		memset(deckList, static_cast<int>(0xDEADBEEF), sizeof(TGMDeckList));
 		deckList->_retainCount = 0;
 #endif
 		MemDecreaseGlobalCount(g_deckListsLiving);
@@ -63,10 +63,10 @@ void ReleaseDeckList(TGMDeckList* deckList)
 
 TGMDeck* DeckListDeckAtIndex(TGMDeckList* deckList, uint16_t index, bool ownRef)
 {
-	TGMDeck* d = NULL;
+	TGMDeck* d = nullptr;
 	unsigned i = 0;
 	TGMDeck* deck = deckList->_first;
-	while (deck != NULL)
+	while (deck != nullptr)
 	{
 		if (i == index)
 		{
@@ -84,12 +84,12 @@ TGMDeck* DeckListDeckAtIndex(TGMDeckList* deckList, uint16_t index, bool ownRef)
 
 void DeckListIterateWithBlock(TGMDeckList* deckList, TGMDeckListIterationBlock block)
 {
-	dassert(block != NULL);
+	dassert(block != nullptr);
 	if (!block) return;
 
 	unsigned i = 0;
 	TGMDeck* deck = deckList->_first;
-	while (deck != NULL)
+	while (deck != nullptr)
 	{
 		TGMDeck* next = deck->_nextDeck;
 		bool goOn = block(i, deck);
@@ -107,10 +107,10 @@ void DeckListAdd(TGMDeckList* deckList, TGMDeck* deck)
 	if (!deck) return;
 
 	RetainDeck(deck);
-	dassert(deck->_nextDeck == NULL);
-	dassert(deck->_previousDeck == NULL);
+	dassert(deck->_nextDeck == nullptr);
+	dassert(deck->_previousDeck == nullptr);
 
-	if (deckList->_first == NULL)
+	if (deckList->_first == nullptr)
 	{
 		deckList->_first = deck;
 	}
@@ -126,14 +126,14 @@ void DeckListAdd(TGMDeckList* deckList, TGMDeck* deck)
 
 TGMDeck* DeckListRemoveFirst(TGMDeckList* deckList)
 {
-	dassert(deckList->_first != NULL);
+	dassert(deckList->_first != nullptr);
 	TGMDeck* deck = deckList->_first;
 	deckList->_first = deck->_nextDeck;
-	if (deckList->_first != NULL)
-		deckList->_first->_previousDeck = NULL;
+	if (deckList->_first != nullptr)
+		deckList->_first->_previousDeck = nullptr;
 		
-	deck->_nextDeck = NULL;
-	deck->_previousDeck = NULL;
+	deck->_nextDeck = nullptr;
+	deck->_previousDeck = nullptr;
 	deckList->_count--;
 	
 	return deck;

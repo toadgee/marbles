@@ -17,7 +17,7 @@ void CheckAllocationPool(TGMPoolAllocator* usedFirst, TGMPoolAllocator* unusedFi
 	// check no unused ones in used list
 	{
 		TGMPoolAllocator* allocator = usedFirst;
-		while (allocator != NULL)
+		while (allocator != nullptr)
 		{
 			assert(allocator->_used == 1);
 			allocator = allocator->_next;
@@ -27,7 +27,7 @@ void CheckAllocationPool(TGMPoolAllocator* usedFirst, TGMPoolAllocator* unusedFi
 	// check no used ones in unused list
 	{
 		TGMPoolAllocator* allocator = unusedFirst;
-		while (allocator != NULL)
+		while (allocator != nullptr)
 		{
 			assert(allocator->_used == 0);
 			allocator = allocator->_next;
@@ -42,34 +42,34 @@ void CheckAllocationPool(TGMPoolAllocator* usedFirst, TGMPoolAllocator* unusedFi
 
 TGMPoolAllocator* AllocatePoolObject(size_t size, TGMPoolAllocator** unusedFirst, TGMPoolAllocator** usedFirst)
 {
-	dassert(unusedFirst != NULL);
-	dassert(usedFirst != NULL);
+	dassert(unusedFirst != nullptr);
+	dassert(usedFirst != nullptr);
 	
 	CheckAllocationPool(*usedFirst, *unusedFirst);
 	TGMPoolAllocator* current = *unusedFirst;
-	if (current != NULL)
+	if (current != nullptr)
 	{
 		// pop off of first
-		dassert(current->_previous == NULL);
+		dassert(current->_previous == nullptr);
 		(*unusedFirst) = current->_next;
-		if ((*unusedFirst) != NULL)
+		if ((*unusedFirst) != nullptr)
 		{
-			(*unusedFirst)->_previous = NULL;
+			(*unusedFirst)->_previous = nullptr;
 		}
 	}
 	else
 	{
 		// create a new one in the used list
-		current = (TGMPoolAllocator *)malloc(sizeof(TGMPoolAllocator));
+		current = static_cast<TGMPoolAllocator *>(malloc(sizeof(TGMPoolAllocator)));
 		current->_object = malloc(size);
-		current->_previous = NULL;
+		current->_previous = nullptr;
 	}
 	
 	MarkAllocatorUsed(current);
 	
 	// add to beginning of used list
 	current->_next = *usedFirst;
-	if (*usedFirst != NULL)
+	if (*usedFirst != nullptr)
 	{
 		(*usedFirst)->_previous = current;
 	}
@@ -91,28 +91,28 @@ void DeallocatePoolObject(TGMPoolAllocator* allocator, TGMPoolAllocator** unused
 		MarkAllocatorUnused(allocator);
 
 		// remove from used list
-		if (allocator->_previous == NULL)
+		if (allocator->_previous == nullptr)
 		{
 			(*usedFirst) = allocator->_next;
-			if (allocator->_next != NULL)
+			if (allocator->_next != nullptr)
 			{
-				allocator->_next->_previous = NULL;
+				allocator->_next->_previous = nullptr;
 			}
 		}
 		else
 		{
 			allocator->_previous->_next = allocator->_next;
-			if (allocator->_next != NULL)
+			if (allocator->_next != nullptr)
 			{
 				allocator->_next->_previous = allocator->_previous;
 			}
 
-			allocator->_previous = NULL;
+			allocator->_previous = nullptr;
 		}
 
 		// add to unused list
 		allocator->_next = (*unusedFirst);
-		if ((*unusedFirst) != NULL)
+		if ((*unusedFirst) != nullptr)
 		{
 			(*unusedFirst)->_previous = allocator;
 		}

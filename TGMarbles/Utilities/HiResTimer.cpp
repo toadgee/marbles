@@ -62,7 +62,7 @@ static inline uint64_t internalElapsed(uint64_t start, bool cpuTime, TGHiResTime
 
 TGHiResTimer* CreateHiResTimer(bool cpuTime, bool start)
 {
-	TGHiResTimer* timer = (TGHiResTimer *)malloc(sizeof(TGHiResTimer));
+	TGHiResTimer* timer = static_cast<TGHiResTimer *>(malloc(sizeof(TGHiResTimer)));
 	timer->_cpuTime = cpuTime;
 	timer->_started = false;
 	timer->_start = 0;
@@ -84,7 +84,7 @@ TGHiResTimer* CreateHiResTimer(bool cpuTime, bool start)
 void DestroyHiResTimer(TGHiResTimer* timer)
 {
 #ifdef DEBUG
-	memset(timer, (int)0xDEADBEEF, sizeof(TGHiResTimer));
+	memset(timer, static_cast<int>(0xDEADBEEF), sizeof(TGHiResTimer));
 #endif
 	free(timer);	
 }
@@ -114,7 +114,7 @@ uint64_t HiResTimerStop(TGHiResTimer* timer)
 
 double HiResTimerTotalSeconds(TGHiResTimer* timer)
 {
-	double seconds = (double)timer->_total;
+	double seconds = static_cast<double>(timer->_total);
 	if (timer->_cpuTime)
 		seconds = (seconds / 1000000.0);
 	else
@@ -130,8 +130,8 @@ uint64_t HiResTimerTotalMilliseconds(TGHiResTimer* timer)
 void HiResTimerReset(TGHiResTimer* timer)
 {
 	timer->_started = false;
-	timer->_total = 0LL;
-	timer->_starts = 0LL;
+	timer->_total = 0;
+	timer->_starts = 0;
 }
 
 uint64_t HiResTimerElapsedToMilliseconds(TGHiResTimer* timer, uint64_t elapsed)

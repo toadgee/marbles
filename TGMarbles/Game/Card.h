@@ -15,7 +15,7 @@ enum class TGMCardComparisonResult
 {
 	Same,
 	Ascending,
-	Descending,
+	Descending
 };
 
 #define TGMCard struct TGMCardStruct

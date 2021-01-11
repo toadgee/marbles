@@ -24,12 +24,12 @@ TGMDeck* CreateDeck(bool emptyDeck)
 {
 	MemIncreaseGlobalCount(g_decksLiving);
 
-	TGMDeck* deck = (TGMDeck*)malloc(sizeof(TGMDeck));
+	TGMDeck* deck = static_cast<TGMDeck*>(malloc(sizeof(TGMDeck)));
 	deck->_retainCount = 1;
 	deck->_cards = CreateCardList();
 	deck->_discarded = CreateCardList();
-	deck->_nextDeck = NULL;
-	deck->_previousDeck = NULL;
+	deck->_nextDeck = nullptr;
+	deck->_previousDeck = nullptr;
 	
 	if (!emptyDeck)
 	{
@@ -66,7 +66,7 @@ TGMDeck* CopyDeck(TGMDeck *deck)
 {
 	TGMDeck* deckCopy = CreateDeck(true);
 	TGMCard *card = FirstCardNoRef(deck->_cards);
-	while (card != NULL)
+	while (card != nullptr)
 	{
 		TGMCard* copy = CopyCard(card);
 		CardListTransfer(deckCopy->_cards, copy);
@@ -74,7 +74,7 @@ TGMDeck* CopyDeck(TGMDeck *deck)
 	}
 	
 	card = FirstCardNoRef(deck->_discarded);
-	while (card != NULL)
+	while (card != nullptr)
 	{
 		TGMCard* copy = CopyCard(card);
 		CardListTransfer(deckCopy->_discarded, copy);
@@ -105,7 +105,7 @@ void ReleaseDeck(TGMDeck *deck)
 		ReleaseCardList(deck->_cards);
 		
 #ifdef DEBUG
-		memset(deck, (int)0xDEADBEEF, sizeof(TGMDeck));
+		memset(deck, static_cast<int>(0xDEADBEEF), sizeof(TGMDeck));
 		deck->_retainCount = 0;
 #endif
 		MemDecreaseGlobalCount(g_decksLiving);
@@ -116,7 +116,7 @@ void ReleaseDeck(TGMDeck *deck)
 void DeckShuffle(TGMDeck* deck, TGRandom* rng)
 {
 	TGMCard *card = FirstCardNoRef(deck->_discarded);
-	while (card != NULL)
+	while (card != nullptr)
 	{
 		TGMCard *next = card->nextCard;
 		TransferCardFromList(card, deck->_discarded, deck->_cards);
@@ -150,7 +150,7 @@ bool DeckIsEmpty(TGMDeck* deck)
 void DeckClear(TGMDeck* deck)
 {
 	TGMCard *card = FirstCardNoRef(deck->_discarded);
-	while (card != NULL)
+	while (card != nullptr)
 	{
 		TGMCard *next = card->nextCard;
 		TransferCardFromList(card, deck->_discarded, deck->_cards);
@@ -166,10 +166,10 @@ void DeckAddDiscard(TGMDeck* deck, TGMCard* discard)
 bool AreDecksEqual(TGMDeck* deck1, TGMDeck* deck2)
 {
 	if (deck1 == deck2) return true;
-	if (deck1 != NULL && deck2 == NULL) return false;
-	if (deck2 == NULL && deck2 != NULL) return false;
+	if (deck1 != nullptr && deck2 == nullptr) return false;
+	if (deck2 == nullptr && deck2 != nullptr) return false;
 	// stupid branch for analyzer
-	if (deck1 == NULL || deck2 == NULL) return true;
+	if (deck1 == nullptr || deck2 == nullptr) return true;
 	
 	if (CardListCount(deck1->_cards) != CardListCount(deck2->_cards)) return false;
 	if (CardListCount(deck1->_discarded) != CardListCount(deck2->_discarded)) return false;
@@ -179,7 +179,7 @@ bool AreDecksEqual(TGMDeck* deck1, TGMDeck* deck2)
 	
 	thisCard = FirstCardNoRef(deck1->_cards);
 	thatCard = FirstCardNoRef(deck2->_cards);
-	while (thisCard != NULL)
+	while (thisCard != nullptr)
 	{
 		if (!AreCardsEqual(thisCard, thatCard)) return false;
 		thisCard = thisCard->nextCard;
@@ -188,7 +188,7 @@ bool AreDecksEqual(TGMDeck* deck1, TGMDeck* deck2)
 	
 	thisCard = deck1->_discarded->_first;
 	thatCard = deck2->_discarded->_first;
-	while (thisCard != NULL)
+	while (thisCard != nullptr)
 	{
 		if (!AreCardsEqual(thisCard, thatCard)) return false;
 		thisCard = thisCard->nextCard;

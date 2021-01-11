@@ -14,5 +14,5 @@ enum class CardSuit
 };
 
 #define IsCardSuit(x) ((x) <= CardSuit::Max && (x) >= CardSuit::Min)
-#define IterateCardSuit(x) (x = (static_cast<CardSuit>(((int)(x)) + 1)))
+#define IterateCardSuit(x) (x = (static_cast<CardSuit>((static_cast<int>(x)) + 1)))
 

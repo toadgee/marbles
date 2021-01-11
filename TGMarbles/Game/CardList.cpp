@@ -16,15 +16,15 @@ TGMCardList* AllocateCardList(void);
 void DeallocateCardList(TGMCardList* cardList);
 
 static std::mutex s_lock;
-static TGMPoolAllocator* s_CardListAllocationPoolUnusedFirst = NULL;
-static TGMPoolAllocator* s_CardListAllocationPoolUsedFirst = NULL;
+static TGMPoolAllocator* s_CardListAllocationPoolUnusedFirst = nullptr;
+static TGMPoolAllocator* s_CardListAllocationPoolUsedFirst = nullptr;
 
 TGMCardList* AllocateCardList(void)
 {
 	const std::lock_guard<std::mutex> lock(s_lock);
 
 	TGMPoolAllocator* allocator = AllocatePoolObject(sizeof(TGMCardList), &s_CardListAllocationPoolUnusedFirst, &s_CardListAllocationPoolUsedFirst);
-	TGMCardList* cardList = (TGMCardList *)allocator->_object;
+	TGMCardList* cardList = static_cast<TGMCardList *>(allocator->_object);
 	cardList->_holder = allocator; // need a back pointer to the allocator for a quick return policy
 	
 	MemIncreaseGlobalCount(g_cardListsLiving);
@@ -40,16 +40,16 @@ void DeallocateCardList(TGMCardList* cardList)
 	if (!cardList) return;
 	
 	TGMCard* card = FirstCardNoRef(cardList);
-	while (card != NULL)
+	while (card != nullptr)
 	{
 		TGMCard* next = card->nextCard;
 		ReleaseCard(card);
 		card = next;
 	}
 	
-	TGMPoolAllocator* allocator = (TGMPoolAllocator*)cardList->_holder; // need to do this before memset...
+	TGMPoolAllocator* allocator = static_cast<TGMPoolAllocator*>(cardList->_holder); // need to do this before memset...
 #ifdef DEBUG
-	memset(cardList, (int)0xDEADBEEF, sizeof(TGMCardList));
+	memset(cardList, static_cast<int>(0xDEADBEEF), sizeof(TGMCardList));
 	cardList->_retainCount = 0;
 	cardList->_holder = allocator;
 #endif
@@ -63,8 +63,8 @@ TGMCardList* CreateCardList(void)
 {
 	TGMCardList* cardList = AllocateCardList();
 	cardList->_retainCount = 1;
-	cardList->_first = NULL;
-	cardList->_last = NULL;
+	cardList->_first = nullptr;
+	cardList->_last = nullptr;
 	cardList->_count = 0;
 	
 #ifdef CARDLIST_MEMORY_LOGGING
@@ -105,7 +105,7 @@ TGMCardList* CopyCardList(TGMCardList* cardList)
 {
 	TGMCardList* list = CreateCardList();
 	TGMCard* card = FirstCardNoRef(cardList);
-	while (card != NULL)
+	while (card != nullptr)
 	{
 		TGMCard* copy = CopyCard(card);
 		CardListTransfer(list, copy);
@@ -124,10 +124,10 @@ void TransferCardFromList(TGMCard* card, TGMCardList* fromList, TGMCardList* toL
 
 TGMCard* CardAtIndex(TGMCardList* cardList, unsigned index)
 {
-	TGMCard* c = NULL;
+	TGMCard* c = nullptr;
 	unsigned i = 0;
 	TGMCard* card = cardList->_first;
-	while (card != NULL)
+	while (card != nullptr)
 	{
 		if (i == index)
 		{
@@ -144,12 +144,12 @@ TGMCard* CardAtIndex(TGMCardList* cardList, unsigned index)
 }
 void CardListIterateWithBlock(TGMCardList* cardList, TGMCardListIterationBlock block)
 {
-	dassert(block != NULL);
+	dassert(block != nullptr);
 	if (!block) return;
 
 	unsigned i = 0;
 	TGMCard* card = cardList->_first;
-	while (card != NULL)
+	while (card != nullptr)
 	{
 		TGMCard* next = card->nextCard;
 		bool goOn = block(i, card);
@@ -165,15 +165,15 @@ void CardListIterateWithBlock(TGMCardList* cardList, TGMCardListIterationBlock b
 void ClearCardList(TGMCardList* cardList)
 {
 	TGMCard* card = cardList->_first;
-	cardList->_first = NULL;
+	cardList->_first = nullptr;
 	cardList->_count = 0;
 	
-	while (card != NULL)
+	while (card != nullptr)
 	{
 		TGMCard* next = card->nextCard;
 		
-		card->nextCard = NULL;
-		card->previousCard = NULL;
+		card->nextCard = nullptr;
+		card->previousCard = nullptr;
 		cardList->_count--;
 		ReleaseCard(card);
 		
@@ -192,10 +192,10 @@ void CardListTransfer(TGMCardList* cardList, TGMCard* card)
 {
 	if (!card) return;
 	
-	dassert(card->nextCard == NULL);
-	dassert(card->previousCard == NULL);
+	dassert(card->nextCard == nullptr);
+	dassert(card->previousCard == nullptr);
 
-	if (cardList->_first == NULL)
+	if (cardList->_first == nullptr)
 	{
 		cardList->_first = card;
 	}
@@ -211,15 +211,15 @@ void CardListTransfer(TGMCardList* cardList, TGMCard* card)
 
 void CardListRemove(TGMCardList* cardList, TGMCard* card)
 {
-	dassert(card != NULL);
-	dassert(cardList->_first != NULL);
-	dassert(cardList->_last != NULL);
+	dassert(card != nullptr);
+	dassert(cardList->_first != nullptr);
+	dassert(cardList->_last != nullptr);
 #ifdef DEBUG
 	{
 		// uh, make sure card exists in this list
 		TGMCard* tmp = cardList->_first;
 		bool found = false;
-		while (tmp != NULL && !found)
+		while (tmp != nullptr && !found)
 		{
 			found = (tmp == card);
 			tmp = tmp->nextCard;
@@ -227,14 +227,14 @@ void CardListRemove(TGMCardList* cardList, TGMCard* card)
 		dassert(found);
 	}
 #endif
-	if (card == NULL) return;
+	if (card == nullptr) return;
 	
-	if (card->previousCard == NULL)
+	if (card->previousCard == nullptr)
 	{
 		// i think we can leave cardList->_last in an inconsistent state
 		cardList->_first = card->nextCard;
-		if (cardList->_first != NULL)
-			cardList->_first->previousCard = NULL;
+		if (cardList->_first != nullptr)
+			cardList->_first->previousCard = nullptr;
 	}
 	else
 	{
@@ -249,8 +249,8 @@ void CardListRemove(TGMCardList* cardList, TGMCard* card)
 		}
 	}
 	
-	card->nextCard = NULL;
-	card->previousCard = NULL;
+	card->nextCard = nullptr;
+	card->previousCard = nullptr;
 	cardList->_count--;
 	ReleaseCard(card);
 	
@@ -274,26 +274,26 @@ TGMCard* CardListRemoveAtIndex(TGMCardList *cardList, unsigned index)
 
 void CardListInsertBefore(TGMCardList* cardList, TGMCard* beforeCard, TGMCard* cardToInsert)
 {
-	dassert(cardToInsert != NULL);
-	dassert(cardToInsert->nextCard == NULL);
-	dassert(cardToInsert->previousCard == NULL);
+	dassert(cardToInsert != nullptr);
+	dassert(cardToInsert->nextCard == nullptr);
+	dassert(cardToInsert->previousCard == nullptr);
 	
-	if (cardToInsert == NULL) return;
+	if (cardToInsert == nullptr) return;
 	
 	RetainCard(cardToInsert);
-	if (cardList->_first == NULL || (beforeCard != NULL && beforeCard->previousCard == NULL))
+	if (cardList->_first == nullptr || (beforeCard != nullptr && beforeCard->previousCard == nullptr))
 	{
 		// we're at first
 		cardToInsert->nextCard = cardList->_first;
-		if (cardList->_first != NULL)
+		if (cardList->_first != nullptr)
 			cardList->_first->previousCard = cardToInsert;
-		if (cardList->_first == NULL)
+		if (cardList->_first == nullptr)
 		{
 			cardList->_last = cardToInsert;
 		}
 		cardList->_first = cardToInsert;
 	}
-	else if (beforeCard == NULL)
+	else if (beforeCard == nullptr)
 	{
 		// we're at last
 		cardToInsert->previousCard = cardList->_last;
@@ -318,15 +318,15 @@ bool AreCardListsEqual(TGMCardList* cardList1, TGMCardList* cardList2)
 	{
 		return true;
 	}
-	else if (cardList1 != NULL && cardList2 == NULL)
+	else if (cardList1 != nullptr && cardList2 == nullptr)
 	{
 		return false;
 	}
-	else if (cardList1 == NULL && cardList2 != NULL)
+	else if (cardList1 == nullptr && cardList2 != nullptr)
 	{
 		return false;
 	}
-	else if (cardList1 == NULL || cardList2 == NULL)
+	else if (cardList1 == nullptr || cardList2 == nullptr)
 	{
 		// stupid branch for analyzer
 		return true;
@@ -338,7 +338,7 @@ bool AreCardListsEqual(TGMCardList* cardList1, TGMCardList* cardList2)
 	
 	TGMCard *thisCard = cardList1->_first;
 	TGMCard *thatCard = cardList2->_first;
-	while (thisCard != NULL)
+	while (thisCard != nullptr)
 	{
 		if (!AreCardsEqual(thisCard, thatCard))
 		{
@@ -353,12 +353,12 @@ bool AreCardListsEqual(TGMCardList* cardList1, TGMCardList* cardList2)
 
 TGMCard* CardListRemoveCardLike(TGMCardList* cardList, TGMCard* card)
 {
-	dassert(card != NULL);
+	dassert(card != nullptr);
 	
-	TGMCard* listCard = NULL;
+	TGMCard* listCard = nullptr;
 	
 	TGMCard* c = FirstCardNoRef(cardList);
-	while (c != NULL)
+	while (c != nullptr)
 	{
 		if (AreCardsEqual(c, card))
 		{
@@ -370,7 +370,7 @@ TGMCard* CardListRemoveCardLike(TGMCardList* cardList, TGMCard* card)
 		c = c->nextCard;
 	}
 	
-	dassert(listCard != NULL);
+	dassert(listCard != nullptr);
 	CardListRemove(cardList, listCard);
 	return listCard;
 }
@@ -384,13 +384,13 @@ void CardListSort(TGMCardList* cardList)
 	TGMCardList* sorted = CreateCardList();
 	
 	TGMCard *card = FirstCardNoRef(cardList);
-	while (card != NULL)
+	while (card != nullptr)
 	{
 		TGMCard* next = card->nextCard;
-		TGMCard* beforeCard = NULL;
+		TGMCard* beforeCard = nullptr;
 		
 		TGMCard *handCard = FirstCardNoRef(sorted);
-		while (handCard != NULL)
+		while (handCard != nullptr)
 		{
 			if (CompareCards(card, handCard) == TGMCardComparisonResult::Descending)
 			{
@@ -418,8 +418,8 @@ void CardListSort(TGMCardList* cardList)
 	cardList->_first = sorted->_first;
 	cardList->_last = sorted->_last;
 	cardList->_count = sorted->_count;
-	sorted->_first = NULL;
-	sorted->_last = NULL;
+	sorted->_first = nullptr;
+	sorted->_last = nullptr;
 	sorted->_count = 0;
 	
 	// sorted is now done

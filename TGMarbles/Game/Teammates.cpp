@@ -7,14 +7,14 @@ TGMTeammates* AllocateTeammates(void);
 void DeallocateTeammates(TGMTeammates* teammates);
 
 static std::mutex s_lock;
-static TGMPoolAllocator* s_TeammatesAllocationPoolUnusedFirst = NULL;
-static TGMPoolAllocator* s_TeammatesAllocationPoolUsedFirst = NULL;
+static TGMPoolAllocator* s_TeammatesAllocationPoolUnusedFirst = nullptr;
+static TGMPoolAllocator* s_TeammatesAllocationPoolUsedFirst = nullptr;
 
 TGMTeammates* AllocateTeammates(void)
 {
 	const std::lock_guard<std::mutex> lock(s_lock);
 	TGMPoolAllocator* allocator = AllocatePoolObject(sizeof(TGMTeammates), &s_TeammatesAllocationPoolUnusedFirst, &s_TeammatesAllocationPoolUsedFirst);
-	TGMTeammates* teammates = (TGMTeammates *)allocator->_object;
+	TGMTeammates* teammates = static_cast<TGMTeammates *>(allocator->_object);
 	teammates->_holder = allocator; // need a back pointer to the allocator for a quick return policy
 	
 	MemIncreaseGlobalCount(g_teammatesLiving);
@@ -26,9 +26,9 @@ void DeallocateTeammates(TGMTeammates* teammates)
 {
 	if (!teammates) return;
 	
-	TGMPoolAllocator* allocator = (TGMPoolAllocator*)teammates->_holder; // need to do this before memset...
+	TGMPoolAllocator* allocator = static_cast<TGMPoolAllocator*>(teammates->_holder); // need to do this before memset...
 #ifdef DEBUG
-	memset(teammates, (int)0xDEADBEEF, sizeof(TGMTeammates));
+	memset(teammates, static_cast<int>(0xDEADBEEF), sizeof(TGMTeammates));
 	teammates->_holder = allocator;
 #endif
 	
@@ -39,7 +39,7 @@ void DeallocateTeammates(TGMTeammates* teammates)
 
 TGMTeammates* CreateEmptyTeammates(void)
 {
-	return CreateTeammates(NULL, NULL, NULL);
+	return CreateTeammates(nullptr, nullptr, nullptr);
 }
 
 TGMTeammates* CreateTeammates(
@@ -47,8 +47,8 @@ TGMTeammates* CreateTeammates(
 	TGMPlayer* teammate2,
 	TGMPlayer* ownPlayer)
 {
-	dassert(teammate1 != NULL || (teammate1 == NULL && teammate2 == NULL && ownPlayer == NULL));
-	dassert(teammate2 != NULL || (teammate2 == NULL && ownPlayer == NULL));
+	dassert(teammate1 != nullptr || (teammate1 == nullptr && teammate2 == nullptr && ownPlayer == nullptr));
+	dassert(teammate2 != nullptr || (teammate2 == nullptr && ownPlayer == nullptr));
 
 	TGMTeammates* teammates = AllocateTeammates();
 	teammates->_teammate1 = teammate1;
@@ -56,9 +56,9 @@ TGMTeammates* CreateTeammates(
 	teammates->_ownPlayer = ownPlayer;
 	
 	int32_t count = 0;
-	if (teammate1 != NULL) count++;
-	if (teammate2 != NULL) count++;
-	if (ownPlayer != NULL) count++;
+	if (teammate1 != nullptr) ++count;
+	if (teammate2 != nullptr) ++count;
+	if (ownPlayer != nullptr) ++count;
 	teammates->_count = count;
 	
 #ifdef TEAMMATES_MEMORY_LOGGING

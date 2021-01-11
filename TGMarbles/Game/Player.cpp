@@ -13,14 +13,14 @@ TGMPlayer* AllocatePlayer(void);
 void DeallocatePlayer(TGMPlayer* player);
 
 static std::mutex s_lock;
-static TGMPoolAllocator* s_playerAllocationPoolUnusedFirst = NULL;
-static TGMPoolAllocator* s_playerAllocationPoolUsedFirst = NULL;
+static TGMPoolAllocator* s_playerAllocationPoolUnusedFirst = nullptr;
+static TGMPoolAllocator* s_playerAllocationPoolUsedFirst = nullptr;
 
 TGMPlayer* AllocatePlayer(void)
 {
 	const std::lock_guard<std::mutex> lock(s_lock);
 	TGMPoolAllocator* allocator = AllocatePoolObject(sizeof(TGMPlayer), &s_playerAllocationPoolUnusedFirst, &s_playerAllocationPoolUsedFirst);
-	TGMPlayer* player = (TGMPlayer *)allocator->_object;
+	TGMPlayer* player = static_cast<TGMPlayer *>(allocator->_object);
 	player->_holder = allocator; // need a back pointer to the allocator for a quick return policy
 	
 	MemIncreaseGlobalCount(g_playersLiving);
@@ -40,10 +40,10 @@ void DeallocatePlayer(TGMPlayer* player)
 		player->_onDestroy(player);
 	}
 	
-	TGMPoolAllocator* allocator = (TGMPoolAllocator*)player->_holder; // need to do this before memset...
+	TGMPoolAllocator* allocator = static_cast<TGMPoolAllocator*>(player->_holder); // need to do this before memset...
 	
 #ifdef DEBUG
-	memset(player, (int)0xDEADBEEF, sizeof(TGMPlayer));
+	memset(player, static_cast<int>(0xDEADBEEF), sizeof(TGMPlayer));
 	player->_retainCount = 0;
 	player->_holder = allocator;
 #endif
@@ -89,18 +89,18 @@ TGMPlayer* CreatePlayer(const char* name, Strategy strategy, PlayerColor pc)
 	player->_strategy = strategy;
 	memset(player->_marblesInHome, false, sizeof(player->_marblesInHome));
 	
-	player->_hand = NULL;
+	player->_hand = nullptr;
 	player->_isTeam1 = false;
 	
-	player->_game = NULL;
+	player->_game = nullptr;
 	
-	player->_onGameStarting = NULL;
-	player->_onGameEnding = NULL;
-	player->_onHandStarting = NULL;
-	player->_onDealtCard = NULL;
-	player->_onPlayInGame = NULL;
-	player->_onDescription = NULL;
-	player->_onDestroy = NULL;
+	player->_onGameStarting = nullptr;
+	player->_onGameEnding = nullptr;
+	player->_onHandStarting = nullptr;
+	player->_onDealtCard = nullptr;
+	player->_onPlayInGame = nullptr;
+	player->_onDescription = nullptr;
+	player->_onDestroy = nullptr;
 	
 	return player;
 }
@@ -210,7 +210,7 @@ void PlayerGameEnding(TGMPlayer* player, TGMGame* game)
 	PlayerEventOnGameEnding(player);
 	dassert(game == player->_game);
 	(void)game;
-	PlayerSetGame(player, NULL);
+	PlayerSetGame(player, nullptr);
 }
 
 void PlayerStartingHand(TGMPlayer* player)
@@ -263,7 +263,7 @@ void PlayerSetOnDestroy(TGMPlayer* player, TGMPlayerDestroyFunction onDestroy)
 
 void PlayerEventOnGameStarting(TGMPlayer* player)
 {
-	if (player->_onGameStarting != NULL)
+	if (player->_onGameStarting != nullptr)
 	{
 		player->_onGameStarting(player);
 	}
@@ -271,7 +271,7 @@ void PlayerEventOnGameStarting(TGMPlayer* player)
 
 void PlayerEventOnGameEnding(TGMPlayer* player)
 {
-	if (player->_onGameEnding != NULL)
+	if (player->_onGameEnding != nullptr)
 	{
 		player->_onGameEnding(player);
 	}
@@ -279,7 +279,7 @@ void PlayerEventOnGameEnding(TGMPlayer* player)
 
 void PlayerEventOnHandStarting(TGMPlayer* player)
 {
-	if (player->_onHandStarting != NULL)
+	if (player->_onHandStarting != nullptr)
 	{
 		player->_onHandStarting(player);
 	}
@@ -287,7 +287,7 @@ void PlayerEventOnHandStarting(TGMPlayer* player)
 
 void PlayerEventOnDealtCard(TGMPlayer* player, TGMCard* card)
 {
-	if (player->_onDealtCard != NULL)
+	if (player->_onDealtCard != nullptr)
 	{
 		player->_onDealtCard(player, card);
 	}
@@ -295,7 +295,7 @@ void PlayerEventOnDealtCard(TGMPlayer* player, TGMCard* card)
 
 void PlayerPlayInGame(TGMPlayer *player)
 {
-	if (player->_onPlayInGame != NULL)
+	if (player->_onPlayInGame != nullptr)
 	{
 		player->_onPlayInGame(player);
 	}

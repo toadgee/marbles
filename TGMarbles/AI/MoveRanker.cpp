@@ -52,7 +52,7 @@ void DoWeightOfMoveBasedOnLikelihoodOfBeingKilled(TGMMoveRankerData *data, TGMMo
 		return;
 	}
 	
-	if (allPossibleOpponentMoves == NULL)
+	if (allPossibleOpponentMoves == nullptr)
 	{
 		// huh, we weren't asked to calculate this...
 		return;
@@ -68,7 +68,7 @@ void DoWeightOfMoveBasedOnLikelihoodOfBeingKilled(TGMMoveRankerData *data, TGMMo
 		bool opponentsAreTeam1 = !IsPlayerColorTeam1(data->playerColor);
 		
 		// only calculate opponent moves once across all moves (performance optimization)
-		if (*allPossibleOpponentMoves == NULL)
+		if (*allPossibleOpponentMoves == nullptr)
 		{
 			*allPossibleOpponentMoves = AllPossibleMovesForAllTeamPlayers(data->game, opponentsAreTeam1);
 		}
@@ -77,7 +77,7 @@ void DoWeightOfMoveBasedOnLikelihoodOfBeingKilled(TGMMoveRankerData *data, TGMMo
 		
 		{
 			TGMMove* possibleKillMove = allPossibleMoves->first;
-			while (possibleKillMove != NULL)
+			while (possibleKillMove != nullptr)
 			{
 				// if there's a move that can kill us, we subtract some amount
 				// if there's a move that can't, we add some amount
@@ -325,7 +325,7 @@ void DoWeightOfMoveFromPoint(TGMMoveRankerData *data)
 
 void DoWeightOfMoveToPoint(TGMMoveRankerData *data)
 {
-	if (data->move->marble != NULL)
+	if (data->move->marble != nullptr)
 	{
 		PlayerColor playerColorForMarble = PlayerColorForMarbleColor(data->move->marble->color);
 		

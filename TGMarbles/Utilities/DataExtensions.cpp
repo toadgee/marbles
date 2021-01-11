@@ -191,14 +191,14 @@ TGMCard* CreateCardFromData(TGMDataIterator& iter) noexcept
 	if (marker != kCardDataMarker)
 	{
 		dassert(false);
-		return NULL;
+		return nullptr;
 	}
 	
 	uint8_t version = TGMData::ReadUInt8(iter);
 	if (version != kCardDataVersion)
 	{
 		dassert(false);
-		return NULL;
+		return nullptr;
 	}
 	
 	int uniqueId = TGMData::ReadInt(iter);
@@ -225,7 +225,7 @@ TGMData GetDeckData(TGMDeck *deck) noexcept
 	int i = 0;
 	TGMCard* card = deck->_cards->_first;
 	data.WriteInt(static_cast<int>(CardListCount(deck->_cards)));
-	while (card != NULL)
+	while (card != nullptr)
 	{
 		data.WriteInt(i++);
 		data.WriteData(GetCardData(card));
@@ -235,7 +235,7 @@ TGMData GetDeckData(TGMDeck *deck) noexcept
 	i = 0;
 	card = deck->_discarded->_first;
 	data.WriteInt(static_cast<int>(CardListCount(deck->_discarded)));
-	while (card != NULL)
+	while (card != nullptr)
 	{
 		data.WriteInt(i++);
 		data.WriteData(GetCardData(card));
@@ -251,14 +251,14 @@ TGMDeck* CreateDeckFromData(TGMDataIterator &iter) noexcept
 	if (marker != kDeckDataMarker)
 	{
 		dassert(false);
-		return NULL;
+		return nullptr;
 	}
 	
 	int version = TGMData::ReadInt(iter);
 	if (version != kDeckDataVersion)
 	{
 		dassert(false);
-		return NULL;
+		return nullptr;
 	}
 	
 	TGMDeck* deck = CreateDeck(true);
@@ -271,15 +271,15 @@ TGMDeck* CreateDeckFromData(TGMDataIterator &iter) noexcept
 		{
 			dassert(false);
 			ReleaseDeck(deck);
-			return NULL;
+			return nullptr;
 		}
 		
 		TGMCard* card = CreateCardFromData(iter);
-		if (card == NULL)
+		if (card == nullptr)
 		{
 			dassert(false);
 			ReleaseDeck(deck);
-			return NULL;
+			return nullptr;
 		}
 		
 		CardListTransfer(deck->_cards, card);
@@ -293,15 +293,15 @@ TGMDeck* CreateDeckFromData(TGMDataIterator &iter) noexcept
 		{
 			dassert(false);
 			ReleaseDeck(deck);
-			return NULL;
+			return nullptr;
 		}
 		
 		TGMCard* card = CreateCardFromData(iter);
-		if (card == NULL)
+		if (card == nullptr)
 		{
 			dassert(false);
 			ReleaseDeck(deck);
-			return NULL;
+			return nullptr;
 		}
 		
 		CardListTransfer(deck->_discarded, card);
@@ -359,7 +359,7 @@ TGMGameLog* CreateGameLogFromData(TGMData &data) noexcept
 	uint16_t deckCount = static_cast<uint16_t>(TGMData::ReadInt(iter));
 	for (uint16_t d = 0; d < deckCount; d++)
 	{
-		uint16_t dEncoded = (uint16_t)TGMData::ReadInt(iter);
+		uint16_t dEncoded = static_cast<uint16_t>(TGMData::ReadInt(iter));
 		if (d != dEncoded)
 		{
 			dassert(false);
@@ -388,7 +388,7 @@ TGMGameLog* CreateGameLogFromData(TGMData &data) noexcept
 		}
 		
 		TGMMove* move = CreateMoveFromData(iter);
-		if (move == NULL)
+		if (move == nullptr)
 		{
 			dassert(false);
 			return nullptr;
@@ -436,7 +436,7 @@ TGMData GameLogData(TGMGameLog* gameLog) noexcept
 		deck = deck->_nextDeck;
 	}
 	
-	data.WriteInt((int)MoveListCount(gameLog->_moveList));
+	data.WriteInt(static_cast<int>(MoveListCount(gameLog->_moveList)));
 	TGMMove *move = gameLog->_moveList->first;
 	int i = 0;
 	while (move != nullptr)
@@ -455,14 +455,14 @@ TGMMarble* CreateMarbleFromData(TGMDataIterator& iter, bool* nullMarbleEncoded) 
 	if (marker != kMarbleDataMarker)
 	{
 		dassert(false);
-		return NULL;
+		return nullptr;
 	}
 	
 	int version = TGMData::ReadInt(iter);
 	if (version != kMarbleDataVersion)
 	{
 		dassert(false);
-		return NULL;
+		return nullptr;
 	}
 	
 	bool nullMarble = TGMData::ReadBool(iter);
@@ -477,7 +477,7 @@ TGMMarble* CreateMarbleFromData(TGMDataIterator& iter, bool* nullMarbleEncoded) 
 	
 	if (nullMarble)
 	{
-		return NULL;
+		return nullptr;
 	}
 	
 	return CreateMarble(mc, distanceFromHome, wentBehindHome);
@@ -515,29 +515,29 @@ TGMMove* CreateMoveFromData(TGMDataIterator& iter) noexcept
 	if (marker != kMoveDataMarker)
 	{
 		dassert(false);
-		return NULL;
+		return nullptr;
 	}
 	
 	int version = TGMData::ReadInt(iter);
 	if (version != kMoveDataVersion)
 	{
 		dassert(false);
-		return NULL;
+		return nullptr;
 	}
 
 	bool nullMarbleEncoded = false;
 	TGMMarble* marble = CreateMarbleFromData(iter, &nullMarbleEncoded);
-	if (marble == NULL && !nullMarbleEncoded)
+	if (marble == nullptr && !nullMarbleEncoded)
 	{
 		dassert(false);
-		return NULL;
+		return nullptr;
 	}
 	
 	TGMCard* card = CreateCardFromData(iter);
-	if (card == NULL)
+	if (card == nullptr)
 	{
 		dassert(false);
-		return NULL;
+		return nullptr;
 	}
 	
 	PlayerColor playerColor = TGMData::ReadPlayerColor(iter);
@@ -548,7 +548,7 @@ TGMMove* CreateMoveFromData(TGMDataIterator& iter) noexcept
 	bool wentBehindHome = TGMData::ReadBool(iter);
 	int jumps = TGMData::ReadInt(iter);
 	TGMMove* move = MakeMove(card, marble, isDiscard, playerColor, oldSpot, newSpot, moves, jumps, wentBehindHome);
-	if (marble != NULL) ReleaseMarble(marble);
+	if (marble != nullptr) ReleaseMarble(marble);
 	ReleaseCard(card);
 	return move;
 }

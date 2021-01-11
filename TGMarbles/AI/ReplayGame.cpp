@@ -13,16 +13,16 @@
 TGMReplayGame* AllocateReplayGame(void);
 void DeallocateReplayGame(TGMReplayGame* replayGame);
 
-std::mutex s_lock;
-static TGMPoolAllocator* s_ReplayGameAllocationPoolUnusedFirst = NULL;
-static TGMPoolAllocator* s_ReplayGameAllocationPoolUsedFirst = NULL;
+static std::mutex s_lock;
+static TGMPoolAllocator* s_ReplayGameAllocationPoolUnusedFirst = nullptr;
+static TGMPoolAllocator* s_ReplayGameAllocationPoolUsedFirst = nullptr;
 
 TGMReplayGame* AllocateReplayGame(void)
 {
 	const std::lock_guard<std::mutex> lock(s_lock);
 
 	TGMPoolAllocator* allocator = AllocatePoolObject(sizeof(TGMReplayGame), &s_ReplayGameAllocationPoolUnusedFirst, &s_ReplayGameAllocationPoolUsedFirst);
-	TGMReplayGame* replayGame = (TGMReplayGame *)allocator->_object;
+	TGMReplayGame* replayGame = static_cast<TGMReplayGame *>(allocator->_object);
 	replayGame->_holder = allocator; // need a back pointer to the allocator for a quick return policy
 	replayGame->_retainCount = 1;
 	
@@ -40,10 +40,10 @@ void DeallocateReplayGame(TGMReplayGame* replayGame)
 	
 	ReleaseGame(replayGame->_game);
 	
-	TGMPoolAllocator* allocator = (TGMPoolAllocator*)replayGame->_holder; // need to do this before memset...
+	TGMPoolAllocator* allocator = static_cast<TGMPoolAllocator*>(replayGame->_holder); // need to do this before memset...
 	
 #ifdef DEBUG
-	memset(replayGame, (int)0xDEADBEEF, sizeof(TGMReplayGame));
+	memset(replayGame, static_cast<int>(0xDEADBEEF), sizeof(TGMReplayGame));
 	replayGame->_retainCount = 0;
 	replayGame->_holder = allocator;
 #endif

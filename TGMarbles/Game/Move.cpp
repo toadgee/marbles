@@ -18,15 +18,15 @@ TGMMove* AllocateMove(void);
 void DeallocateMove(TGMMove* move);
 
 static std::mutex s_lock;
-static TGMPoolAllocator* s_MoveAllocationPoolUnusedFirst = NULL;
-static TGMPoolAllocator* s_MoveAllocationPoolUsedFirst = NULL;
+static TGMPoolAllocator* s_MoveAllocationPoolUnusedFirst = nullptr;
+static TGMPoolAllocator* s_MoveAllocationPoolUsedFirst = nullptr;
 
 TGMMove* AllocateMove(void)
 {
 	const std::lock_guard<std::mutex> lock(s_lock);
 
 	TGMPoolAllocator* allocator = AllocatePoolObject(sizeof(TGMMove), &s_MoveAllocationPoolUnusedFirst, &s_MoveAllocationPoolUsedFirst);
-	TGMMove* move = (TGMMove *)allocator->_object;
+	TGMMove* move = static_cast<TGMMove *>(allocator->_object);
 	move->_holder = allocator; // need a back pointer to the allocator for a quick return policy
 	
 	MemIncreaseGlobalCount(g_movesLiving);
@@ -39,9 +39,9 @@ void DeallocateMove(TGMMove* move)
 	dassert(move);
 	if (!move) return;
 	
-	TGMPoolAllocator* allocator = (TGMPoolAllocator*)move->_holder; // need to do this before memset...
+	TGMPoolAllocator* allocator = static_cast<TGMPoolAllocator*>(move->_holder); // need to do this before memset...
 #ifdef DEBUG
-	memset(move, (int)0xDEADBEEF, sizeof(TGMMove));
+	memset(move, static_cast<int>(0xDEADBEEF), sizeof(TGMMove));
 	move->_retainCount = 0;
 	move->_holder = allocator;
 #endif
@@ -69,7 +69,7 @@ TGMMove* MakeMoveUnfiltered(
 	// Kings can only be get-outs unless we don't have any more marbles
 	if (cardNum == CardNumber::King && unusedMarbles != 0)
 	{
-		return NULL;
+		return nullptr;
 	}
 	
 	bool wentBehindHome = false;
@@ -80,13 +80,13 @@ TGMMove* MakeMoveUnfiltered(
 		// 0 is a special spot - so if it's already been around, we shouldn't do a non-get in move
 		if (normalizedOldSpot == 0 && marble->wentBehindHome)
 		{
-			return NULL;
+			return nullptr;
 		}
 		
 		// cards can't move past kTotalSpots : either -kTotalSpots or +kTotalSpots (not including final spots) (part 1)
 		if ((marble->distanceFromHome + movedDistance) > (kTotalSpots + kMarblesPerPlayer))
 		{
-			return NULL;
+			return nullptr;
 		}
 		
 		// normalize the spots down to the player's perspective of 0 to kMaxSpots
@@ -104,7 +104,7 @@ TGMMove* MakeMoveUnfiltered(
 		// cards can't move past kTotalSpots : either -kTotalSpots or +kTotalSpots (not including final spots) (part 2)
 		if (marble->distanceFromHome + movedDistance < (0 - kTotalSpots))
 		{
-			return NULL;
+			return nullptr;
 		}
 		
 		// normalize the spots down to the player's perspective of 0 to kMaxSpots
@@ -148,8 +148,8 @@ TGMMove* MakeMove(
 	move->jumps = jumps;
 	move->weight = 0;
 	move->weightCalculated = false;
-	move->nextMove = NULL;
-	move->previousMove = NULL;
+	move->nextMove = nullptr;
+	move->previousMove = nullptr;
 	move->spotsCalculated = false;
 	dassert(jumps != -1);
 	
@@ -182,7 +182,7 @@ int MoveCalculateIntermediateSpotsInternal(TGMMove* move, int moves, int fromSpo
 		if (wrapSpot)
 			newSpot = WrapSpot(newSpot);
 		
-		move->spots[s + spotMarker] = (uint8_t)newSpot;
+		move->spots[s + spotMarker] = static_cast<uint8_t>(newSpot);
 	}
 	
 	return (spotMarker + adjMoves);
@@ -196,7 +196,7 @@ void MoveCalculateIntermediateSpots(TGMMove* move)
 	move->spotsCalculated = true;
 	if (move->oldSpot == kGetOutSpot)
 	{
-		move->spots[0] = (uint8_t)move->newSpot;
+		move->spots[0] = static_cast<uint8_t>(move->newSpot);
 	}
 	else
 	{
@@ -226,7 +226,7 @@ void MoveCalculateIntermediateSpots(TGMMove* move)
 			
 				while (jumps > 0)
 				{
-					move->spots[spotMarker] = (uint8_t)fromSpot;
+					move->spots[spotMarker] = static_cast<uint8_t>(fromSpot);
 					spotMarker++;
 				
 					fromSpot = WrapSpot(fromSpot + spotDiff);
@@ -292,8 +292,8 @@ TGMMove* CopyMove(TGMMove * move)
 	memcpy(copy, move, sizeof(TGMMove));
 	copy->_holder = holder;
 	copy->_retainCount = 1;
-	copy->nextMove = NULL;
-	copy->previousMove = NULL;
+	copy->nextMove = nullptr;
+	copy->previousMove = nullptr;
 	if (copy->marble)
 	{
 		RetainMarble(copy->marble);

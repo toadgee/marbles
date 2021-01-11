@@ -7,11 +7,10 @@
 #define COLOR_SUPPORTED
 #endif
 
-#define FinalSpotChar(spot) ((char)(SpotToFinalSpot(spot) + 65))
+#define FinalSpotChar(spot) (static_cast<char>(SpotToFinalSpot(spot) + 65))
 #define BoolToString(b) ((b) ? "YES" : "NO")
 
 #define etstr(save, enumType, stringType) case enumType: save = stringType; break
-#define etstr2(save, enumType) case enumType: save = #enumType; break
 
 std::string ColoredString(PlayerColor color, const char* str)
 {
@@ -94,7 +93,7 @@ std::string BoardDescription(TGMBoard *board)
 
 std::string CardSuitToString(CardSuit suit)
 {
-	const char* str = NULL;
+	const char* str = nullptr;
 	switch (suit)
 	{
 		etstr(str, CardSuit::None, "None");
@@ -110,7 +109,7 @@ std::string CardSuitToString(CardSuit suit)
 
 std::string CardNumberToString(CardNumber card)
 {
-	const char* str = NULL;
+	const char* str = nullptr;
 	switch (card)
 	{
 		etstr(str, CardNumber::Joker, "Joker");
@@ -135,7 +134,7 @@ std::string CardNumberToString(CardNumber card)
 
 const char *PlayerColorToString(PlayerColor color)
 {
-	const char* str = NULL;
+	const char* str = nullptr;
 	switch (color)
 	{
 		etstr(str, PlayerColor::Red, "Red");
@@ -152,7 +151,7 @@ const char *PlayerColorToString(PlayerColor color)
 
 std::string MarbleColorToShortString(MarbleColor color)
 {
-	const char* str = NULL;
+	const char* str = nullptr;
 	switch (color)
 	{
 		etstr(str, MarbleColor::None, "_");
@@ -199,7 +198,7 @@ std::string MarbleColorToShortString(MarbleColor color)
 
 std::string PlayerColorToShortString(PlayerColor color)
 {
-	const char* str = NULL;
+	const char* str = nullptr;
 	switch (color)
 	{
 		etstr(str, PlayerColor::None, "_");
@@ -216,7 +215,7 @@ std::string PlayerColorToShortString(PlayerColor color)
 
 std::string StrategyToString(Strategy strategy)
 {
-	const char* str = NULL;
+	const char* str = nullptr;
 	switch (strategy)
 	{
 		etstr(str, Strategy::None, "NONE");
@@ -235,7 +234,7 @@ std::string StrategyToString(Strategy strategy)
 
 std::string GameStateToString(GameState state)
 {
-	const char* str = NULL;
+	const char* str = nullptr;
 	switch (state)
 	{
 		etstr(str, GameState::NotStarted, "Not Started");
@@ -282,7 +281,7 @@ std::string ComputerPlayerDescription(TGMPlayer* player)
 
 std::string PlayerDescription(TGMPlayer* player)
 {
-	if (player->_onGameStarting != NULL)
+	if (player->_onGameStarting != nullptr)
 	{
 		return player->_onDescription(player);
 	}
@@ -359,7 +358,7 @@ std::string MoveDescription(TGMMove* move)
 	if (IsFinalSpot(move->oldSpot))
 	{
 		std::ostringstream str;
-		str << (char)FinalSpotChar(move->oldSpot);
+		str << static_cast<char>(FinalSpotChar(move->oldSpot));
 		oldSpotStr = str.str();
 	}
 	else
@@ -373,7 +372,7 @@ std::string MoveDescription(TGMMove* move)
 	if (IsFinalSpot(move->newSpot))
 	{
 		std::ostringstream str;
-		str << (char)FinalSpotChar(move->newSpot);
+		str << static_cast<char>(FinalSpotChar(move->newSpot));
 		newSpotStr = str.str();
 	}
 	else
@@ -443,7 +442,7 @@ std::string CardDescription(TGMCard *card, bool shortDescription)
 
 std::string BoardDescriptionWithCustomBreaker(TGMBoard *board, int8_t breaker)
 {
-	dassert(board != NULL);
+	dassert(board != nullptr);
 	std::ostringstream str;
 	str << "Marbles Board\r\n"; // (intro for lldb)
 
@@ -466,7 +465,7 @@ std::string BoardDescriptionWithCustomBreaker(TGMBoard *board, int8_t breaker)
 			}
 			else if (IsPlayerLastSpot(i - 1))
 			{
-				str << (char)FinalSpotChar(j);
+				str << static_cast<char>(FinalSpotChar(j));
 			}
 			else
 			{
@@ -483,7 +482,7 @@ std::string BoardDescriptionWithCustomBreaker(TGMBoard *board, int8_t breaker)
 	for (int i = kTotalSpots - 1; i >= 0; i--)
 	{
 		TGMMarble* marble = board->_board[i];
-		MarbleColor mc = marble == NULL ? MarbleColor::None : marble->color;
+		MarbleColor mc = marble == nullptr ? MarbleColor::None : marble->color;
 
 		if (mc != MarbleColor::None)
 		{
@@ -599,7 +598,7 @@ std::string MoveShortDescription(TGMMove* move, bool withCard)
 	
 	if (IsFinalSpot(move->oldSpot))
 	{
-		str << (char)FinalSpotChar(move->oldSpot);
+		str << static_cast<char>(FinalSpotChar(move->oldSpot));
 	}
 	else
 	{
@@ -610,7 +609,7 @@ std::string MoveShortDescription(TGMMove* move, bool withCard)
 	
 	if (IsFinalSpot(move->newSpot))
 	{
-		str << (char)FinalSpotChar(move->newSpot);
+		str << static_cast<char>(FinalSpotChar(move->newSpot));
 	}
 	else
 	{

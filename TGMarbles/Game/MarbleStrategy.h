@@ -24,7 +24,7 @@ static inline Strategy NextStrategy(Strategy strategy)
 	return static_cast<Strategy>(next);
 }
 
-#define IterateStrategy(x) (x = (static_cast<Strategy>(((int)(x)) + 1)))
+#define IterateStrategy(x) (x = (static_cast<Strategy>((static_cast<int>(x)) + 1)))
 #define IsValidStrategy(x) ((x) >= Strategy::Min && (x) <= Strategy::Max)
 #define IsComputerStrategy(x) ((x) != Strategy::Human)
 #define IsAggressiveStrategy(strategy) ((strategy) == Strategy::Aggressive || (strategy) == Strategy::DefensiveAggressive)

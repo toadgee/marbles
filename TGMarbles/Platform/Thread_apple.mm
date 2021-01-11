@@ -1,6 +1,5 @@
 #include "Thread.h"
 
-#define kThreadKeyGameThread @"Marbles Game Thread"
 void SetThreadName(const char* name)
 {
 	@autoreleasepool

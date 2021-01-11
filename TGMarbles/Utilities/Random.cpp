@@ -7,12 +7,12 @@
 
 TGRandom* CreateRandomAndSeed(void)
 {
-	return CreateRandomWithSeed((unsigned)time(0));
+	return CreateRandomWithSeed(static_cast<unsigned>(time(nullptr)));
 }
 
 TGRandom* CreateRandomWithSeed(unsigned seed)
 {
-	TGRandom* rnd = (TGRandom*)malloc(sizeof(TGRandom));
+	TGRandom* rnd = static_cast<TGRandom*>(malloc(sizeof(TGRandom)));
 	rnd->_calls = 0;
 	rnd->_seed = seed; // we will set the seed inside of RandomDoSeed
 	
@@ -23,7 +23,7 @@ TGRandom* CreateRandomWithSeed(unsigned seed)
 #if WIN32
 	srand((unsigned)seed);
 #elif TARGET_OS_OSX || TARGET_OS_IPHONE
-	srandom((unsigned)seed);
+	srandom(static_cast<unsigned>(seed));
 #else
 	#error unknown platform
 #endif
@@ -33,9 +33,9 @@ TGRandom* CreateRandomWithSeed(unsigned seed)
 
 void DestroyRandom(TGRandom* random)
 {
-	if (random == NULL) return;
+	if (random == nullptr) return;
 #ifdef DEBUG
-	memset(random, (int)0xDEADBEEF, sizeof(TGRandom));
+	memset(random, static_cast<int>(0xDEADBEEF), sizeof(TGRandom));
 #endif
 	
 	free(random);
@@ -60,7 +60,7 @@ void ResetRandom(TGRandom* rnd)
 
 uint32_t RandomRandom(TGRandom* rnd)
 {
-	if (rnd == NULL)
+	if (rnd == nullptr)
 	{
 #ifdef RANDOM_LOGGING
 		fprintf("RandomRandom on %p\n", RandomPointer(rnd));
@@ -76,9 +76,9 @@ uint32_t RandomRandom(TGRandom* rnd)
 	// if we're truly doing random, we can't get it.
 	// TODO : maybe we should reduce number of randomrandom calls?...
 #if WIN32
-	uint32_t retval = (uint32_t)rand();
+	uint32_t retval = static_cast<uint32_t>(rand());
 #elif TARGET_OS_OSX || TARGET_OS_IPHONE
-	uint32_t retval = (uint32_t)random();
+	uint32_t retval = static_cast<uint32_t>(random());
 #else
 	#error unknown platform
 #endif
@@ -119,7 +119,7 @@ void RestoreRandom(TGRandom* rnd)
 
 TGRandom* CopyRandom(TGRandom* rnd)
 {
-	TGRandom* copy = (TGRandom*)malloc(sizeof(TGRandom));
+	TGRandom* copy = static_cast<TGRandom*>(malloc(sizeof(TGRandom)));
 	copy->_calls = rnd->_calls;
 	copy->_seed = rnd->_seed;
 	

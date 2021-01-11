@@ -20,7 +20,7 @@ void ReplayHandEndedInGame(void* context, TGMGame* game) noexcept;
 void ReplayTurnStartedInGame(void* context, TGMGame* game, TGMPlayer* player) noexcept;
 void ReplayHandStartedInGame(void* context, TGMGame* game) noexcept;
 void ReplayGameStarted(void* context, TGMGame* game) noexcept;
-void ReplayFinished(void* context, TGMGame* game, TGMGameLog* gameLog) noexcept;
+[[noreturn]] void ReplayFinished(void* context, TGMGame* game, TGMGameLog* gameLog) noexcept;
 
 void ReadLine() noexcept
 {
@@ -92,10 +92,10 @@ void ReplayPlayerWillPlayMoveInGame(void* context, TGMGame* game, TGMPlayer* pla
 {
 	printf("#%d    %s ===> %s\n", GameGetTurn(game), PlayerDescription(player).c_str(), MoveDescription(move).c_str());
 	
-	TGMMoveList* allMoves = MovesForPlayerSimple(player, game, NULL);
+	TGMMoveList* allMoves = MovesForPlayerSimple(player, game, nullptr);
 	printf("All Moves : \n");
 	bool foundGenMove = false;
-	TGMMoveList *allPossibleOpponentMoves = NULL;
+	TGMMoveList *allPossibleOpponentMoves = nullptr;
 	TGMMove *genMove = allMoves->first;
 	while (genMove != nullptr)
 	{
