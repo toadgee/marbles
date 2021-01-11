@@ -129,7 +129,7 @@ void RunConsoleGame()
 #else
 		TGRandom* rng = CreateRandomAndSeed();
 #endif
-		TGMGame* game = CreateGame(NULL, rng);
+		TGMGame* game = CreateGame(nullptr, rng);
 		AddPlayersToGame(game, team1, team2, onlyTryLosingGames);
 		
 		bool playerTeamWon = true;
@@ -139,7 +139,7 @@ void RunConsoleGame()
 			
 			if (playerTeamWon)
 			{
-				game = CreateGame(NULL, rng);
+				game = CreateGame(nullptr, rng);
 				AddPlayersToGame(game, team1, team2, onlyTryLosingGames);
 			}
 		}
