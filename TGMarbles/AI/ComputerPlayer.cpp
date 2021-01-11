@@ -42,7 +42,7 @@ TGMPlayer* CreateComputerPlayer(const char* name, Strategy strategy, PlayerColor
 	PlayerSetOnPlayInGame(player, &ComputerPlayerPlayInGame);
 	PlayerSetOnDescription(player, &ComputerPlayerDescription);
 
-	TGMComputerPlayer* computerPlayer = (TGMComputerPlayer*)malloc(sizeof(TGMComputerPlayer));
+	TGMComputerPlayer* computerPlayer = static_cast<TGMComputerPlayer*>(malloc(sizeof(TGMComputerPlayer)));
 	computerPlayer->_passiveAggressive = 0;
 	PlayerSetContext(player, computerPlayer);
 	PlayerSetOnDestroy(player, &ComputerPlayerDestroy);
@@ -52,7 +52,7 @@ TGMPlayer* CreateComputerPlayer(const char* name, Strategy strategy, PlayerColor
 
 void ComputerPlayerDestroy(TGMPlayer *player)
 {
-	TGMComputerPlayer* computerPlayer = (TGMComputerPlayer *)PlayerGetContext(player);
+	TGMComputerPlayer* computerPlayer = static_cast<TGMComputerPlayer *>(PlayerGetContext(player));
 	free(computerPlayer);
 }
 
@@ -62,7 +62,7 @@ void ComputerPlayerPlayInGame(TGMPlayer* player)
 	if (s == Strategy::PassiveAggressive)
 	{
 		// for passive/agressive switch between the two
-		TGMComputerPlayer* computerPlayer = (TGMComputerPlayer*)PlayerGetContext(player);
+		TGMComputerPlayer* computerPlayer = static_cast<TGMComputerPlayer*>(PlayerGetContext(player));
 		computerPlayer->_passiveAggressive++;
 		
 		s = (computerPlayer->_passiveAggressive % 2 == 0) ? Strategy::Passive : Strategy::Aggressive;
