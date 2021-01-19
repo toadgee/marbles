@@ -11,7 +11,9 @@
 #include "Board.h"
 #include "Card.h"
 #include "ComputerPlayer.h"
+#include "DebugAssert.h"
 #include "Deck.h"
+#include "Descriptions.h"
 #include "DumbPlayer.h"
 #include "Game.h"
 #include "GameLog.h"
@@ -24,72 +26,84 @@
 #include "ReplayGame.h"
 
 #define AssertMovesValid(moveCount, am, em) \
-	XCTAssertTrue(MovesMatch(am, em, moveCount), @"Actual Moves %@\nExpectedMoves %@", MoveListDescription(am), MoveListDescription(em)); \
+	XCTAssertTrue(MovesMatch(am, em, moveCount), @"Actual Moves %@\nExpectedMoves %@", [NSString stringFromUTF8String:MoveListDescription(am).c_str()], [NSString stringFromUTF8String:MoveListDescription(em).c_str()]); \
 		ReleaseMoveList(am); \
 		ReleaseMoveList(em)
 
-BOOL s_skipLongTests = YES;
+bool s_skipLongTests = true;
 #define LongTest() if (s_skipLongTests) { XCTFail(@"Skipping test"); return; }
 
-BOOL ValidateMovesForMove(TGMMoveList* actualMoves, TGMMove* move);
-BOOL ValidateMovesForMove(TGMMoveList* actualMoves, TGMMove* move)
+bool ValidateMovesForMove(TGMMoveList* actualMoves, TGMMove* move);
+bool ValidateMovesForMove(TGMMoveList* actualMoves, TGMMove* move)
 {
-	__block TGMMove* foundMove = nil;
-	MoveListIterateWithBlock(actualMoves, ^(int i, TGMMove* m)
+	TGMMove* foundMove = nullptr;
+	TGMMove *m = actualMoves->first;
+	while (m != nullptr)
 	{
 		if (AreMovesEquivalent(m, move))
 		{
 			foundMove = m;
+			break;
 		}
-	});
+		
+		m = m->nextMove;
+	}
 	
-	if (foundMove == nil)
+	if (foundMove == nullptr)
 		return NO;
 	
 	unsigned i = MoveListCount(actualMoves);
 	MoveListRemove(actualMoves, foundMove);
 	assert(MoveListCount(actualMoves) + 1 == i);
-	return YES;
+	return true;
 }
 
 void FinalizeExpectedMoves(TGMMoveList* expectedMoves);
 void FinalizeExpectedMoves(TGMMoveList* expectedMoves)
 {
 	// we need this method because when we add moves in a 1 liner, we end up with 1 extra ref count
-	MoveListIterateWithBlock(expectedMoves, ^(int i, TGMMove* m)
+	TGMMove *m = expectedMoves->first;
+	while (m != nullptr)
 	{
+		TGMMove *next = m->nextMove;
 		ReleaseMove(m);
-	});
+		m = next;
+	}
 }
 
-BOOL MovesMatch(TGMMoveList* actualMoves, TGMMoveList* expectedMoves, NSUInteger moveCount);
-BOOL MovesMatch(TGMMoveList* actualMoves, TGMMoveList* expectedMoves, NSUInteger moveCount)
+bool MovesMatch(TGMMoveList* actualMoves, TGMMoveList* expectedMoves, NSUInteger moveCount);
+bool MovesMatch(TGMMoveList* actualMoves, TGMMoveList* expectedMoves, NSUInteger moveCount)
 {
 	FinalizeExpectedMoves(expectedMoves); // put it here so we don't have to add it to every function :)
 	
 	if (MoveListCount(expectedMoves) != moveCount)
 	{
-		NSLog(@"Didn't generate %ld expected moves - Actual Moves %@\nExpectedMoves %@", (unsigned long)moveCount, MoveListDescription(actualMoves), MoveListDescription(expectedMoves));
+		printf("Didn't generate %ld expected moves - Actual Moves %s\nExpectedMoves %s", (unsigned long)moveCount, MoveListDescription(actualMoves).c_str(), MoveListDescription(expectedMoves).c_str());
 		return NO;
 	}
 	
 	if (MoveListCount(actualMoves) != moveCount)
 	{
-		NSLog(@"Didn't generate %ld actual   moves - Actual Moves %@\nExpectedMoves %@", (unsigned long)moveCount, MoveListDescription(actualMoves), MoveListDescription(expectedMoves));
+		printf("Didn't generate %ld actual   moves - Actual Moves %s\nExpectedMoves %s", (unsigned long)moveCount, MoveListDescription(actualMoves).c_str(), MoveListDescription(expectedMoves).c_str());
 		return NO;
 	}
 
 	actualMoves = CopyMoveList(actualMoves);
 	expectedMoves = CopyMoveList(expectedMoves);
 	
-	__block BOOL match = YES;
-	MoveListIterateWithBlock(expectedMoves, ^(int i, TGMMove* move)
+	bool match = true;
+	TGMMove *move = expectedMoves->first;
+	while (move != nullptr)
 	{
 		if (!ValidateMovesForMove(actualMoves, move))
 		{
 			match = NO;
+			break;
 		}
-	});
+		
+		move = move->nextMove;
+	}
+	
 	match = (match && MoveListCount(actualMoves) == 0);
 	
 	if (match)
@@ -165,7 +179,7 @@ BOOL MovesMatch(TGMMoveList* actualMoves, TGMMoveList* expectedMoves, NSUInteger
 {
 	@autoreleasepool
 	{
-		TGMMarble* marble = CreateMarble(GetMarbleForPlayer(_playerColor, 0), 0, YES);
+		TGMMarble* marble = CreateMarble(GetMarbleForPlayer(_playerColor, 0), 0, true);
 		BoardPlaceMarble(_board, marble, 0);
 		ReleaseMarble(marble);
 	
@@ -254,9 +268,9 @@ BOOL MovesMatch(TGMMoveList* actualMoves, TGMMoveList* expectedMoves, NSUInteger
 		ReleaseMarble(marble);
 		PlayerGameStarting(_player, _game);
 	
-		TGMCard* card = nil;
-		TGMMoveList* actualMoves = nil;
-		TGMMoveList* expectedMoves = nil;
+		TGMCard* card = nullptr;
+		TGMMoveList* actualMoves = nullptr;
+		TGMMoveList* expectedMoves = nullptr;
 	
 		card = CreateCard(1, CardNumber::Card4, CardSuit::Diamonds);
 		CardListAdd(_hand, card);
@@ -288,11 +302,11 @@ BOOL MovesMatch(TGMMoveList* actualMoves, TGMMoveList* expectedMoves, NSUInteger
 {
 	@autoreleasepool
 	{
-		TGMMarble* marble = CreateMarble(GetMarbleForPlayer(_playerColor, 0), kGetInSpot, YES);
+		TGMMarble* marble = CreateMarble(GetMarbleForPlayer(_playerColor, 0), kGetInSpot, true);
 		BoardPlaceMarble(_board, marble, 0);
 		ReleaseMarble(marble);
 		marble->distanceFromHome = kGetInSpot;
-		marble->wentBehindHome = YES;
+		marble->wentBehindHome = true;
 	
 		TGMCard* card = CreateCard(1, CardNumber::Card5, CardSuit::Diamonds);
 		CardListAdd(_hand, card);
@@ -354,14 +368,14 @@ BOOL MovesMatch(TGMMoveList* actualMoves, TGMMoveList* expectedMoves, NSUInteger
 		ReleaseCard(card);
 	
 		// make sure we generate the right moves
-		TGMMove* playMove = RetainMove(MakeMove(card, marble, NO, _playerColor, 9, 96, -4, 1, YES));
+		TGMMove* playMove = RetainMove(MakeMove(card, marble, NO, _playerColor, 9, 96, -4, 1, true));
 		TGMMoveList* actualMoves = MovesForPlayer(_player, _hand, CreateEmptyTeammates(), _board, card, _game);
 		TGMMoveList* expectedMoves = CreateMoveList();
 		MoveListAdd(expectedMoves, MakeMove(card, marble, NO, _playerColor, 9,  5, -4, 0, NO));
 		MoveListAdd(expectedMoves, playMove);
-		MoveListAdd(expectedMoves, MakeMove(card, marble, NO, _playerColor, 9, 79, -4, 2, YES));
-		MoveListAdd(expectedMoves, MakeMove(card, marble, NO, _playerColor, 9, 62, -4, 3, YES));
-		MoveListAdd(expectedMoves, MakeMove(card, marble, NO, _playerColor, 9, 45, -4, 4, YES));
+		MoveListAdd(expectedMoves, MakeMove(card, marble, NO, _playerColor, 9, 79, -4, 2, true));
+		MoveListAdd(expectedMoves, MakeMove(card, marble, NO, _playerColor, 9, 62, -4, 3, true));
+		MoveListAdd(expectedMoves, MakeMove(card, marble, NO, _playerColor, 9, 45, -4, 4, true));
 		AssertMovesValid(5, actualMoves, expectedMoves);
 	
 		// move the marble back move
@@ -396,10 +410,10 @@ BOOL MovesMatch(TGMMoveList* actualMoves, TGMMoveList* expectedMoves, NSUInteger
 		ReleaseCard(card6);
 		ReleaseCard(card7);
 	
-		actualMoves = MovesForPlayer(_player, _hand, CreateEmptyTeammates(), _board, nil, _game);
+		actualMoves = MovesForPlayer(_player, _hand, CreateEmptyTeammates(), _board, nullptr, _game);
 		expectedMoves = CreateMoveList();
-		MoveListAdd(expectedMoves, MakeMove(card5, marble, NO, _playerColor, 107, FinalSpotToSpot(3), 5, 0, YES));
-		MoveListAdd(expectedMoves, MakeMove(card6, marble, NO, _playerColor, 107, FinalSpotToSpot(4), 6, 0, YES));
+		MoveListAdd(expectedMoves, MakeMove(card5, marble, NO, _playerColor, 107, FinalSpotToSpot(3), 5, 0, true));
+		MoveListAdd(expectedMoves, MakeMove(card6, marble, NO, _playerColor, 107, FinalSpotToSpot(4), 6, 0, true));
 		AssertMovesValid(2, actualMoves, expectedMoves);
 	}
 }
@@ -431,7 +445,7 @@ BOOL MovesMatch(TGMMoveList* actualMoves, TGMMoveList* expectedMoves, NSUInteger
 	
 		TGMCard* card = CreateCard(1, CardNumber::Card4, CardSuit::Diamonds);
 	
-		TGMMove* move = MakeMove(card, marble, NO, _playerColor, 0, 104, -4, 0, YES);
+		TGMMove* move = MakeMove(card, marble, NO, _playerColor, 0, 104, -4, 0, true);
 		XCTAssertTrue(IsMoveValidOnBoard(move, _board, _playerColor), @"Move is not valid!");
 	
 		// test the generation worked
@@ -466,7 +480,7 @@ BOOL MovesMatch(TGMMoveList* actualMoves, TGMMoveList* expectedMoves, NSUInteger
 		}
 	
 		// turn off asserts for this check
-		BOOL isValid = IsMoveValidOnBoard(move, _board, _playerColor);
+		bool isValid = IsMoveValidOnBoard(move, _board, _playerColor);
 		ReleaseMove(move);
 		XCTAssertTrue(isValid, @"Get out move is not valid!");
 	}
@@ -476,14 +490,14 @@ BOOL MovesMatch(TGMMoveList* actualMoves, TGMMoveList* expectedMoves, NSUInteger
 {
 	@autoreleasepool
 	{
-		// Move (Red) - [-4] From 45 to 81 with 4 of Diamonds (goneAroundNow = YES, weight = 39, YES)
-		// ...INVALID : Move (Red) - [2] From 81 to 83 with 2 of Hearts (goneAroundNow = YES, weight = 0, NO) : new final spot isn't a valid spot
+		// Move (Red) - [-4] From 45 to 81 with 4 of Diamonds (goneAroundNow = true, weight = 39, true)
+		// ...INVALID : Move (Red) - [2] From 81 to 83 with 2 of Hearts (goneAroundNow = true, weight = 0, NO) : new final spot isn't a valid spot
 		TGMMarble* marble = CreateMarble(GetMarbleForPlayer(_playerColor, 0), -27, NO);
 		BoardPlaceMarble(_board, marble, 81);
 	
 		TGMCard* card = CreateCard(1, CardNumber::Card2, CardSuit::Diamonds);
 		TGMMove* move = MakeMove(card, marble, NO, _teammate1Color, 81, 83, 2, 0, NO);
-		BOOL isValid = IsMoveValidOnBoard(move, _board, _playerColor);
+		bool isValid = IsMoveValidOnBoard(move, _board, _playerColor);
 		XCTAssertTrue(isValid, @"Move is not valid!");
 		ReleaseMarble(marble);
 		ReleaseMove(move);
@@ -579,7 +593,7 @@ BOOL MovesMatch(TGMMoveList* actualMoves, TGMMoveList* expectedMoves, NSUInteger
 		TGMMoveList* actualMoves = MovesForPlayer(_player, _hand, CreateEmptyTeammates(), _board, card, _game);
 		TGMMoveList* expectedMoves = CreateMoveList();
 		MoveListAdd(expectedMoves, MakeMove(card, marble, NO, _playerColor, 81,                 92, 11, 0, NO));
-		MoveListAdd(expectedMoves, MakeMove(card, marble, NO, _playerColor, 81, FinalSpotToSpot(0), 11, 1, YES));
+		MoveListAdd(expectedMoves, MakeMove(card, marble, NO, _playerColor, 81, FinalSpotToSpot(0), 11, 1, true));
 		AssertMovesValid(2, actualMoves, expectedMoves);
 	}
 }
@@ -587,10 +601,10 @@ BOOL MovesMatch(TGMMoveList* actualMoves, TGMMoveList* expectedMoves, NSUInteger
 {
 	@autoreleasepool
 	{
-		TGMCard* card = nil;
-		TGMMove* playMove = nil;
-		TGMMoveList* actualMoves = nil;
-		TGMMoveList* expectedMoves = nil;
+		TGMCard* card = nullptr;
+		TGMMove* playMove = nullptr;
+		TGMMoveList* actualMoves = nullptr;
+		TGMMoveList* expectedMoves = nullptr;
 		const int pss = PlayerStartingSpot(_playerColor);
 		TGMMarble* marble = CreateMarble(GetMarbleForPlayer(_playerColor, 0), 0, NO);
 	
@@ -652,7 +666,7 @@ BOOL MovesMatch(TGMMoveList* actualMoves, TGMMoveList* expectedMoves, NSUInteger
 		card = CreateCard(4, CardNumber::Card4, CardSuit::Diamonds);
 		CardListAdd(_hand, card);
 		ReleaseCard(card);
-		playMove = RetainMove(MakeMove(card, marble, NO, _playerColor, 2, 106, -4, 0, YES));
+		playMove = RetainMove(MakeMove(card, marble, NO, _playerColor, 2, 106, -4, 0, true));
 		actualMoves = MovesForPlayer(_player, _hand, CreateEmptyTeammates(), _board, card, _game);
 		expectedMoves = CreateMoveList();
 		MoveListAdd(expectedMoves, playMove);
@@ -673,10 +687,10 @@ BOOL MovesMatch(TGMMoveList* actualMoves, TGMMoveList* expectedMoves, NSUInteger
 		ReleaseCard(card6);
 		ReleaseCard(card7);
 		ReleaseCard(cardJ);
-		actualMoves = MovesForPlayer(_player, _hand, CreateEmptyTeammates(), _board, nil, _game);
+		actualMoves = MovesForPlayer(_player, _hand, CreateEmptyTeammates(), _board, nullptr, _game);
 		expectedMoves = CreateMoveList();
-		MoveListAdd(expectedMoves, MakeMove(card6, marble, NO, _playerColor, 106, FinalSpotToSpot(3), 6, 0, YES));
-		MoveListAdd(expectedMoves, MakeMove(card7, marble, NO, _playerColor, 106, FinalSpotToSpot(4), 7, 0, YES));
+		MoveListAdd(expectedMoves, MakeMove(card6, marble, NO, _playerColor, 106, FinalSpotToSpot(3), 6, 0, true));
+		MoveListAdd(expectedMoves, MakeMove(card7, marble, NO, _playerColor, 106, FinalSpotToSpot(4), 7, 0, true));
 		AssertMovesValid(2, actualMoves, expectedMoves);
 		
 		ReleaseMarble(marble);
@@ -721,7 +735,7 @@ BOOL MovesMatch(TGMMoveList* actualMoves, TGMMoveList* expectedMoves, NSUInteger
 		TGMTeammates* teammates = CreateTeammates(_teammate1, NULL, NULL);
 		TGMMoveList* actualMoves = MovesForPlayer(_player, _hand, teammates, _board, card, _game);
 		TGMMoveList* expectedMoves = CreateMoveList();
-		MoveListAdd(expectedMoves, MakeMove(card, nil, YES, _playerColor, 0, 0, 0, 0, NO));
+		MoveListAdd(expectedMoves, MakeMove(card, nullptr, true, _playerColor, 0, 0, 0, 0, NO));
 		AssertMovesValid(1, actualMoves, expectedMoves);
 	}
 }
@@ -766,7 +780,7 @@ BOOL MovesMatch(TGMMoveList* actualMoves, TGMMoveList* expectedMoves, NSUInteger
 		
 			TGMMoveList* actualMoves = MovesForPlayer(_player, _hand, CreateEmptyTeammates(), _board, card, _game);
 			TGMMoveList* expectedMoves = CreateMoveList();
-			MoveListAdd(expectedMoves, MakeMove(card, marble2, NO, _playerColor, newSpot, FinalSpotToSpot(3), 7, 0, YES));
+			MoveListAdd(expectedMoves, MakeMove(card, marble2, NO, _playerColor, newSpot, FinalSpotToSpot(3), 7, 0, true));
 			AssertMovesValid(1, actualMoves, expectedMoves);
 			
 			BoardRemoveMarble(_board, newSpot);
@@ -783,7 +797,7 @@ BOOL MovesMatch(TGMMoveList* actualMoves, TGMMoveList* expectedMoves, NSUInteger
 		
 			TGMMoveList* actualMoves = MovesForPlayer(_player, _hand, CreateEmptyTeammates(), _board, card, _game);
 			TGMMoveList* expectedMoves = CreateMoveList();
-			MoveListAdd(expectedMoves, MakeMove(card, marble2, NO, _playerColor, newSpot, FinalSpotToSpot(4), 7, 0, YES));
+			MoveListAdd(expectedMoves, MakeMove(card, marble2, NO, _playerColor, newSpot, FinalSpotToSpot(4), 7, 0, true));
 			AssertMovesValid(1, actualMoves, expectedMoves);
 			
 			BoardRemoveMarble(_board, newSpot);
@@ -800,7 +814,7 @@ BOOL MovesMatch(TGMMoveList* actualMoves, TGMMoveList* expectedMoves, NSUInteger
 		
 			TGMMoveList* actualMoves = MovesForPlayer(_player, _hand, CreateEmptyTeammates(), _board, card, _game);
 			TGMMoveList* expectedMoves = CreateMoveList();
-			MoveListAdd(expectedMoves, MakeMove(card, nil, YES, _playerColor, 0, 0, 0, 0, NO));
+			MoveListAdd(expectedMoves, MakeMove(card, nullptr, true, _playerColor, 0, 0, 0, 0, NO));
 			AssertMovesValid(1, actualMoves, expectedMoves);
 		
 			BoardRemoveMarble(_board, newSpot);
@@ -817,7 +831,7 @@ BOOL MovesMatch(TGMMoveList* actualMoves, TGMMoveList* expectedMoves, NSUInteger
 		
 			TGMMoveList* actualMoves = MovesForPlayer(_player, _hand, CreateEmptyTeammates(), _board, card, _game);
 			TGMMoveList* expectedMoves = CreateMoveList();
-			MoveListAdd(expectedMoves, MakeMove(card, nil, YES, _playerColor, 0, 0, 0, 0, NO));
+			MoveListAdd(expectedMoves, MakeMove(card, nullptr, true, _playerColor, 0, 0, 0, 0, NO));
 			AssertMovesValid(1, actualMoves, expectedMoves);
 			
 			BoardRemoveMarble(_board, newSpot);
@@ -842,10 +856,10 @@ BOOL MovesMatch(TGMMoveList* actualMoves, TGMMoveList* expectedMoves, NSUInteger
 	// 
 	@autoreleasepool
 	{
-		TGMCard* card = nil;
-		TGMMove* playMove = nil;
-		TGMMoveList* actualMoves = nil;
-		TGMMoveList* expectedMoves = nil;
+		TGMCard* card = nullptr;
+		TGMMove* playMove = nullptr;
+		TGMMoveList* actualMoves = nullptr;
+		TGMMoveList* expectedMoves = nullptr;
 		const int pss = PlayerStartingSpot(_playerColor);
 		TGMMarble* marble = CreateMarble(GetMarbleForPlayer(_playerColor, 0), 0, NO);
 	
@@ -909,7 +923,7 @@ BOOL MovesMatch(TGMMoveList* actualMoves, TGMMoveList* expectedMoves, NSUInteger
 		card = CreateCard(4, CardNumber::Card7, CardSuit::Diamonds);
 		CardListAdd(_hand, card);
 		ReleaseCard(card);
-		playMove = RetainMove(MakeMove(card, marble, NO, _playerColor, 101, 0, 7, 0, YES));
+		playMove = RetainMove(MakeMove(card, marble, NO, _playerColor, 101, 0, 7, 0, true));
 		actualMoves = MovesForPlayer(_player, _hand, CreateEmptyTeammates(), _board, card, _game);
 		expectedMoves = CreateMoveList();
 		MoveListAdd(expectedMoves, playMove);
@@ -926,9 +940,9 @@ BOOL MovesMatch(TGMMoveList* actualMoves, TGMMoveList* expectedMoves, NSUInteger
 		CardListAdd(_hand, cardJ);
 		ReleaseCard(card4);
 		ReleaseCard(cardJ);
-		actualMoves = MovesForPlayer(_player, _hand, CreateEmptyTeammates(), _board, nil, _game);
+		actualMoves = MovesForPlayer(_player, _hand, CreateEmptyTeammates(), _board, nullptr, _game);
 		expectedMoves = CreateMoveList();
-		MoveListAdd(expectedMoves, MakeMove(card4, marble, NO, _playerColor, 0, 104, -4, 0, YES));
+		MoveListAdd(expectedMoves, MakeMove(card4, marble, NO, _playerColor, 0, 104, -4, 0, true));
 		AssertMovesValid(1, actualMoves, expectedMoves);
 		
 		ReleaseMarble(marble);
@@ -1024,7 +1038,7 @@ BOOL MovesMatch(TGMMoveList* actualMoves, TGMMoveList* expectedMoves, NSUInteger
 	
 		TGMMoveList* actualMoves = MovesForPlayer(player, _hand, CreateEmptyTeammates(), board, card, game);
 		TGMMoveList* expectedMoves = CreateMoveList();
-		MoveListAdd(expectedMoves, MakeMove(card, nil, YES, pc, 0, 0, 0, 0, NO)); // discard move
+		MoveListAdd(expectedMoves, MakeMove(card, nullptr, true, pc, 0, 0, 0, 0, NO)); // discard move
 		AssertMovesValid(1, actualMoves, expectedMoves);
 		
 		ReleaseMarble(marble1);
@@ -1080,8 +1094,8 @@ BOOL MovesMatch(TGMMoveList* actualMoves, TGMMoveList* expectedMoves, NSUInteger
 	// just test normal generation between two points on the board (including wrapping)
 	@autoreleasepool
 	{
-		TGMMarble* unusedMarble = CreateMarble(GetMarbleForPlayer(_playerColor, 0), 0, YES);
-		BOOL unusedWentBehindHome = NO;
+		TGMMarble* unusedMarble = CreateMarble(GetMarbleForPlayer(_playerColor, 0), 0, true);
+		bool unusedWentBehindHome = NO;
 		PlayerColor unusedPC = _playerColor;
 	
 		for (int startingSpot = 0; startingSpot < kTotalSpots; startingSpot++)
@@ -1161,7 +1175,7 @@ BOOL MovesMatch(TGMMoveList* actualMoves, TGMMoveList* expectedMoves, NSUInteger
 
 -(void)testHandSortComprehensive
 {
-	__block BOOL failed = NO;
+	__block bool failed = NO;
 	
 	// if this test takes a really long time, we probably are leaking decks!
 	// but we expect it to pass within 10 seconds
@@ -1191,14 +1205,14 @@ BOOL MovesMatch(TGMMoveList* actualMoves, TGMMoveList* expectedMoves, NSUInteger
 					__block TGMCard *lastCard = NULL;
 					CardListIterateWithBlock(hand, ^(unsigned, TGMCard *card)
 					{
-						BOOL ascending = CompareCards(lastCard, card);
+						bool ascending = CompareCards(lastCard, card);
 						XCTAssertTrue(ascending, @"%@ > %@", CardDescription(lastCard, false), CardDescription(card, false));
 			
 						if (lastCard) ReleaseCard(lastCard);
 						lastCard = card;
 						RetainCard(card);
 			
-						if (!ascending) failed = YES;
+						if (!ascending) failed = true;
 						return ascending;
 					});
 					
