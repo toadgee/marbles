@@ -9,8 +9,6 @@
 #pragma once
 #include "Move.h"
 
-typedef std::function<void(int i, TGMMove* move)> TGMMoveListIterationBlock;
-
 #define TGMMoveList struct TGMMoveListStruct
 
 struct TGMMoveListStruct
