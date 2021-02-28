@@ -247,14 +247,14 @@ TGMData GetDeckData(TGMDeck *deck) noexcept
 
 TGMDeck* CreateDeckFromData(TGMDataIterator &iter) noexcept
 {
-	int marker = TGMData::ReadInt(iter);
+	uint8_t marker = TGMData::ReadUInt8(iter);
 	if (marker != kDeckDataMarker)
 	{
 		dassert(false);
 		return nullptr;
 	}
 	
-	int version = TGMData::ReadInt(iter);
+	uint8_t version = TGMData::ReadUInt8(iter);
 	if (version != kDeckDataVersion)
 	{
 		dassert(false);
@@ -318,22 +318,22 @@ TGMGameLog* CreateGameLogFromData(TGMData &data) noexcept
 		return nullptr;
 	}
 
-	int v1 = TGMData::ReadInt(iter);
-	int v2 = TGMData::ReadInt(iter);
-	int v3 = TGMData::ReadInt(iter);
+	int v1 = TGMData::ReadUInt8(iter);
+	int v2 = TGMData::ReadUInt8(iter);
+	int v3 = TGMData::ReadUInt8(iter);
 	if (v1 != kMarblesMajorVersion || v2 != kMarblesMinorVersion || v3 != kMarblesBuildVersion)
 	{
 		return nullptr;
 	}
 	
-	int marker = TGMData::ReadInt(iter);
+	int marker = TGMData::ReadUInt8(iter);
 	if (marker != kGameLogDataMarker)
 	{
 		dassert(false);
 		return nullptr;
 	}
 	
-	int version = TGMData::ReadInt(iter);
+	int version = TGMData::ReadUInt8(iter);
 	if (version != kGameLogDataVersion)
 	{
 		dassert(false);
@@ -451,14 +451,14 @@ TGMData GameLogData(TGMGameLog* gameLog) noexcept
 
 TGMMarble* CreateMarbleFromData(TGMDataIterator& iter, bool* nullMarbleEncoded) noexcept
 {
-	int marker = TGMData::ReadInt(iter);
+	uint8_t marker = TGMData::ReadUInt8(iter);
 	if (marker != kMarbleDataMarker)
 	{
 		dassert(false);
 		return nullptr;
 	}
 	
-	int version = TGMData::ReadInt(iter);
+	uint8_t version = TGMData::ReadUInt8(iter);
 	if (version != kMarbleDataVersion)
 	{
 		dassert(false);
@@ -518,7 +518,7 @@ TGMMove* CreateMoveFromData(TGMDataIterator& iter) noexcept
 		return nullptr;
 	}
 	
-	int version = TGMData::ReadInt(iter);
+	uint8_t version = TGMData::ReadUInt8(iter);
 	if (version != kMoveDataVersion)
 	{
 		dassert(false);
