@@ -169,7 +169,7 @@ int RunAllPerfTestsWithOptions(uint64_t testCount, uint64_t statusUpdates)
 			printf("\n");
 		
 			printf("TEST SETUP\n");
-			printf("Seed : %d\n", seed);
+			printf("Seed : %u\n", seed);
 			printf("Test Count : %llu\n", testCount);
 			printf("\n");
 			
