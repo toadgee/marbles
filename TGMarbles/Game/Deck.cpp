@@ -167,7 +167,7 @@ bool AreDecksEqual(TGMDeck* deck1, TGMDeck* deck2)
 {
 	if (deck1 == deck2) return true;
 	if (deck1 != nullptr && deck2 == nullptr) return false;
-	if (deck2 == nullptr && deck2 != nullptr) return false;
+	if (deck1 == nullptr && deck2 != nullptr) return false;
 	// stupid branch for analyzer
 	if (deck1 == nullptr || deck2 == nullptr) return true;
 	

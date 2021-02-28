@@ -19,8 +19,8 @@ typedef std::vector<uint8_t>::const_iterator TGMDataIterator;
 class TGMData final
 {
 public:
-	TGMData() noexcept {}
-	TGMData(int initialSize) noexcept;
+	explicit TGMData() noexcept {}
+	explicit TGMData(int initialSize) noexcept;
 
 	void WriteHeader(uint8_t marker, uint8_t version) noexcept;
 	void WriteBool(bool value) noexcept;

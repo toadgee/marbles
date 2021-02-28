@@ -26,7 +26,7 @@ TGMBoard* CreateBoard(void)
 
 #ifdef BOARD_MEMORY_LOGGING
 	int64_t bcc = MemIncreaseGlobalCount(g_boardCreateCount);
-	NSLog(@"<<BOARD %p : %d (+) %lld>>", board, 1, ccc);
+	NSLog(@"<<BOARD %p : %d (+) %lld>>", board, 1, bcc);
 #endif
 
 	return board;

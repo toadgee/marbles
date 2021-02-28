@@ -235,7 +235,7 @@ void RunMultithreadedPerfTests()
 {
 	TGHiResTimer* timer = CreateHiResTimer(true, true);
 	const unsigned threadsToUse = std::thread::hardware_concurrency();
-	printf("Using %d threads\n", threadsToUse);
+	printf("Using %u threads\n", threadsToUse);
 
 	const uint32_t maxGames = 10000;
 	printf("starting tests...\n");
@@ -249,7 +249,7 @@ void RunMultithreadedPerfTests()
 			gamesForThisThread += maxGames % threadsToUse;
 		}
 
-		printf("thread %d : %d games\n", i, gamesForThisThread);
+		printf("thread %u : %u games\n", i, gamesForThisThread);
 		std::future<int> a = std::async(std::launch::async, RunGames, gamesForThisThread);
 		futures.push_back(std::move(a));
 	}
@@ -259,7 +259,7 @@ void RunMultithreadedPerfTests()
 	for (std::future<int>& f : futures)
 	{
 		f.wait();
-		printf("Waiting for %d more...\n", --jobsLeft);
+		printf("Waiting for %u more...\n", --jobsLeft);
 	}
 
 	uint64_t elapsed = HiResTimerStop(timer);

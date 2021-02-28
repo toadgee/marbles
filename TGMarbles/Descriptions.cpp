@@ -18,7 +18,6 @@ std::string ColoredString(PlayerColor color, const char* str)
 	static bool s_use_color = false;
 	if (!s_use_color_determined)
 	{
-		std::string termStr;
 #if WIN32
 		size_t size = 0;
 		char* term = nullptr;

@@ -108,9 +108,9 @@ void RestoreRandom(TGRandom* rnd)
 	for (unsigned call = 0; call < rnd->_calls; call++)
 	{
 #if WIN32
-		rand();
+		(void)rand();
 #elif TARGET_OS_OSX || TARGET_OS_IPHONE
-		random();
+		(void)random();
 #else
 	#error unknown platform
 #endif
