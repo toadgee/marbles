@@ -11,6 +11,7 @@ int main(int argc, const char* argv[])
 {
 	bool replay{ false };
 	bool perf{ false };
+	bool perf_large{ false };
 	std::string filename;
 
 	int matchedOptions{ 0 };
@@ -27,6 +28,12 @@ int main(int argc, const char* argv[])
 				filename = argv[i];
 			}
 		}
+		else if (_strnicmp(argv[i], "--perf++", 8) == 0)
+		{
+			++matchedOptions;
+			perf = true;
+			perf_large = true;
+		}
 		else if (_strnicmp(argv[i], "--perf", 6) == 0)
 		{
 			++matchedOptions;
@@ -41,6 +48,7 @@ int main(int argc, const char* argv[])
 		{
 			printf("--replay [filename]: replay game\n");
 			printf("--perf : perf tests\n");
+			printf("--perf++ : bigger perf tests\n");
 			printf("--test : multi-threaded perf tests (temporary)\n");
 			printf("--help : help message\n");
 			return 0;
@@ -60,7 +68,7 @@ int main(int argc, const char* argv[])
 
 	if (perf)
 	{
-		RunAllPerfTests();
+		RunAllPerfTests(perf_large);
 	}
 	else if (replay)
 	{

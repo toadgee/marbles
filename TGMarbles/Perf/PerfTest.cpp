@@ -92,18 +92,16 @@ void PrintPerfTestResults(
 	printf("\n");
 }
 
-void RunAllPerfTests()
+void RunAllPerfTests(bool large)
 {
-#if 0
-		// for debug builds, we really want to make sure we don't hit any asserts, so run a lot of tests
-		uint64_t testCount = 10000;
-		uint64_t statusUpdates = 1000;
-#else
-		// 200 wasn't a big enough sample set, and now that we're getting faster, it doesn't take as long still.
-		uint64_t testCount = 1000;
-		uint64_t statusUpdates = 0;
-#endif
-
+	uint64_t testCount = 1000;
+	uint64_t statusUpdates = 0;
+	if (large)
+	{
+		testCount = 10000;
+		statusUpdates = 0;
+	}
+	
 	RunAllPerfTestsWithOptions(testCount, statusUpdates);
 }
 
