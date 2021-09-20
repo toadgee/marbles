@@ -235,7 +235,7 @@ void RunMultithreadedPerfTests()
 	const unsigned threadsToUse = std::thread::hardware_concurrency();
 	printf("Using %u threads\n", threadsToUse);
 
-	const uint32_t maxGames = 10000;
+	const uint32_t maxGames = 100000;
 	printf("starting tests...\n");
 	std::vector<std::future<int>> futures;
 	const unsigned jobsPerThread = maxGames / threadsToUse;

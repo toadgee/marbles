@@ -89,3 +89,10 @@ void MemoryCheck(MemorySnapshot snapshot)
 }
 #endif
 
+thread_local static MemoryPool s_threadPool;
+
+MemoryPool &GetCurrentPool()
+{
+	return s_threadPool;
+}
+

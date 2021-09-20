@@ -6,14 +6,10 @@
 TGMTeammates* AllocateTeammates(void);
 void DeallocateTeammates(TGMTeammates* teammates);
 
-static std::mutex s_lock;
-static TGMPoolAllocator* s_TeammatesAllocationPoolUnusedFirst = nullptr;
-static TGMPoolAllocator* s_TeammatesAllocationPoolUsedFirst = nullptr;
-
 TGMTeammates* AllocateTeammates(void)
 {
-	const std::lock_guard<std::mutex> lock(s_lock);
-	TGMPoolAllocator* allocator = AllocatePoolObject(sizeof(TGMTeammates), &s_TeammatesAllocationPoolUnusedFirst, &s_TeammatesAllocationPoolUsedFirst);
+	MemoryPool &pool = GetCurrentPool();
+	TGMPoolAllocator* allocator = AllocatePoolObject(sizeof(TGMTeammates), &pool.TeammatesAllocationPoolUnusedFirst, &pool.TeammatesAllocationPoolUsedFirst);
 	TGMTeammates* teammates = static_cast<TGMTeammates *>(allocator->_object);
 	teammates->_holder = allocator; // need a back pointer to the allocator for a quick return policy
 	
@@ -32,8 +28,8 @@ void DeallocateTeammates(TGMTeammates* teammates)
 	teammates->_holder = allocator;
 #endif
 	
-	const std::lock_guard<std::mutex> lock(s_lock);
-	DeallocatePoolObject(allocator, &s_TeammatesAllocationPoolUnusedFirst, &s_TeammatesAllocationPoolUsedFirst);
+	MemoryPool &pool = GetCurrentPool();
+	DeallocatePoolObject(allocator, &pool.TeammatesAllocationPoolUnusedFirst, &pool.TeammatesAllocationPoolUsedFirst);
 	MemDecreaseGlobalCount(g_teammatesLiving);
 }
 

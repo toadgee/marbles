@@ -12,6 +12,32 @@
 
 //#include <libkern/OSAtomic.h>
 
+struct MemoryPool
+{
+	TGMPoolAllocator* CardAllocationPoolUnusedFirst {};
+	TGMPoolAllocator* CardAllocationPoolUsedFirst {};
+	TGMPoolAllocator* ReplayGameAllocationPoolUnusedFirst {};
+	TGMPoolAllocator* ReplayGameAllocationPoolUsedFirst {};
+	TGMPoolAllocator* CardListAllocationPoolUnusedFirst {};
+	TGMPoolAllocator* CardListAllocationPoolUsedFirst {};
+	TGMPoolAllocator* GameAllocationPoolUnusedFirst {};
+	TGMPoolAllocator* GameAllocationPoolUsedFirst {};
+	TGMPoolAllocator* MoveAllocationPoolUnusedFirst {};
+	TGMPoolAllocator* MoveAllocationPoolUsedFirst {};
+	TGMPoolAllocator* MarbleAllocationPoolUnusedFirst {};
+	TGMPoolAllocator* MarbleAllocationPoolUsedFirst {};
+	TGMPoolAllocator* MoveListAllocationPoolUnusedFirst {};
+	TGMPoolAllocator* MoveListAllocationPoolUsedFirst {};
+	TGMPoolAllocator* PlayerAllocationPoolUnusedFirst {};
+	TGMPoolAllocator* PlayerAllocationPoolUsedFirst {};
+	TGMPoolAllocator* TeammatesAllocationPoolUnusedFirst {};
+	TGMPoolAllocator* TeammatesAllocationPoolUsedFirst {};
+};
+
+void InitializePool();
+void UninitializePool();
+MemoryPool &GetCurrentPool(void);
+
 // retain count doesn't need atomic increment & decrement
 #define MemIncreaseRetainCount(x) (++x)
 #define MemDecreaseRetainCount(x) (--x)

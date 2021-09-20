@@ -47,14 +47,10 @@ void GameEventPlayerDiscarded(TGMGame* game, TGMCard* card);
 TGMGame* AllocateGame(void);
 void DeallocateGame(TGMGame* game);
 
-static std::mutex s_lock;
-static TGMPoolAllocator* s_gameAllocationPoolUnusedFirst = nullptr;
-static TGMPoolAllocator* s_gameAllocationPoolUsedFirst = nullptr;
-
 TGMGame* AllocateGame(void)
 {
-	const std::lock_guard<std::mutex> lock(s_lock);
-	TGMPoolAllocator* allocator = AllocatePoolObject(sizeof(TGMGame), &s_gameAllocationPoolUnusedFirst, &s_gameAllocationPoolUsedFirst);
+	MemoryPool &pool = GetCurrentPool();
+	TGMPoolAllocator* allocator = AllocatePoolObject(sizeof(TGMGame), &pool.GameAllocationPoolUnusedFirst, &pool.GameAllocationPoolUsedFirst);
 	TGMGame* game = static_cast<TGMGame *>(allocator->_object);
 	game->_holder = allocator; // need a back pointer to the allocator for a quick return policy
 	
@@ -65,7 +61,6 @@ TGMGame* AllocateGame(void)
 
 void DeallocateGame(TGMGame* game)
 {
-	const std::lock_guard<std::mutex> lock(s_lock);
 	dassert(game);
 	if (!game) return;
 	
@@ -91,7 +86,8 @@ void DeallocateGame(TGMGame* game)
 	game->_holder = allocator;
 #endif
 	
-	DeallocatePoolObject(allocator, &s_gameAllocationPoolUnusedFirst, &s_gameAllocationPoolUsedFirst);
+	MemoryPool &pool = GetCurrentPool();
+	DeallocatePoolObject(allocator, &pool.GameAllocationPoolUnusedFirst, &pool.GameAllocationPoolUsedFirst);
 	MemDecreaseGlobalCount(g_gamesLiving);
 }
 
