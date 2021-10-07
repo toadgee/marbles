@@ -1,5 +1,5 @@
 //
-//  DataExtensions.m
+//  DataExtensions.cpp
 //  Marbles
 //
 //  Created by Todd on 1/8/13.
@@ -162,6 +162,19 @@ TGMDataIterator TGMData::StartReading() const noexcept
 bool TGMData::IsAtEnd(const TGMDataIterator& iterator) const noexcept
 {
 	return m_data.cend() == iterator;
+}
+
+bool TGMData::ReadFromFile(const std::string& filename) noexcept
+{
+	std::fstream f;
+	f.open(filename, std::ios::in);
+	if (!f.is_open())
+	{
+		return false;
+	}
+
+	std::get(f);
+
 }
 
 uint16_t MarbleDataLength() noexcept
@@ -583,3 +596,4 @@ TGMData GetMoveData(TGMMove *move) noexcept
 	data.WriteInt(move->jumps);
 	return data;
 }
+

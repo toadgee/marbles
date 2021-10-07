@@ -45,6 +45,8 @@ public:
 	static PlayerColor ReadPlayerColor(TGMDataIterator &iterator) noexcept;
 	static Strategy ReadStrategy(TGMDataIterator& iterator) noexcept;
 
+	bool ReadFromFile(const std::string& filename) noexcept;
+
 	bool IsAtEnd(const TGMDataIterator& iterator) const noexcept;
 
 private:
