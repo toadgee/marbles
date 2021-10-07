@@ -15,15 +15,10 @@
 TGMCardList* AllocateCardList(void);
 void DeallocateCardList(TGMCardList* cardList);
 
-static std::mutex s_lock;
-static TGMPoolAllocator* s_CardListAllocationPoolUnusedFirst = nullptr;
-static TGMPoolAllocator* s_CardListAllocationPoolUsedFirst = nullptr;
-
 TGMCardList* AllocateCardList(void)
 {
-	const std::lock_guard<std::mutex> lock(s_lock);
-
-	TGMPoolAllocator* allocator = AllocatePoolObject(sizeof(TGMCardList), &s_CardListAllocationPoolUnusedFirst, &s_CardListAllocationPoolUsedFirst);
+	MemoryPool &pool = GetCurrentPool();
+	TGMPoolAllocator* allocator = AllocatePoolObject(sizeof(TGMCardList), &pool.CardListAllocationPoolUnusedFirst, &pool.CardListAllocationPoolUsedFirst);
 	TGMCardList* cardList = static_cast<TGMCardList *>(allocator->_object);
 	cardList->_holder = allocator; // need a back pointer to the allocator for a quick return policy
 	
@@ -34,8 +29,6 @@ TGMCardList* AllocateCardList(void)
 
 void DeallocateCardList(TGMCardList* cardList)
 {
-	const std::lock_guard<std::mutex> lock(s_lock);
-
 	dassert(cardList);
 	if (!cardList) return;
 	
@@ -54,7 +47,8 @@ void DeallocateCardList(TGMCardList* cardList)
 	cardList->_holder = allocator;
 #endif
 	
-	DeallocatePoolObject(allocator, &s_CardListAllocationPoolUnusedFirst, &s_CardListAllocationPoolUsedFirst);
+	MemoryPool &pool = GetCurrentPool();
+	DeallocatePoolObject(allocator, &pool.CardListAllocationPoolUnusedFirst, &pool.CardListAllocationPoolUsedFirst);
 	MemDecreaseGlobalCount(g_cardListsLiving);
 }
 

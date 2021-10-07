@@ -5,14 +5,10 @@
 
 TGMMarble* AllocateMarble(void);
 
-static std::mutex s_lock;
-static TGMPoolAllocator* s_MarbleAllocationPoolUnusedFirst = nullptr;
-static TGMPoolAllocator* s_MarbleAllocationPoolUsedFirst = nullptr;
-
 TGMMarble* AllocateMarble(void)
 {
-	const std::lock_guard<std::mutex> lock(s_lock);
-	TGMPoolAllocator* allocator = AllocatePoolObject(sizeof(TGMMarble), &s_MarbleAllocationPoolUnusedFirst, &s_MarbleAllocationPoolUsedFirst);
+	MemoryPool &pool = GetCurrentPool();
+	TGMPoolAllocator* allocator = AllocatePoolObject(sizeof(TGMMarble), &pool.MarbleAllocationPoolUnusedFirst, &pool.MarbleAllocationPoolUsedFirst);
 	TGMMarble* marble = static_cast<TGMMarble *>(allocator->_object);
 	marble->_holder = allocator; // need a back pointer to the allocator for a quick return policy
 	
@@ -34,8 +30,8 @@ void DeallocateMarble(TGMMarble* marble)
 	marble->_holder = allocator;
 #endif
 	
-	const std::lock_guard<std::mutex> lock(s_lock);
-	DeallocatePoolObject(allocator, &s_MarbleAllocationPoolUnusedFirst, &s_MarbleAllocationPoolUsedFirst);
+	MemoryPool &pool = GetCurrentPool();
+	DeallocatePoolObject(allocator, &pool.MarbleAllocationPoolUnusedFirst, &pool.MarbleAllocationPoolUsedFirst);
 	MemDecreaseGlobalCount(g_marblesLiving);
 }
 

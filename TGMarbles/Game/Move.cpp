@@ -17,15 +17,10 @@ bool IsMoveValid_DoesPassOrKillOurMarbles(TGMMove* move, PlayerColor pc, TGMBoar
 TGMMove* AllocateMove(void);
 void DeallocateMove(TGMMove* move);
 
-static std::mutex s_lock;
-static TGMPoolAllocator* s_MoveAllocationPoolUnusedFirst = nullptr;
-static TGMPoolAllocator* s_MoveAllocationPoolUsedFirst = nullptr;
-
 TGMMove* AllocateMove(void)
 {
-	const std::lock_guard<std::mutex> lock(s_lock);
-
-	TGMPoolAllocator* allocator = AllocatePoolObject(sizeof(TGMMove), &s_MoveAllocationPoolUnusedFirst, &s_MoveAllocationPoolUsedFirst);
+	MemoryPool &pool = GetCurrentPool();
+	TGMPoolAllocator* allocator = AllocatePoolObject(sizeof(TGMMove), &pool.MoveAllocationPoolUnusedFirst, &pool.MoveAllocationPoolUsedFirst);
 	TGMMove* move = static_cast<TGMMove *>(allocator->_object);
 	move->_holder = allocator; // need a back pointer to the allocator for a quick return policy
 	
@@ -46,8 +41,8 @@ void DeallocateMove(TGMMove* move)
 	move->_holder = allocator;
 #endif
 
-	const std::lock_guard<std::mutex> lock(s_lock);
-	DeallocatePoolObject(allocator, &s_MoveAllocationPoolUnusedFirst, &s_MoveAllocationPoolUsedFirst);
+	MemoryPool &pool = GetCurrentPool();
+	DeallocatePoolObject(allocator, &pool.MoveAllocationPoolUnusedFirst, &pool.MoveAllocationPoolUsedFirst);
 	MemDecreaseGlobalCount(g_movesLiving);
 }
 
