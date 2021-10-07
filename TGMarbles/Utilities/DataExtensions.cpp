@@ -166,7 +166,8 @@ bool TGMData::IsAtEnd(const TGMDataIterator& iterator) const noexcept
 
 bool TGMData::ReadFromFile(const std::string& filename) noexcept
 {
-	std::fstream f;
+#if 0
+	/**/std::fstream f;
 	f.open(filename, std::ios::in);
 	if (!f.is_open())
 	{
@@ -174,6 +175,8 @@ bool TGMData::ReadFromFile(const std::string& filename) noexcept
 	}
 
 	std::get(f);
+#endif
+	return false;
 
 }
 
