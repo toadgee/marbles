@@ -9,16 +9,17 @@
 
 #if WIN32
 #include <Windows.h>
-#elif TARGET_OS_IPHONE
-	#ifdef __OBJC__
-	#import <UIKit/UIKit.h>
-	#endif
-#elif TARGET_OS_OSX
-	#ifdef __OBJC__
-	#import <Cocoa/Cocoa.h>
-	#endif
 #else
-#error Unknown platform
+	#ifdef __OBJC__
+		#import <Foundation/Foundation.h>
+		#if TARGET_OS_IPHONE
+			#import <UIKit/UIKit.h>
+		#elif TARGET_OS_OSX
+			#import <Cocoa/Cocoa.h>
+		#else
+			#error Unknown platform
+		#endif
+	#endif
 #endif
 
 #if __cplusplus
