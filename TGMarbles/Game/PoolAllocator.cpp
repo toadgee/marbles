@@ -110,6 +110,7 @@ void DeallocatePoolObject(TGMPoolAllocator* allocator, TGMPoolAllocator** unused
 			allocator->_previous = nullptr;
 		}
 
+#if 1
 		// add to unused list
 		allocator->_next = (*unusedFirst);
 		if ((*unusedFirst) != nullptr)
@@ -118,5 +119,10 @@ void DeallocatePoolObject(TGMPoolAllocator* allocator, TGMPoolAllocator** unused
 		}
 
 		(*unusedFirst) = allocator;
+#else
+		// just immediately free and don't use unused list
+		free(allocator->_object);
+		free(allocator);
+#endif
 	}
 }
