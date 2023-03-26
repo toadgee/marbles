@@ -1,6 +1,7 @@
 //
 // Prefix header for all source files of the 'TGMarbles' target in the 'TGMarbles' project
 //
+#pragma once
 
 #ifdef __OBJC__
 #elif defined(TARGET_APPLE)
@@ -38,4 +39,12 @@
 #include <vector>
 #include <future>
 #endif
+
+#include "DebugAssert.h"
+
+#ifdef __cpluplus
+/// Number of players in the game.
+static constexpr int kPlayers =	6;
+#endif
+
 

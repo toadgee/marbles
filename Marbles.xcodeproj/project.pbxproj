@@ -915,9 +915,6 @@
 						DevelopmentTeam = Q4FWUZ9SEL;
 						ProvisioningStyle = Automatic;
 					};
-					2FFA84C31481F41600EDDCDE = {
-						ProvisioningStyle = Automatic;
-					};
 				};
 			};
 			buildConfigurationList = 2FFA84BE1481F41600EDDCDE /* Build configuration list for PBXProject "Marbles" */;
@@ -1248,9 +1245,10 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 2F4C4D4919C67DA30033BD3B /* marbles__cmd__cover.xcconfig */;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "Mac Developer";
-				DEVELOPMENT_TEAM = Q4FWUZ9SEL;
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = "";
 				ENABLE_HARDENED_RUNTIME = YES;
+				PROVISIONING_PROFILE_SPECIFIER = "";
 			};
 			name = Cover;
 		};
@@ -1680,9 +1678,10 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 2F4C4D4A19C67DA30033BD3B /* marbles__cmd__debug.xcconfig */;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "Mac Developer";
-				DEVELOPMENT_TEAM = Q4FWUZ9SEL;
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = "";
 				ENABLE_HARDENED_RUNTIME = YES;
+				PROVISIONING_PROFILE_SPECIFIER = "";
 			};
 			name = Debug;
 		};
@@ -1690,8 +1689,8 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 2F4C4D4B19C67DA30033BD3B /* marbles__cmd__release.xcconfig */;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "Mac Developer";
-				DEVELOPMENT_TEAM = Q4FWUZ9SEL;
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = "";
 				ENABLE_HARDENED_RUNTIME = YES;
 			};
 			name = Release;

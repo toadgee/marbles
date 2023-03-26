@@ -13,8 +13,6 @@
 #include "MarbleStrategy.h"
 #include "PlayerColor.h"
 
-#define kPlayers				6 // number of players
-
 struct TGMPlayerStruct;
 struct TGMGameStruct;
 

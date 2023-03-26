@@ -7,10 +7,15 @@
 #define COLOR_SUPPORTED
 #endif
 
-#define FinalSpotChar(spot) (static_cast<char>(SpotToFinalSpot(spot) + 65))
-#define BoolToString(b) ((b) ? "YES" : "NO")
+inline char FinalSpotChar(int spot)
+{
+	return static_cast<char>(SpotToFinalSpot(spot) + 'A');
+}
 
-#define etstr(save, enumType, stringType) case enumType: save = stringType; break
+inline const char *BoolToString(bool b)
+{
+	return b ? "YES" : "NO";
+}
 
 std::string ColoredString(PlayerColor color, const char* str)
 {
@@ -95,12 +100,12 @@ std::string CardSuitToString(CardSuit suit)
 	const char* str = nullptr;
 	switch (suit)
 	{
-		etstr(str, CardSuit::None, "None");
-		etstr(str, CardSuit::Hearts, "Hearts");
-		etstr(str, CardSuit::Diamonds, "Diamonds");
-		etstr(str, CardSuit::Clubs, "Clubs");
-		etstr(str, CardSuit::Spades, "Spades");
-		etstr(str, CardSuit::Max, "MAX");
+		case CardSuit::None: str = "None"; break;
+		case CardSuit::Hearts: str = "Hearts"; break;
+		case CardSuit::Diamonds: str = "Diamonds"; break;
+		case CardSuit::Clubs: str = "Clubs"; break;
+		case CardSuit::Spades: str = "Spades"; break;
+		case CardSuit::Max: str = "MAX"; break;
 	}
 
 	return str;
@@ -111,21 +116,21 @@ std::string CardNumberToString(CardNumber card)
 	const char* str = nullptr;
 	switch (card)
 	{
-		etstr(str, CardNumber::Joker, "Joker");
-		etstr(str, CardNumber::Ace, "Ace");
-		etstr(str, CardNumber::Card2, "2");
-		etstr(str, CardNumber::Card3, "3");
-		etstr(str, CardNumber::Card4, "4");
-		etstr(str, CardNumber::Card5, "5");
-		etstr(str, CardNumber::Card6, "6");
-		etstr(str, CardNumber::Card7, "7");
-		etstr(str, CardNumber::Card8, "8");
-		etstr(str, CardNumber::Card9, "9");
-		etstr(str, CardNumber::Card10, "10");
-		etstr(str, CardNumber::Jack, "Jack");
-		etstr(str, CardNumber::Queen, "Queen");
-		etstr(str, CardNumber::King, "King");
-		etstr(str, CardNumber::None, "NONE");
+		case CardNumber::Joker: str = "Joker"; break;
+		case CardNumber::Ace: str = "Ace"; break;
+		case CardNumber::Card2: str = "2"; break;
+		case CardNumber::Card3: str = "3"; break;
+		case CardNumber::Card4: str = "4"; break;
+		case CardNumber::Card5: str = "5"; break;
+		case CardNumber::Card6: str = "6"; break;
+		case CardNumber::Card7: str = "7"; break;
+		case CardNumber::Card8: str = "8"; break;
+		case CardNumber::Card9: str = "9"; break;
+		case CardNumber::Card10: str = "10"; break;
+		case CardNumber::Jack: str = "Jack"; break;
+		case CardNumber::Queen: str = "Queen"; break;
+		case CardNumber::King: str = "King"; break;
+		case CardNumber::None: str = "NONE"; break;
 	}
 
 	return str;
@@ -136,13 +141,13 @@ const char *PlayerColorToString(PlayerColor color)
 	const char* str = nullptr;
 	switch (color)
 	{
-		etstr(str, PlayerColor::Red, "Red");
-		etstr(str, PlayerColor::Yellow, "Yellow");
-		etstr(str, PlayerColor::Blue, "Blue");
-		etstr(str, PlayerColor::Green, "Green");
-		etstr(str, PlayerColor::White, "White");
-		etstr(str, PlayerColor::Black, "Black");
-		etstr(str, PlayerColor::None, "NONE");
+		case PlayerColor::Red: str= "Red"; break;
+		case PlayerColor::Yellow: str= "Yellow"; break;
+		case PlayerColor::Blue: str= "Blue"; break;
+		case PlayerColor::Green: str= "Green"; break;
+		case PlayerColor::White: str= "White"; break;
+		case PlayerColor::Black: str= "Black"; break;
+		case PlayerColor::None: str= "NONE"; break;
 	}
 
 	return str;
@@ -153,43 +158,43 @@ std::string MarbleColorToShortString(MarbleColor color)
 	const char* str = nullptr;
 	switch (color)
 	{
-		etstr(str, MarbleColor::None, "_");
+		case MarbleColor::None: str = "_"; break;
 
-		etstr(str, MarbleColor::Red1, "R");
-		etstr(str, MarbleColor::Red2, "R");
-		etstr(str, MarbleColor::Red3, "R");
-		etstr(str, MarbleColor::Red4, "R");
-		etstr(str, MarbleColor::Red5, "R");
+		case MarbleColor::Red1: str = "R"; break;
+		case MarbleColor::Red2: str = "R"; break;
+		case MarbleColor::Red3: str = "R"; break;
+		case MarbleColor::Red4: str = "R"; break;
+		case MarbleColor::Red5: str = "R"; break;
 
-		etstr(str, MarbleColor::Yellow1, "Y");
-		etstr(str, MarbleColor::Yellow2, "Y");
-		etstr(str, MarbleColor::Yellow3, "Y");
-		etstr(str, MarbleColor::Yellow4, "Y");
-		etstr(str, MarbleColor::Yellow5, "Y");
+		case MarbleColor::Yellow1: str = "Y"; break;
+		case MarbleColor::Yellow2: str = "Y"; break;
+		case MarbleColor::Yellow3: str = "Y"; break;
+		case MarbleColor::Yellow4: str = "Y"; break;
+		case MarbleColor::Yellow5: str = "Y"; break;
 
-		etstr(str, MarbleColor::Blue1, "L");
-		etstr(str, MarbleColor::Blue2, "L");
-		etstr(str, MarbleColor::Blue3, "L");
-		etstr(str, MarbleColor::Blue4, "L");
-		etstr(str, MarbleColor::Blue5, "L");
+		case MarbleColor::Blue1: str = "L"; break;
+		case MarbleColor::Blue2: str = "L"; break;
+		case MarbleColor::Blue3: str = "L"; break;
+		case MarbleColor::Blue4: str = "L"; break;
+		case MarbleColor::Blue5: str = "L"; break;
 
-		etstr(str, MarbleColor::Green1, "G");
-		etstr(str, MarbleColor::Green2, "G");
-		etstr(str, MarbleColor::Green3, "G");
-		etstr(str, MarbleColor::Green4, "G");
-		etstr(str, MarbleColor::Green5, "G");
+		case MarbleColor::Green1: str = "G"; break;
+		case MarbleColor::Green2: str = "G"; break;
+		case MarbleColor::Green3: str = "G"; break;
+		case MarbleColor::Green4: str = "G"; break;
+		case MarbleColor::Green5: str = "G"; break;
 
-		etstr(str, MarbleColor::White1, "W");
-		etstr(str, MarbleColor::White2, "W");
-		etstr(str, MarbleColor::White3, "W");
-		etstr(str, MarbleColor::White4, "W");
-		etstr(str, MarbleColor::White5, "W");
+		case MarbleColor::White1: str = "W"; break;
+		case MarbleColor::White2: str = "W"; break;
+		case MarbleColor::White3: str = "W"; break;
+		case MarbleColor::White4: str = "W"; break;
+		case MarbleColor::White5: str = "W"; break;
 
-		etstr(str, MarbleColor::Black1, "B");
-		etstr(str, MarbleColor::Black2, "B");
-		etstr(str, MarbleColor::Black3, "B");
-		etstr(str, MarbleColor::Black4, "B");
-		etstr(str, MarbleColor::Black5, "B");
+		case MarbleColor::Black1: str = "B"; break;
+		case MarbleColor::Black2: str = "B"; break;
+		case MarbleColor::Black3: str = "B"; break;
+		case MarbleColor::Black4: str = "B"; break;
+		case MarbleColor::Black5: str = "B"; break;
 	}
 
 	return str;
@@ -200,13 +205,13 @@ std::string PlayerColorToShortString(PlayerColor color)
 	const char* str = nullptr;
 	switch (color)
 	{
-		etstr(str, PlayerColor::None, "_");
-		etstr(str, PlayerColor::Red, "R");
-		etstr(str, PlayerColor::Yellow, "Y");
-		etstr(str, PlayerColor::Blue, "L");
-		etstr(str, PlayerColor::Green, "G");
-		etstr(str, PlayerColor::White, "W");
-		etstr(str, PlayerColor::Black, "B");
+		case PlayerColor::None: str = "_"; break;
+		case PlayerColor::Red: str = "R"; break;
+		case PlayerColor::Yellow: str = "Y"; break;
+		case PlayerColor::Blue: str = "L"; break;
+		case PlayerColor::Green: str = "G"; break;
+		case PlayerColor::White: str = "W"; break;
+		case PlayerColor::Black: str = "B"; break;
 	}
 
 	return str;
@@ -217,15 +222,15 @@ std::string StrategyToString(Strategy strategy)
 	const char* str = nullptr;
 	switch (strategy)
 	{
-		etstr(str, Strategy::None, "NONE");
-		etstr(str, Strategy::Human, "Human");
-		etstr(str, Strategy::Passive, "Passive");
-		etstr(str, Strategy::Aggressive, "Aggressive");
-		etstr(str, Strategy::PassiveAggressive, "Passive/Aggressive mix");
-		etstr(str, Strategy::Adaptive1, "Passive until near the end of the game");
-		etstr(str, Strategy::Adaptive2, "Aggressive until near the end of the game");
-		etstr(str, Strategy::DefensivePassive, "Defensive/Passive");
-		etstr(str, Strategy::DefensiveAggressive, "Defensive/Aggressive");
+		case Strategy::None: str = "NONE"; break;
+		case Strategy::Human: str = "Human"; break;
+		case Strategy::Passive: str = "Passive"; break;
+		case Strategy::Aggressive: str = "Aggressive"; break;
+		case Strategy::PassiveAggressive: str = "Passive/Aggressive mix"; break;
+		case Strategy::Adaptive1: str = "Passive until near the end of the game"; break;
+		case Strategy::Adaptive2: str = "Aggressive until near the end of the game"; break;
+		case Strategy::DefensivePassive: str = "Defensive/Passive"; break;
+		case Strategy::DefensiveAggressive: str = "Defensive/Aggressive"; break;
 	}
 
 	return str;
@@ -236,21 +241,21 @@ std::string GameStateToString(GameState state)
 	const char* str = nullptr;
 	switch (state)
 	{
-		etstr(str, GameState::NotStarted, "Not Started");
-		etstr(str, GameState::GameStarting, "Game Starting");
-		etstr(str, GameState::HandStarting, "Hand Starting");
-		etstr(str, GameState::TurnStarting, "Turn Starting");
-		etstr(str, GameState::Playing, "Playing");
-		etstr(str, GameState::TurnEnding, "Turn Ending");
-		etstr(str, GameState::HandEnding, "Hand Ending");
-		etstr(str, GameState::GameEnding, "Game Ending");
-		etstr(str, GameState::GameOver, "Game Over");
+		case GameState::NotStarted: str = "Not Started"; break;
+		case GameState::GameStarting: str = "Game Starting"; break;
+		case GameState::HandStarting: str = "Hand Starting"; break;
+		case GameState::TurnStarting: str = "Turn Starting"; break;
+		case GameState::Playing: str = "Playing"; break;
+		case GameState::TurnEnding: str = "Turn Ending"; break;
+		case GameState::HandEnding: str = "Hand Ending"; break;
+		case GameState::GameEnding: str = "Game Ending"; break;
+		case GameState::GameOver: str = "Game Over"; break;
 	}
 
 	return str;
 }
 
-std::string MarbleDescription(TGMMarble *marble)
+std::string MarbleDescription(TGMMarbleStruct *marble)
 {
 	std::ostringstream ostream;
 	ostream << PlayerColorToString(PlayerColorForMarbleColor(marble->color))
@@ -262,7 +267,7 @@ std::string MarbleDescription(TGMMarble *marble)
 	return ostream.str();
 }
 
-std::string ComputerPlayerDescription(TGMPlayer* player)
+std::string ComputerPlayerDescription(TGMPlayerStruct* player)
 {
 	std::ostringstream ostream;
 	ostream << "["
@@ -278,7 +283,7 @@ std::string ComputerPlayerDescription(TGMPlayer* player)
 }
 
 
-std::string PlayerDescription(TGMPlayer* player)
+std::string PlayerDescription(TGMPlayerStruct* player)
 {
 	if (player->_onGameStarting != nullptr)
 	{
@@ -296,7 +301,7 @@ std::string PlayerDescription(TGMPlayer* player)
 	return ostream.str();
 }
 
-std::string MoveDescription(TGMMove* move)
+std::string MoveDescription(TGMMoveStruct* move)
 {
 	std::string spotsString;
 	if (move->spotsCalculated)
@@ -321,34 +326,34 @@ std::string MoveDescription(TGMMove* move)
 	if (move->isDiscard)
 	{
 		std::ostringstream str;
-		str << "Move ("
-			<< PlayerColorToString(move->playerColor)
-			<< ") - Discarding "
-			<< CardDescription(move->card, false)
-			<< " (weight = "
-			<< move->weight
-			<< ", "
-			<< BoolToString(move->weightCalculated)
-			<< ", "
-			<< spotsString
-			<< ")";
+		str << "Move (";
+		str << PlayerColorToString(move->playerColor);
+		str << ") - Discarding ";
+		str << CardDescription(move->card, false);
+		str << " (weight = ";
+		str << move->weight;
+		str << ", ";
+		str << BoolToString(move->weightCalculated);
+		str << ", ";
+		str << spotsString;
+		str << ")";
 		return str.str();
 	}
 
 	if (move->oldSpot == kGetOutSpot)
 	{
 		std::ostringstream str;
-		str << "Get "
-			<< ColoredString(move->playerColor, "marble")
-			<< " out with "
-			<< CardDescription(move->card, false)
-			<< " (weight = "
-			<< move->weight
-			<< ", "
-			<< BoolToString(move->weightCalculated)
-			<< ", "
-			<< spotsString
-			<< ")";
+		str << "Get ";
+		str << ColoredString(move->playerColor, "marble");
+		str << " out with ";
+		str << CardDescription(move->card, false);
+		str << " (weight = ";
+		str << move->weight;
+		str << ", ";
+		str << BoolToString(move->weightCalculated);
+		str << ", ";
+		str << spotsString;
+		str << ")";
 
 		return str.str();
 	}
@@ -394,27 +399,27 @@ std::string MoveDescription(TGMMove* move)
 	}
 
 	std::ostringstream str;
-	str << "Move ("
-		<< PlayerColorToString(move->playerColor)
-		<< ") - ["
-		<< move->moves
-		<< "] From "
-		<< oldSpotStr
-		<< " to "
-		<< newSpotStr
-		<< " with "
-		<< CardDescription(move->card, false)
-		<< " (weight="
-		<< weightString
-		<< ", moves="
-		<< move->moves
-		<< ", jumps="
-		<< move->jumps
-		<< ", wentBehindHome="
-		<< BoolToString(move->wentBehindHome)
-		<< ", intermediateSpots="
-		<< spotsString
-		<< ")";
+	str << "Move (";
+	str << PlayerColorToString(move->playerColor);
+	str << ") - [";
+	str << move->moves;
+	str << "] From ";
+	str << oldSpotStr;
+	str << " to ";
+	str << newSpotStr;
+	str << " with ";
+	str << CardDescription(move->card, false);
+	str << " (weight=";
+	str << weightString;
+	str << ", moves=";
+	str << move->moves;
+	str << ", jumps=";
+	str << move->jumps;
+	str << ", wentBehindHome=";
+	str << BoolToString(move->wentBehindHome);
+	str << ", intermediateSpots=";
+	str << spotsString;
+	str << ")";
 	return str.str();
 }
 
