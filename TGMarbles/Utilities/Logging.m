@@ -8,6 +8,7 @@
 
 #import "Logging.h"
 
+#ifdef DEBUG_LOGGING_ON
 static NSLock *s_lock = nil;
 void TGMLogGameMessage(NSString *format, ...)
 {
@@ -34,3 +35,4 @@ void TGMLogGameMessage(NSString *format, ...)
 	}
 }
 
+#endif

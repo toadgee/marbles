@@ -6,6 +6,6 @@
 //  Copyright (c) 2012 toadgee.com. All rights reserved.
 //
 
-void RunAllPerfTests(bool large);
-int RunAllPerfTestsWithOptions(uint64_t testCount, uint64_t statusUpdates);
+void RunAllPerfTests(bool large, bool quiet);
+int RunAllPerfTestsWithOptions(uint64_t testCount, uint64_t statusUpdates, bool printPartial);
 void RunMultithreadedPerfTests();

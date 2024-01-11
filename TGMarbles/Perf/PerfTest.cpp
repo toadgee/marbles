@@ -92,7 +92,7 @@ void PrintPerfTestResults(
 	printf("\n");
 }
 
-void RunAllPerfTests(bool large)
+void RunAllPerfTests(bool large, bool quiet)
 {
 	uint64_t testCount = 1000;
 	uint64_t statusUpdates = 0;
@@ -102,10 +102,10 @@ void RunAllPerfTests(bool large)
 		statusUpdates = 0;
 	}
 	
-	RunAllPerfTestsWithOptions(testCount, statusUpdates);
+	RunAllPerfTestsWithOptions(testCount, statusUpdates, !quiet);
 }
 
-int RunAllPerfTestsWithOptions(uint64_t testCount, uint64_t statusUpdates)
+int RunAllPerfTestsWithOptions(uint64_t testCount, uint64_t statusUpdates, bool printIntermediateResults)
 {
 #ifdef DEBUG
 	MemorySnapshot mem = CreateMemorySnapshot();
@@ -146,32 +146,34 @@ int RunAllPerfTestsWithOptions(uint64_t testCount, uint64_t statusUpdates)
 			test->SetStatusUpdates(statusUpdates);
 			
 			game++;
-		
-			// weird logging helps with comparing
-			printf("------------------------------------------------\n");
-			printf("%02d%02d%02d%02d%02d%02d%02d%02d%02d%02d%02d%02d%02d%02d%02d%02d%02d%02d%02d%02d%02d%02d%02d%02d\n",
-				game, game, game, game, game, game, game, game, game, game, game, game,
-				game, game, game, game, game, game, game, game, game, game, game, game);
-			printf("------------------------------------------------\n");
-			printf("TEST #%d of %d\n", game, maxGames);
-			printf("------------------------------------------------\n");
-			printf("%02d%02d%02d%02d%02d%02d%02d%02d%02d%02d%02d%02d%02d%02d%02d%02d%02d%02d%02d%02d%02d%02d%02d%02d\n",
-				game, game, game, game, game, game, game, game, game, game, game, game,
-				game, game, game, game, game, game, game, game, game, game, game, game);
-			printf("------------------------------------------------\n");
-			printf("\n");
-		
-			printf("STRATEGIES\n");
-			printf("Team 1 : %s\n", StrategyToString(s1).c_str());
-			printf("Team 2 : %s\n", StrategyToString(s2).c_str());
-			printf("\n");
-		
-			printf("TEST SETUP\n");
-			printf("Seed : %u\n", seed);
-			printf("Test Count : %llu\n", testCount);
-			printf("\n");
 			
-			printf("RUNNING TEST\n");
+			if (printIntermediateResults) {
+				// weird logging helps with comparing
+				printf("------------------------------------------------\n");
+				printf("%02d%02d%02d%02d%02d%02d%02d%02d%02d%02d%02d%02d%02d%02d%02d%02d%02d%02d%02d%02d%02d%02d%02d%02d\n",
+					game, game, game, game, game, game, game, game, game, game, game, game,
+					game, game, game, game, game, game, game, game, game, game, game, game);
+				printf("------------------------------------------------\n");
+				printf("TEST #%d of %d\n", game, maxGames);
+				printf("------------------------------------------------\n");
+				printf("%02d%02d%02d%02d%02d%02d%02d%02d%02d%02d%02d%02d%02d%02d%02d%02d%02d%02d%02d%02d%02d%02d%02d%02d\n",
+					game, game, game, game, game, game, game, game, game, game, game, game,
+					game, game, game, game, game, game, game, game, game, game, game, game);
+				printf("------------------------------------------------\n");
+				printf("\n");
+			
+				printf("STRATEGIES\n");
+				printf("Team 1 : %s\n", StrategyToString(s1).c_str());
+				printf("Team 2 : %s\n", StrategyToString(s2).c_str());
+				printf("\n");
+			
+				printf("TEST SETUP\n");
+				printf("Seed : %u\n", seed);
+				printf("Test Count : %llu\n", testCount);
+				printf("\n");
+			
+				printf("RUNNING TEST\n");
+			}
 			
 			for (uint64_t i = 0; i < testCount; i++)
 			{
@@ -182,9 +184,11 @@ int RunAllPerfTestsWithOptions(uint64_t testCount, uint64_t statusUpdates)
 			uint64_t totalHands = test->GetHandsTotal();
 			uint64_t totalTurns = test->GetTurnsTotal();
 			
-			PrintPerfTestResults(testCount, s1, s2, HiResTimerTotalMilliseconds(test->GetGameTimer()), totalGames, totalHands, totalTurns, 
-				test->GetTeam1WonGames(), test->GetTeam2WonGames(), test->GetDealingTeamWonGames(), nullptr, test->GetTotalKills(), test->GetTeam1KilledTeam1(),
-				test->GetTeam1KilledTeam2(), test->GetTeam2KilledTeam1(), test->GetTeam2KilledTeam2());
+			if (printIntermediateResults) {
+				PrintPerfTestResults(testCount, s1, s2, HiResTimerTotalMilliseconds(test->GetGameTimer()), totalGames, totalHands, totalTurns,
+					test->GetTeam1WonGames(), test->GetTeam2WonGames(), test->GetDealingTeamWonGames(), nullptr, test->GetTotalKills(), test->GetTeam1KilledTeam1(),
+					test->GetTeam1KilledTeam2(), test->GetTeam2KilledTeam1(), test->GetTeam2KilledTeam2());
+			}
 				
 			overallGames += totalGames;
 			overallHands += totalHands;

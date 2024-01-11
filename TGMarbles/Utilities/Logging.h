@@ -13,7 +13,9 @@
 extern "C" {
 #endif
 
+#ifdef DEBUG_LOGGING_ON
 void TGMLogGameMessage(NSString *format, ...);
+#endif
 
 #ifdef __cplusplus
 }

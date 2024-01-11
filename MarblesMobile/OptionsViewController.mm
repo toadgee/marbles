@@ -58,7 +58,7 @@
 {
 	TGHiResTimer* timer = CreateHiResTimer(true, true);
 	uint64_t testCount = 1000;
-	int games = RunAllPerfTestsWithOptions(testCount, 0);
+	int games = RunAllPerfTestsWithOptions(testCount, 0, false);
 	HiResTimerStop(timer);
 	
 	NSString *message = [NSString stringWithFormat:@"Took %4.2f seconds to run ALL %llu tests", (float)HiResTimerTotalMilliseconds(timer) / 1000.0, ((uint64_t)games * testCount)];

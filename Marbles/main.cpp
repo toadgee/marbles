@@ -9,6 +9,7 @@
 
 int main(int argc, const char* argv[])
 {
+	bool quiet { false };
 	bool replay{ false };
 	bool perf{ false };
 	bool perf_large{ false };
@@ -27,6 +28,11 @@ int main(int argc, const char* argv[])
 			{
 				filename = argv[i];
 			}
+		}
+		else if (_strnicmp(argv[i], "--quiet", 7) == 0)
+		{
+			++matchedOptions;
+			quiet = true;
 		}
 		else if (_strnicmp(argv[i], "--perf++", 8) == 0)
 		{
@@ -49,6 +55,7 @@ int main(int argc, const char* argv[])
 			printf("--replay [filename]: replay game\n");
 			printf("--perf : perf tests\n");
 			printf("--perf++ : bigger perf tests\n");
+			printf("--quiet : quiet mode\n");
 			printf("--test : multi-threaded perf tests (temporary)\n");
 			printf("--help : help message\n");
 			return 0;
@@ -68,7 +75,7 @@ int main(int argc, const char* argv[])
 
 	if (perf)
 	{
-		RunAllPerfTests(perf_large);
+		RunAllPerfTests(perf_large, quiet);
 	}
 	else if (replay)
 	{
