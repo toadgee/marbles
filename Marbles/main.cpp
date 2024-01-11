@@ -31,7 +31,6 @@ int main(int argc, const char* argv[])
 		}
 		else if (_strnicmp(argv[i], "--quiet", 7) == 0)
 		{
-			++matchedOptions;
 			quiet = true;
 		}
 		else if (_strnicmp(argv[i], "--perf++", 8) == 0)
