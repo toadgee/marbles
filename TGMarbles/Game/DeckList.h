@@ -15,11 +15,10 @@ typedef std::function<bool(unsigned i, TGMDeck* deck)> TGMDeckListIterationBlock
 
 struct TGMDeckListStruct
 {
-	int32_t _retainCount;
-	
 	TGMDeck* _first;
 	TGMDeck* _last;
-	unsigned _count;
+	uint32_t _count;
+	int32_t _retainCount;
 };
 
 TGMDeckList* CreateDeckList(void);

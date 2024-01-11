@@ -1,6 +1,6 @@
 #pragma once
 
-enum class CardSuit
+enum class CardSuit: uint16_t
 {
 	Hearts	= 800,
 	Diamonds = 801,

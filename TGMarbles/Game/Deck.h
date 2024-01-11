@@ -18,13 +18,14 @@
 // NOTE : versioned
 struct TGMDeckStruct
 {
-	// order and typing important because of "base" struct
-	int32_t _retainCount;
 	TGMDeck* _nextDeck;
 	TGMDeck* _previousDeck;
 	
 	TGMCardList* _cards;
 	TGMCardList* _discarded;
+	
+	int32_t _retainCount;
+	char _padding[4];
 };
 
 TGMDeck* CreateNonEmptyDeck(void);

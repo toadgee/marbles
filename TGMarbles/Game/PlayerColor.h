@@ -1,6 +1,6 @@
 #pragma once
 // teams are every other
-enum class PlayerColor
+enum class PlayerColor: uint16_t
 {
 	Red	 = 100,
 	Yellow = 101,

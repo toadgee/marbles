@@ -12,15 +12,16 @@
 #define TGMMoveRankerData struct TGMMoveRankerDataStruct
 struct TGMMoveRankerDataStruct
 {
-	TGMMove *move;
-	Strategy strategy;
-	TGMGame* game;
-	TGMBoard *board;
-	PlayerColor playerColor;
+	TGMMove*move;
 	
+	TGMGame* game;
+	
+	TGMBoard *board;
+	
+	Strategy strategy;
 	bool oldSpotIsFinalSpot;
 	bool newSpotIsFinalSpot;
-	
+	PlayerColor playerColor;
 	bool oldSpotIsPointSpot;
 	bool newSpotIsPointSpot;
 	

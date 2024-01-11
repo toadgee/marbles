@@ -16,15 +16,15 @@
 // NOTE : versioned
 struct TGMGameLogStruct
 {
-	int32_t _retainCount;
-	
-	PlayerColor _dealingPlayer;
-	Strategy _playerStrategy[kPlayers];
-	
 	TGMDeckList* _deckList;
 	TGMMoveList* _moveList;
 	
+	int32_t _retainCount;
+	PlayerColor _dealingPlayer;
+	Strategy _playerStrategy[kPlayers];
+	
 	// TODO : do we want a write-only log and a readonly log?
+	char _padding[6];
 };
 
 #define GameLogDealingPlayer(gameLog) gameLog->_dealingPlayer

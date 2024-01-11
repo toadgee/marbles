@@ -16,13 +16,11 @@ typedef std::function<bool(unsigned i, TGMCard* card)> TGMCardListIterationBlock
 
 struct TGMCardListStruct
 {
-	int32_t _retainCount;
-	
 	TGMCard* _first;
 	TGMCard* _last;
-	unsigned _count;
-	
 	void *_holder;
+	int32_t _retainCount;
+	unsigned _count;
 };
 
 TGMCardList* CreateCardList(void);

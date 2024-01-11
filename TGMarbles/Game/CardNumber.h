@@ -3,7 +3,7 @@
 #define IsCardNumber(x) ((x) <= CardNumber::Max && (x) >= CardNumber::Min)
 #define IterateCardNumber(x) (x = (static_cast<CardNumber>((static_cast<int>(x)) + 1)))
 
-enum class CardNumber
+enum class CardNumber: uint16_t
 {
 	Joker       = 700, // must be before Ace
 	Ace         = 701,

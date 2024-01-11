@@ -1,7 +1,7 @@
 #pragma once
 #include "PlayerColor.h"
 
-enum class MarbleColor
+enum class MarbleColor: uint16_t
 {
 	// NOTE: PlayerColorForMarbleColor uses these values
 	Red1 = 200,

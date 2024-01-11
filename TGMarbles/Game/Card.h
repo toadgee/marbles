@@ -11,7 +11,7 @@
 #include "CardNumber.h"
 #include "CardSuit.h"
 
-enum class TGMCardComparisonResult
+enum class TGMCardComparisonResult: uint16_t
 {
 	Same,
 	Ascending,
@@ -20,17 +20,21 @@ enum class TGMCardComparisonResult
 
 #define TGMCard struct TGMCardStruct
 // NOTE : versioned
+
 struct TGMCardStruct
 {
-	int32_t _retainCount;
 	TGMCard* nextCard;
+	
 	TGMCard* previousCard;
 	
-	int _uniqueId;
-	CardNumber _number;
-	CardSuit _suit;
-	
 	void* _holder;
+	
+	int32_t _retainCount;
+	int _uniqueId;
+	
+	CardSuit _suit;
+	CardNumber _number;
+	char padding[4];
 };
 
 #define CardUniqueId(card) (card->_uniqueId)

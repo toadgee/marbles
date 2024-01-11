@@ -16,12 +16,12 @@
 // NOTE : versioned
 struct TGMMarbleStruct
 {
+	void*       _holder;
 	int			_retainCount;
 	MarbleColor color;
 	int16_t     distanceFromHome;
 	bool        wentBehindHome;
-	
-	void*       _holder;
+	char        _padding[7];
 };
 
 TGMMarble* CreateMarble(MarbleColor color, int16_t distanceFromHome, bool wentBehindHome);

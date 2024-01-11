@@ -16,7 +16,6 @@
 // NOTE : versioned
 struct TGMMoveStruct
 {
-	int 		_retainCount;
 	TGMMove*	nextMove;
 	TGMMove*	previousMove;
 	
@@ -25,19 +24,24 @@ struct TGMMoveStruct
 	TGMMarble*	marble;
 	TGMCard*	card;
 	
-	PlayerColor playerColor;
+	int 		_retainCount;
 	int			oldSpot;				// from
+	
 	int			newSpot;				// to
-	bool		isDiscard;				// whether or not the move is a discard
 	int			moves;					// the number of spots the marble will move
-	bool		wentBehindHome;			// whether or not we can move out of the normalized spot of 0
+	
 	int			jumps;					// how many jumps this move is
+	PlayerColor playerColor;
+	bool		isDiscard;				// whether or not the move is a discard
+	bool		wentBehindHome;			// whether or not we can move out of the normalized spot of 0
 	
 	// not persisted : calculated on the fly
-	int			weight;					// the weight (if calculated) of the move
-	bool        weightCalculated;		// whether or not the weight is calculated
-	uint8_t		spots[kMaxMoveSpots];   // this has every spot the marble is planning on going through
-	bool		spotsCalculated;        // whether or not spots is detailed
+	int			weight;					// the weight (if calculated) of the move (not persisted)
+	bool        weightCalculated;		// whether or not the weight is calculated (not persisted)
+	uint8_t		spots[kMaxMoveSpots];   // this has every spot the marble is planning on going through (not persisted)
+	bool		spotsCalculated;        // whether or not spots is detailed (not persisted)
+	
+	char _padding[4];
 };
 
 void MoveCalculateIntermediateSpots(TGMMove* move);

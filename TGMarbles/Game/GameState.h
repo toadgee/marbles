@@ -1,6 +1,6 @@
 #pragma once
 
-enum class GameState
+enum class GameState: uint16_t
 {
 	NotStarted   = 400,
 	GameStarting = 401,

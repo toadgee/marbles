@@ -38,7 +38,6 @@ typedef void (*TGMGamePlayerDidKillPlayerFunction)(void* context, TGMGame* game,
 
 struct TGMGameStruct
 {
-	int32_t _retainCount;
 	void* _holder;
 	
 	void* _callbackContext;
@@ -61,12 +60,6 @@ struct TGMGameStruct
 	
 	struct TGMPlayerStruct* _players[kPlayers];
 	
-	int _turn;
-	
-	PlayerColor _dealingPlayer;
-	PlayerColor _currentPlayer;
-	
-	GameState _state;
 	TGMBoard* _board;
 	TGMDeck* _deck;
 	
@@ -74,6 +67,16 @@ struct TGMGameStruct
 	
 	TGMGameLog* _replayLog; // replaying these moves
 	TGMGameLog* _gameLog; // the moves we've done
+	
+	int32_t _retainCount;
+	
+	int _turn;
+	
+	PlayerColor _dealingPlayer;
+	PlayerColor _currentPlayer;
+	
+	GameState _state;
+	char _padding[2];
 };
 
 TGMGame* RetainGame(TGMGame* game);

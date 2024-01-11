@@ -13,13 +13,13 @@
 
 struct TGMMoveListStruct
 {
-	int _retainCount;
-	
 	TGMMove* first;
 	TGMMove* last;
-	unsigned _count;
 	
 	void* _holder;
+	
+	int _retainCount;
+	unsigned _count;
 };
 
 TGMMoveList* CreateMoveList(void);

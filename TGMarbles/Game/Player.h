@@ -28,19 +28,6 @@ typedef std::string (*TGMPlayerDescriptionFunction)(struct TGMPlayerStruct* play
 #define TGMPlayer struct TGMPlayerStruct
 struct TGMPlayerStruct
 {
-	int32_t _retainCount;
-	void* _holder;
-	
-	void* _context;
-	
-	const char* _name;
-	bool _marblesInHome[kMarblesPerPlayer];
-	TGMCardList* _hand;
-	PlayerColor _pc;
-	bool _isTeam1;
-	Strategy _strategy;
-	struct TGMGameStruct *_game;
-	
 	TGMPlayerGameStartingFunction _onGameStarting;
 	TGMPlayerGameEndingFunction _onGameEnding;
 	TGMPlayerHandStartingFunction _onHandStarting;
@@ -48,6 +35,17 @@ struct TGMPlayerStruct
 	TGMPlayerPlayInGameFunction _onPlayInGame;
 	TGMPlayerDescriptionFunction _onDescription;
 	TGMPlayerDestroyFunction _onDestroy;
+	struct TGMGameStruct *_game;
+	void* _holder;
+	void* _context;
+	const char* _name;
+	TGMCardList* _hand;
+	int32_t _retainCount;
+	PlayerColor _pc;
+	Strategy _strategy;
+	bool _isTeam1;
+	bool _marblesInHome[kMarblesPerPlayer];
+	char _padding[2];
 };
 
 TGMPlayer* RetainPlayer(TGMPlayer* player);

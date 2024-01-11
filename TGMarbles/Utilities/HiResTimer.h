@@ -19,8 +19,6 @@
 #define TGHiResTimer struct TGHiResTimerStruct
 struct TGHiResTimerStruct
 {
-	bool _cpuTime; // if false, uses actual time, if true uses cpu time
-	bool _started;
 	uint64_t _start; // start time
 	uint64_t _total; // if timer is used mulitple times and not reset, this is the total # of nanoseconds run
 	uint64_t _starts;
@@ -28,6 +26,10 @@ struct TGHiResTimerStruct
 #if TARGET_OS_OSX || TARGET_OS_IPHONE
 	mach_timebase_info_data_t _timeBase;
 #endif
+
+	bool _cpuTime; // if false, uses actual time, if true uses cpu time
+	bool _started;
+	char _padding[6];
 };
 
 #define HiResTimerTotal(timer) timer->_total

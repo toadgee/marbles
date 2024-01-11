@@ -69,4 +69,4 @@ GCC_WARN_UNUSED_FUNCTION = YES
 GCC_WARN_UNUSED_LABEL = YES
 GCC_WARN_UNUSED_VARIABLE = YES
 
-WARNING_CFLAGS = -Weverything -Wno-auto-import -Wno-c++98-compat -Wno-c++98-compat-pedantic -Wno-undef -Wno-padded -Wno-global-constructors -Wno-gnu-zero-variadic-macro-arguments -Wno-format-nonliteral -ftime-trace
+WARNING_CFLAGS = -Weverything -Wno-auto-import -Wno-c++98-compat -Wno-c++98-compat-pedantic -Wno-undef -Wno-global-constructors -Wno-gnu-zero-variadic-macro-arguments -Wno-format-nonliteral -ftime-trace

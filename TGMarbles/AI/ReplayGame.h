@@ -13,9 +13,10 @@
 #define TGMReplayGame struct TGMReplayGameStruct
 struct TGMReplayGameStruct
 {
-	int32_t _retainCount;
 	void* _holder;
 	TGMGame* _game;
+	int32_t _retainCount;
+	char _padding[4];
 };
 
 TGMReplayGame* CreateReplayGame(TGMGameLog* gameLog, TGRandom* newRandom);

@@ -43,8 +43,8 @@ public:
 	void GameEnded(TGMGame* game, bool team1Won);
 
 private:
-	unsigned _seed;
 	TGHiResTimer* _gameTimer{};
+	TGMGame* _game{};
 	uint64_t _handsTotal{};
 	uint64_t _turnsTotal{};
 
@@ -60,5 +60,6 @@ private:
 	uint64_t _team2WonGames{};
 	uint64_t _dealingTeamWonGames{};
 
-	TGMGame* _game{};
+	unsigned _seed;
+	__unused char padding[4];
 };

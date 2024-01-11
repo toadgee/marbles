@@ -23,6 +23,7 @@ struct TGMBoardStruct
 	// keeps track of where all the players marbles are
 	int8_t _playerMarbles[kPlayers][kMarblesPerPlayer];
 	int8_t _playerMarblesInPlay[kPlayers];
+	char padding[2];
 };
 
 TGMBoard* CreateBoard(void);

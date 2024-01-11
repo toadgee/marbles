@@ -1,6 +1,6 @@
 #pragma once
 
-enum class Strategy
+enum class Strategy: uint16_t
 {
 	Human = 300,
 	Passive = 301,

@@ -12,12 +12,14 @@
 #define TGMTeammates struct TGMTeammatesStruct
 struct TGMTeammatesStruct
 {
-	int32_t _count;
 	TGMPlayer* _teammate1;
 	TGMPlayer* _teammate2;
 	TGMPlayer* _ownPlayer;
 	
 	void *_holder;
+	
+	int32_t _count;
+	char _padding[4];
 };
 
 TGMTeammates* CreateTeammates(
