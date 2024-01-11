@@ -1,6 +1,10 @@
 #pragma once
 
 #ifdef __cplusplus
+
+/// Number of players in the game.
+static constexpr int kPlayers =	6;
+
 /// The number of spots per player
 static constexpr int kPlayerSpots = 18;
 
