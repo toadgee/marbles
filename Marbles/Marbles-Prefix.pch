@@ -7,3 +7,5 @@
 #endif
 
 #include "precomp.h"
+
+// TODO: Add likely & unlikely attribute.
