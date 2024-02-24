@@ -77,7 +77,7 @@ void ComputerPlayerPlayInGameWithStrategy(TGMPlayer* player, Strategy s)
 	// it does to just always use all cards and deal with a slightly larger move set
 	TGMMoveList* moves = MovesForPlayerSimple(player, player->_game, nullptr);
 	
-	if (s == Strategy::PassiveAggressive)
+	if (s == Strategy::PassiveAggressive) [[unlikely]]
 	{
 		assert(false);
 	}

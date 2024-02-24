@@ -20,7 +20,7 @@ TGMMarble* AllocateMarble(void)
 void DeallocateMarble(TGMMarble* marble)
 {
 	dassert(marble);
-	if (!marble) return;
+	if (!marble) [[unlikely]] return;
 	
 	TGMPoolAllocator* allocator = static_cast<TGMPoolAllocator*>(marble->_holder); // need to do this before memset...
 	

@@ -53,7 +53,7 @@ void DoWeightOfMoveBasedOnLikelihoodOfBeingKilled(TGMMoveRankerData *data, TGMMo
 		return;
 	}
 	
-	if (allPossibleOpponentMoves == nullptr)
+	if (allPossibleOpponentMoves == nullptr) [[unlikely]]
 	{
 		// huh, we weren't asked to calculate this...
 		return;

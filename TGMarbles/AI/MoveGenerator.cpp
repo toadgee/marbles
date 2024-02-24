@@ -224,7 +224,7 @@ TGMMove* BestMoveFromMoves(
 	
 	{
 		TGMMove* move = moves->first;
-		while (move != nullptr)
+		while (move != nullptr) [[likely]]
 		{
 			int score = CalculateWeightOfMoveInGame(move, game, pc, strategy, &allPossibleOpponentMoves);
 			if (move == moves->first || bestScore < score)
