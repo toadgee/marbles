@@ -74,7 +74,7 @@ bool AreMarblesEqual(TGMMarble* m1, TGMMarble* m2)
 #ifdef DEBUG
 void RetainMarble(TGMMarble* marble)
 {
-	int32_t rc = MemIncreaseRetainCount(marble->_retainCount);
+	const int32_t rc = MemIncreaseRetainCount(marble->_retainCount);
 #ifdef MARBLE_MEMORY_LOGGING
 	NSLog(@"<<MARBLE %p : %d (+)>>", marble, rc);
 #else
@@ -84,7 +84,7 @@ void RetainMarble(TGMMarble* marble)
 
 void ReleaseMarble(TGMMarble* marble)
 {
-	int32_t rc = MemDecreaseRetainCount(marble->_retainCount);
+	const int32_t rc = MemDecreaseRetainCount(marble->_retainCount);
 #ifdef MARBLE_MEMORY_LOGGING
 	NSLog(@"<<MARBLE %p : %d (-)>>", marble, rc);
 #endif
