@@ -1248,6 +1248,7 @@
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = "";
 				ENABLE_HARDENED_RUNTIME = YES;
+				LLVM_LTO = YES;
 				PROVISIONING_PROFILE_SPECIFIER = "";
 			};
 			name = Cover;
@@ -1681,6 +1682,7 @@
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = "";
 				ENABLE_HARDENED_RUNTIME = YES;
+				LLVM_LTO = YES;
 				PROVISIONING_PROFILE_SPECIFIER = "";
 			};
 			name = Debug;
@@ -1692,6 +1694,7 @@
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = "";
 				ENABLE_HARDENED_RUNTIME = YES;
+				LLVM_LTO = YES;
 			};
 			name = Release;
 		};
