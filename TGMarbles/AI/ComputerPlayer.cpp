@@ -14,6 +14,7 @@
 #include "Descriptions.h"
 #include "Game.h"
 #include "Logging.h"
+#include "MarblesMem.h"
 #include "Move.h"
 #include "MoveGenerator.h"
 #include "MoveList.h"

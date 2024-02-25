@@ -11,6 +11,7 @@
 #include "DataExtensions.h"
 #include "Descriptions.h"
 #include "Player.h"
+#include "MarblesMem.h"
 #include "MoveGenerator.h"
 #include "MoveRanker.h"
 
@@ -111,7 +112,10 @@ void ReplayPlayerWillPlayMoveInGame(void* context, TGMGame* game, TGMPlayer* pla
 		genMove = genMove->nextMove;
 	}
 	
-	ReleaseMoveList(allPossibleOpponentMoves);
+	if (allPossibleOpponentMoves != nullptr)
+	{
+		ReleaseMoveList(allPossibleOpponentMoves);
+	}
 	
 	if (PlayerGetStrategy(player) != Strategy::Human)
 	{

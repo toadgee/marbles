@@ -23,10 +23,10 @@ struct TGMMoveListStruct
 };
 
 TGMMoveList* CreateMoveList(void);
-TGMMoveList* RetainMoveList(TGMMoveList* moveList);
-void ReleaseMoveList(TGMMoveList* moveList);
-
 TGMMoveList* CopyMoveList(TGMMoveList* moveList);
+void DeallocateMoveList(TGMMoveList* moveList);
+#define RetainMoveList(moveList) MemIncreaseRetainCount(moveList->_retainCount)
+#define ReleaseMoveList(moveList) if ((MemDecreaseRetainCount(moveList->_retainCount)) == 0) DeallocateMoveList(moveList)
 
 void ClearMoveList(TGMMoveList* moveList);
 void MoveListAdd(TGMMoveList* moveList, TGMMove* move);

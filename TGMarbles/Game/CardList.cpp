@@ -13,7 +13,6 @@
 #include "MarblesMem.h"
 
 TGMCardList* AllocateCardList(void);
-void DeallocateCardList(TGMCardList* cardList);
 
 TGMCardList* AllocateCardList(void)
 {
@@ -67,32 +66,6 @@ TGMCardList* CreateCardList(void)
 #endif
 	
 	return cardList;
-}
-
-#if 0
-void RetainCardList(TGMCardList* cardList)
-{
-	int32_t rc = MemIncreaseRetainCount(cardList->_retainCount);
-#ifdef CARDLIST_MEMORY_LOGGING
-	NSLog(@"<<CARDLIST %p : %d (+)>>", cardList, rc);
-#else 
-#pragma unused(rc)
-#endif
-}
-#endif
-
-void ReleaseCardList(TGMCardList* cardList)
-{
-	int32_t rc = MemDecreaseRetainCount(cardList->_retainCount);
-#ifdef CARDLIST_MEMORY_LOGGING
-	NSLog(@"<<CARDLIST %p : %d (-)>>", cardList, rc);
-#endif
-
-	dassert(rc >= 0);
-	if (rc == 0)
-	{
-		DeallocateCardList(cardList);
-	}
 }
 
 TGMCardList* CopyCardList(TGMCardList* cardList)

@@ -237,7 +237,10 @@ TGMMove* BestMoveFromMoves(
 		}
 	}
 	
-	ReleaseMoveList(allPossibleOpponentMoves);
+	if (allPossibleOpponentMoves != nullptr)
+	{
+		ReleaseMoveList(allPossibleOpponentMoves);
+	}
 	
 	// TODO : Improvement : look at cards to see if home moves could be made better (i.e. we have
 	// cards to get home & don't use them for other things)

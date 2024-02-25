@@ -24,12 +24,9 @@ struct TGMCardListStruct
 };
 
 TGMCardList* CreateCardList(void);
-#if 0
-void RetainCardList(TGMCardList* cardList);
-#else
 #define RetainCardList(cardList) MemIncreaseRetainCount(cardList->_retainCount)
-#endif
-void ReleaseCardList(TGMCardList* cardList);
+#define ReleaseCardList(cardList) if ((MemDecreaseRetainCount(cardList->_retainCount)) == 0) DeallocateCardList(cardList)
+void DeallocateCardList(TGMCardList* cardList);
 
 TGMCardList* CopyCardList(TGMCardList* cardList);
 

@@ -5,7 +5,6 @@
 #include "Move.h"
 
 TGMMoveList* AllocateMoveList(void);
-void DeallocateMoveList(TGMMoveList* moveList);
 
 TGMMoveList* AllocateMoveList(void)
 {
@@ -61,36 +60,6 @@ TGMMoveList* CreateMoveList(void)
 #endif
 	
 	return moveList;
-}
-
-TGMMoveList* RetainMoveList(TGMMoveList* moveList)
-{
-	if (moveList)
-	{
-		int32_t rc = MemIncreaseRetainCount(moveList->_retainCount);
-#ifdef MOVELIST_MEMORY_LOGGING
-		NSLog(@"<<MOVELIST %p : %d (+)>>", moveList, rc);
-#else 
-		(void)rc;
-#endif
-	}
-
-	return moveList;
-}
-void ReleaseMoveList(TGMMoveList* moveList)
-{
-	if (!moveList) return;
-
-	int32_t rc = MemDecreaseRetainCount(moveList->_retainCount);
-#ifdef MOVELIST_MEMORY_LOGGING
-	NSLog(@"<<MOVELIST %p : %d (-)>>", moveList, rc);
-#endif
-
-	dassert(rc >= 0);
-	if (rc == 0)
-	{
-		DeallocateMoveList(moveList);
-	}
 }
 
 TGMMoveList* CopyMoveList(TGMMoveList* moveList)

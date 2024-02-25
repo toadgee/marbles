@@ -79,7 +79,8 @@ void ReleaseGameLog(TGMGameLog* gameLog)
 void GameLogSetMoveList(TGMGameLog* gameLog, TGMMoveList* moveList)
 {
 	ReleaseMoveList(gameLog->_moveList);
-	gameLog->_moveList = RetainMoveList(moveList);
+	RetainMoveList(moveList);
+	gameLog->_moveList = moveList;
 }
 
 Strategy GameLogStrategyForPlayerColor(TGMGameLog* gameLog, PlayerColor pc)
