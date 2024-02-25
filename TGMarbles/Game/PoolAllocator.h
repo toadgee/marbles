@@ -11,13 +11,17 @@
 #define TGMPoolAllocator struct TGMPoolAllocatorStruct
 struct TGMPoolAllocatorStruct
 {
-#ifdef DEBUG
-	int8_t _used;
-#endif
-
 	void* _object;
 	TGMPoolAllocator* _next;
 	TGMPoolAllocator* _previous;
+
+#ifdef DEBUG
+	int8_t _used;
+	int8_t unused1;
+	int16_t unused2;
+	int32_t unused3;
+#endif
+
 };
 
 TGMPoolAllocator* AllocatePoolObject(size_t size, TGMPoolAllocator** unusedFirst, TGMPoolAllocator** usedFirst);
