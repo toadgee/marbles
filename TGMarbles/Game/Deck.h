@@ -24,6 +24,8 @@ struct TGMDeckStruct
 	TGMCardList* _cards;
 	TGMCardList* _discarded;
 	
+	TGMCard* _fastShuffle[108];
+	
 	int32_t _retainCount;
 	char _padding[4];
 };
@@ -31,11 +33,7 @@ struct TGMDeckStruct
 TGMDeck* CreateNonEmptyDeck(void);
 TGMDeck* CreateDeck(bool emptyDeck);
 TGMDeck* CopyDeck(TGMDeck *deck);
-#if 0
-void RetainDeck(TGMDeck* deck);
-#else
 #define RetainDeck(deck) MemIncreaseRetainCount(deck->_retainCount)
-#endif
 void ReleaseDeck(TGMDeck *deck);
 
 void DeckShuffle(TGMDeck* deck, TGRandom* rng);
