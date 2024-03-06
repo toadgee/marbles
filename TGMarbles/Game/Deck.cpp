@@ -115,7 +115,7 @@ void ReleaseDeck(TGMDeck *deck)
 
 void DeckShuffle(TGMDeck* deck, TGRandom* rng)
 {
-#if 1
+#if 0
 	TGMCard *card = FirstCardNoRef(deck->_discarded);
 	while (card != nullptr) [[likely]]
 	{
