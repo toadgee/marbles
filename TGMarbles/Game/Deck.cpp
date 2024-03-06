@@ -182,8 +182,6 @@ bool AreDecksEqual(TGMDeck* deck1, TGMDeck* deck2)
 	if (deck1 == deck2) return true;
 	if (deck1 != nullptr && deck2 == nullptr) return false;
 	if (deck1 == nullptr && deck2 != nullptr) return false;
-	// stupid branch for analyzer
-	if (deck1 == nullptr || deck2 == nullptr) return true;
 	
 	if (CardListCount(deck1->_cards) != CardListCount(deck2->_cards)) return false;
 	if (CardListCount(deck1->_discarded) != CardListCount(deck2->_discarded)) return false;
