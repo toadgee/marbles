@@ -119,10 +119,11 @@ void DisplayHand(TGMCardList* hand, bool isSelf)
 void PlayInGame(TGMPlayer* player)
 {
 	TGMGame *game = PlayerGetGame(player);
-	printf("%s\n", BoardDescription(GameGetBoard(game)).c_str());
 	
 	while (true)
 	{
+		printf("%s\n", BoardDescription(GameGetBoard(game)).c_str());
+		
 		DisplayHand(PlayerGetHand(player), true);
 		
 		int optionCount = static_cast<int>(CardListCount(PlayerGetHand(player)));
@@ -156,7 +157,7 @@ void PlayInGame(TGMPlayer* player)
 			int i = 1;
 			while (move != nullptr)
 			{
-				printf("\t%d) %s\n", i++, MoveShortDescription(move, false).c_str());
+				printf("\t%d) %s\n", i++, MoveShortDescription(move, false, GameGetBoard(game)).c_str());
 				move = move->nextMove;
 			}
 		}
@@ -193,7 +194,7 @@ void PlayInGame(TGMPlayer* player)
 		
 		SimulateGame(game, nullptr, true);
 		
-		printf("Playing %s\n", MoveShortDescription(move, true).c_str());
+		printf("Playing %s\n", MoveShortDescription(move, true, nullptr).c_str());
 		GameDoMove(game, move);
 		ReleaseMoveList(moves);
 		ReleaseCard(card);
@@ -203,7 +204,7 @@ void PlayInGame(TGMPlayer* player)
 
 void PlayedMove(void* context, TGMGame* game, TGMPlayer* player, TGMMove* move)
 {
-	printf("%s played %s\n", ColoredString(PlayerGetColor(player), PlayerGetName(player)).c_str(), MoveShortDescription(move, true).c_str());
+	printf("%s played %s\n", ColoredString(PlayerGetColor(player), PlayerGetName(player)).c_str(), MoveShortDescription(move, true, nullptr).c_str());
 	printf("%s\n", BoardDescription(GameGetBoard(game)).c_str());
 }
 

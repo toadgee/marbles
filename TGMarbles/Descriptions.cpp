@@ -578,7 +578,7 @@ std::string BoardDescriptionWithCustomBreaker(TGMBoard *board, int8_t breaker)
 	return str.str();
 }
 
-std::string MoveShortDescription(TGMMove* move, bool withCard)
+std::string MoveShortDescription(TGMMove* move, bool withCard, TGMBoard *board)
 {
 	std::ostringstream str;
 	if (move->isDiscard)
@@ -618,6 +618,16 @@ std::string MoveShortDescription(TGMMove* move, bool withCard)
 	else
 	{
 		str << move->newSpot;
+	}
+	
+	if (board != nullptr && !IsFinalSpot(move->newSpot))
+	{
+		const MarbleColor mc = BoardMarbleColorAtSpot(board, move->newSpot);
+		if (IsValidMarbleColor(mc))
+		{
+			const PlayerColor pc = PlayerColorForMarbleColor(mc);
+			str << ColoredString(pc, " (kills)");
+		}
 	}
 	
 	if (withCard)

@@ -22,7 +22,7 @@ std::string GameFeedbackStats(TGMGame* game);
 std::string ColoredString(PlayerColor color, const char* str);
 std::string CardDescription(TGMCard *card, bool shortDescription);
 std::string GameLogDescription(TGMGameLog* gameLog);
-std::string MoveShortDescription(TGMMove* move, bool withCard);
+std::string MoveShortDescription(TGMMove* move, bool withCard, TGMBoard *board);
 std::string MoveDescription(TGMMove* move);
 std::string MoveListDescription(TGMMoveList *moveList);
 std::string PlayerDescription(TGMPlayer* player);
