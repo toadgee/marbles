@@ -108,7 +108,6 @@ void ReleaseDeck(TGMDeck *deck)
 
 void DeckShuffle(TGMDeck* deck, TGRandom* rng)
 {
-#if 1
 	TGMCard *card = FirstCardNoRef(deck->_discarded);
 	while (card != nullptr) [[likely]]
 	{
@@ -150,28 +149,6 @@ void DeckShuffle(TGMDeck* deck, TGRandom* rng)
 	
 	deck->_cards->_first = head;
 	deck->_cards->_last = last;
-#else
-	TGMCard *card = FirstCardNoRef(deck->_discarded);
-	while (card != nullptr)
-	{
-		TGMCard *next = card->nextCard;
-		TransferCardFromList(card, deck->_discarded, deck->_cards);
-		card = next;
-	}
-	
-	unsigned count = CardListCount(deck->_cards);
-	dassert(count == DeckCapacity());
-
-	while (count > 0)
-	{
-		unsigned cardPos = RandomRandom(rng) % count; // Shuffling
-		
-		TGMCard* c = CardListRemoveAtIndex(deck->_cards, cardPos);
-		CardListTransfer(deck->_cards, c);
-		
-		count--;
-	}
-#endif
 }
 
 TGMCard* DeckRemoveTopCard(TGMDeck* deck)
