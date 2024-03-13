@@ -42,16 +42,10 @@ struct TGMCardStruct
 #define CardSuit(card) (card->_suit)
 
 TGMCard* CreateCard(int uniqueId, CardNumber number, CardSuit suit);
-#if 0
-TGMCard* CopyCard(TGMCard *card);
-void RetainCard(TGMCard* card);
-void ReleaseCard(TGMCard *card);
-#else
 #define CopyCard(card) CreateCard(card->_uniqueId, card->_number, card->_suit)
 #define RetainCard(card) MemIncreaseRetainCount(card->_retainCount)
 #define ReleaseCard(card) if ((MemDecreaseRetainCount(card->_retainCount)) == 0) DeallocateCard(card)
 void DeallocateCard(TGMCard* card);
-#endif
 
 bool AreCardsEqual(TGMCard* card1, TGMCard* card2);
 bool AreCardsEquivalent(TGMCard* card1, TGMCard* card2);

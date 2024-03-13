@@ -34,7 +34,6 @@ std::string ColoredString(PlayerColor color, const char* str)
 
 		if (result == 0 && term != nullptr)
 		{
-			printf("%s\n", term);
 			if (strcmp(term, "xterm-256color") == 0)
 			{
 #ifdef COLOR_SUPPORTED

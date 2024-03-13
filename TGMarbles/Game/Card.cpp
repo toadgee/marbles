@@ -64,38 +64,6 @@ TGMCard* CreateCard(int uniqueId, CardNumber number, CardSuit suit)
 	return card;
 }
 
-#if 0
-TGMCard* CopyCard(TGMCard *card)
-{
-	return CreateCard(card->_uniqueId, card->_number, card->_suit);
-}
-
-void RetainCard(TGMCard* card)
-{
-	int32_t rc = MemIncreaseRetainCount(card->_retainCount);
-		
-#ifdef CARD_MEMORY_LOGGING
-	NSLog(@"<<CARD %p : %d (+)>>", card, rc);
-#else
-#pragma unused(rc)
-#endif
-}
-
-void ReleaseCard(TGMCard *card)
-{
-	int32_t rc = MemDecreaseRetainCount(card->_retainCount);
-#ifdef CARD_MEMORY_LOGGING
-	NSLog(@"<<CARD %p : %d (-)>>", card, rc);
-#endif
-	
-	dassert(rc >= 0);
-	if (rc == 0)
-	{
-		DeallocateCard(card);
-	}
-}
-#endif
-
 bool AreCardsEqual(TGMCard* card1, TGMCard* card2)
 {
 	if (card1 == card2) return true;
