@@ -10,16 +10,25 @@ pub struct Card {
 }
 
 impl Card {
-	bool AreCardsEqual(TGMCard* card1, TGMCard* card2)
-	{
-		if (card1 == card2) return true;
-		if (card1 == nullptr || card2 == nullptr) return false;
-	
-		return (card1->_number == card2->_number)
-			&& (card1->_suit == card2->_suit)
-			&& (card1->_uniqueId == card2->_uniqueId);
-	}
+	pub static fn are_equal(card1: Option<Card>, card2: Option<Card>) -> bool {
+		if card1.is_none() && card2.is_none() {
+			return true
+		}
 
+		if card1.is_none() {
+			return false
+		}
+
+		if card2.is_none() {
+			return false
+		}
+
+		let card1Value: Card = card1.expect()
+		let card2Value: Card = card2.expect()
+	
+		return card1Value.number == card2Value.number && card1Value.suit == card2Value.suit && card1Value.unique_id == card2Value.unique_id
+	}
+/*
 	bool AreCardsEquivalent(TGMCard* card1, TGMCard* card2)
 	{
 		if (card1 == nullptr && card2 == nullptr) return true;
@@ -79,5 +88,5 @@ impl Card {
 		if (regularCompare == TGMCardComparisonResult::Ascending) return TGMCardComparisonResult::Descending;
 		if (regularCompare == TGMCardComparisonResult::Descending) return TGMCardComparisonResult::Ascending;
 		return TGMCardComparisonResult::Same;
-	}
+	}*/
 }
