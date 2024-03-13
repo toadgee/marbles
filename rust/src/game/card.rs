@@ -1,7 +1,10 @@
+use crate::CardSuit;
+use crate::CardNumber;
+
 pub struct Card {
 	// next: Card,
 	// previous: Card,
-	unique_id: i32,
-	suit: CardSuit,
-	number: CardNumber
+	pub unique_id: i32,
+	pub suit: CardSuit,
+	pub number: CardNumber
 }

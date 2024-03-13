@@ -74,8 +74,8 @@ impl CardNumber {
 	}
 }
 
-impl fmt::Display for CardNumber {
-	fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
-		write!(f, "{}", self.value)
-	}
-}
+// impl fmt::Display for CardNumber {
+// 	fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
+// 		write!(f, "{}", self.value)
+// 	}
+// }
