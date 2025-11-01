@@ -76,7 +76,8 @@ void ComputerPlayerPlayInGameWithStrategy(TGMPlayer* player, Strategy s)
 {
 	// perf note : it seems to be more intensive to just find the unique cards than
 	// it does to just always use all cards and deal with a slightly larger move set
-	TGMMoveList* moves = MovesForPlayerSimple(player, player->_game, nullptr);
+	TGMMoveList* moves = CreateMoveList();
+	MovesForPlayerSimple(moves, player, player->_game, nullptr);
 	
 	if (s == Strategy::PassiveAggressive) [[unlikely]]
 	{

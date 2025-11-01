@@ -18,7 +18,7 @@
 
 TGMMoveList* AllPossibleMovesForAllTeamPlayers(TGMGame* game, bool team1);
 
-TGMMoveList* MovesForPlayerSimple(TGMPlayer* player, TGMGame *game, TGMCard* card);
-TGMMoveList* MovesForPlayer(TGMPlayer* player, TGMCardList* hand, TGMTeammates* teammates, TGMBoard* board, TGMCard* card, TGMGame* game);
+void MovesForPlayerSimple(TGMMoveList *moveList, TGMPlayer* player, TGMGame *game, TGMCard* card);
+void MovesForPlayer(TGMMoveList* moveList, TGMPlayer* player, TGMCardList* hand, TGMTeammates* teammates, TGMBoard* board, TGMCard* card, TGMGame* game);
 TGMMove* BestDiscardMoveInGameFromMoves(TGMMoveList *discardMoves);
 TGMMove* BestMoveFromMoves(TGMMoveList* moves, TGMGame* game, PlayerColor pc, Strategy strategy);

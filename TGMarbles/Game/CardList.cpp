@@ -39,6 +39,11 @@ void DeallocateCardList(TGMCardList* cardList)
 		card = next;
 	}
 	
+	if (!cardList->_allocated)
+	{
+		return;
+	}
+	
 	TGMPoolAllocator* allocator = static_cast<TGMPoolAllocator*>(cardList->_holder); // need to do this before memset...
 #ifdef DEBUG
 	memset(cardList, static_cast<int>(0xDEADBEEF), sizeof(TGMCardList));
@@ -55,6 +60,14 @@ void DeallocateCardList(TGMCardList* cardList)
 TGMCardList* CreateCardList(void)
 {
 	TGMCardList* cardList = AllocateCardList();
+	InitializeCardList(cardList);
+	cardList->_allocated = true;
+	return cardList;
+}
+
+void InitializeCardList(TGMCardList *cardList) noexcept
+{
+	cardList->_allocated = false;
 	cardList->_retainCount = 1;
 	cardList->_first = nullptr;
 	cardList->_last = nullptr;
@@ -64,8 +77,6 @@ TGMCardList* CreateCardList(void)
 	int64_t mlcc = MemIncreaseGlobalCount(g_cardListCreateCount);
 	NSLog(@"<<CARDLIST %p : %d (+) %lld>>", cardList, cardList->_retainCount, mlcc);
 #endif
-	
-	return cardList;
 }
 
 TGMCardList* CopyCardList(TGMCardList* cardList)

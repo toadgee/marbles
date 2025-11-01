@@ -93,7 +93,8 @@ void ReplayPlayerWillPlayMoveInGame(void* context, TGMGame* game, TGMPlayer* pla
 {
 	printf("#%d    %s ===> %s\n", GameGetTurn(game), PlayerDescription(player).c_str(), MoveDescription(move).c_str());
 	
-	TGMMoveList* allMoves = MovesForPlayerSimple(player, game, nullptr);
+	TGMMoveList* allMoves = CreateMoveList();
+	MovesForPlayerSimple(allMoves, player, game, nullptr);
 	printf("All Moves : \n");
 	bool foundGenMove = false;
 	TGMMoveList *allPossibleOpponentMoves = nullptr;

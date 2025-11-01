@@ -20,13 +20,17 @@ struct TGMMoveListStruct
 	
 	int _retainCount;
 	unsigned _count;
+	
+	bool _allocated;
+	char _unused[7];
 };
 
 TGMMoveList* CreateMoveList(void);
+void InitializeMoveList(TGMMoveList *moveList) noexcept;
 TGMMoveList* CopyMoveList(TGMMoveList* moveList);
 void DeallocateMoveList(TGMMoveList* moveList);
 #define RetainMoveList(moveList) MemIncreaseRetainCount(moveList->_retainCount)
-#define ReleaseMoveList(moveList) if ((MemDecreaseRetainCount(moveList->_retainCount)) == 0) DeallocateMoveList(moveList)
+#define ReleaseMoveList(moveList) if ((MemDecreaseRetainCount((moveList)->_retainCount)) == 0) DeallocateMoveList(moveList)
 
 void ClearMoveList(TGMMoveList* moveList);
 void MoveListAdd(TGMMoveList* moveList, TGMMove* move);

@@ -594,7 +594,8 @@ void ViewController_PlayerDiscarded(void* context, TGMGame* game, TGMPlayer* pla
 				// change play button to discard if we only have discard moves
 				{
 					BOOL onlyDiscardMoves = (CardListCount(PlayerGetHand([self player])) != 0); // don't need to show pass if we don't have any more cards in our hand
-					TGMMoveList* allMoves = MovesForPlayerSimple(player, game, nullptr);
+					TGMMoveList *allMoves = CreateMoveList();
+					MovesForPlayerSimple(allMoves, player, game, nullptr);
 					TGMMove *mv = allMoves->first;
 					while (mv != nullptr)
 					{
@@ -623,7 +624,8 @@ void ViewController_PlayerDiscarded(void* context, TGMGame* game, TGMPlayer* pla
 				[self->_playButton setEnabled:YES];
 				[self->_playButton setHidden:NO];
 			
-				TGMMoveList* moves = MovesForPlayerSimple([self player], game, NULL);
+				TGMMoveList* moves = CreateMoveList();
+				MovesForPlayerSimple(moves, [self player], game, NULL);
 				[self setCurrentValidMoves:moves];
 				ReleaseMoveList(moves);
 				
@@ -895,7 +897,8 @@ void ViewController_PlayerDiscarded(void* context, TGMGame* game, TGMPlayer* pla
 	for (int32_t p = 0; p < TeammatesCount(teammates); p++)
 	{
 		TGMPlayer* player = TeammatesPlayer(teammates, p);
-		TGMMoveList* allMoves = MovesForPlayerSimple(player, game, NULL)	;
+		TGMMoveList* allMoves = CreateMoveList();
+		MovesForPlayerSimple(allMoves, player, game, NULL);
 		TGMMove *mv = allMoves->first;
 		while (mv != nullptr)
 		{

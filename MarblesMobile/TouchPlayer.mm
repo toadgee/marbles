@@ -195,7 +195,8 @@ void TouchPlayerFinishedPlaying(TGMPlayer* player)
 BOOL TouchPlayerReplaceMoveWithValidMoveInGame(TGMPlayer* player, TGMGame* game)
 {
 	BOOL validated = NO;
-	TGMMoveList* moveList = MovesForPlayerSimple(player, game, NULL);
+	TGMMoveList *moveList = CreateMoveList();
+	MovesForPlayerSimple(moveList, player, game, NULL);
 	TGMMove *move = moveList->first;
 	while (move != nullptr)
 	{
@@ -219,7 +220,8 @@ BOOL TouchPlayerDoAutoDiscardInGame(TGMPlayer* player, TGMGame* game)
 	// otherwise would have discarded
 	dassert([NSThread isMainThread]);
 	
-	TGMMoveList* moves = MovesForPlayerSimple(player, game, NULL);
+	TGMMoveList *moves = CreateMoveList();
+	MovesForPlayerSimple(moves, player, game, NULL);
 	if (MoveListCount(moves) == 0)
 	{
 		ReleaseMoveList(moves);

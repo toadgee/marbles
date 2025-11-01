@@ -7,8 +7,9 @@
 #include "MoveRanker.h"
 #include "MarblesMem.h"
 
-TGMMoveList* StartingMovesForPlayer(
-	PlayerColor pc, 
+void StartingMovesForPlayer(
+	TGMMoveList *moveList,
+	PlayerColor pc,
 	int unusedMarbles, 
 	TGMCardList* hand, 
 	TGMBoard* board);
@@ -25,9 +26,10 @@ TGMMoveList* AllPossibleMovesForAllTeamPlayers(TGMGame* game, bool team1)
 	// we don't want to use the actual hand (because that would give insight into the player)
 	// so by having a hand with just a joker, we can generate all possible moves - and we shouldn't
 	// have any of the same moves
-	TGMCardList* handWithOnlyJoker = CreateCardList();
+	TGMCardList handWithOnlyJoker;
+	InitializeCardList(&handWithOnlyJoker);
 	TGMCard* joker = CreateCard(-1, CardNumber::Joker, CardSuit::Joker);
-	CardListTransfer(handWithOnlyJoker, joker);
+	CardListTransfer(&handWithOnlyJoker, joker);
 	
 	for (int i = 0; i < kPlayers; i++)
 	{
@@ -38,35 +40,37 @@ TGMMoveList* AllPossibleMovesForAllTeamPlayers(TGMGame* game, bool team1)
 			continue;
 		}
 		
-		TGMMoveList* playerMoves = MovesForPlayer(player, handWithOnlyJoker, nullptr, GameGetBoard(game), joker, game);
+		TGMMoveList playerMoves;
+		InitializeMoveList(&playerMoves);
+		MovesForPlayer(&playerMoves, player, &handWithOnlyJoker, nullptr, GameGetBoard(game), joker, game);
 		
 		{
-			TGMMove* move = playerMoves->first;
+			TGMMove* move = playerMoves.first;
 			while (move != nullptr)
 			{
 				TGMMove* next = move->nextMove;
-				TransferMoveFromList(move, playerMoves, allMoves);
+				TransferMoveFromList(move, &playerMoves, allMoves);
 				move = next;
 			}
 		}
 		
-		ReleaseMoveList(playerMoves);
+		ReleaseMoveList(&playerMoves);
 	}
-	
-	ReleaseCardList(handWithOnlyJoker);
 	
 	return allMoves;
 }
 
-TGMMoveList* MovesForPlayerSimple(
+void MovesForPlayerSimple(
+	TGMMoveList *moveList,
 	TGMPlayer* player,
 	TGMGame *game,
 	TGMCard* card)
 {
-	return MovesForPlayer(player, PlayerGetHand(player), nullptr, GameGetBoard(game), card, game);
+	MovesForPlayer(moveList, player, PlayerGetHand(player), nullptr, GameGetBoard(game), card, game);
 }
 
-TGMMoveList* MovesForPlayer(
+void MovesForPlayer(
+	TGMMoveList* moveList,
 	TGMPlayer* player,
 	TGMCardList* hand, 
 	TGMTeammates* teammates,
@@ -75,18 +79,17 @@ TGMMoveList* MovesForPlayer(
 	TGMGame* game)
 {
 	PlayerColor pc = PlayerGetColor(player);
-	TGMMoveList* filteredMoves = nullptr;
 	
 	{
-		filteredMoves = StartingMovesForPlayer(pc, PlayerUnusedMarbleCount(player), hand, board);
+		StartingMovesForPlayer(moveList, pc, PlayerUnusedMarbleCount(player), hand, board);
 		{
-			TGMMove* move = filteredMoves->first;
+			TGMMove* move = moveList->first;
 			while (move != nullptr)
 			{
 				TGMMove* next = move->nextMove;
 				if (!IsMoveValidOnBoard(move, board, pc))
 				{
-					MoveListRemove(filteredMoves, move);
+					MoveListRemove(moveList, move);
 				}
 				
 				move = next;
@@ -95,7 +98,7 @@ TGMMoveList* MovesForPlayer(
 	}
 	
 	// if no moves, look at all team moves
-	if (MoveListCount(filteredMoves) == 0)
+	if (MoveListCount(moveList) == 0)
 	{
 		// defer creation of teammates array until needed - but only if nullptr
 		// passing in empty teammate list (or any other teammate list) means we skip this part
@@ -109,36 +112,38 @@ TGMMoveList* MovesForPlayer(
 		{
 			TGMPlayer* teammate = TeammatesPlayer(teammates, p);
 			PlayerColor tc = PlayerGetColor(teammate);
-			TGMMoveList* teammateMoves = StartingMovesForPlayer(tc, PlayerUnusedMarbleCount(teammate), hand, board);
+			TGMMoveList teammateMoves;
+			InitializeMoveList(&teammateMoves);
+			StartingMovesForPlayer(&teammateMoves, tc, PlayerUnusedMarbleCount(teammate), hand, board);
 			
 			{
-				TGMMove* move = teammateMoves->first;
+				TGMMove* move = teammateMoves.first;
 				while (move != nullptr)
 				{
 					TGMMove* next = move->nextMove;
 					if (IsMoveValidOnBoard(move, board, tc))
 					{
-						TransferMoveFromList(move, teammateMoves, filteredMoves);
+						TransferMoveFromList(move, &teammateMoves, moveList);
 					}
 					
 					move = next;
 				}
 			}
 			
-			ReleaseMoveList(teammateMoves);
+			ReleaseMoveList(&teammateMoves);
 		}
 	}
 
 	if (card != nullptr)
 	{
 		{
-			TGMMove* move = filteredMoves->first;
+			TGMMove* move = moveList->first;
 			while (move != nullptr)
 			{
 				TGMMove* next = move->nextMove;
 				if (!AreCardsEqual(move->card, card))
 				{
-					MoveListRemove(filteredMoves, move);
+					MoveListRemove(moveList, move);
 				}
 				
 				move = next;
@@ -146,23 +151,22 @@ TGMMoveList* MovesForPlayer(
 		}
 	}
 	
-	dassert(filteredMoves != nullptr);
-	if (MoveListCount(filteredMoves) == 0)
+	dassert(moveList != nullptr);
+	if (MoveListCount(moveList) == 0)
 	{
 		if (card == nullptr)
 		{
-			GenerateDiscardMovesForPlayer(filteredMoves, pc, hand);
+			GenerateDiscardMovesForPlayer(moveList, pc, hand);
 		}
 		else
 		{
 			TGMMove* discardMove = MakeMove(card, nullptr, true, pc, 0, 0, 0, 0, false);
-			MoveListTransfer(filteredMoves, discardMove);
+			MoveListTransfer(moveList, discardMove);
 		}
 	}
 
-	dassert(MoveListCount(filteredMoves) > 0 || CardListCount(hand) == 0);
+	dassert(MoveListCount(moveList) > 0 || CardListCount(hand) == 0);
 	DeallocateTeammates(teammates);
-	return filteredMoves;
 }
 
 void GenerateDiscardMovesForPlayer(
@@ -262,8 +266,9 @@ TGMMove* BestMoveFromMoves(
 	return RetainMove(choiceMove);
 }
 
-TGMMoveList* StartingMovesForPlayer(
-	PlayerColor pc, 
+void StartingMovesForPlayer(
+	TGMMoveList *moveList,
+	PlayerColor pc,
 	int unusedMarbles, 
 	TGMCardList* hand, 
 	TGMBoard* board)
@@ -272,7 +277,6 @@ TGMMoveList* StartingMovesForPlayer(
 	dassert(board != nullptr);
 	dassert(hand != nullptr);
 
-	TGMMoveList* startingMoves = CreateMoveList();
 	TGMCard *card = FirstCardNoRef(hand);
 	while (card != nullptr)
 	{
@@ -314,7 +318,7 @@ TGMMoveList* StartingMovesForPlayer(
 					TGMMove* move = MakeMoveUnfiltered(card, marble, pc, cardNum, moves, possSpot, newSpot, normalizedOldSpot, 0, unusedMarbles);
 					if (move)
 					{
-						MoveListTransfer(startingMoves, move);
+						MoveListTransfer(moveList, move);
 					}
 				}
 			
@@ -335,7 +339,7 @@ TGMMoveList* StartingMovesForPlayer(
 				
 					{
 						TGMMove* move = MakeMove(card, marble, false, pc, possSpot, normalizedNewSpot, moves, 0, false);
-						MoveListTransfer(startingMoves, move);
+						MoveListTransfer(moveList, move);
 					}
 				}
 			}
@@ -383,7 +387,7 @@ TGMMoveList* StartingMovesForPlayer(
 							TGMMove* move = MakeMoveUnfiltered(card, marble, pc, num, moves, possSpot, newSpot, normalizedOldSpot, jumps, unusedMarbles);
 							if (move != nullptr)
 							{
-								MoveListTransfer(startingMoves, move);
+								MoveListTransfer(moveList, move);
 							}
 						}
 					
@@ -416,7 +420,7 @@ TGMMoveList* StartingMovesForPlayer(
 					if (newFinalSpot < kMarblesPerPlayer)
 					{
 						TGMMove* move = MakeMove(card, nullptr, false, pc, FinalSpotToSpot(finalSpot), FinalSpotToSpot(newFinalSpot), moves, 0, false);
-						MoveListTransfer(startingMoves, move);
+						MoveListTransfer(moveList, move);
 					}
 				}
 			}
@@ -428,13 +432,11 @@ TGMMoveList* StartingMovesForPlayer(
 			if ((cardNum == CardNumber::King || cardNum == CardNumber::Joker || cardNum == CardNumber::Ace))
 			{
 				TGMMove* move = MakeMove(card, nullptr, false, pc, kGetOutSpot, PlayerStartingSpot(pc), 0, 0, false);
-				MoveListTransfer(startingMoves, move);
+				MoveListTransfer(moveList, move);
 			}
 		}
 		
 		// do next card...
 		card = card->nextCard;
 	}
-	
-	return startingMoves;
 }

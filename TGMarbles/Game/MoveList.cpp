@@ -33,6 +33,11 @@ void DeallocateMoveList(TGMMoveList* moveList)
 		}
 	}
 	
+	if (!moveList->_allocated)
+	{
+		return;
+	}
+	
 	TGMPoolAllocator* allocator = static_cast<TGMPoolAllocator*>(moveList->_holder); // need to do this before memset...
 	
 #ifdef DEBUG
@@ -49,6 +54,14 @@ void DeallocateMoveList(TGMMoveList* moveList)
 TGMMoveList* CreateMoveList(void)
 {
 	TGMMoveList* moveList = AllocateMoveList();
+	InitializeMoveList(moveList);
+	moveList->_allocated = true;
+	return moveList;
+}
+
+void InitializeMoveList(TGMMoveList *moveList) noexcept
+{
+	moveList->_allocated = false;
 	moveList->_retainCount = 1;
 	moveList->first = nullptr;
 	moveList->last = nullptr;
@@ -58,8 +71,6 @@ TGMMoveList* CreateMoveList(void)
 	int64_t mlcc = MemIncreaseGlobalCount(g_moveListCreateCount);
 	NSLog(@"<<MOVELIST %p : %d (+) %lld>>", moveList, moveList->_retainCount, mlcc);
 #endif
-	
-	return moveList;
 }
 
 TGMMoveList* CopyMoveList(TGMMoveList* moveList)

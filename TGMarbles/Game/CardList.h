@@ -21,9 +21,12 @@ struct TGMCardListStruct
 	void *_holder;
 	int32_t _retainCount;
 	unsigned _count;
+	bool _allocated;
+	char _unused[7];
 };
 
 TGMCardList* CreateCardList(void);
+void InitializeCardList(TGMCardList *list) noexcept;
 #define RetainCardList(cardList) MemIncreaseRetainCount(cardList->_retainCount)
 #define ReleaseCardList(cardList) if ((MemDecreaseRetainCount(cardList->_retainCount)) == 0) DeallocateCardList(cardList)
 void DeallocateCardList(TGMCardList* cardList);

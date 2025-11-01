@@ -138,7 +138,8 @@ void PlayInGame(TGMPlayer* player)
 		TGMCard* card = CardAtIndex(PlayerGetHand(player), static_cast<unsigned>(index));
 		
 		// check to see if any other cards have non-discard moves
-		TGMMoveList* moves = MovesForPlayerSimple(player, game, card);
+		TGMMoveList *moves = CreateMoveList();
+		MovesForPlayerSimple(moves, player, game, card);
 		unsigned movesCount = MoveListCount(moves);
 		if (DoesPlayerHaveAnyNonDiscardMoves(player, card, moves, game))
 		{
@@ -279,7 +280,8 @@ void PlayerKilledPlayer(void* context, TGMGame* game, TGMPlayer* player, TGMPlay
 bool DoesPlayerHaveAnyNonDiscardMoves(TGMPlayer* player, TGMCard* card, TGMMoveList* moves, TGMGame* game)
 {
 	// allMoves only used to detect if we have valid non-discard moves
-	TGMMoveList* allMoves = MovesForPlayerSimple(player, game, nullptr);
+	TGMMoveList* allMoves = CreateMoveList();
+	MovesForPlayerSimple(allMoves, player, game, nullptr);
 		
 	// detect if we have non-discard moves
 	bool hasAnyNonDiscardMove = false;
