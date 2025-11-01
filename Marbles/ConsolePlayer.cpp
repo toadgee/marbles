@@ -1,4 +1,4 @@
-#include "precomp.h"
+#include <thread>
 #include "ComputerPlayer.h"
 #include "ConsolePlayer.h"
 #include "ConsoleUtilities.h"

@@ -6,6 +6,7 @@
 //	Copyright (c) 2012 toadgee.com. All rights reserved.
 //
 
+#import <Foundation/Foundation.h>
 #include "MoveTests.h"
 
 #include "Board.h"

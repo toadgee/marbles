@@ -362,7 +362,6 @@
 		2FD7B2F01503001600D47715 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		2FD7B2F31503001600D47715 /* TGMarbles-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "TGMarbles-Info.plist"; sourceTree = "<group>"; };
 		2FD7B2F51503001600D47715 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		2FD7B2F71503001600D47715 /* TGMarbles-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "TGMarbles-Prefix.pch"; sourceTree = "<group>"; };
 		2FD7B3091503001700D47715 /* TGMarblesTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "TGMarblesTests-Info.plist"; sourceTree = "<group>"; };
 		2FD7B30B1503001700D47715 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		2FD9110A19AC00CF00E8171E /* ConsoleUtilities.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ConsoleUtilities.cpp; sourceTree = "<group>"; };
@@ -371,6 +370,7 @@
 		2FE1E0E1171A72F90081C5EE /* MarblesMem.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = MarblesMem.cpp; path = TGMarbles/MarblesMem.cpp; sourceTree = SOURCE_ROOT; };
 		2FEA468316D0863800EE0699 /* MoveGenerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MoveGenerator.h; sourceTree = "<group>"; };
 		2FEA468416D0863900EE0699 /* MoveGenerator.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MoveGenerator.cpp; sourceTree = "<group>"; };
+		2FEA78522EB6B09D00F8FB53 /* Marbles.profdata */ = {isa = PBXFileReference; lastKnownFileType = file; path = Marbles.profdata; sourceTree = "<group>"; };
 		2FEFFFD916D33B58003EFAF2 /* CardList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CardList.h; sourceTree = "<group>"; };
 		2FEFFFDA16D33B58003EFAF2 /* CardList.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CardList.cpp; sourceTree = "<group>"; };
 		2FF52B9D169D314F00F521F9 /* GameLog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameLog.h; sourceTree = "<group>"; };
@@ -671,7 +671,6 @@
 				2FFA84CE1481F41600EDDCDE /* Marbles-Prefix.pch */,
 				2FFA84CF1481F41600EDDCDE /* Marbles.1 */,
 				2FD7B2F31503001600D47715 /* TGMarbles-Info.plist */,
-				2FD7B2F71503001600D47715 /* TGMarbles-Prefix.pch */,
 			);
 			name = "Supporting Files";
 			path = ../TGMarbles;
@@ -716,6 +715,14 @@
 			name = Unit;
 			sourceTree = "<group>";
 		};
+		2FEA78532EB6B09D00F8FB53 /* OptimizationProfiles */ = {
+			isa = PBXGroup;
+			children = (
+				2FEA78522EB6B09D00F8FB53 /* Marbles.profdata */,
+			);
+			path = OptimizationProfiles;
+			sourceTree = "<group>";
+		};
 		2FFA84B91481F41600EDDCDE = {
 			isa = PBXGroup;
 			children = (
@@ -723,6 +730,7 @@
 				2FFA84CA1481F41600EDDCDE /* Source */,
 				2FFA84C71481F41600EDDCDE /* Frameworks */,
 				2FFA84C51481F41600EDDCDE /* Products */,
+				2FEA78532EB6B09D00F8FB53 /* OptimizationProfiles */,
 			);
 			sourceTree = "<group>";
 		};
@@ -1245,6 +1253,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 2F4C4D4919C67DA30033BD3B /* marbles__cmd__cover.xcconfig */;
 			buildSettings = {
+				CLANG_USE_OPTIMIZATION_PROFILE = YES;
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = "";
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -1691,9 +1700,11 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 2F4C4D4B19C67DA30033BD3B /* marbles__cmd__release.xcconfig */;
 			buildSettings = {
+				CLANG_USE_OPTIMIZATION_PROFILE = YES;
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = "";
 				ENABLE_HARDENED_RUNTIME = YES;
+				GCC_OPTIMIZATION_LEVEL = 3;
 				LLVM_LTO = YES;
 			};
 			name = Release;

@@ -1,5 +1,7 @@
 #pragma once
 
+#include <assert.h>
+
 extern int s_debugAssertsOn;
 
 #ifdef DEBUG

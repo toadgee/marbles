@@ -7,7 +7,7 @@
 //
 
 #pragma once
-
+#include <stdint.h>
 #include "CardNumber.h"
 #include "CardSuit.h"
 
